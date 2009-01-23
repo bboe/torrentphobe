@@ -1,5 +1,6 @@
-log/*.log
-tmp/**/*
+web/log/*.log
+web/tmp/**/*
 .DS_Store
-doc/api
-doc/app
+web/doc/api
+web/doc/app
+web/db/development.sqlite3
