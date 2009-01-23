@@ -87,8 +87,7 @@ class TorrentsController < ApplicationController
    @torrent = Torrent.new(params[:torrent])
    @torrent.name = params[:upload]['torrentfile'].original_filename
    @torrent.size = params[:upload]['torrentfile'].size
-   #@torrent.meta_info = 10
-   @torrent.data = params[:upload]['torrentfile'].read
+   @torrent.meta_info = params[:upload]['torrentfile'].read
    respond_to do |format|
      if @torrent.save
       flash[:notice] = 'Torrent was successfully created.'
