@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20090125231309) do
     t.datetime "updated_at"
   end
 
+  add_index "relationships", ["user_id", "friend_id"], :name => "index_relationships_on_user_id_and_friend_id", :unique => true
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -44,13 +46,14 @@ ActiveRecord::Schema.define(:version => 20090125231309) do
     t.binary   "meta_info"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.binary   "data"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "fb_id"
+    t.integer  "fb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["fb_id"], :name => "index_users_on_fb_id", :unique => true
 
 end
