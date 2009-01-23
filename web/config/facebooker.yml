@@ -14,7 +14,7 @@ development:
   canvas_page_name: http://apps.facebook.com/torrentphobe/
   callback_url: http://interstella5555.ath.cx:3000/
   pretty_errors: true
-  set_asset_host_to_callback_url: true
+  set_asset_host_to_callback_url: false
   tunnel:
     public_host_username: 
     public_host: 
