@@ -1,0 +1,13 @@
+<p>
+  <b>Fb:</b>
+  <%=h @user.fb_id %>
+</p>
+<ul>
+<% for relationship in @user.relationships -%>
+<li><%=h relationship.friend.fb_id %>
+<% end -%>
+</ul>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
