@@ -3153,3 +3153,11 @@ Processing UploadController#index (for 127.0.0.1 at 2009-01-23 12:13:49) [GET]
 Rendering template within layouts/main
 Rendering upload/index
 Completed in 48ms (View: 42, DB: 2) | 200 OK [http://localhost/upload/]
+  [4;36;1mSQL (93.0ms)[0m   [0;1mDELETE FROM sessions[0m
+
+
+Processing UploadController#index (for 127.0.0.1 at 2009-01-23 12:17:30) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlN2Y2ZTJmYmZhMzBjMTIyNGZkNWExOTc3NTE5Nzc2MDAiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=--18d8b8f8511c8dfc9e278351623f9b8e521eb1eb
+Rendering template within layouts/main
+Rendering upload/index
+Completed in 41ms (View: 28, DB: 2) | 200 OK [http://localhost/upload/]
