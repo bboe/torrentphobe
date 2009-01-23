@@ -41,6 +41,10 @@ class SwarmTest < ActiveSupport::TestCase
     assert !bad.valid?, "need port!"
     bad.port = good.port
 
+    bad.peer_id = nil
+    assert !bad.valid?, "need peer_id!"
+    bad.peer_id = good.peer_id
+
     assert_valid bad    
   end
 
