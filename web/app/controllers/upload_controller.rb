@@ -1,15 +1,14 @@
 class UploadController < ApplicationController
+
+  layout "main"
+
+
       def index
          @uploaded = "Not_uploaded"
-          #redirect_to(:action => 'uploadTorrent')
-          render :file => 'app\views\upload\uploadTorrent.rhtml'
       end
       def uploadTorrent
         post = TorrentFile.save(params[:upload])
         @uploaded = "uploaded"
-        render :file => 'app\views\upload\uploadTorrent.rhtml'
-        #render :file => 'app\views\upload\uploadTorrent.rhtml'
-        #render :text => "File has been uploaded successfully"
       end
     
 end
