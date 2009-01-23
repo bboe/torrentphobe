@@ -1,0 +1,73 @@
+body{
+  background: #000 url(/images/fade.jpg) repeat-x bottom left;
+}
+
+#header{
+  background: transparent url(/images/logo.jpg) no-repeat center center;
+  min-height: 170px;
+}
+
+#tabs {
+  float: center;
+  width: 420px;
+  margin: 0px auto;
+  height: 35px;
+}
+
+#tabs ul {
+  list-style: none;
+  padding: 0 0 0 0;
+}
+
+#tabs li {
+  float: left;
+  padding-left: 5px;
+}
+
+#tabs a {
+  background-image: url(/images/tabs-all.png);
+  float: left;
+  height: 27px;
+  width: 85px;
+  text-decoration: none;
+  text-align: center;
+  color: #000;
+  font-size: large;
+  font-weight: 600;
+}
+
+#tabs a { padding: 8px 0 0 5px; }
+
+a.main { background-image: url(/images/tabs-all.png); }
+a.bg { background-position: 0 78px; }
+a.bg:hover { background-position: 0 39px; }
+
+#main {
+  min-height: 500px;
+  vertical-align: top;
+  text-align: left;
+}
+
+#content {
+  padding: 10px 20px 10px 20px;
+  width: 800px;
+  min-height: 520px;
+  margin: 0px auto;
+  background-color: #fff
+}
+
+#footer {
+  padding-top: 5px;
+  text-align: center;
+  height: 50px;
+}
+
+p {
+  text-align: left;
+}
+
+h1 {
+  color: #12bce7;
+  font-size: x-large;
+  font-weight:bold
+}
