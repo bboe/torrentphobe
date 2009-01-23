@@ -1,0 +1,24 @@
+<h1>Listing torrents</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Size</th>
+    <th>Meta info</th>
+  </tr>
+
+<% for torrent in @torrents %>
+  <tr>
+    <td><%=h torrent.name %></td>
+    <td><%=h torrent.size %></td>
+    <td><%=h torrent.meta_info %></td>
+    <td><%= link_to 'Show', torrent %></td>
+    <td><%= link_to 'Edit', edit_torrent_path(torrent) %></td>
+    <td><%= link_to 'Destroy', torrent, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New torrent', new_torrent_path %>

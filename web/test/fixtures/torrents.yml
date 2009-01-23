@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+good:
+  name: A Name
+  size: 350
+  meta_info: Some Info
+
+two:
+  name: MyString
+  size: 1
+  meta_info: 
+

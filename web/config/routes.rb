@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :torrents
+
   map.resources :relationships
   map.connect '/users/login', :controller => 'users', :action => 'login'
   map.resources :users
