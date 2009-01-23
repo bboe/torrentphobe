@@ -3132,3 +3132,24 @@ Processing UploadController#index (for 127.0.0.1 at 2009-01-23 01:40:34) [GET]
   Session ID: BAh7BzoMY3NyZl9pZCIlN2Y2ZTJmYmZhMzBjMTIyNGZkNWExOTc3NTE5Nzc2MDAiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=--18d8b8f8511c8dfc9e278351623f9b8e521eb1eb
 Rendering app\views\upload\uploadTorrent.rhtml
 Completed in 21ms (View: 16, DB: 2) | 200 OK [http://localhost/upload/index]
+
+
+Processing UploadController#index (for 127.0.0.1 at 2009-01-23 12:07:22) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlN2Y2ZTJmYmZhMzBjMTIyNGZkNWExOTc3NTE5Nzc2MDAiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=--18d8b8f8511c8dfc9e278351623f9b8e521eb1eb
+Rendering template within layouts/main
+Rendering upload/index
+Completed in 36ms (View: 31, DB: 0) | 200 OK [http://localhost/upload/]
+
+
+Processing UploadController#index (for 127.0.0.1 at 2009-01-23 12:09:43) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlN2Y2ZTJmYmZhMzBjMTIyNGZkNWExOTc3NTE5Nzc2MDAiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=--18d8b8f8511c8dfc9e278351623f9b8e521eb1eb
+Rendering template within layouts/main
+Rendering upload/index
+Completed in 33ms (View: 28, DB: 1) | 200 OK [http://localhost/upload/]
+
+
+Processing UploadController#index (for 127.0.0.1 at 2009-01-23 12:13:49) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlN2Y2ZTJmYmZhMzBjMTIyNGZkNWExOTc3NTE5Nzc2MDAiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=--18d8b8f8511c8dfc9e278351623f9b8e521eb1eb
+Rendering template within layouts/main
+Rendering upload/index
+Completed in 48ms (View: 42, DB: 2) | 200 OK [http://localhost/upload/]
