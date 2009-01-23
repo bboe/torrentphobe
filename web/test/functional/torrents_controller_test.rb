@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'test/test_helper'
 
 class TorrentsControllerTest < ActionController::TestCase
   test "should get index" do
@@ -14,7 +14,7 @@ class TorrentsControllerTest < ActionController::TestCase
 
   test "should create torrent" do
     assert_difference('Torrent.count') do
-      post :create, :torrent => { }
+      post :create, :torrent => {:name => "test", :size => 4050, :meta_info => "some info" }
     end
 
     assert_redirected_to torrent_path(assigns(:torrent))
