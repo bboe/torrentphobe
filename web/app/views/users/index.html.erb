@@ -19,4 +19,11 @@
 <br />
 <%= fb_connect_javascript_tag %>
 <%= init_fb_connect "XFBML" %>
-<%= fb_login_button %>
+
+<% if user_logged_in? %>
+<%= facebook_session.user.name %>
+<% else %>
+<div id="user">
+<%= fb_login_button "window.location = '/users/login/'" %>
+</div>
+<% end %>

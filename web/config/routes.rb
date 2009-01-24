@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :relationships
-
+  map.connect '/users/login', :controller => 'users', :action => 'login'
   map.resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

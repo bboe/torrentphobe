@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-
   layout "main"
+
+  before_filter :set_facebook_session
+  helper_method :facebook_session
 
   # GET /users
   # GET /users.xml
@@ -17,20 +19,34 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
+    @friends = facebook_session.user.friends
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
     end
   end
 
+  def login
+    @user = User.new({"fb_id" =>  facebook_session.user.uid})
+    if @user.save
+      flash[:notice] = 'User was successfully created.'
+      redirect_to(@user)
+    else
+      throw @user
+    end
+  end
+
+  def logout
+    facebook_session = nil
+    redirect_to(:action => :index)
+  end
+
   # GET /users/new
   # GET /users/new.xml
   def new
     @user = User.new
-
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
+      format.html
     end
   end
 
@@ -42,18 +58,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        flash[:notice] = 'User was successfully created.'
-        format.html { redirect_to(@user) }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    @user = User.new({"fb_id" =>  params[:user]["fb_id"]})
+    @user.save()
+    throw @user
   end
 
   # PUT /users/1
