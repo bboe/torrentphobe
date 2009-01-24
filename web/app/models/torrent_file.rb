@@ -1,4 +1,4 @@
-class TorrentFile < ActiveRecord::Base
+class TorrentFile
   def self.save(upload)
     name =  upload['torrentfile'].original_filename
     directory = "public/torrents"
