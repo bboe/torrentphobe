@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%=h @swarm.user_id %>
+</p>
+
+<p>
+  <b>Torrent:</b>
+  <%=h @swarm.torrent_id %>
+</p>
+
+<p>
+  <b>Ip address:</b>
+  <%=h @swarm.ip_address %>
+</p>
+
+<p>
+  <b>Port:</b>
+  <%=h @swarm.port %>
+</p>
+
+
+<%= link_to 'Edit', edit_swarm_path(@swarm) %> |
+<%= link_to 'Back', swarms_path %>
