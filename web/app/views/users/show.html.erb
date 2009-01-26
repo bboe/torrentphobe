@@ -12,12 +12,12 @@
 <%= init_fb_connect "XFBML" %>
 
 <ul>
-<% for friend in @friends[0..10] -%>
-<li><%=h "#{friend.first_name}  #{friend.last_name}" %>
+<% for friend in @friends[0..50] -%>
+<li><%=h friend %>
 <% end -%>
 </ul>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %> |
-<a href="#" onclick="FB.Connect.logoutAndRedirect('/users/')">Logout of Facebook</a>
+<a href="#" onclick="FB.Connect.logoutAndRedirect('/users/logout')">Logout of Facebook</a>
 

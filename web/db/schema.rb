@@ -46,9 +46,11 @@ ActiveRecord::Schema.define(:version => 20090124045205) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "fb_id"
+    t.integer  "fb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["fb_id"], :name => "index_users_on_fb_id", :unique => true
 
 end

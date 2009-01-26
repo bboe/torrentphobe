@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   # GET /users
   # GET /users.xml
-  def index
+  def index      
     @users = User.find(:all)
 
     respond_to do |format|
@@ -27,16 +27,23 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.new({"fb_id" =>  facebook_session.user.uid})
-    if @user.save
-      flash[:notice] = 'User was successfully created.'
-      redirect_to(@user)
-    else
-      throw @user
+    @user = User.find_or_create_by_fb_id(facebook_session.user.uid)
+    user_ids = []
+    friend_ids = []
+    User.find(:all).each {|user| user_ids << user.fb_id}
+    facebook_session.user.friends.each {|user| friend_ids << user.uid}
+    friends = user_ids & friend_ids
+    friends.each do |friend|
+      f_id = User.find_by_fb_id(friend)
+      Relationship.create({:user_id => @user.id, :friend_id => f_id})
+      Relationship.create({:user_id => f_id, :friend_id => @user.id})
     end
+
+    redirect_to(@user)
   end
 
   def logout
+    reset_session
     facebook_session = nil
     redirect_to(:action => :index)
   end
