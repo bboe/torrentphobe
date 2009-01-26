@@ -3161,3 +3161,60 @@ Processing UploadController#index (for 127.0.0.1 at 2009-01-23 12:17:30) [GET]
 Rendering template within layouts/main
 Rendering upload/index
 Completed in 41ms (View: 28, DB: 2) | 200 OK [http://localhost/upload/]
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-25 20:25:28) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;36;1mTorrent Load (2.0ms)[0m   [0;1mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 77ms (View: 41, DB: 3) | 200 OK [http://localhost/torrents]
+
+
+Processing TorrentsController#new (for 127.0.0.1 at 2009-01-25 20:25:31) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+Rendering template within layouts/torrents
+Rendering torrents/new
+Completed in 68ms (View: 26, DB: 2) | 200 OK [http://localhost/torrents/new]
+
+
+Processing TorrentsController#uploadTorrentFile (for 127.0.0.1 at 2009-01-25 20:25:40) [POST]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"commit"=>"Upload", "upload"=>{"torrentfile"=>#<ActionController::UploadedStringIO:0x5df500c>}}
+  [4;35;1mTorrent Create (5.0ms)[0m   [0mINSERT INTO "torrents" ("name", "size", "updated_at", "meta_info", "created_at", "data") VALUES('hello.txt', 5, '2009-01-26 04:25:40', NULL, '2009-01-26 04:25:40', 'hello')[0m
+Redirected to #<Torrent:0x5da5ca0>
+Completed in 219ms (DB: 7) | 302 Found [http://localhost/torrents/uploadTorrentFile]
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-25 20:25:41) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"2"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 2) [0m
+Rendering template within layouts/torrents
+Rendering torrents/show
+Completed in 89ms (View: 41, DB: 3) | 200 OK [http://localhost/torrents/2]
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-25 20:25:45) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;35;1mTorrent Load (1.0ms)[0m   [0mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 70ms (View: 38, DB: 3) | 200 OK [http://localhost/torrents]
+
+
+Processing TorrentsController#destroy (for 127.0.0.1 at 2009-01-25 20:25:51) [DELETE]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"2"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 2) [0m
+  [4;35;1mTorrent Destroy (5.0ms)[0m   [0mDELETE FROM "torrents" WHERE "id" = 2[0m
+Redirected to http://localhost:3000/torrents
+Completed in 158ms (DB: 8) | 302 Found [http://localhost/torrents/2]
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-25 20:25:52) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;36;1mTorrent Load (2.0ms)[0m   [0;1mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 69ms (View: 37, DB: 4) | 200 OK [http://localhost/torrents]

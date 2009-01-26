@@ -1,12 +1,12 @@
-<%= form_tag ({:action => 'uploadTorrent'}),
+<h1>New torrent</h1>
+
+
+<%= form_tag ({:action => 'uploadTorrentFile'}),
 :multipart => true   %>
 <p style="text-align:center;"><label for="upload_file">Upload Torrent File</label>
   <%= file_field 'upload', 'torrentfile' %>
   <%= submit_tag "Upload" %></p>
 
 </form>
-<% if @uploaded=="uploaded" %>
-<p style="text-align:center">
-  "File has been uploaded successfully"
-</p>
-<% end %>
+
+<%= link_to 'Back', torrents_path %>
