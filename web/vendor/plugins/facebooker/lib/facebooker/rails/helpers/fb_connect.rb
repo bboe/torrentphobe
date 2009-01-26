@@ -25,8 +25,10 @@ module Facebooker
           javascript_tag init_string
         end
         
-        def fb_login_button(callback=nil)
-          content_tag("fb:login-button",nil,(callback.nil? ? {} : {:onlogin=>callback}))
+        def fb_login_button(callback=nil, button_size="medium", button_length="short")
+          options = { :size => button_size, :length => button_length }
+          options[:onlogin] = callback if !callback.nil?
+          content_tag("fb:login-button",nil,options)
         end
         
         def fb_unconnected_friends_count
