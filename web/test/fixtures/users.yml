@@ -1,7 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  fb_id: MyString
+  fb_id: 1
 
 two:
-  fb_id: MyString
+  fb_id: 2

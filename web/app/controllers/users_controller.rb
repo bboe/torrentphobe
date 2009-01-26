@@ -67,7 +67,18 @@ class UsersController < ApplicationController
   def create
     @user = User.new({"fb_id" =>  params[:user]["fb_id"]})
     @user.save()
-    throw @user
+    
+    respond_to do |format|
+      if @user.save
+        flash[:notice] = 'User was successfully created.'
+        format.html { redirect_to(@user) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+    
   end
 
   # PUT /users/1
