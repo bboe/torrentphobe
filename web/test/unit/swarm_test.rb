@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'test/test_helper'
 
 class SwarmTest < ActiveSupport::TestCase
   # Replace this with your real tests.
@@ -40,6 +40,10 @@ class SwarmTest < ActiveSupport::TestCase
     bad.port = nil
     assert !bad.valid?, "need port!"
     bad.port = good.port
+
+    bad.peer_id = nil
+    assert !bad.valid?, "need peer_id!"
+    bad.peer_id = good.peer_id
 
     assert_valid bad    
   end
