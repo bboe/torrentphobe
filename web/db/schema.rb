@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090125055143) do
+ActiveRecord::Schema.define(:version => 20090125231309) do
 
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(:version => 20090125055143) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "swarms", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "torrent_id"
+    t.string   "ip_address"
+    t.integer  "port"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "peer_id"
+  end
 
   create_table "torrents", :force => true do |t|
     t.string   "name"
