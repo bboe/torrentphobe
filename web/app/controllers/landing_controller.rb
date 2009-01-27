@@ -8,8 +8,10 @@ class LandingController < ApplicationController
       begin
         facebook_session.user.name
         @user = User.find_by_fb_id(facebook_session.user.id)
-        redirect_to :controller => 'users', :action => 'show', :id => @user.id
-        return
+	if !@user.nil?
+	  redirect_to :controller => 'users', :action => 'show', :id => @user.id
+	  return
+        end
       rescue Facebooker::Session::SessionExpired
       end
     end
