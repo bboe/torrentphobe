@@ -83,12 +83,12 @@ class TorrentsController < ApplicationController
     end
   end
   def uploadTorrentFile
-    #post = Torrent.updatetorrentfile(params[:upload])
-    @torrent = Torrent.new(params[:torrent])
-    @torrent.name = params[:upload]['torrentfile'].original_filename
-     @torrent.size = params[:upload]['torrentfile'].size
-     #@torrent.meta_info = 10
-     @torrent.data = params[:upload]['torrentfile'].read  
+   #post = Torrent.updatetorrentfile(params[:upload])
+   @torrent = Torrent.new(params[:torrent])
+   @torrent.name = params[:upload]['torrentfile'].original_filename
+   @torrent.size = params[:upload]['torrentfile'].size
+   #@torrent.meta_info = 10
+   @torrent.data = params[:upload]['torrentfile'].read
    respond_to do |format|
      if @torrent.save
       flash[:notice] = 'Torrent was successfully created.'
@@ -99,11 +99,18 @@ class TorrentsController < ApplicationController
        format.xml  { render :xml => @torrent.errors, :status => :unprocessable_entity }
      end
    end
-      #@torrent = Torrent.find(params[:id])
-     #@torrentfile = @torrent.data   
-    #post = Torrent.save(params[:upload])
-    #@uploaded = "uploaded"
-    #redirect_to(:action => "index")
+   #@torrent = Torrent.find(params[:id])
+   #@torrentfile = @torrent.data
+   #post = Torrent.save(params[:upload])
+   #@uploaded = "uploaded"
+   #redirect_to(:action => "index")
       
   end
+
+  def downloadTorrentFile
+     
+      @torrent = Torrent.find(params[:id])
+      send_data @torrent.data, :filename => @torrent.name    
+  end
+
 end
