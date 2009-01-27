@@ -1,5 +1,17 @@
-#body{
+html {
+  min-height: 100%;
+}
+
+body{
   background: #000 url(/images/fade.jpg) repeat-x bottom left;
+  height: 100%;
+  margin: 0 0 0 0;
+}
+
+#container {
+  height: 100%;
+  margin: 0 0 0 0;
+  padding: 0 15% 0 15%;
 }
 
 #header{
@@ -7,9 +19,17 @@
   min-height: 170px;
 }
 
+#header a{
+  color: #12bce7;
+  font-weight: bold;
+  padding: 40px 10px 0 0;
+  float: right;
+  text-decoration: none;
+}
+
 #tabs {
   float: center;
-  width: 420px;
+  width: 440px;
   margin: 0px auto;
   height: 35px;
 }
@@ -28,15 +48,15 @@
   background-image: url(/images/tabs-all.png);
   float: left;
   height: 27px;
-  width: 85px;
+  width: 92px;
   text-decoration: none;
   text-align: center;
   color: #000;
-  font-size: large;
-  font-weight: 600;
+  font-size: larger;
+  font-weight: 800;
 }
 
-#tabs a { padding: 8px 0 0 5px; }
+#tabs a { padding: 8px 0 0 3px; }
 
 a.main { background-image: url(/images/tabs-all.png); }
 a.bg { background-position: 0 78px; }
@@ -60,6 +80,7 @@ a.bg:hover { background-position: 0 39px; }
   padding-top: 5px;
   text-align: center;
   height: 50px;
+  color: #fff;
 }
 
 p {
@@ -67,10 +88,14 @@ p {
 }
 
 p.landing {
-  color: #afafaf
+  color: #b8b8b8
 }
 
-h1 {
+#footer a, a.landing {
+color: #fff
+}
+
+h1, h4 {
   color: #12bce7;
   font-size: x-large;
   font-weight:bold;
@@ -80,10 +105,4 @@ h2 {
   font-size: large;
   font-weight:bold;
   color: #fff
-}
-
-h4 {
-  color: #12bce7;
-  font-size: xx-large;
-  font-weight:bold;
 }

@@ -1,4 +1,5 @@
 class LandingController < ApplicationController
+  layout "landing"
   before_filter :set_facebook_session
   helper_method :facebook_session
 

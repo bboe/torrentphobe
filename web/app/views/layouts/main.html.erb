@@ -1,20 +1,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<link rel="shortcut icon" href="favicon.ico" />
 <title>torrentpho.be</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%= stylesheet_link_tag 'styles', :media => "all" %>
 <%= javascript_include_tag :defaults %>
 </head>
-<body id="body">
+<body>
+<div id="container">
 <div id="header">
+<a href="#" onclick="FB.Connect.logoutAndRedirect('/users/logout')">Logout</a>
 </div>
 <div id="tabs">
 	<ul>
-		<li><a class="main" href="/">Home</a></li>
-		<li><a class="bg" href="/">Profile</a></li>
-		<li><a class="bg" href="/">Settings</a></li>
-		<li><a class="bg" href="/">Logout</a></li>
+		<li><%= link_to "Home", {}, :class => "main" %></li>
+		<li><%= link_to "Profile", {}, :class => "bg" %></li>
+		<li><%= link_to "Torrents", {}, :class => "bg" %></li>
+		<li><%= link_to "Settings", {}, :class => "bg" %></li>
 	</ul>
 </div>
 <div id="main">
@@ -23,7 +26,9 @@
 	</div>
 </div>
 <div id="footer">
-	footer
+	<%= link_to 'Home', :controller => :landing %> |
+	<%= link_to 'About', :controller => :landing, :action => :about %>
+</div>
 </div>
 </body>
 </html>

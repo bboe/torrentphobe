@@ -1,11 +1,7 @@
 <%= fb_connect_javascript_tag %>
 <%= init_fb_connect "XFBML" %>
 
-<h2>Get started now...</h2>
-<%= fb_login_button "window.location = '/users/login/'", "large", "long" %>
-<br />
+<h2 style="display: inline;">Get started now...</h2>
+<%= fb_login_button "window.location = '/users/login/'", "large", "long" %><br /><br />
 <h2> What is torrentphobe?</h2>
 <p class="landing"> torrentphobe is an innovative new service which allows you to easily and privately share files with your friends. </p>
-
-
-<%= link_to 'About', :action => 'about' %>
