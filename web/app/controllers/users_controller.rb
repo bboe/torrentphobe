@@ -35,8 +35,8 @@ class UsersController < ApplicationController
     friends = user_ids & friend_ids
     friends.each do |friend|
       f_id = User.find_by_fb_id(friend).id
-      Relationship.create({:user_id => @user.id, :friend_id => f_id})
-      Relationship.create({:user_id => f_id, :friend_id => @user.id})
+      Relationship.find_or_create_by_user_id_and_friend_id(@user.id,f_id)
+      Relationship.find_or_create_by_user_id_and_friend_id(f_id,@user.id)
     end
 
     redirect_to(@user)
