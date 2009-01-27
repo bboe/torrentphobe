@@ -3253,3 +3253,1978 @@ Migrating to AddPeerIdToSwarm (20090125231309)
   [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("swarms")[0m
   [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("torrents")[0m
   [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-26 14:39:07) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 80ms (View: 44, DB: 2) | 200 OK [http://localhost/torrents]
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 14:39:10) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (0.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (109.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (182.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 14:43:27) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (101.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 14:43:36) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (1.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (109.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 14:49:02) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (295.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 14:56:30) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (0.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (106.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+  [4;36;1mSQL (234.0ms)[0m   [0;1mDELETE FROM sessions[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateSessions (20090123052624)
+Migrating to CreateUsers (20090123202536)
+Migrating to CreateRelationships (20090123204135)
+Migrating to CreateTorrents (20090124040527)
+Migrating to CreateSwarms (20090124045205)
+Migrating to AddDataToTorrent (20090125055143)
+Migrating to AddPeerIdToSwarm (20090125231309)
+  [4;36;1mSQL (1.0ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (1.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("relationships")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("sessions")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_info('index_sessions_on_updated_at')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mPRAGMA index_info('index_sessions_on_session_id')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mPRAGMA index_list("swarms")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("torrents")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:01:34) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (123.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (6.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:13:12) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (1.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (365.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:13:17) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (121.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:13:45) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (0.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (127.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:14:27) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"1"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 1) [0m
+Rendering template within layouts/torrents
+Rendering torrents/show
+Completed in 67ms (View: 34, DB: 3) | 200 OK [http://localhost/torrents/1]
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:22:14) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (1.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (107.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:24:05) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (104.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:24:13) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (0.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (301.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#new (for 127.0.0.1 at 2009-01-26 15:24:43) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+Rendering template within layouts/torrents
+Rendering torrents/new
+Completed in 114ms (View: 80, DB: 2) | 200 OK [http://localhost/torrents/new]
+
+
+Processing TorrentsController#uploadTorrentFile (for 127.0.0.1 at 2009-01-26 15:24:50) [POST]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"commit"=>"Upload", "upload"=>{"torrentfile"=>#<File:C:/Users/krithika/AppData/Local/Temp/CGI.4252.0>}}
+  [4;36;1mTorrent Create (7.0ms)[0m   [0;1mINSERT INTO "torrents" ("name", "size", "updated_at", "meta_info", "created_at", "data") VALUES('Shashank_Agarwal.pdf', 33967, '2009-01-26 23:24:50', NULL, '2009-01-26 23:24:50', '%25PDF-1.4
+%25Çì¢
+5 0 obj
+<</Length 6 0 R/Filter /FlateDecode>>
+stream
+xœí]Y$·‘Æ¾Î¯h`±P•­N''™©§Ë’V²$¥¶´Àxú˜Ë3Ójµºgdÿ‹=°¿wƒ™IÆd°ªzÔZÁ€=€•¨fòÆñÅ‘ßµ±GmøÎ_?øÍWÓÑ³Ì?}õÉúpýìÁ÷\Ó…ÿÍ?àóùë£ßžÐ‹þÈ¸£“§ÚÆ{gæ?™#ÛuÍØMÖ4=:yýàñæë­iFÓnó|~²Ó¸9ÝÓkµÞü°=šÖY¯ÿùrþó8~ó2ýýhÛ{zô›‡Û¶­ï³yÆïÀë×Ûã®ÌÔw›·Ûã±i{ï6xµíÓ¥Nÿãä3Z—1GÆPÃ´¶ÖMëêú‰úòÃÑÔNM¿¬n\ºr½ï6<[xnáù(<÷“·ý´ùˆdºÉ4Z¥Úv>ÜÚftCç6ßm}ã;Cs‡¦O¶Ç¶Úq˜hõáï–ž^ðß¿«ŒûUêö¢lág7ÿœ†Ãu˜Êú&x~k¨c\ìo²ƒìûïó9[Õ=÷(ÏxÛLÖ¡\aí~ÑÛ›Ÿ}Z÷³I;æ8xû÷J;_XO?Jb÷;­ðÔº!üÝö®kzÿÿ¼Cvhþî™½;â”–÷ãÑöØ7Ó`ûždQÛ¾µ$XV.:™±''i”~~²%25¡8÷ýÁ¶ë,	Š©”$ëmÃtÛÂóŸ§~s¼5Sc&}¥u''ZÙú¨µÀ¾éÙÂ›u“mz’ÞÇ†„¸[¦üuX±#æ>KåYÜØ°ÌñoXàœ²@ByóÛ-u8„e@’Ì}3¶¶7gIÚè_¨ÁûÐ­.)n‡)<±Û>ÑU
+iêÍ¡wî‚nçq´ÿcwwÎóA÷K?ßßÎ;ã†ñg™Í/"ÜîLÞøiÍC£?vcœùG‰—½¬uülš™u¿ØÍÔ·³õ’xïÌ/“°ûèäÁ“®’uGÙwAŽY6‚|´†¶±ýÑè;ÒVˆL8C›ó,ÇÞa@Âo˜œßû÷KøõåÊzÝØmþ5<“Ø°®ßœ‡Öc»Œko+kö}g6·ðÞy°ôè´=ƒ¿ã{OR¿ÐâvK{švÐ½xÐ‘^p4Lãpä£úðÿ´-×O<}''z‡¡9ŒtL6™Îôä/Ël:ÒžÂø‘ÀQOªÇQ»Ì¤_¦ò“Žî8¹Æõ<òL¯5Äöã0wÈáÁæî½=I~"Jë‚„þl%25àÖ:¢ðôó‡³O‚yØœð¯Ÿ¦sû†ÿ¾¾eH	*W—î)_#¬¥[çflþÀS‹KÙ±~’6«Ñõ‰+ÐNgM°''t–¨%25%25Žh4%25°Ò_oûf¢UuÑžzŽm/“sSÀ%00áµëYt­ÔÐ~Ò½0v%00½âbj‹üNô75¤Õöp"}mRwægfbqZèø94X=Ylû”÷ÿîO8ŸÎ˜åBÆk^€–Žº}Š• &Ã]¼ž¹ºµ–ôý¤î_Aƒ[x.Ï.,ãZïë-Ñjï¨í9·UW‡û·¶íIç†!0ÃØXÙu­ƒEà46`úù†|þàäWÓ}&þý;¾¯âG¸å·S`êƒ×ïûÊ<è¾l¾ä—> Mïˆ''¥é;¯IÒ7£[½,ãñæ‹y€‘n’a`çÔlŒ?‘¨°	‚Å\ÃI¼Iwë‰0câãrmFotïûùÇSÿ«¸†3M· DfŒÕe9O«õÄˆ¯(4ÞæëÄ¾ëÖNp‡Ó
+wøšmal&òMâF§åÒèº’tpm‡ÖŠ×ÌÏÎpŒ°¸–úš	µ¢?oÒp³!šî3ì‰€[ãl,ôÕ.×¹''ß&rµI„õŽ›rSìqÑäŠ×t½5¾±¤úÁ-f7÷2qáÏÛÕâï7x}çlÂíYñEx½5vr«Ü¢›¿el\ð£é67’Óë-é8Y)>"û8ÉþÀÞïF_£²óD¨/TáÇÂñœ\6¶×˜…±³rµ°°O)<lmÇ1ìtOœ*ÞwP7pƒ-í¾iMfqÌ{ƒ(²tŒi¾¿áõô•ÛÔxy²¸¢œxT“3ð
+·t¤G‰WGÞ2âˆo™ý	ö¶®ux¬G´º .l¾Ýôk7dÜ''ÕËDã•ý} \ØnÓRÞ»xRÄÑ¡ñ&‡•"á‚LÒcæ1†H°Å1€úà²Þ¤;r­j!rÝÂ%007š ÏtÒ(š‘(®Â_W3ÐÔŠõ>¶›¾/Ù8‚¸Ñ´í®ŸÆU?%25Öp€:sšÖPÓã¼QY9åÙJGXœ×''iïaaRýŠ‹|ÂŠÏÍÂÄI}Ÿ¦„<]£¼â¾ÃXlG¬æ±Þ¤5œ".t¯ð3L÷"½Wâd;ïÅZ®RÃuãH@¬¼/Ìo=Ek=î4½Ô©G''$Ø.PoÓÖí
+"zV$ºiœâÙ†Áj{¸ÇÝh;t³Z%25Ð§IL¿Ž<%25…îßd©?îG¡wQ¡Íz@öJØQYˆbÔÑyÇÍ,”ÆÞ±âu­+iÏ4±lHÞ©Ò´ÊºB9ûyòE—ÌÒ;_4q+¯®éšÎŸà@õUž3tŸº¾¼c³zõ&]]¢ôxuïxÝtíëw -§Æ*;Ó9¿ÂU5–{fÓºRÊ°bçÂÌÏ4U¸²ˆOhq©szÝpÅÆOrYøEeìL†óFg„`Ø*<±Y(‡8¸mWÊQ4ŸãÞ‘å1ô3_ò#·ZØÔ¢®æI?z¡‰Ðµ%25ÃÔ{dEçüø|¿%25ùeR«N‹ŒQAP‚â|‰¾¸ùw¹Ä„LTÄ¶ƒ Be0°-n5ƒƒYZ	™jj‰loHÍQÉÕ\­<Sä}¯ŠÝÈø˜4œybd¦©™î=ìÌIrL’)•šf’,-#€ã(øêõJm®q~Š|êV½°LÑjË‚x•ö¼Ò\%00Ð¯\C”3‚(ÒùÌú©·b´Fõoàö–*EXÒQ$7Áó’{ãL}Ÿíc×&¾€žp|¶ó_\Oÿ«"Œ’Gð×Š%00Ù?:zß“‰î*&úJ:õî&zf¢ÿ–¹¯Øü{§Yæµ`x9lf™ÇI$Ý÷0WJïIòŽ1v2D?Î”½*ß|Lã¸ÔE„P¿¥i¸òÓ9ã¦_©Þ“xx¶uißo~O¤:ØÑô%00Ç~ÎoÁ#¼´ ³¾eÎ‹Ð¬éŽ<¯tŒHÃ8¬KuÄR×Ì?­®™aya$S£Ëø¿ëò/Zu‚)4­ú©&A”3vZµ:àÖÑÜÂÕà—teÿ›äPâ– ˜`ÏRf/#ñíþ55¤¥Òþu˜h×†r«6¾eÞú÷"nå³Y§÷ýâuŽ·TES”!‚
+Ë¦h+œ	îŠÖð23é,*ÿÎ½‚R«úÂ…
+¢kéh¤»´xk\3y™«ÇÀkY‰=WÍœ}f3/øOF@¹ñr£5¶+ 	Ôæƒg³M?í+uÏ+>5Ñ;~»5}c,£ys[XúË\{Ï]|Ï”#~©Î%00Gx›ô¸Wl%00Šq¡Ž%00tz{Êf7øSërõ˜†8]$°J~L#!½E¤/„@øÔ*6:2+ëøf-¢ûbun–í‚Õ)…ôô¦‹$´üÜË=ß„H¨ßnêÀM¼º>›bì	‡âƒ…AïË^ÂŒ
+çeA~¨ø|H¥¸Oñ•z||''ÝÄ“¾#¨Œö×ÒÜT[©ÁE9ž”ðcÅd»R¢ê‡Ë${78ì¬2Í“ÍQ¢aˆÓ‚×ÎTxK•.ÈbX>H÷}ì¶«3ÒØ„-SP¤-2ÇØr1¸ï''“!-ZF¦Ä‚à”ùjíåÕ0Ü­q*Ü''pbá&Ç—³nt§I°¤²¾Ù“.5LÄŠÓjH''¦ãY-8¹‹Ë¨E÷Þ5EÙ¯Å[‘''€¶
+ ´”zŽÃ%25`z^ºIH»„Zã ¯ÒßYÆÄÓ@{†á	–nEhÍ5"?;.é~Ø}\¹€ÝMÆj1•|Š:x]‘œpÓU%00¾`s ),˜8‹±É6ÓèúMæ¯”·ÆÌa
+Åv Ô¨r­ø@Dè?ïí7m›„Ä¿q¬ˆ9¿‚1Xp®–z1ùíÞ„gÓ}’ûÒÍHePi(]H5­ˆµX‰‚fÚqfÁ¥cgïmÉj0ÒÇ5¨/®H÷È žh¥	Ö	zí mM[zîj%25FïyeC
+/w`Mìò`Ž^QêÏ÷:€ÑÆãç´w8}›NiGÜ|˜œ"ígŠÍQ¢Y­›½O,ãöþéQEÀT·X ä×®óýÈqO×.u"vãµ;ÛÉÛG™_z™«~Ë÷béIû…àÉê›Ö…ÞßªÈ.
+œ W€_Š)Îñ£¼äíˆC„ÙMAÒ«‚‹=¯¯!6ŒÙD¬ãýáQ ´Ây_lzÔ(Š%00‰‡[bgMk''ÄH–Ú&^Ë·ýðµ\ü|ïBdz—îÝ''‰–;‡28ª@w½².­RB*â‘HmÄÜO»s’peá¸fž''Ðž5¨·œ6¬P`2LB=S%00*àñ:9*qÏ4¢8ì°ã‹QHZgÔ5‘ð’Ö¹RÃñKwqG»µ
+¦|%25*:÷±Þ”pÛa_w6ü»ÑÇ°èûbÆ©ÇÇÀ¿tó•«ÑÇ™Þ3ÑôŒé3¾éÈiI.&üa>ì „hW¢‹ùGØoV^ôƒ†éé}0áB0‘þŸ¾—Ä„Ï0[áuVÜSêÄàž¢²Ä-Ü¥ZdjðÖÝ4‹ºöKLU`¡±ûE§#eù›¦æ¡¬DE¶¡)ë|8ý
+Ôp¡ó¿ÜÌ-4ÈºÕ–Mü­§É¢á¹dÖñ­S!"!ªÂ	šª§¹,|´=±)	+ÇüZ_pu6›@“ÏÅ†¥ÆêIš„]·còˆJyP2ö%00YûÞ œ ÈÁËè·¾)pWNf˜AíŠU¬ÿQøôP8ŒÑ€çÈVçù×r¿kÑº’ºS€™Vî„@KeF"Ê:„G°³ñº"S.µ{¸/˜÷ãã<zkI^X¸ÓÐôaÛLYŸEû*b˜Ó¦¿‹ˆm×Õ’²0º''ÍÉªôJšAîÎG)¡¯°Qöê“[8à…;¸R™šjÿ@·ˆ‰æz	©[¦@Ù:, €ö%25éßÏ¾7ÁÔÓ‘¡5`b4!D	@Âæ¿³¢óA“{4Ç!Ð{ø÷µ¯®Å0>X°)KllÍ
+›©]k4<jºjG‡>­1ÈN{ÖJƒ˜®qvLhú#4°$˜CmƒÙ6†Ð¶3Ž53süRoýUi`ˆb¼\ÔLjár€3©*ó=°þëmOæm!FùqÊLÁæÐ©“¤Ã,™tÎNÓæ˜_²iÕDájÌŽ™ˆ­÷«RC¯æ1›4ÇeVÑÛ BD±Z¶E.ƒ31»˜é“‹üW:K ÛZ¼]`e–]nDBIšëÄCE&þ}e¶0±Ï¼(\;q5BsR÷`›¾=â0=I$ëð°Ö¡Ë(/GLŽU“Ï`I·*±ëkzlc}õ†U¯,k¯$1˜Ò31S²DãŒÁnšg<>W*dYØ`G,¢kawsPèVð(Ò–b&ªè''1¼uTàþ~SJ`A"),òM˜ |Ù8ËÀé8€Pââòl­µíEnõøž]Õªæ§Ï÷|‡)÷"ËFš?zjàee’ïj\,Ê]Èéâ[©I>Ã$ÉÓÕ}/ýîl6š"ÜÃ9’@ò­ô¥òµ÷¶vråÍe+&NÙÍŠ7™Öªá
+Í¡J\\Àøwx˜ý÷•¸ÍíSÏðT›ù
+Þh?–T[èœEN\{†iqK!\‘*!ê
+™ç	†ÁÐ¡\®mÃë~pî
+ñbÍõ}5uŽU2ä¡‘‚Øö"kE]&c&C]„ø8Ø,yc¶ ûî+ü%25•šžE1´ŒMš\è+ÎÅÏ;\æNÒWàN3‡B¿Ž
+x±{ìkNFcoàï9Ð¢–”)q Na‹?¤îžn­kÚÑ¹½°a¥&
+CfÜ)L@ÏÜÜ…=ÍŽ?7ºÄÔôs Æ”[‹ÜI»“Xš.¾Ä[µÕÇ¶lQ^ŠâEÓrìâd%25¯­¹H4kÿ•&Œ~”7<½÷[5øÃªR¿o®j2	£	×SÔé”Èì÷O“§åa8âb/Xk1•áàhw;ùXÍéž¼ÜããH1Œò¾¡:ÐxªVawjì]À0”çÇùE”{|ý‘v-€ ×{ßN‚¥¾Ô”=}~Ò <¤È¾ÎÈoë2¨XqWöEžÔÊEÐØòÛ‡Ú<Dâð±r3²¡û„iÆ=h
++¨9OT¥F¸˜&£Gf:/>z¦/*²ž-¢ºhU§À>Xo¥éº
+lwÁ¦ý7yhn€þ³;¤àX…Budy)²p¡PžøBà+jÖ­à™•A5	î¤º¡z<Ç¹Ó¨	}WyæÙô;U¹È!C¯Ù¢2E¹£Zf£âÜ…†¡eñ‘iKùÔ§°—™ß3s´IG‹zã§±q¶{¯yP¦†û•©G-ì ££Ð¨L©5j®%25Õq¬…îUOmîRŸSÿT˜¨*ôlÆßµ%25b¿Êúæ8úŠW•4]ã=@¨¤¶çª Pý²»<j«(Z|¢!Íå4˜päç"¿Ô¬‚ÂÎ~w»%00]¿‚š’”²)	5–¢¦@ª*~‘)#êî¹ú½¹ßàÅÔáÏ§øÖ.6ªÁZ‹¬}Ÿq^0æ‰n¸3õEGqCæN Ãctö:¥+È•r-¢’®¼7Eå€"/õ²£
+JÊºIjpY„¥kúpM•<$ÅQ·¥µ¼Q¯U_¡s³7³´RÌ¥RŽU›ü^¥à8l>&-µq®¿k¼•Db"÷œïî„£Ü×w*-Shc>X cÁ„¯³žÄËZ›RÌ±&%00zÂtnYj0UKÑß9®ŒÿŸLòŸä…—äÍÑ¬Vs9Ge°d¯Ð:©iAJ¼€ðÏ“Ó\áRÙVk„5”~;ÃVïÀ(*pÂÁtñæ^º,‡î˜^¤…(S²¯ê°d^\¼$6…®n5DM,&cÐKTÎbÇ·DÁ	•”ie­²Š9Îî^}V—š›ZÌEqËTõ-PéT^£ü''XqíÓXô¡''¨''Ækó–QVŒß»Ž6ÛÕ)Áºþ/6®kŽp×‰Â:&–#ðíØìú,„æž;î»>Dˆª®P½ŠsÂ¥„G®µ7±„R¥¦
+]7=hËœrî@¥64•jüUÖÕsÆ¡Áß{zSa`·‚é š‡®Õ8ß—m]TÅA!ßŠã/v±7«V×ÇÔx=µ&iy…÷]T“ÇöÅÀò‘‹eÓwŠÂ¥fýŠ]„‰«™T2z·x®v«Æ>S%25ze×J5c=—ŽeEÏ,ÝÆ1YªxbkÞàJ‰³ŽLN( ·ÍÊtFŒ:ÏL,%25Wÿ˜Ó¢µ(åuÂŒÚ©éü¨lln£AcF)ðÒ‹+T''	iüTÓ3ybJð([g¢LÞòÎy`Ï¯vØžq\Ä\2Ÿzl¢–§Ü‡¶WðÆ^¹&­àJ,FÄ»ïF­*A‘ßzÊ˜ô:¼Š%00«!¼Tå©‡;ÖE(©RÝ§ÉÐßU^Já~1@ì{˜Ì­¾ˆÊÏ*ÀØKŒûIâ>9^ß/ÑjY†8¬YséÄ×Rb_àuý®²6f>/Rm¦vJŸDªÕZºBŒ‡«¤¡Wñt»U(³Øô·Ðïté²Ïüœ¢ÂŽf¨°Î:­Ôîœ…ýò+s­å“±R­–-»sùó™‰Õ²?UXsÝ?%25/9WöÏŠ·ê_V¸H)í”Ì¾“±Ü@Ï³‹*†È]´˜Â‘ykªP˜òñ5zM¤¤çÉ}×˜5Æ4|
+*ì~õ÷~ðŽÿ†!È¬˜ŠuâJ5ê¿)„=ÙÎcÈŽž\ÈICïñšd:Æ0÷‹Úó0­ lë­RúTûÍÖR\?a§yW/â"ât#~Ô•K0õ¯äPëj?TÅ#€l ëqÚ¥Ôëç°·»àóåœ<	Tay®»QƒÒ8AAb
+´Q-ŠûB/cAHÚDìª@¢–³ö›¨×^*@­¤€ýøCøò	bý
+2ÎRv%25Ú»q.KâÓn´ìsäŠ°ñÉ\XrQº^8[ÿÀÒ÷ˆrÄ½T‚Íi×þ''~À/Ã0‘®UÁ˜ÁÑß¬ÂO]zÉÞ™ŠG½Á]~Mw~ÖéÿòÈO²9Á/&+•™$¡Cã¬©k4±ƒ¿¨N15†>Ó^9Á¿i%25šØ ,—å§Vp(U­®»› ¥]É©:ÂÜÞý*„\\þ‰œ„jïAW’A•‰Þw¨€*
+¬Æ¢ß…bâšÿFÅW€«8Ç…¾¹wÙ<5Ä^g·ÏjŠßJÇJýÐìTõ¬òÃiµÊ;›n">ö®nX`€6½%00Äç%00
+ÆÕrQsy
+soÏa
+Q  h †h»w…’jHhTwµusë™j*Õp½Œ¬²(›u¤P¢Rh(‡qÊÖ¦;úßb@Èü¾«e°´z!°Ù“ˆå:ÙªwK©ËñT³Wªxôú’ô£+¦åùÊLÆÆû^^Ýo-u%00H4â°õÛ»È]`}èW-´ÿ»Xxÿ²0Î˜áµL«Mt%25DAì¡’&ÄœMÔ§ŒK¨×6Š-ô
+gâ$w(ÖÞ—„Ÿ£Ô€:!N§Dò¿Ì7Ì&‡¾íZ.ïcÙ—c˜WaˆJB˜†…üP¡Ýâ7Ç±V1læW³kÞ:Hà< hÃã½¯Ä7ao\;ãš+}ä²%00¬ŒŽfOÜiq‚2Úè°HU+C¬V\Éé©#¨ñh‡qMÛõíq¼´ã+-VMÿ‚‚«½Zù6š$‹òc°zñ€ýÁú7djŸƒ½D''07yS}‘è{^-h:W<÷3a×§áÀ¾å•>ƒ©ð›À°÷3=b‡´°¨w''Éé1‚%25ÖÑtÃBÁ’pCS«²àB"£t{`CY‚^|®æ—±@»`ZxŒÍ¸	g:üüj`Ì9À§õÓª©×Ü»JP¤RË*«q°»,ŠgÝé]qžÅ±­"3Ë¢bYF…,	×ÈÛ÷`éç)Î{j“3Iè<²j—¦r™35B¢æªÂüÐ[-ÐR/H¦Ö—ûÉ»Ã¨»Rý\}ÅT*Îå®ñeÝ6h{¦hbÖ÷Më„ýˆZÄ¨f%25Ø‡ª©¹ßf;WÕÈ''Ým¦4‡[.´´8=HªFËÍ‘,”8v{XÅÚXÙh.¹Ö2L‡¥QSç<	¥!Þ_Ì¦DrŽŽåa˜”ØI5ÑðM2¥i?s˜JÈeþ:U¡m¤Ç
+''Qœqòƒ{mÝ¿K*Ú÷•VAòJÖkV{g9>}™º£²Y¥„Já
+,ÞØó!ïgÆ€
+»|-ËÃÙ“Ê‡DâïB3¦1-(cqÝ˜“©~BÔtä*³]ùÛG''þHÿþýÿ/endstream
+endobj
+6 0 obj
+7366
+endobj
+19 0 obj
+<</Length 20 0 R/Filter /FlateDecode>>
+stream
+xœ½\Ýn·¾×Sœ«â ÚìògI(ŠÄMÛ©ã&JQ -
+Yq*KŽ"§v_£yàw—œÜ¡t¤Ê±o¨=\þÎ|óÍp¸?lúnP›>þO…“×}í6?L7_ÿa)Ü\üpà;ÿM°|òzóé½8›aèz³9:?è»|ïÝTaØxÝÙ!ØS~ªðúàoÛ“Ý¡êl?Z·ýnwH/Xo‚Þóã+x|±]ÐC¶¯v‡¶lß·*ü}·;4ÝØ+=nkç­WÛµlú®Ýö^|Ÿ_¼ZÃÒã×»Áv£S
+»>áß¡Ý¿o¹ëóÝØ)ï{³½á‡güÚÐÛÛ<†¥‚±¾ÎíÎvÎôZo/y<rLXV§Lj×£YVMÓÓõ²VpY¡¿FÃ§PŽµUè—wzz=r/Xá2OúýîG_(ã;gG’¨£S õ~No½Ïmáxh˜ƒîtpcÚÏ>û§ÑØÏŸr»g\¶–û…Îù÷µÄ~€1¾•zÀI ðÒÝÂl¾+áB0Òš+Al¯¶]¥[ƒ''ywÛ£Ýa mR¦ìûlG˜Qê¡Ok[ãßÏùáÍ¤CV{Ô‹w®óÚQÀyîÊöQF“ªgAi ¯æcÎM½áQ½%00“xá7Q¢†.ÎíZeµÏ4ªýOµªÇ‡+1Z”:½ÿFF¦©­øšê;å4NüÇÝ¡îzk‚Å
+ÇÓ¢HƒÒR~O?„Ò½%25änçU·ÆÒºåV¡ÛSiÜ0Ö“©+=Œ(œ× °§û£tãº.~_¯Æ-.Ì-*Î¡%25µŠ0žJký5–—kwQÕ`îï¥9ðÀÏ´Msx¬bŸð–ZCxƒïŠ§mƒ
+oDL*-·Ë3º)g´TýNÚë–=(MŸrAaS{Y„"++%00Ë_k_ÝÂÅb”Lú$GÄ)F''ã­–™ÐÉ©ù•ït§´v¶0ØkÛT3%25¡Ö±ŠA€ZIé‚	4LÒiU àuÖYPˆ¥Y<r‰B“a%00„äŠìENi.*ƒß~2Ož¶†K×kÕ±%25dÛ–ÒðK—¼÷,sTz•%25ºBùd‘*Ñ6uûï<W™Aœe]ƒ—Ng)ÓÔ²XÊRÍ+‰’w‰HÈã{#ãSEÕÒæßÊÀÐx¾€?b§±ÝÖ‡ÞÀvèàZTâ^04½µb/Œ«ØÂÀïëÖ`M²€''"0,rBì?•šo‚°ÿ‹MÓ¦³c%00›–¶ïJ PÆ‘yPÈ Ö?i7ð¦Í¬ÝA€Æ%00bþ¯ý]¹`èè7Œ¬[@%25ÂË4"¤½6všHXfb Ÿ.Í˜|WË¾+ÑXªàæu£¶Ž¾§
+''v«ý¨Óºþ.ÏV [jÒ#v&Ù÷º¿ÜõõÔãHâ˜‹·ŒŸÆßC¯l¹2Ï2®Ãì.kzk''7·%00ák7»!90¦èâ®\À?-Šñ5âæªo¹ÚSìzjà¢4l¹ch‚ÍBÑBþý¢%00‘d`^°;rÞ‰h_à¶Õ]pÚ€‰ºD†Âo!ÅÀívá	æä’ÔðÒ½Ž5­¶H¦$9ÎŠœæFFšÝâü‘·Fp<&Ý/VòÃ”Yå]c«¡4ÞËÅ:T£ëì0#^öQ=æEû²xŒp“äñ=HÖÇÕDúg”—}$´T½OËþ-0@"v Jf¶´ý¢Ð²4¦w	“œ,hÞ»¬)rüýºÐ^ + 	
+½Ù|¯;‹"U’˜T¡Á}J#U~)û(k(Oï‘ç‰.Wƒ‰ANÃ–¿pEÄÖÄxPÓÛœ:ö=1˜Ùå¬ë#mºö•OP2‹SyiªYNëÁRÑpÿdŽãI-ô½kŽlŸgžP’ÄR\‡)=]ùï±à:“<j7:%00½Ê_s¨\Í©‹JòšŒVšèr@
+\¹ÆO¹YÉÌT÷j­<J•Ö£K@LdülGþ¥va|XP(¿Õ@„¢Ò	2•D
+åÁØˆOs¹Á—P”Dßdß¼!Û7"à‹°qÿ‘¢•“GÄîXÃ³›Í6½k Ñùýký4Q16Vb¦¬½·‰²*çº~€ð%00ðOÅ+a9W1n>W•íü|¬òbçhui€Ä[ˆùèeô­¸·=ü,ŽCùHÓ¿&Ó4*Ú2KF–†ß“ŸÃC4&"ðÖ·SUEz¼ý”ør.êÞo?§·h	Ç¢©?Æ‰FAY:ÈDÿŽ[úx­¼7ã2ù;OF»Ìt µ[¦:<’Ëc7™ÿ/£Ä'';ëºÑÏÈ6{a~û‡LöxÙê¶Î82âÚ>ÐÀ·ãFùR%25ïÃibÚF{	0‚+ÝfåÚÅ[9î÷™jðaÿŸöƒ†ÂF\J‹Âc­¶Û†=ƒ	Ï  â
+%25¡y½3‹î>3‰·÷c•<”[ÑR· oíÓÑaÅ°½—Åð„cÆ’¢¥5yÁ¬r0x×ÆVþ+K%00ˆÞÏL''ª“ÛÔm-NóU#Nì‚}49&#3Šº¨ÇI·:ÏX	àÑ„×•Æ)L‘°ÏªtzHï"öõ¶[Ïo¢È9£,—Öû^øT=LMô“gõz²e“‡«rÖYŒ[AVë$OªÞd“ùgh ²!!ãÚ›5þÔäë.ü©	ÕÜÝè†&íˆZ3µùSàú ê¥2åžHWŸßëá©m°<ÃámàÒ³YLëHÄy1Û=¯Ê»±3êYOt5£æÌ—üsàðÄ,òcèŒŽa8bfy4ÉügGžL:›sM¨¸w¶‰Àˆ¼£y“ [OÊ¤fAOŒ¬Ÿ£q´þšÌß@ùñGd![,å‡Ç»xèâ|€Ò‰PJ¬_õ“ôÒ¢g#ŒÁ¿œª÷£rª¨ºHÛh†<¬©œF@«­àqß([ùÕ/3¥{5?4Ãby»åš_1Q;ŸˆZèu¢”ã8ˆS>Ë%25ùm<pì¬µ*œB…3e$¥€%25Åøµ›i(ÎÃ˜ÿÉkû{nèI!A@>v
+Fç`qâœ³¬sÔI"¹!6ÞÙ©Mü›äëæìàü©ó¢´¡åT…°–jUE´•7^ŽSD[}PœH-yé2ÍŠ¥Æq%25Ž&Ç"we¤½;ÚO!=Vë±h!J¯ÒöAJÁ¦m ÄÄ5÷Z™‚8ö@per–ÏÐëWÏcÎ.D„0C¶ySb~šõÊ*.§¥-öÆ{‘PÆ±õ,)èd©Æˆ9i€m.šj\4M÷L4µõ\:VeçëqLÚG.5îÍ•‚&¾ªùÑÏÊìˆ¦˜˜ðŸLO!â&¿/šB‚Ô²m;Úc<Œ0è¾6²®¤€Ù¹Œ•{ù3?­³3—2™²A…Ïwƒëç„Ð°”O|à™Jâµ¸p‡ã:i`TêxÙñà•ni¼˜dSD°öÎ‡*E8áZžf±¤išW+	5ähÐpfHVwTIçoÄ·Ž%255lz³iäE-D"œAr‘µ5«q¦cx+!gcÅ*F-pì:Ùuiã"òT™¦±n(Ôú®4Ú¥e>‹z¹Æõ­$²ß"bÈ•¥¦$%00˜Àô$^Ú2¢ËCm› <@ˆïoÁ·à¥áÞ‘)žËÔKÐäEIˆ0JááÚmÄ*Cžž)¼øF@i(K^÷¸„@o	õZ¦8þ>q%00¥]Ü6k|7šˆ$ø=¬åjûó¼êã{	KÝoG*ô8¯Ictoæc
+È+ì¢€ëØ*ëO®5Ž;D¤¿ò2ôev­`bóØ/÷÷+%00DÄútäaeOášæÃ£ UÆeÁlL½’a*m¼Nž‘!¦eI+€Õ‘RQN×áUý*?ËîNhæ. ¿Õ7Ê#”!²…+Xnz¨“ÊšlÚaVÚ%005tÃ)”ƒ&ªwòù—«9’ƒØË÷y¬ÒÑ/=QH§Õa
+ëäÿV°Ò[)ìËúq®ðWøH‚¨³œ¤|ŠïŠ"œ¥(°GÜâWR––\ìr`­ì!í?K˜â»µ˜ÕI”¼
+­Û*ÁSÈG¿@µþy¸C‘''ö½xaáM©ßŠy¦Z¸*€pÂ+Z²“ÊØ„ÄI¶k¿‰OUpCHYƒSe˜†uÀt*PÖP <¬#)€õiXÕ’¬>xú0yóø]¿jÆÑÛÆL²‰hÜæ(¡¿J§h>MOtÍ6V÷W’''ÜbÇp–Ã¹}¹jwâÓÆmTìFcˆïI.:Z’h7ãqqvîXµ1Sy(û~êk—ËÁ&g0L‰º…išÌ¨í¬î­/èýa®Ä¶f}É«¾´%00''IØeƒNãcÑùFS(bÓ‰ˆ™0 1Ç¦uðôiæÜ RÂäLÓ:Õ/
+csfàŒ¦ó£Žçp¡ï´1h%25ç†•~a|ŽÌ¿ï“»—ê6ôºÁ¸ç;T¡ó9é-_‚·»ùo\­uBñÍ0äu-nó‹¼å´Ž=cÞYÌî_s	s%25«œ|]ç®h®ÔNûßŽáæÑC''å¤¾p)ÅsW<Qþf6$$¾	÷Ú—|Pæš×±U²ù|¯‚°qÌéØ²%25ÞË¸’•NvÓN$­”ƒdOyuégÙÞCŠ¦Å‹‡i_L—±ƒ±­~+ýAQ‚vœ³éKÏQû{|é2XÏ¹"pð÷m	3¸&”ìW¹Áµtœä.ðÞt¾ 3’ÏÝëÊÙMx›V×`ÐÒè…¨×dš7;ì!¨í_v¹Yñ,üºPÐFBkÚUtŒ[Ñ´çµfÞéóÚf‹©O8G:^Ñ†FZŠ¨ÚÇÙw™XÜCœvË­y#Ñv"qgNVÖ•ËÒ~å3åè÷áÁ)§ÆŒ))å”nûWÎ)=3M?ÙÄE5Ü‰IÏ¸¤šÂkKQÓ„?ŸBN.ž?ãºðÚ—œm
+ù
+sz
+ÒÚÐzŒ?ç— ©#~ŸÓZÿÂ¿óC±&$».¹°1äQÉ®Fs¤÷$»ÊqûuÐt¹ßüro…û£C8x-/åV,ÊŽÜ—’Óìù!&³¶Èunk¯ôÒTÈ<T¿½ÀÉùP/4{O¶ÕÊý®%255ó$‘ú}Žû§ô¯«|ôç}>úk×yS!|c4E–¿tP]0 4Ä{;[ŸÝ6ózW.á‡©ášDÅWŸî¤ýÃÐMq™8Ux.ùëI´ÂâÅa¸ã¾¡Šw—t »@85lÝÌÉýn¾Cµ<H©±øy?Ú"üð¸ä„sÁÇ¨ÁÎÆ;¯5ËPC)‚Rä…z
+j…nŒøqùj''µÎVß)˜§ì¦RJr‚Û
+—Ÿ?\¦˜læƒ-rŽGá¶J¾juÀø.¸”BWº$ýóõ¹£%25{Zx£ì¢–Ò#Oöª‹ï%00ÍãXÃ¨§3ŒÕé`eÒu»Ä×ñ»7Åù´%00LïJ`J+¹Ÿ}JÔãY9FŸo¾¹Q¾DõsE´&±÷C#iLü„—ÜÀ/b½Ò‚ê>"³ÅÅMMù°%00zk›2	û‹ïRˆ2ó2ùýŽÀÞÏÊ—F–½â#X@t!0\~Îvä!—/˜’ñ¹,÷Æ¯¿Éwÿ‹è€Ô%0049¾½>µ@³¾dj[Xq„Ó©|WÍÞïÿ·x£þœn@Û
+8&RÚTªÜ—L’å(¾ [1œDKÙ¿Ü5‡TÆÚí&¨œOú\d[8Œ­3™$#±Î:n\Ä©Ï²!T1‘†&Žx‰Ì2×Éî£&y.Éàˆýÿò†LL°A­Ò_—odrÔJ¾¨.§Õ
+û¬QQü¦i=ˆ`:Ëæ”Ëêu7ª°ßé]¢V%25W›šÐâý¼2iKþ8Dã[R!y–¡<äb,»*Ò_IUö[ç;i¹ÄñA÷wâ[`ZïÉ''ƒf÷!q¶Õiì-”¶é»bm(¿‡‘{a!Äì= 7b>ØÊ{/œ]‹í3¾6	àÀÖÉ·ËÊ´œwN‘…ÏóÌx€ÚìsÝ¤Š,Í_ ­Ý–où¸X>A[
+Ë''|°A;Î×Úð	''õwúî»÷øîµÝ‹ç6ÿ—Ý«?†¹2|3=`0Ý’¨hsš-’$ª£ü*6?e“üùà@9áÜendstream
+endobj
+20 0 obj
+4683
+endobj
+4 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Rotate 0/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 16 0 R
+/Font 17 0 R
+>>
+/Contents 5 0 R
+>>
+endobj
+18 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Rotate 0/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 21 0 R
+/Font 22 0 R
+>>
+/Contents 19 0 R
+>>
+endobj
+3 0 obj
+<< /Type /Pages /Kids [
+4 0 R
+18 0 R
+] /Count 2
+/Rotate 0>>
+endobj
+1 0 obj
+<</Type /Catalog /Pages 3 0 R
+>>
+endobj
+7 0 obj
+<</Type/ExtGState
+/OPM 1>>endobj
+16 0 obj
+<</R7
+7 0 R>>
+endobj
+17 0 obj
+<</R11
+11 0 R/R13
+13 0 R/R15
+15 0 R/R9
+9 0 R>>
+endobj
+21 0 obj
+<</R7
+7 0 R>>
+endobj
+22 0 obj
+<</R11
+11 0 R/R15
+15 0 R/R9
+9 0 R>>
+endobj
+23 0 obj
+<</Subtype/Type1C/Filter/FlateDecode/Length 24 0 R>>stream
+xœ•ywXWúîÈ²f&‰KŒ2AÂ‰Ä¦9q·cÇÇÝ¸b0`Š1ÆF¦
+Ñ‘„
+BíPE½÷Üq‹KânÇŽíÝôx“8›Íö°÷Þ#|w÷Þìýã÷<zô0Ì9gÎ|ßû}ïûqˆ™3‡3Ë3L*‰[â!“EÙ®³ó9ì3Ø7¹.(êN“[yo®•ÜÙ`ÌšYýÆ[ßØ±­óØÙsáø«—ÃéùôÑY´"6,$4Þñ}/,Z´ø¿þ³ÂÙÙÙñˆâ_w·JâÂB¢ßÃ$J"eÑRITüZÇ-xtddØQÇHEthœcPp°$Ø6Í;(Rá¸-,2,:Z–èøþ–W._¾b	þZ¹Öqo‚T+[ìu,,*,^áì¸O*		r”Kll•†ÅÇ*W-‹ú÷ì½aÒ#	qŽÓ¯ì¸Wæìèêè!	IˆŠýã‚ öºnRDÝ³Y)Þ»%25Z²okÌ17—Ømq¡ÛãÃöïH÷Ü™áµ+)2È{·\zäÀû,\ä¸xÉÒ·—-wÅ{+?Ü°jãê¢Ö89~¼`A,!Þ"üˆ}ÄVb)ñ6áO¸.Ä2âÂØF,''Þ%25<ˆíÄ
+â=b?±ƒX@x;‰‰÷	/b±Šø€ð&v«‰…ÄÂ•øˆXDø{ˆÍÄb1áKì%25¶NÄKÄËÄ+Ä,‚CÌ&æs‰™Ä«Ä<‚$ìŠàaÄk„#Á"^''’{B@	b#1Ÿ%25DÄ>
+<Áå¬åtÌàÍˆå
+¸þÜ¦™ïÌ,äÍâeó~$CÈ§ÔAj^B½4ÿ¥É—C_á¼’4kÆ,ó¬f¯›ýpŽÇœ“sßŸ›0·ûÕ¹¯6Î{}Þ¡y¿Ú-³»Î_À|mãk¿0®ÌÝ×¯ûÚ;Û²²7Ù×Ú¼/Ø ¨¦	¯8d8|9ßeþÕ7\ÞP¾¹ñÍa‘H”#"n‹u|Õq)ÌÃB`•÷²¿Xí~znÏf?‡›¥D¯R†{*œ%00½ƒÜ¬)è³R
+Ü(+{O[Q§œºm,UzÊâwµjs-§ðôNrnæÍ™<¬Ð·ŸýSgÒÛÊÊÕ‡ÞF9ìA‰‚§´»Ñ{ÚdÿL¡úY)ÿ¤Ò&snY~©x¾Äƒ²‘9ÚÔB«Ô{gÑrXHMi`1)ØiÔÄ›Ãf ¨çì¨…ÃÊXoÍW‘må©ÉéYÆƒx!jF,0–¥—‚!¨´˜sh:¢¦Ò+R
+•DY‚\½EÚä[TB ŠwUJÕ1	r50‚Ô]¾Ü¤ÌS:>)).¼-vàÚèYøÎi1\Ê..m+)®Ëâçëp†óÅc¸õ1·œ}‹)È-Î.tS‘ÊOŒ²)à‘¢öI§U0ÔBùä©Ì ‹†Ôèp¹Ðcu‘;ÅHBWÒ×6(ØBùåkÍ`Œ†
+êûÀ³›"•»·‹P†?EXŠg2~¢›î&ËkæÔßã²oÁåŒ¿KHœ —ïþR¿ž¹ñ°«4åX±¸ ¡PV©¨Â†kíY—ãkü|’BŽˆ}eÛÁ''4zýÁRÈî+oí5ÖY[ÎÓsþ1X''gZ93ÄV>çN~Ä~ÎLùRÀI«ù''¶[©Íùê2pƒfÝ0JKo`øS(f*%25³9<ä''''¥•jÁfzj!ÞQËŒxžÖJ­ÏSÖ‚_hvó¦ŽóÊÈ9“Ë0Úºá@4wË­v÷¦=ÿRöüÎŠÉ…ŒœzœfN›l¸›4§ª$ðÏä}p£º»£«­jŒ‚!E_d³´1Ú¼«üdiuq]5Íï¬¯±t÷;À™+''Ð&‘3úŠyFÒºT4_r.®ñ¨«ðJ>¡8¢ß	h?uQ›öÏÄÁæTm*²ˆ†HH]ô_¹Î;p‰‡´°-ö#8ŸQäé|É¥P­Kõ4‘°†ý€gA?Sèe^%25YtËb¹%00h("‘uêžŠMa|èšØ•Mœæ¯aÙ×\˜ËfÐëË!šÿÝ{ÐÚýøw(‚öË~@¯‰52æñùEèMÄ;´}cð±º¾D±ìdòç8â?¿tCd[ë$ëÐÄi|
+“sá3œä•SŠ¬Lè}Éˆ˜ý”JËñW†êv+…ÉTav(tw‘îˆ-§$mÑ%25GñÎ©¥ˆ‡ÞB¯ÝYgœí©:Þ!ÞMAÎL`0hu)Š¤X] <¿€s!oìöÝSc½Å¸’Sªu6€ØÙ%00òá=˜eS¶–Š»­¥eÅey=yZ9Õ“Q–nI­R…€=4úššbX9m“ƒ LßwžÚCñåÿ	 oPxÕ½" ê!Ö©:÷qp¥s''	\Ý©0‘—H“µI ¨rU~å¾…3pŠÜãé²G² `iËêv}+ù	@øiäâCZQ¹iëN©º‚ýU‡{<Ç"¿KÃßÁ—à»çN&íµEXdÖ]´­¡H+”•Ð½sÁîÎc˜ðÔž¯*bßdŠ²M Ð&ÝAñT(ÅRRÜŒ´’â«`Z%25¹1[S.ÓpÕ^§À@xù[8¾_uùjáþÀX¯@ñ=Ê˜ã•ªñT
+áÂLËÙ®‘Ûc¸~·ôèjÙÊû3Õ©.»:1þGíàpsÔ9E¡=ó"/’ú+ºæØ6iW@õà*$aDoÎ•7WCê‡;ç!1 B÷áb¦ä~G÷EpÔÉJWÑ8ê.ötq: É®‡$þsÒ‰AûÑè°¤mùiwñ„ëWÁÁ»÷…o@GðSÔÏb×ÏÖt-Â›9F]§ýZ—%00ô
+pÓlK:«Œ=¤ðàPehë‘ð_p„Áó¦gÇéÞÁ±š3€ž&y7ûÄVñ{Î’cÏ¯øä0`‹V³aš8"a7	ið[û¥³WÎwž¯¥÷=ÏlÿqºÐ›€æW Z9ùÀP”Š›Ãóv†ÙZRØÿôJrØ¨è¾Wÿj€€^>²æãƒ>QîÚU€>ªÅþ"©Ðã"k×WeW÷&?¶ç?„Sì:†ÿ¬1@Z<Í[„fâ Ø]]ùýÄ™†Ñ!1Â½g¿Bµ5VÂ”2ÊÓ¬/4ÿ!ûC
+µ}É€¸tNŸ ×F‚H]œTÑœx\¥ùÏàË§n?¹Ô¾C4>Å± ó+®ØK6ŠširÂÚÚS]¦‹ª•Ç˜u€®µVÖv6ìÛã#Ž	Ô‡d­¥#¡k$Øœ¢Ýbã†Råœ›RîÐðœƒ[Ë)Ì­5}pÜÏŸŸÃd[<ŸÁCpˆiÈ¬Èj%00÷ÁéâÁºm]ÁU0 î‰n>:´ªi	ŽâCT!''oë‹u`=åB5zÝÃ‹ÿI®ªÜ¢ÙÄ™82&S#œéà;Ý|•¤ÎÎ‰½
+Ýp°ÿN\Ý#¡bÙïá:FFú"âpzÐÑ¤Ê7˜Òr3K@\J=M©]Uñ¤áHº*E­QÊôqCZ
+cI¾²©  Qç“¸lkT+èz’?˜ßæM5áÍþ[gü—ÊP²Ýät|áÏåÜ}Ì5±LYnQ¶ÐõEÉb”K_ƒa·Ï`¡¶ç*-à¨¶ÁñÆ‚¢4]‰¨\]b,t¥¢©=±*,(*~«Ÿø[ÜB½B4nrá´¾8/×ÃðÞü&»¦Ï£¾„.÷íùˆgLïz*	w¢$SB¡ º8:?.Ý´e¹k£äj¸X®P(iáQš$ÍÚþ$š¶ˆ?æà}?ð‡;÷NŠzZ+Ú@¸tp`S.b
+Þ9±E Tµw6e™²r5³4«%00tƒ>Kkc{“¥Œƒæ´ZuSL»áã ¿i×„¸oF¼Ý›‡jM¥ãb>Ì‡ß1ç›:GZ”ÒrQe¨9%00Óû£Bö]ùQôBÿ¯LþÆÆÁd§ˆÒ®U¨Öâä¼‹“Ó”oKÍÿgjžý¿©Á8rJ™®cŽÖça­p“†Qð]ê!¨P™?Æ½U¨«I®fWTijìN\‚ÎŸãú‡×á5†¿8¾ÁK!33SYYé@hºœ”|\î…		y1ó?ñðÙ²¿íèñDxgREˆFÈ|Â"Kkä¢ÄúÔZÍ9:™ä»¢å¥”©8/ÇŒuYf­/`ljL¯œïÓ‰ÏÇãÚ÷u‰ñ©¬\U…}­M#çZÂVÖŠ^¨¸ù§9·Ã½¸NWÀ™‘–Š^@×‡¸ˆ‘¶ë4îÆ2Î«ØX>£¡?õ[ÐéÝ‚âöˆà9*-7L«ßŸ,ŒÖó’©¼ì\èÁBýañTF­1Õ]çGZ(÷ÏŸAì¯¶ê}þjlÕ;<¹ÀÊHr“Š£:ÐX ¸VÚbnolk°€ã`PÓÓLóïõKœ–Ìç£f9yG_œ¶¾ˆ½N»ÑF§-8öùšR[ì}©³90]äÁÕä”?û”áßk*)ìƒó&/ñM
+‘‹bB‹2§i¡^®„Üj¸°Ó†ÉÁñwÒþÎ B9˜aÎ0ë-©ñà0>¢"öFoAk@îý¾é›¡1ÑÐØ¥Æëà,“÷†´ÈÊ£ë÷Òµ¤†ðH£\¡N:œ«0²Âˆ:ˆÞFÐá7žu_Ûö£Î%00Oœ×Ù×IÃ@
+œ7—NäÓs`+Ö;³Ú8Ÿã”âÖùîœÅY¹F‘!Õ˜jÐI<û''§§Œ2²3s3éSè4¹¦åðù±žº“í"MIb¬R—%00„ÇT—Å°÷
+/‰}ù9ç¼ä›[æÉSa™dÎ)Í.Âºé¶¡¢À]Ê6[ÏÕY¨ùúb[0!å™èøx™¬&¾©¹¶¦¹)¾6
+sË)Mub''»§.ê·»ñª±ç±û1­&’éñ))JüòØE+;Vƒ@exTh¤"%00k‡öÃ™n7%25''ÔKŠ4ù‰ Žæ«vøl^ézÎñÅ“ü±Ê«!³­æ2À4ÝjèQõéû0?S_=øõ‘ç$¸!~k"hœ¦Ïô\‡tŠZ#ÊbÊÝp™¾p`cC°ÛÊùý9<ûœ%251Ð›7KJî™°`k•S÷%25)ÿ¢v­„[­ÔÆ£4<Ï¢ÿéŽÍüqä=-{''X¦B]fwã1ÜöØ&ãÆ™42 kTø#Å¿‡V*ÉKfð¥‘–²4µ:%25:!R+tpDÇ€˜? ÷ÔÔhF™
+Ð(ŸúdÔçVwoyc£hpçDåeŽWu•œ(â¤²÷Ÿcß‚sêÅ0i¹nñ›ëßülKŽ%25»k‹”¸çR`CFlJ’Q§Ö«
+èLÊjE­º([<…2!¢/þ4œqþ.|Kì3¹á?¥Sû×4á0š&	f*ƒ¥¤8ÙÂ2l¥œóÔ¥6î,<MAÔ(jÑºŽ4Âõ¼©‹¤­çÕ‘uSk…3±ÂÄõÂoQx1Ê¦‚6j´k°Ñãx¥ÜäiÆ¾UVúØ¦«ÇåÔ“¦G—ÝŽoŒMNˆ±ãÍ°è€è2uéº÷‘Yð.,2–e”"ìyKL¹Øóú¨¨žL“nä8õ	rŒ¹†\}¢@_%00
+€©ÔÒ_ƒ·Í×L-¹ô‹nè\Æy„)u’ËàÊÀ!¤Û‹5þâ©D
+ÈÈØb£T…JÊ>šƒåB§ºRÐíËMÏÉÈÉÈÍêr NM5jErŒ²¹‘Ö h	ô47Þ¸zi¤¹PhÉ+ËÁâ§Ð‚«ÉÞ¬’t úTµZ‹=ÐëD¥çH´Qz÷d¡To;KÀ–`ÒÊùÛsøÏ!.Y3ž›Ëãà¨äÔ}cyX@#lH¶$ÉÒhÿÝ‘ÁVàW}\Ñfè¶Ió[ÓxýÂ†×.9õÀˆñº™FW(´é¡3\9w:¯÷ŠêŠFÀ=[©{Øÿ‰´''¨•gÀ­’’‡6ÓÛ''§½˜;u”:¤MŒQë"]gr9%00Ñ	ñÑAýÒ	H\¼	çÙœÓt¶®ãl©¨C±(Ê—½Å
+ÖÀxå%00 TjJLÇM8W*ª;ÝœRåe’›äŠåÈ_ð>,K/Î,ÅBPm.ìÈÃ£v¨¨ÚÌB]œ~˜¥…êÌ7…¥æì9‚oPJÙ±<cš@~Qy6™?	*ró«ð#^ôAÎ_s­8¿dI¶9ÛÄ¶b5v61ðRk\Óp†S,”kž¶œ¡Ùïq.(%25ºmÊéˆ	VPg×ý—mo?´çÇî½Ê(ÕÚ4.$CÙâvq2­YU—ÐuØê†5Ñ½%25›ü\ã«’jëª«jò²ò³LâÌ¢¬B`¢ÛjúÆ£¼D{)´tRXBó¿KHR‡…;¸^ê¯>yQ” 2±tà—ïì¡Ñ2¬½#ÓRµqjYj" Ceƒâ<Lý]pö=mU''g[9“{&2(HNžÉ¨L2lˆÖJÑ‚)®%00-‚ß„ßÒ×‹XËŠÛrò@IvY6N­UNe–©WÂ¬©…„±ìDûƒ’’Ñ\át+®ØWŸsÙ“öŒ9«ä–L³Ë»„x©§rA«0ˆú7TºmÀ4kþÅÑ)/ÎR:­Ô:Û1Ï-î£ªÿþÖÝ§·‚8!P«²¬4´¶Ó®	+u []¼üRÃ\ô€n×¯”^ÏZ‘…zQ¦Nl}XÈHT9„^ƒ>‚/á,kcKy[¶Ð‚Vª¨–Ìb#®,­6!62Í¨Uh’ÔUÙ€¢”‚²RSK6†ÓQUÕÊ5­¿Gï‰œ¥Gt†ð¡
+¾k¡dÚüÒ“¥´Jü%00Îý9æsŒÀ(
+Cz¸M=XñNÞ<ÉyúºÚ>\+ûSš[h;k(Jö£¨Tû³0¨b-”wŽªôÒ°“9…Å&S}í`E'' ‡jB±Ö’b×•’âacßxå‘­ª%00—h˜Oµ¶WŽ%00ú\e´“…PÀC¯w7àA2“#ÍÑT‚^!<BÁ—ƒ/¬w÷‰q÷)Î…5z@ S;¹Òw(CŽ<,ÅSeõº6ö•ËœÏÃ¤¿pá’ÉuLZN*ZP#Œ²‰·‚ì<`t_QjxªœŠ|þ<‡3àÛpî†ïìuñKyÏì=Þuòþø:4qýw;8T[/šó­/À÷''øüää‰4¾hhŒÑÉÐ<ô­%00	à÷™ù©5Y¹ÂÔj£³z]mñiøªäÔ¹¬âÔŽµíÎGÔ‰Þag*Ó+l‡—5e¦¹xH¦œ:‘fQt/^S6|.e×ÂUSkyò	,+n‚xÜz²¤èT±aFŸrá(V"›ü¥1Ç¶®
+]%00ÐK%00ñ»?øË»ýþ	''#Ìå‚µ—eÑwâ®¥Ü?ƒßJ5^jºÔÒusÂ¶%00ôÊíA.ÌíÑ–†î‘îüÀ—%00|íØ³Ÿ©9Ð¦M|áÚÚ´±nGÉ°%00¼­qŠÞ+s•†lq·1	4Z¹ÐÈz1ÙÊœDc”&LhP¤+A
+T®´VWZ«2JÓJEšNCF„‰2eÔ¤V+Ã…õ‘ÚJ@W—YjT%25&qpA„9¦\Ÿ/k²š†L=¥%25 ž®U•''ª”Yœ(V› 5¤(PWÐTÒZ`Í+%25turyR’J•¤ÍS$ŠŠÃó±W§5”¤Z^Þ•T§-Äì/W%25''ÅU©GSÅÝ†USb‰M6¤Ò+µ –N(ÓÔ”å[+DÍíùù…¦â"S~g~¿‹ ú_åÀœ«\˜{$Û	e(ú*Œ†²«H£wb‡š‹?_¢?1×Ú‡/‚ôxhï¡Ð¸ø°ˆZyW);»@dÊ ó`Q!;æuLl‹¼÷eN/,f\aÖeÜ¯sá¼ŸilLdT}lskC}skLƒÔv°7pàt8wUqØXÇ, « ï·3ÉxˆçNJÑ!’­Ó‘¶‹—=á29ðíù;Ž"yd;ŒäA|ßvÑj»àHÝ™$Û8²¯‰YC]=ùföaLí ‘âŸÛx×I¼	uÃ¤]§îGXú£M91ž Hy,Ô}¿QÓˆã´£—Žïï<7N€ÁŠ®Î‰3=p6ƒ–Ã?!{QFóxñIW¯üÃÐaÈ}Šô¶¦ZßÍåm0´¾®ÅXewñ.Œ­¿rÆ4ØóO&W°ƒxŽè%254oÝ¨ÏÍáîòÎNñ©ÓíÁ}úº¤w—ÈÁô´…zÄn—GR†%00:$¶¡çTÓ£î“âÆ¾¦ÊVLSkŸÁ¯™`ÒËç¨r8
+âMqU4üIMŒ&?r>"Ñ+ˆïrÊãÊàpUg»øä©¶àvšæ´ÊJCeF3¦¾Zô·’‚Qòv’)HÊU5xÎˆú84®¾k êzã¸¨ùtOG+æëœ¬‚´29­YÿBvq`.Ù!Û™ÜŽå<5eÎ/ÉËË©4UäaV]¤ŠÛŽäÃõñÉ©ªTuF­¡6[¨O²“‹Á(Í>£p/ÖœdgTÃ¨6ÎÀ·×À§¸“þìzE&’ãie: ‡£½v´ÿ³ˆO¯·ÕW4µV×–v‚vúÆþñOVoß¾ZRÑ¸Q$IøÓ^Ÿ­`pñ¿?¼PõŽèò®±˜	ð)87ÐrCU"ˆ8š 	ûÁÖ€‹Cçë»[O7Œêú«Ìãô”C	#½¬ëÃôhkÇÈHGˆßþÐÃÎ¢m›™ˆìô<çâvð(vA´‹Û§÷>müóÙi4ßekosà7O¹¬¾ÉhòyhR!Ò“ð¸õ«ïzï‚ûÂŸ?¾÷¶ç„£ÇDaªåÖê4Aß_»Ú>ôãskÖ,]³RŒ¶!wž–uÀ<é6ÅßA1.³Á6üÐ^°öé”wÖÕv´Å[CŒ†¬,l*3È´ÞXPØÞÔuº[ã¬ÿÑ6Q>uÁÞ| ¹iÏ?—À/™ó 6³.•æW_JèõØæ°Æc×¦è$SÝ1‘´Ri²ý®¤R''†&|~ïACÿqññþ†	pœH>ÕšT#7Ziþ©ÏŽ×wŸvx¸ûì2ß@eDˆH­ŠIØgIôßn¿è+Ã®!ªØX±T*SmÃ0rÓÿÎµp®Õø{ë·\˜˜’k}ÝÇGÎPVÝ6VÚúA¦+¾6´Ó­ÖÐË\ö8­Hh­«¨¨+3šUbmYZ(¤ÛFZÆ.ŒzïÐxÆyŠd»å~:¿¬@añ.FU“ÐÒV[ÓÒ[õ¿[Ñ{Ÿ²ëp¹Çe#a2ó.ëH¢kSî¼Ý°­½×>§ÐŽOd ¡þÈ›ó%25ê^øÊ {¨•éÇpövvwrë-f]¨f Ñz4¾
+7×õý¹óâ±±k·°ó]_GsÑ\îŒÑXZMÙùÙâ+ÐÄÛFê$	ýª’P <B“ÃÂ¼½#7`™îÚë76t¼q¸CTØ5
+èŸž@.d 3z¾†ö @ôZ† O¸
+½~>^:ôLŒÖ±ÎLS¦%25.38Ó_ésP•ècñí''OWŽwôˆ›Ú:«ê2§ýØ8pòs.ÜÉ~Á@²äåäšz¾¤šT‰º´DŒ`	‰8H—•‰a“)LËË(lë3húE:vjxŸ^´wãº$¥©F*Š¨/Æª6J­•»óøfã‰qñÈpõ9pÜ”øŽyÔ¢—«m©nyìs¬ËØ¥FÞýÿah”ÿ7FÛÚ{;s„ÓñÌûšËzLnd©s—oöAÄz7Dä%00V5~8èÛx:îNÏ«OÀvãµÍ˜h¸Šá"lJ¸¢FGP/ót|VB3‚÷º|èõ=\v¢°©Ê"®.o-Â"?N_ÍÞ¼Ía½°€š"I7´ B?x½²ôB)‰ü¦¾ã]!aèä[¼é­MÎi²;{×å6”}æy×žÿÄ\À¿÷Ó©Îë¶\X€8ïX¾ËõÛ2ÿ+D8''DnwXø`;äÁY÷®þz/lÍþZ¤x‡¹u w3z×¡C»6øLüùÓš‰ã¢±{x­•!#g&†û/_Üæ!;ä!¥e%00ž1-qtƒìÌ&NË·ÐðŒ{>3KÏX¯ýíîEø*€óiè¼¾„ôÊÊ÷Ð|4çæÇ83PÞJt­A\G´8††çá$’ÒSSReqÇpS¥7øß¯œ+¿PÝ ®¨ª/iôŸ‡W£O¦Ê˜7Î±}3ãS¾6+—‚±œ¹øøG€ÐÌ?ê¸ãvcê+¿[t4kä•ñqrE|²åƒŠ",kà¬«Ðá*‡me_g¦²w²Ù$r˜ùâ9IU¬wô¬"[^~òJKá¬YO*gÍ&ˆÿÿ|)
+endstream
+endobj
+24 0 obj
+7943
+endobj
+25 0 obj
+<</Length1 5220/Filter/FlateDecode/Length 26 0 R>>stream
+xœíW}pTÕ?çÞ÷•dC6Ÿ¤Y•·<‘$„$ áÃ°$»k>FMH]À²›$“´L,ZqœmIÑª%25è[‚ÚAÌŒíXg´#…jÛ‰£µÆÑ©‘~ŒIÏ}/I‰mmgúOµ½gÏýÝ{Îyçsî½ï½€Dè%0057×Õ’‡¨»¥qs¸Íž;[pYcûvýÙ‚Ã‡Ip@^²¡í¶Í¯|¶ÔP2¤õ·µîÜ`ÛÏpR×ÝÒn:¯~%00–GóëZH’ÿ @üš_Ý²yûÛ>E''ÿµniO\ˆæç6‡w´ñ[”¹dÿ(	õ;Â››''âë£nVÛ–mÛíyšCèÛ¶6·Ýüê5ëÉþ%00¯‡ÿ¶öÆ?Õ5b€ÝÃÖÐèGÐ@ý#ÄMÄC7t³ÛŠ‰MUÁûòÁVK^wSï…?b|Ï’,ƒÒ7õYÂRÒ5¢å£»,üÜK¾?eì;ci—“ß*aa‡H.üígá<M6wÁ~Ò€7ÄUä¹úáÎ!êÄ÷p„ÕÅýÉÏ&²î¦xçá˜†¥ÁSd“Âî±b±ïÖA6g‰Þ°¼º[qnÅÈç0ãl!yÝÂö²f²3<(•ÊCJŠ²Hm%25/Œvo2e(¼Ýutç¸sÊ«M?G†µX-øöPgq„è3–Ï–SÕý‡$‡ô¼I~‚hHY¥>¦)ä[²@‡lX@YùèµsÜ»,º‹ènªåwá%00ôÀA818	/‰{Âx.Qu’ˆD^‹p1®&
+mÅÝx/Õ£ó2Ú‡â%00ž¤ø^Ã·Ø,ÊÚ¦VÊÞŽr{„g¯±Ÿ²wÙ0û}ÊÇñõ¼oã½ü¿.UH=ÒAé¢tQFÙ´*•¢¤)·*D]jœºI½Wý¾ú˜úBü<˜IyåQ^U°š²ÚI™Ü{!b­ZŒè8<O4Š<ˆÆ''2´½èÇUDA\ƒ!ÜŒÛpÇTF‡ð)ìÃã”Ë[Doãüþ?¶èSXËÊ¯†Õ±Õl{ˆ=ÌeÏÐŽ`§ØÛìÊq˜RŽ	<…§ó«¸û‰êùZ¾ƒïáýü¿ÀGhÝÒõR©´Jº•r?''KÐJ2™ËÙòBy	Q‹|‡¼[î”§="(«*)Jª²T¹_9 (ç•/Ôt5CM4O-TëÔVµ]=¢«ïkGãVÄmŒÛŸG`>¼ø¥Óû<íî—Ù­JdáÚwò$²ÒÅÙcµ5n#Ñ©u8‡VêWp‰ÇAµtVóµÐ*7ðõ#èÃmÒ=ø÷ÃQèUÛññÞ+g+Kíz²Gøu§Rß§H?ãûåu®;±-§½kás…oÓ·³¹p€½ØtkG1‘ÎÚY6;å''ø1©‡ûäÝx-­ Kâ÷ÁBHÌÙ´×eH#Ï¢’EŠ‹
+çÌËÏË{íœkr²¯6f»õYW]y…+ë[™33ÒÓRS’I3	ñqšªÈgy>ÃÒÍœ)åùbn„I¾L2uù§Û˜zÈ2Ó§[zÈrÃ—,=¶¥gÊú2X–Ÿ§ûÝü™×ÐqMm€Æû¼FP7G¬ñÖXÊ±&‰4q»é
+Ý—ÙâÕMé>ÓßÞñ…¼ä/–_n”7ÇççA,>†	42ýF[ý¥h˜ß·$Æ@K¤¨Ì*Ãë3+¯ÁäÙ¾p“YSðy]nw0?ÏÄòF£Á£ÌLÊµL Üº©”›ªu}£H:õXÞéH× B¹Ž&£)¼.`òpPÜ#9×¼Áðš7ìÎÌÏÄ§êf\ù B}àTwÄ*;¼Þ ¸[Jyà~Ë|&™ÏÜ5ìâ_æF]L#‘ûu³§6p¹Ö-ú`œæçU¯¸)jÃ×¥‹4V¬È)fPB&Ò´n6|Bº]7ãŒ2£%25r{ˆ++bÂÊîcYUžã¿†*Ÿ©ns¹Ë†½WÄÒ ²rç@¥G¯œ®ÉÏ‹9“íJÇf$M‰—š§tÖÈ2#Šz²Ô("2*i‹˜z£N‘“e—ˆ®¹"%25dF-ˆTÑT¿PÄ¹D,„œí4ôÈ(ÐF0F>š.	OH”lç(ˆ¡Ø.S[Žô“c37×œ;Wìµœ––"+µæóóÚÍj£Í©›ÕT2¨	ÐEÁ%25Tr·[¬rç hbvÔì¹®cà)Èš,$4§''5é«„¦cR3uyÈ í|Ä]º©åLý’œ©¾–%25&f|…ºÙÖÓññé1IÎŽÔrÂ‘NWN(Ò¤¥ñÓQŒDü†î„"áÁñŽCw‘Xuu¤ÍšLipüt§Ëôt[ŠjÛÕ0SËÜÅ‚öˆ¹x0DjáX@BÀøëñïZ‘]Þî²$¿EÀ>˜Aob''‹/ÅñqñÞ÷8Àï''“”dÍS¡²ëŽUì±%00ÚðŒ‡mè³áiž´á l¨´¡Â†l(³ÁcC©ËlXlƒbƒd·=7^$¾@üKâ_¿LüñóÄÏ÷%25î#~šø%00ñãÄwï!n$^où|ÎvÝoÃž²¡×†C6<nƒ×†6\oC‰ª²ÌðxÏ¿E<Dü*ñ9â³Ä/'' ~–¸‡øÄ;‰›*ŠÒâÒâE±ÝS©FªÑýjtŸÝ¢F[Õè5Ú¬F×©Ñ5j4¨FêÕÚlM×®Ò®Ð²´L-CKÓR4§6Cshñš¦)š¤1^af*¯fÕueXmžn„êÝü¼ÎÄøÚ5¦l”¡™RÕõe™fI®ÉöZOÄA!>xŸK<O%00âø}û\BFîß·Ìi³êš§`.•úâuÖ+ªÖ‘4jI£Bµ¤™x¬ŠªÃ¡+á8þ[Ã¯ÔN³ôméÖb”Ë×Ù8Àâ)ŸË,Ëp¶•ZÉ-ugîv”€>ýè™à —L"±På¯È_!TXªâý3¡ÊÜ½Ôí:‰}*''‰“©”tÊ:è¿S}õsJÒð$©o¢ô&>IðÆAç''ð=€‚±ç,ÿ˜úÂùÅÉîälw²»ƒÃÆ@úsI‡4$Îx?tË7É Ò~œuA(ør0B¿Âù© ¸ÒÓÀ˜ý¸vt×ëeÃ£¸v¬Wq-ñœÿAªú†‘hlâ)ŸF»‹f+4Øõÿ·þz7‰¾½E/‰ú|‚ô~›èiN''ÔªB
+ÕÑHD€úz¿ÁÂ¢ÅE%25ÛçÏ·Þ§_îÿfÓ¦O?OÆ§	p20èø?óYþ=«ù¿Ø3bOÐ‹™Ï\Ÿ´lTsÙ›¨·ÿ˜À—Ê~×0Vÿ®ZHSÇäú+Þ2%25Ñ
+endstream
+endobj
+26 0 obj
+2567
+endobj
+27 0 obj
+<</Subtype/Type1C/Filter/FlateDecode/Length 28 0 R>>stream
+xœcd`ab`ddäòHÍ)K-ÉLNñ”H3þaú!Ë,Ëà3ço7s7Ë¢ïBßK¿ñÏ``fd¬èåœ_PY”™žQ¢ ®©­­ƒ1´´´THª„É(¸¤g¦ç)¨e©9ù¹©y%25Ö
+Î@Õ99™É
+é9•Å
+‰))©) ma‰9©Ù
+n™9™ùe
+Îš
+F†º@ÂÈ/37©´X!81¯XÁG!(5½4''±EQˆ˜YØ¿¯â¢’E?Ìÿî;ßgÛM®{Ü7''ðð<˜ÂÃËÀ%00%00ŠR÷
+endstream
+endobj
+28 0 obj
+237
+endobj
+29 0 obj
+<</Subtype/Type1C/Filter/FlateDecode/Length 30 0 R>>stream
+xœXyXSgº?È9U¤JzJ¢6¡¶*Vk­uí”Z×º¸Te'',a	$@X“v>¶  	$€²	‚€¨Å½£v¬Öªé2c§­¶:m§íÌ{˜çÞûhï2÷þ3÷‡''ä|ç;ç¼¿åý½G@¹N£ÁŒýq‰rõË•	Qü¿K¹¹nÞ4î9„#þ7¾Ãí9j×Q·™ÈÝ¹»¶Î›[ïÉm›WžÃ,ÊE È0:6)“3Uq1±©Þ>ïì\¼dÉÒÿúæÕuëÖyGdþzÄ{³\“ä½|H—''(“åI©¿ñÞDV''$ÄEzÇ$d&Çª½Ã£¢äQüiÂäñÞ[ãâ’“•éÞ>›{¯X¾üÕ—ÉŸþq‰ijï½ÊÄð$oå:ï]Þ~ò¨¸´Äÿ}€¢¨»6d&EôÛ˜¥Œòß”,ß½9%25:`‹*f«:vïÛ©qû¶¥íßžÿÎMBø‰5>‹½—¾¼lù
+Síêµõ¯QÔËÔ|*ˆÚMm¦ÖQË¨¨ÃT%00µ…z…z‘ÚCm¥–S¨½ÔÛÔ«ÔBjµZDí§¶S¯Q>Ô;Ôj%25µ˜:@­¢^¢©]Ôjj	uò£6Rk¨¥Ô!ÊŸÚD­¥ê)j:%25 fRÔÓÔlJDÅQÊ‹’PJj.µŠ¥6È(W²Å-A¨àæ4Ù´ë.k\Î»ü›ë×a·gÝLÂÙB•ð½†nf\™ü§¦=<}îô’ìŒ÷gÝîf.ù[·<¬ž~áiÝÓÿ>+iÖõÙ»g<YÏDÏ	Qý3žq°/±GØ&ööógg=ûâ³¾ÏZ½(¯¯ËââwÅ¿“L“¬’A¥Çø+È©ê§œž?Ãj/Qò¸''hØ$¡ÂW“½/óMÄøg4É¸Ýklø¢Šqâ¿ªèŠf£ƒÌD-êCµúFE‹’¹{Bñh²eøžä¶Ú<E}ã[œl±0
+eÛÁt¬æZÅJ!VMŒÈ—ér$¢d„’Mœt@Uj=jC&§ý‚å¤Ò„=¾æ”Æˆ’Qº6/¶”õ!mY.ùL.Ö''J@Ï~Å?àb7®‡Ã\±C`….\*Îâ%25jáP©¹%00©‘¾Ô`P½÷‹7Ÿæ]„I‚ÍµÎ
+k¹Ø+Õtk‰±Äh¨D#‹›ÂÁŸgÈ:”ŸŠ$†|Sm9ª(¯”•W—W£*æ˜Úœ"P\î9f¶Û¥öVÛ@ï7°˜{^Ütª®®³’ñàÎ#·Ê&¸2‚ÌbùÚ§Ôæ¡pÒ(<ßb`ÔPè £«uÔÇ€FU5uuµ-­s+bz›’÷Ép¢µÙqÅd©ÎAGUæ™Ñ)ªè.®Û¬ˆ–zpœÿqžO˜åÂ-ž’˜•û¿€y?v]³ZòõFYµ<|xyÐÑÔ>Äœjsœ¼¶íÌkxÞ¢çñ‹Xú•ÌúøRçÝ+²)ÛÇ]ž"ûøæñµ,®T	kËL¨²l Ôl %25M×§Ù™Ÿ—¯Š}	^km¥ÕÈŒìfÓ‰
+ò¡¼±œpå;}¢¤!¯3‚ð°oÂ)‰Ñjí¡B‰
+*´¿QS‡œ¨ÅÖu÷ûþwÅ?àÕæŒZ‚•D†²²<æöb¤/Ó–1*xä¤ãÊsßÁ;à„øpù3¸·5ß­‘xüc3rŽ‚ŸOqðŠËøëÜßØ	#öåêÞ* gþÉIûÖåÕ£ÎŸFw,–ªÉ­UÓøÈD>Â%25¸a£JøQ¡U‹™	%25vku¾ùä<­“^gÌhFwNACõÄ×níÂ)ÉtÁãÐv\åôü	VÂrX‡¥ð–—¨×Jê¤¢o7ÿ¢t0G·1Ÿ×FÜ‚/¸Þ·‘ŒÁØNYìñ8Ë#J¦ghðþœ—]Æ¿‘úãìq¡Hþã¹wð´—"½šÕ4,ãÊ]Eé'',''ow…½<_¡ÄO—ðˆ£.îù.·V²J¡!>?3;=>T¡ýb’„Í-rk› é<ß­Mèü¶Í
+ÞeX;á#Vq"š¨%25·“óí$ŒY¯Â"¨âY,ò™çá¾}¼€}ü¡®÷’Ÿ0++O`¯4ïÇkñ2Màž%00Í»°6»&#,Ï½ÄÍ¸o;ÈN>°†''úC-{ºÁY}­æšIÜJWj[¹;8^Mß,ª-@ÁÞI‡N´#O[çày÷}~>ßm=7*+yE…yY:­&5]Ÿ†˜ª÷@lûÕ+Ýjy#ÏËL{	·çOÃÜ¦a/ÑdñìŒQ	m¨)çÌ^f"‰e ½9¹¼+ÆI¿Y›ÙÌƒ¿pû&Ý:¸Bt¹¡áý:Âƒx}· 9mfðšlŸqfü©îT›çYØâ%25º5¾%00–²~ñê Œ$¢P‰¶£]½IcIçsï ïˆ¼ÓÀ}t(S>$ŠjUô®gœBâMÚd:7V¯Ï@”S•VÇˆn9×ž‹ãÅxÃ°/„È¯6õ]”uµ´ØFÎñžÃí°þ"7ýr¼Íó)ÿjðñ}úß¼£Ž÷Ž‰REäçCh³Óþ•Y6t“çé3GÚ´Ãˆ×O~™è	ÈÞú»Ä¤îIV³¨¦Öjn°µ´š[3æØ½ð,eÀ^ERkÁ2 ÷ìîƒ•n!Ìf#ƒ2ÃPJ:šÞ›Ù•ß]|‹jaásFãû''ƒmû	|³×øà…xágK`Ö§g»½/ÃXÏV‚ûÑ³¨5g›ª3*”™RÛæŒîqq· ¶Àßa‹÷ÜøÛ,–“Šøà(I*²"ÉÏ"Â¤HÃ‹a	–•)X˜vÏ$KÂýð4LcÚ=®OýâT½ÜO=DŽOHÅê`£—¨éÉ×,
+Uiö”òêK€[BH€‰GBö†Ù8[&jÂWTÂ…Í9„’°º•%25´ÚÌ''ï¼«ØÚ#m?Ð¸­AK5«âCâ‚§î@Lˆ¶ad’ñ¸]é6Ï¢‚Õ ó}ß¾Ä"¿|Ã!œÍA×jÑ%00CØö0‡öÝç&úxè`Bã¡¹øÙWæ“§}îþŒöZe—\ó¢UéqˆñKxŸhnn×íëíñ‡eð€´ç†áp§àC]—¹U,~@£0½.¸ˆ%00ßé ·TèÌè}n~1¼<è‹––Þ£õºâ’‚Â<©!§Xò˜„6uOŸÓÙw5`pÍ¶@uh²4-¶ ­bö†
+=8 ¥;í½p©—Tï{ò<¯OXàsË{*‡~Ú9ü[ô1#ZÌÒßõâ{*áíÂÆl´…™ð§EÑÈO«9RÈˆzKP^©žT¾pÒoÔ‘"|Äp¹®¢Õ­MæîÏ»C1µK''OI•ª5Š‚Íˆù%25~À»=àj‡…=“vJbÈ÷QôÄ]•ð¿œT4„sõ&½4‹ûL8%00QnJaÂ62&)8zözÄìäƒ
+Ñ @ƒQfÌ0mðuŠ0£b0UÎ@ÝßP;kÎÆa‰Sêòê€Ë° Æáù9c$ñ:ÛCBCa½ENöèˆ<}(¯³fí_¥k@×ØCuu›j²ë¥¢[ÉÍCÛÜ¾¶Ž“#qÝGÉ“·‘ña$¢<Àý‹vH8oèôìøóðˆanô¼D¥¸tn>{?K‹SÖP¥1r.ž±fûÒ¸E«RÖ¢nÖŽjÞHŽ”£@q4óF*#úY¿Ë PEÌÙs/Žtø×ÿ<öÝÇ~§Hw£©é8ÞÑ2 )ENcMB¶ik<?èŽ+;˜7''°äümYŠàý)>¯·Ûkê;ZeäÚ_rv´Y¾lYFÌ‘Ã™''}ÓÜ7*›¤\þ''TžpŸð¨Ü˜D%25‡o•¤¿ý‚	L8éWª2Íè"¹ô_Kû¢IýðµJ˜‰…±±‹_~ÑÏ}uï>¼šÛ)mQÕ''7îb‰ÖžÞÍ­íN³y¶ÒÇ^¢nx`Eó`A]˜SX¤C…(¯"»š%25Ô+R«Òæ.ßî·fû`ða²;T(ž‰JL	Ù<òEºT)uãuNºÞn¬©EÕÈTZWÜ®;¯ï@Ì××¯}õaÔÏ)ÙÛÇ”NÔÃtw8ûÛÚõé-R»¦>Ó:•ÚÆÝm‚[¿¦¶(¾·ìWOjòQ3QóÿMm1•ZŸÚÊ''SÛhÍž@é¤uÁ`œã«B"¿°žþx¨“ÍDZc^†~ñÕfgC‡óX»u%000ÄÕiŸëx§Tô)¯Ã»E9h¯C´1/Ï—oy_ÿgÞƒí4Dâß¹A¸pb''÷„EÆ*K¥‘ìQg´V;ç>ì›¿3''*>]–’W°¾Œ™ôh(wr4ßûˆQÁr‚ýx1°ø±Jø È¢Gï0óéƒIiÛv…7)¤¡—Ò pg@~\`æiÒ‡¥CòÖ¸©føéÿn†OþG3Œ Íp!~¢£ÿ†D$¤Õ›ï™â‚ÜªaÁˆ+Dš/ƒ¯Jè¿*2dÇ~&yLïŠ¼usàøgƒRU½Fž›Ž$J}Ó€.|C{@''²skm÷àN%25/nå°¡Ö@ œwA~°žà“ï c«u¨ŸÙÂý‹éV÷tÅõ†ñ¦ŸÑÍ‘Ö¼¶3Ãæ9(„&.ƒS²˜H¤äçg‘ÇÓW¦™ÈãYÄåsñ¼µobÏ×ÆvÁŒ½²›ñw¤ @ÉÖ 7÷rž•K“ûr»³n3I¦Z+2¡ú’–‚sY}CD0>ßÿ	<ïßÛÙ%25Ã‹>z} Í‰ÎH®êÿ`äTFô	iO¬5É¶ƒGŒpèÂ(t:#*„Õ.œ‘ÈgÑ((+—Ÿ|vÞT›Ý€Î2í9›õ>?RÑ·‹lÙèƒ#q!DN¹ÍùJEß,<šCŽð"ÊÑnáyõ•“ÞhÊj$»@Iç¹íÁû¿
+å±–²8ªÞ¯¹VCR_h±Ê!&p°š>WlÖ¡0Ÿ Št½19¶weð¨éÁ|“Ÿ†ªé×Î~>Ök=wE:Ù¸vXi€‘<ùó‹6èõ«ø8?î¤Wõuè>Ã9hxºx,¸	Ï`Ž	K!Ømâ‰°»6ÁŒ±Ó0«ŠHZ25€¿“ÛcÊÌœ~tÒë«3ÑØdUÆìÖ»•äÙTÑwŠì9¤íð!ÙÎmt¸Ì&‹³27áâ7 ´ ¹ÔˆŒd©«qVT S¹©œùoeEùè"k(ÏŠÛ„°’ón6™:+%25SóáŠVØçÜ&õãêøK(R…õ¥ue•eŽ’ú¤E†¼L½?ƒŸs›ðn5ÝSÒ˜…ä“.•“©(™¢î‘š"#e@H·:¾ÅsšT5:”/AºÜBeY¡uÐzTTi0ã`ÿsÛÑëDZ$èž8×àÞ°Ë¸wEW­7øLLìßÚ4h#Ÿ‰±Ï¾­xÆ‚«0O
+_ÐhÀØbi4×Y«ÎT¥_˜µÄ‚09¶ØôÛÐ3±72?BwÑí–¡¾‘þ¶ûè_Ê%25Ýã!NA%25¼ðÏÐ9Ü%25Ýi´Üãéö³Šþ´Ä–K|eâ<í—¡
+IÎlh6UkÍR³¥Ò„,Ì@\oT´"NÑr2UÚ–;` 
+ñ¾{^ààLã|çª…}Åõù(é´Ñ	oäDå§ëâòKÌéw5·
+:P-²ÖU÷W´júdqyYóvc†øm¼^}Ã`/h.j”(oë»PYfê¨"ËTjº­¨ª°};øLL;„0®ÿ_wkÂ+ÜkŸÉÔV-áÝÆ1Î87y1Dð]c¯ZØ[bÍDÑ“xEgiâ~ÁKQžÝLâ!©	ç×éé$æ''	É²R2op‰7Ø¼¼’’’²"$É-¨µÊ ‘þãúóØC*êÃnë¾áPt8ztV™¡®„Ð±wX{¯´%25ûK7ÒxFL&ZEFŽ°Äô¸°9þ£!7.Ÿ¶»(­?Ø’q¡Nkÿ ƒ/³É	1‰éíWNúÄ>5]Ïs
+Æ÷ðO§~Xd)@ñ(»D—†Eø31™t¿È)6#‹µZêûÉ¬ßPnágý/Uô¹‚Ú|ç~¨x,nB÷GÇµÆ†12¢ó&5)Â§øãuNVU®¯ÖZðÎCpà„ó‰‰lqJE7•5–U—(mÈG”]”Ÿ€q’4úÐb½[=E¹[ÅG dÄÞ”?åN¿x¤Û°kšÕÕÄ“%25H›[¤(-"zÊå_$|ÉO¿D|¯ag8Øìê‚ª‚zìâÀ³¹ÕVßY-qà7Ôtm™©¬µ–™
+QÊÉËRÆædä¤ÖKªâO¥–˜Ý¿(¾­ØXdK„gð!qRt²Â»oƒ&+º”€îKúEn² KÛ©þÓ•5¦šÚS»Ä­Šº¤ã•šÀ/+$3ÒÝ©;ûpÊW§¼5ò×ñ¯°^÷kçÒOÅÒ¾séùÎÅ‡£µ¹¡ÎnmªiBÌIKêîÉ¡×F—Lù@lÉ+SK«ù¥-M“Kû-ê€É¥ázœ_jpÐQz3ïàSo™öÊSwJ¯Ç:v¡](8Y¾›ÏJ$¸ur.ÀN›''éÑdú_ä%25:1<uð‘‰ôÙHfâ''3ý‡K§#NdŸC<ú	ƒôÍÇØåptVT´l¯kÓÍÚ˜kÛ°—L”ƒ¥‰;v†''wž‘zü#''Ç>.q
+þÇo¹C%25¼PbÉC	H[šS”‹]ñc1¦àË¼®bª• ‡¥v¸²‚D>#ÏÆ÷Uô`©ÍP¯î]"ÆÓño±;GYKMüÊcæÚ1þMæ¨Š>UXgh
+‚Ø‰ïÄBðçR`ýDŠ!ïî»†V{7±jxð8˜›ç~‡0·"FwR(‚K©®FåFieyª@L½)O''ßÈOopu|ë§P¦GE¬~%25Ï@˜EË+Î¬?½i(ò/L½÷„ª-}$ñZîCÏ!6þÐñž}ØÑöÞ%00Ÿ{Úñìµî{ÿàƒ‡§a‚gÐCÕ—‡ïß	X|•QÒ—£*{Èq¿ÆeÏCXš»P¹[ªJÙIN¯$¿—ñ¶¾çCÁÇã‡ªÿãžZy\ø[S÷¼ðI¯3P,$»³[ÎË£BŸˆ=ÓßwzT~rr¾ÑvŒK:Xó`…TŽofw í¡›â÷§½ŒÖ28â2ÎK€}Lð†#/‘až•~0Í¢€|_C²>);71‡2®‚2iXÒ|åÌY›^$åå	Î„8ó\8Ä°jaÒ&]áÄà%25|N^ö‡{½7Ñ}Éßß¼©C‡51±Ò¨(Mœò-¦CØy­¯ãFÝ-1æt“’´‚ÐŒýñA}cÃñB¼œIåVò%00AüûfÛ¡ídÞ:xä½sÝÝçN''v…¢²BiIY)*EŒ>¿Ö|²çÔ½1˜[þ•åü.þkÄÁæ´‰g†vA,''â[êÂ)X’á—¶>»¾€]–0xÃCìÞ0ëëïR37þãÓŠµ‰Ò>Xôù§°ð8ƒóðIöfë~üž®KJÍ¬kÎ“euç}„¡kÆË5Õ&ccU#âû•¶kü™cž0OÖKø ül…Ù½©ÚÒw%25)sä¡süémìÑ''d»æýTôÑãžÁs¾\	ÏÀsWl™ÿÖÀþï¤àþvÍPðEt‰=qbôRWˆï‘üTE¨t1fXÑ#ltÄo˜³MñŽÌù//Öw\å)Û¿€ÃõU®ä+’õhÁ¯%00^ÿ¿·\ƒåò ÑgFûûÉwýG&¯ÿ×@º<Ép>l7¼Xµ0ýÊcÑòeXºy§}­´¼ ZSÎxhl\¸mÂîéà=£»ÛÝ¼[ÝgRÔ%000SuÆ
+endstream
+endobj
+30 0 obj
+6026
+endobj
+11 0 obj
+<</BaseFont/XPSXGT+Times-Roman/FontDescriptor 10 0 R/Type/Font
+/FirstChar 32/LastChar 148/Widths[
+250 0 0 500 0 833 778 180 333 333 500 564 250 333 250 278
+500 500 500 500 500 500 500 500 500 500 278 0 0 564 0 444
+921 722 667 667 722 611 556 722 722 333 389 722 611 889 722 722
+556 0 667 556 611 722 722 944 0 0 0 0 0 0 0 500
+0 444 500 444 500 444 333 500 500 278 278 500 278 778 500 500
+500 500 333 389 278 500 500 722 500 500 444 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 444 444]
+/Encoding/WinAnsiEncoding/Subtype/Type1>>
+endobj
+13 0 obj
+<</BaseFont/ODNMDG+TTFF452928t00/FontDescriptor 12 0 R/Type/Font
+/FirstChar 1/LastChar 1/Widths[ 747]
+/Encoding 31 0 R/Subtype/TrueType>>
+endobj
+31 0 obj
+<</Type/Encoding/BaseEncoding/WinAnsiEncoding/Differences[
+1/circle6]>>
+endobj
+15 0 obj
+<</BaseFont/SNDABN+Helvetica/FontDescriptor 14 0 R/Type/Font
+/FirstChar 32/LastChar 32/Widths[
+278]
+/Encoding/WinAnsiEncoding/Subtype/Type1>>
+endobj
+9 0 obj
+<</BaseFont/TGQYIZ+Times-Bold/FontDescriptor 8 0 R/Type/Font
+/FirstChar 32/LastChar 150/Widths[
+250 0 0 0 0 0 0 278 333 333 0 0 250 333 250 0
+500 0 500 0 0 0 500 0 500 0 333 0 0 0 0 0
+0 722 667 722 722 667 611 778 778 389 500 778 667 944 722 778
+611 0 722 556 667 722 722 1000 722 0 0 0 0 0 0 0
+0 500 556 444 556 444 333 500 556 278 0 556 278 833 556 500
+556 556 444 389 333 556 500 722 500 500 444 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 333 333 500 500 0 500]
+/Encoding/WinAnsiEncoding/Subtype/Type1>>
+endobj
+10 0 obj
+<</Type/FontDescriptor/FontName/XPSXGT+Times-Roman/FontBBox[-70 -218 932 688]/Flags 4
+/Ascent 688
+/CapHeight 688
+/Descent -218
+/ItalicAngle 0
+/StemV 139
+/MissingWidth 250
+/CharSet(/two/L/A/y/quotedblleft/n/c/three/M/B/z/o/d/question/four/N/C/p/e/at/five/O/D/quotedblright/q/f/six/P/E/r/g/seven/F/s/h/eight/R/G/t/i/nine/S/H/u/j/underscore/colon/T/I/v/k/U/J/w/l/a/V/K/x/quotesingle/m/b/equal/W/parenleft/parenright/asterisk/plus/space/comma/hyphen/period/numbersign/slash/zero/percent/one/ampersand)/FontFile3 23 0 R>>
+endobj
+12 0 obj
+<</Type/FontDescriptor/FontName/ODNMDG+TTFF452928t00/FontBBox[62 0 662 722]/Flags 4
+/Ascent 722
+/CapHeight 722
+/Descent 0
+/ItalicAngle 0
+/StemV 99
+/MissingWidth 500
+/FontFile2 25 0 R>>
+endobj
+14 0 obj
+<</Type/FontDescriptor/FontName/SNDABN+Helvetica/FontBBox[0 0 1000 1000]/Flags 5
+/Ascent 0
+/CapHeight 0
+/Descent 0
+/ItalicAngle 0
+/StemV 0
+/AvgWidth 278
+/MaxWidth 278
+/MissingWidth 278
+/CharSet(/space)/FontFile3 27 0 R>>
+endobj
+8 0 obj
+<</Type/FontDescriptor/FontName/TGQYIZ+Times-Bold/FontBBox[0 -206 981 694]/Flags 4
+/Ascent 694
+/CapHeight 694
+/Descent -206
+/ItalicAngle 0
+/StemV 147
+/MissingWidth 250
+/CharSet(/two/L/A/y/quotedblleft/n/c/X/M/B/z/o/d/N/C/p/e/O/D/quotedblright/q/f/six/P/E/r/g/F/s/h/eight/R/G/endash/t/i/S/H/u/colon/T/I/v/k/quoteleft/U/J/w/l/a/V/K/x/quotesingle/m/b/W/quoteright/parenleft/parenright/space/comma/hyphen/period/zero)/FontFile3 29 0 R>>
+endobj
+2 0 obj
+<</Producer(GPL Ghostscript 8.15)
+/CreationDate(D:20090116153546)
+/ModDate(D:20090116153546)
+/Title(Microsoft Word - Shashank_Agarwal.doc)
+/Creator(PScript5.dll Version 5.2.2)
+/Author(krithika)>>endobj
+xref
+0 32
+0000000000 65535 f 
+0000012644 00000 n 
+0000032995 00000 n 
+0000012569 00000 n 
+0000012247 00000 n 
+0000000015 00000 n 
+0000007451 00000 n 
+0000012692 00000 n 
+0000032547 00000 n 
+0000031053 00000 n 
+0000031576 00000 n 
+0000030106 00000 n 
+0000032109 00000 n 
+0000030653 00000 n 
+0000032310 00000 n 
+0000030895 00000 n 
+0000012733 00000 n 
+0000012763 00000 n 
+0000012407 00000 n 
+0000007471 00000 n 
+0000012226 00000 n 
+0000012826 00000 n 
+0000012856 00000 n 
+0000012908 00000 n 
+0000020937 00000 n 
+0000020958 00000 n 
+0000023609 00000 n 
+0000023630 00000 n 
+0000023953 00000 n 
+0000023973 00000 n 
+0000030085 00000 n 
+0000030807 00000 n 
+trailer
+<< /Size 32 /Root 1 0 R /Info 2 0 R
+/ID [(þ””r·PÞû''ûKÔ.])(þ””r·PÞû''ûKÔ.])]
+>>
+startxref
+33205
+%25%25EOF
+')[0m
+Redirected to #<Torrent:0x5ce5cfc>
+Completed in 284ms (DB: 9) | 302 Found [http://localhost/torrents/uploadTorrentFile]
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:24:51) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"4"}
+  [4;35;1mTorrent Load (2.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 4) [0m
+Rendering template within layouts/torrents
+Rendering torrents/show
+Completed in 130ms (View: 49, DB: 4) | 200 OK [http://localhost/torrents/4]
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-26 15:24:54) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;36;1mTorrent Load (2.0ms)[0m   [0;1mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 265ms (View: 40, DB: 4) | 200 OK [http://localhost/torrents]
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:24:57) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (0.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (114.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+  [4;36;1mSQL (163.0ms)[0m   [0;1mDELETE FROM sessions[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateSessions (20090123052624)
+Migrating to CreateUsers (20090123202536)
+Migrating to CreateRelationships (20090123204135)
+Migrating to CreateTorrents (20090124040527)
+Migrating to CreateSwarms (20090124045205)
+Migrating to AddDataToTorrent (20090125055143)
+Migrating to AddPeerIdToSwarm (20090125231309)
+  [4;36;1mSQL (1.0ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (1.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (1.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("relationships")[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mPRAGMA index_list("sessions")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_info('index_sessions_on_updated_at')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_info('index_sessions_on_session_id')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("swarms")[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mPRAGMA index_list("torrents")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-26 15:27:17) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;36;1mTorrent Load (3.0ms)[0m   [0;1mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 88ms (View: 49, DB: 5) | 200 OK [http://localhost/torrents/]
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:27:23) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (1.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (211.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#new (for 127.0.0.1 at 2009-01-26 15:27:29) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+Rendering template within layouts/torrents
+Rendering torrents/new
+Completed in 58ms (View: 26, DB: 3) | 200 OK [http://localhost/torrents/new]
+
+
+Processing TorrentsController#uploadTorrentFile (for 127.0.0.1 at 2009-01-26 15:27:37) [POST]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"commit"=>"Upload", "upload"=>{"torrentfile"=>#<File:C:/Users/krithika/AppData/Local/Temp/CGI.3244.0>}}
+  [4;36;1mTorrent Create (6.0ms)[0m   [0;1mINSERT INTO "torrents" ("name", "size", "updated_at", "meta_info", "created_at", "data") VALUES('coverletter.docx', 10625, '2009-01-26 23:27:37', NULL, '2009-01-26 23:27:37', 'PK%00%00%00%00%00!%00Ýü•7f%00%00 %00%00%00[Content_Types].xml ¢( %00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00´TËnÂ0¼Wê?D¾V‰¡‡ªªú8¶H¥`ìXõKöòúûnDUA*å)YïÌììÄƒÑÚšl	1iïJÖ/z,''½ÒnV²ÉK~Ï²„Â)a¼ƒ’m ±Ñðúj0ÙHu»T²9bxà<É9X‘
+ÀQ¥òÑ
+¤×8ãAÈO1~ÛëÝqé‚Ãk6<A%25³ç5}Þ*‰`Ë·k®’‰Œ–I)_:õƒ%25ß1ÔÙœIsÒÉ`ü C]9N°ë{#k¢VEÄWaI_ù¨¸òrai†¢æ€N_UZBÛ_£…è%25¤Dž[S´+´Ûë?ª#áÆ@ú[Ü.zÒ9Ž>$N{9›êÍ+P9Y ¢†vuÇGD²ìÃï»ÆoR€”wàÍ³¶ÌIÊŠ~‰‰˜8›ïWòZè“"V0}¿˜ûßÀ»„´ù“>þÁŒýuQwHoî·á%00%00%00ÿÿ%00PK%00%00%00%00%00!%00‘·ó%00%00%00N%00%00%00_rels/.rels ¢( %00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00Œ’ÛJA†ïßaÈ}7Û
+"ÒÙÞH¡w"ë„™ìwÌ¤Ú¾½£ ºPÛ^æôçËOÖ›ƒ›Ô;§<¯aYÕ Ø›`Gßkxm·‹PYÈ[š‚gGÎ°inoÖ/<‘”¡<Œ1«¢â³†A$>"f3°£\…È¾TºI	S‘ÌõŒ«º¾ÇôWš™¦ÚYigï@µÇX6_Ö]7~
+fïØË‰ÈaoÙ.b*lIÆrj)õ,l0Ï%25‘b¬
+6ài¢ÕõDÿ_‹Ž…,	¡	‰Ïó|uœZ^tÙ¢yÇ¯;!Y,}{ûCƒ³/h>%00%00ÿÿ%00PK%00%00%00%00%00!%00Öd³Qú%00%00%001%00%00%00word/_rels/document.xml.rels ¢( %00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00¬’ÍjÃ0„ï…¾ƒØ{-;ý¡„È¹”@®­û%00Š½þ¡²$´›¶~û
+CR‡÷â‹`Fhæ“´›íwoÄ''êœU%25)´¥«:Û(x/vwÏ ˆµ­´qH°Íoo6¯h4ÇCÔvžDL±¤ eök)©l±×”86îÔ.ôš£ôºüÐÊUš>É0Í€ü"Sì+a_Ýƒ(›ÿÏvuÝ•øâÊc–¯TÈ/<¼!s¼ÅXd3‰´ ¯ƒ¬–¡?''g![?óü4ê¹úÇ%25ë9Žþ¶RŽk6Çð°$Cí,ú`&gë!/=ÿ%00%00ÿÿ%00PK%00%00%00%00%00!%00O!>¦Â%00%00ž%00%00%00%00%00word/document.xmlÔWÛrÛ6}ïLÿa‡¯‘%25ùÒ8ÑXÎ4Ñ4MSg\+™¶ ¹$Q%00€’Ù¯ïHJr/O&/~‘H€ØËÙs–Ë«W÷µ¢-[''^&§ÓyB¬3“K].“O8y‘óBçBÍË¤c—¼ºþö›«Ý"7Y[³öÚ-¶Ø­¼o³™Ë*®…›š†56ckáqkËY-ì¦mN2S7ÂËT*é»ÙÙ|þ<Ì˜eÒZ½LœÔ2³Æ™Â‡#S2ãáo<aã·?¹BŽg–b0ÚU²q£µúK­!Åj4²ý\ÛZÏíšÇxË­Ø¡µêÃÞ›7ÖdìVWýæÞâéüs¾%00ƒ‰ý‰Ç„ðÐçI-¤Þ›	ìøGý÷Å›¢x³Þ÷,˜:$,®Á¥Ôä]øoh·%00ó»e2ŸÏÏ/O/.“qiÅ…h•ÿ÷ÎíÑR0bÃ¿^±°´–vv#rQO®fa1üb¿ÍWñ7û*VQ,\#2 ÙXvl·œ\¿#QÓ{+}%257‚¾×BûJl¬t.''$¨ÖyêBÆ¥y+<C¶mäÙ´Öµ`
+ÕÝç!vZqi™Ijòã4«œLAo ËÐ:“hLÂÓ''-cð]|B(	=k)è„ÖˆCÐkaSaÅ”n:
+Œ ÏY¥e&ìÃ;ïHÉ½·Ô‘÷>]0¹^¤Â1kQrl)®Cœµ#4Ä"”HU8kš=TÐÜ”žFQûú9æM(ƒ Æ8	dH®­k@ÞgG%007ÖdÝ¯Ö¥Ž0¡I¾œÒ;ª%00^(šic}«Ñ@É*V­iË*îþÆÖÜÓŽSxB£9à15­Ol…•¦uû`ÊVÈéÄƒ°%00õÚÔpZÄ³cŽbeDdu\ñ–•ib!ƒç_9ákè”YØx ÖQ¦ŒcÕMé-‡PõqŽ’žv¦QS$Dòq­ís«ŒFÄ!jÄˆPÐc6=¸°~ˆ+PƒD=E|¦O†>}âJnbz©<Bži-iã!Ôizl<^k2g…Ã÷Û^Ðç›Ù›gÏ&4ýÀ~Í®ùyB?¡ö‘%25wm
+kºPôÁ^äŽ''YÊAôÁ|Æt}ÜAöj¦ZêÈtÿ·%00²EÝPÕQaM(!Ç½Ð‡-pf§÷ü˜Òb–˜Aèæ–ÿl¥=Ãí¥s`gì›¢iTNƒd„VŠð ƒDÔjF[JT©Ÿ
+3ÞKÍ#ñ:t\fmvƒä±Ž¡áÎP´ ÊøVƒ%25^lX‡j¾ÏÐ2ò}§(ëQ«	gñÔÃ^©F-o%25Ã^D—è7èúx-mè9òï©àú±zÒˆ¤Šéx	L{äi…þTú=èÓd‹–Ý=bºXŸ½|ýÅÓ×ÿM+ÿ˜/oí8é…yî¡û5öVãÐU®ÿÂ¾ZÎÎ.ðÝ²[T¸þî®û©¬¼Á8„¡Ï`Ê>½è±²¬`i¼M÷#ÿx¯¸8Ú­X@Ëäò,š/ŒÁ%00²¿-[ow™QÞ†Ù-‰Qà+é­•9v”Ô|+ñê[&çÏã.¦Ð>ñëð"êg`\ŒV×%00%00ÿÿ%00PK%00%00%00%00%00!%00–µ­â–%00%00P%00%00%00%00%00word/theme/theme1.xmlìYOoÛ6¿Øw toc''vuŠØ±›-MÄn‡i‰–ØP¢@ÒI}Úã€Ãºa‡Øm‡a[Ø¥û4Ù:lÐ¯°GR’ÅX^’6ØŠ­>$ùãûÿ©«×îÇ!)OÚ^ýrÍC$ñy@“°íÝö/­yH*œ˜ñ„´½)‘Þµ÷ß»Š×UDb‚`}"×qÛ‹”J×—–¤ÃX^æ)I`nÌEŒ¼Šp)øèÆli¹V[]Š1M<”àÈÞ©OÐP“ô6râ=¯‰’zÀgb Ig…ÁuSÙebÖö€OÀ†ä¾òÃRÁDÛ«™Ÿ·´qu	¯g‹˜Z°¶´®o~ÙºlAp°lxŠpT0­÷­+[}`j×ëõº½zAÏ%00°ïƒ¦V–2ÍF­ÞÉi–@öqžv·Ö¬5\|‰þÊœÌ­N§Óle²X¢dsøµÚjcsÙÁÅ7çðÎf·»êàÈâWçðý+­Õ†‹7 ˆÑä`­ÚïgÔÈ˜³íJøÀ×j|†‚h(¢K³óD-Šµßã¢%00dXÑ©iJÆØ‡(îâx$(Öð:Á¥;äË¹!ÍI_ÐTµ½S1£÷êù÷¯ž?EÇž?øéøáÃã?ZBÎªmœ„åU/¿ýìÏÇ£?ž~óòÑÕxYÆÿúÃ''¿üüy5Òg&Î‹/ŸüöìÉ‹¯>ýý»GðMGeøÆD¢›äíó3Vq%25''#q¾ÃÓòŠÍ$”8ÁšKýžŠôÍ)f™w9:Äµàå£
+x}rÏx‰‰¢œw¢ØîrÎ:\TZaGó*™y8IÂjæbRÆíc|XÅ»‹Ç¿½I
+u3KGñnD1÷NIBÒsü€
+íîRêØu—ú‚K>Vè.EL+M2¤#''šf‹¶i~™Véþvl³{u8«Òz‹ºHÈ
+Ì*„æ˜ñ:ž(W‘â˜•~«¨JÈÁTøe\O*ðtHG½€HYµæ–%00}KNßÁP±*Ý¾Ë¦±‹ŠTÑ¼9/#·øA7ÂqZ…Ð$*c?¢íqUßån†èwðNºû%25Ž»O¯·ièˆ4=3Ú—Pª
+ÓäïÊ1£Pm\\9†øâëÇ‘õ¶âMØ“ª2aûDù]„;Yt»\ôí¯¹[x’ìóùç]É}Wr½ÿ|É]”Ïg-´³Ú
+eW÷¶)6-r¼°CSÆjÊÈišd	ûDÐ‡A½ÎœIqbJ#xÌêºƒ6kàê#ª¢A„Sh°ëž&ÊŒt(QÊ%25ìÌp%25m‡&]ÙcaSl=XíòÀ¯èáü\P1»MhŸ9£Mà¬ÌV®dDAí×aV×B™[ÝˆfJÃ­P|8¯Ö„AÛV^…ó¹fÌH ín÷ÞÜ-Æé"á€d>ÒzÏû¨nœ”ÇŠ¹	€Ø©ð‘>äbµ·–&ûÜÎâ¤2»Æv¹÷ÞÄKyÏ¼¤óöD:²¤œœ,AGm¯Õ\nzÈÇiÛÃ™ã¼.uÏ‡YC¾6ìOMf“å3o¶rÅÜ$¨Ã5…µûœÂNH…T[XF64ÌT,Ñœ¬üËM0ëE)`#ý5¤XYƒ`ø×¤%00;º®%25ã1ñUÙÙ¥m;ûš•R>QD¢àØDìcp¿UÐ'' ®&LEÐ/p¦­m¦Üâœ%25]ùöÊàì8fi„³r«S4Ïd7y\È`ÞJân•²åÎ¯ŠIùR¥Æÿ3Uô~7+ö€×¸#¯mq¨BiDý¾€ÆÁÔˆ¸‹…i*¸L6ÿ9ÔÿmÎY&­áÀ§öiˆ…ýHE‚=(K&úN!VÏö.K’e„LD•Ä•©{D	ê¸ª÷vEê¦šdeÀàNÆŸûžeÐ(ÔMN9ßœRì½6þéÎÇ&3(åÖaÓÐäö/D¬ØUíz³<ß{ËŠè‰Y›ÕÈ³˜•¶‚V–ö¯)Â9·Z[±æ4^næÂç5†Á¢!Já¾é?°ÿQá3ûeBo¨C¾µÁ‡MÂ¢ú’m<.vp“´Á¤IYÓf­“¶Z¾Y_p§[ð=al-ÙYü}NcÍ™ËÎÉÅ‹4vfaÇÖvl¡©Á³''S†ÆùAÆ8Æ|Ò*uâ£{àè-¸ßŸ0%25M0Á7%25¡õ˜<€ä·ÍÒ¿%00%00%00ÿÿ%00PK%00%00%00%00%00!%00Ç¶¦8©%00%00ü%00%00%00%00%00word/settings.xmlœTÛNÜ0}¯ÔˆüÜÝd/@
+¢A[5ðNìl,le;¶_ßqh+„úûœ3ÇãONÏ”LöÜ:º «eF®k`Bï
+rw{µxOç©fT‚æ9pGÎÏÞ¾9ísÇ½G™KÐB»
+ÒY»ºåŠº…µ_Ô rhQóéC¦[Ö{“§é´Ã5º5`õn	v—Ž‘—PwŠkŸ®³ì8µ\R	»VÝÔÿºáQm4Ù¿t‰½’Q×¯²—”Óu{°ì1â5é…%00c¡æÎae•¯«¨ÐÑÆÉ×øŒõ¼•¥öðÄäÛö@%25}n¸­± Øó,#i oh''ý-­J%25{Š‡¬''ºn©¥µç¶4´Æì.@{2ê|ÊXL~4ÄÆêo|_Ì…CÂâ''€aY–mNVÛ“1"°¯a¶—›õ‡!&-Ñ[å¡‘?l\]a~‰/qAUeMnB«1Jå•½ÿ(tä+ŽOŽ?eÊ®Šäb1NQ)¯°‘À.Î\òf0–7Ôîfç¡x*·ÿD±â_ÝB7¸ýd¡3£ko©ù¢ÂñÀÕv;ù	í¯…Š¸ëª2FiìøªÓìûÞÃt.PŸ{R*tMõ.VœëÅ]¤}^K[†Aæ7Ôl6JªÝª RìZ¿"¸õ¸cÔÞ›j·ž¸õÀá.pÃ†Öáf¨žA0.Q5-fl±ÍŒm#¶±£ˆÍØqÄŽÖð‰K¡ïq`â2àH	=gŸ#X¿ ±®¥†c_ÃTàƒ|%00¦1qÉ>ç8?œ	ÿH#˜¢YgGC&µ¤èü3mp
+bóMõ§qhÕ³àá‘ÿ‘K˜ÖZàƒ,ªš‡p9&.…ó%2578¯,^yäwƒóüÛ>û%00%00ÿÿ%00PK%00%00%00%00%00!%00œÙ+z%00%00%00%00%00%00%00word/fontTable.xml´’ÍnÂ0„ï•ú‘ï%25NøGD){¨è,Á!–b;òRÞ¾›8 V´*êH–2kOF_f:ÿPEp¥Ñ	‹:œB§f''õ>aï›õÓˆè@ï 0Z$ì$ÍgÓj’í0 û''6a¹så$1Í…ì˜RhšeÆ*pôj÷¡É2™Š“”Ð.Œ9„VàèÛ˜ËYëVÝâV»+­I"…U…÷S 5›µé‚j¢AQê%25rke3(AÍŽP$ŒÇ|Íû´×Owë…µCšƒEá.¹—3P²8U¬$¢”Ò¥ùY?‚•°-„¡ÜÓà€[ž°§¯ÖÌ+QÂzµÀ‡Ï­S¨vµJ÷»’6>þÈ¸ñ!…|.·(~èÿÏ‰TƒWQoFGuM$æ"Ñ''5™î]DlãÛ¼‘ÈŠ‚Ç‹¯D–¤G½èŠÈøO"ÑúN"KPTø¥5O¢&r_7î''ñs78ïýO7Ú’àì%00%00ÿÿ%00PK%00%00%00%00%00!%00JØŠ’»%00%00%00%00%00%00%00%00word/webSettings.xmlŒÎÁjÃ0Æñ{aït_õ0JHR(£/Ðõ\Gi±d$mÞöô5l—ÝzŸøñï_im>Q42ð²m¡A
+<Eºpy?=ï¡Qó4ù•	øF…Ãø´éKWðzF³ú©MUH;`1ËsL^·œ‘ê6³$oõ”›ãyŽß8|$$s»¶}u‚«·Z KÌ
+ZyD+,S¨ZCÒúë%25	ÆÚÈÙbŠ?xb9
+Eqcïþµw%00%00%00ÿÿ%00PK%00%00%00%00%00!%00Ëy‚KŠ%00%00Ý%00%00%00docProps/app.xml ¢( %00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00œ’OoÛ0ÅïößÙYÑu£bH1ô°nâ¶gB¦m¡²$HêŸ|ûRõâzØm>‘ÂÓãÏ‚«×ÑÏ¢vv[Öëª,È*×jÛoË»æÇê¢,bBÛ¢q–¶å‘by%25?‚}pžBÒ¶°q[)ùK!¢hÄ¸æ±åIçÂˆ‰ÛÐ×uZÑµSO#Ù$6Uu.è5‘m©]ùÙ°œ/ŸÓÿš¶Nå|ñ¾9z,¡¡ÑL$å8fÝº4‚˜Uh\BÓè‘ä¦f}î`=EÉÚTÀƒm”›Š•©„Ý€Ub„²®Ï.@,øî½Ñ
+Ó•·Z]—ŠßïŠl%00by˜ÍÔSÐé(+Ë~jËQ¾˜
+Ž°èÎ“óÍÚ1%00Ù¡‰âC€=Ú£¼¡C)­ö¨1ç8ò=ñÎ7î:ûãð·¸XúA§áàQeJ_Î¾.×_ŒàÀ”¨å}N†ÜðO
+&ßÊèlOíéÌ¿ƒô~z­²Þ¬+þÞ	ž4æ0?#ù%00%00ÿÿ%00PK%00%00%00%00%00!%00ââ''ÆJ%00%00}%00%00%00docProps/core.xml ¢( %00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00Œ’QOÃ …ßMüï-°%25‹6-KÔìÉ%25&Îh|#p×‘J%00×íßKÛ­vÑ/çðÝs/Ë£®“8¯S"š”€T¦*ÑÛf•Þ¡Än$¯%25:GKv{S›‹ÆÁ‹k,¸ À''‘d|.l‰v!Øc/v ¹Ï¢ÃDqÛ8ÍC,]…-{^ž²À—<pÜS;Ñ)Åˆ´_®îR`¨Aƒ	ÓŒâo%00§ýŸzeâÔ*œlœéwÊ–bG÷Ñ«ÑØ¶mÖÎû1?Åëç×~ÔT™nW+¤È…ÇöN…ÚóO»ÖÜ‡uÜõV|8M|¿µÎîà ºwb³OËØ«mh2‰aóa´‹ò>|Ú¬‹yïSBÓÙENINÈgëê~~8Ðçpÿ&Îé5ñ`}âëÃ¾%00%00ÿÿ%00PK%00%00%00%00%00!%00]OB5%00%00ø9%00%00%00%00%00word/styles.xml´›ßsÓ8Çßoæþß!mÉµC`JGg€+¤{Vl¥ÖàX9K¡-ýI+[uíØÞ­Íõíg¥]}×-Ú7ïî·ið“çJÈl¿<
+žE2Ùí2¼¹þøâ¯0Pše1KeÆ—áWá»·þñæîTé‡”«ÀÈÔi¾­w§“‰Š¾eê¥ÜñÌ<ÛÈ|Ë´¹Ìo''r³¿Ñ~Ë3=™Í''9O™6p•ˆ
+kwkw2w¹Œ¸RÆÛmêìm™ÈÂ·Æ½XF|Ãö©Vö2¿Ê‹Ëâ
+þù(3­‚»S¦"!®ãfŠ[‘ÉüÓY¦Dhžp¦ô™ìàÃÄ¾uðI¤tÅÚ{‹pb‰ê—±ù“¥Ëp:-ïœ[žÜKYv[ÞãÙ‹›UÕ“eèo­ÝeÈò«3klÓ,ÿ­Lw÷dòæ
+\Ù±È,œá°æ&€&–“
+èéb^^|ß§æÛkY@À€UÍšËÚŠ›¸š(¯\–˜§|óYF?x¼ÒæÁ2–¹ysy•™ý°ON,ÓÜ\ñ­ø$â˜Û¤,îÝd‰ˆù¿	Ïnïû)VXŒä>ÓÆýù² Uñ‡ûˆïlŠÓ³þj¤Ö¬ªpÀ¡½xôÆÝ¨Qáæ%25òØÅð %25áÌn£%00üïÁ¬÷ƒAS;£êÀ.É×Ùp¯†›x=Ü$ï°µX÷ÂˆçÐˆ¸Ü¨d%25>¨ZF.ùªë0;éHY;¢‘E½#IÓ;¢‘#½#)Ñ;¢‘½#ïÑˆoïˆF8;GD„«žE3XÔÆ¾:åv|§%00”º¢ÔW,g·9Û%25-¬u·»Ärµ_kœ« §ÏË•ÎevÛ»"¦:Û­ûlMþ°Ý%25L	óEÓ³ôÓKÍÖ)þÎEÜ‹zí’¯1''ø09XÂ®RñD¦1Ïƒk~ï"JÿU+÷•ÑëÜÀ°~·‰V	”Ü^Ø¼eÑÛWÂÙÿ,¬Açfš·L¥Ï8*†ó–¼l7þ…Çb¿-—ñ52wzNs.v/Ñ+¢æîê…%00f
+®\Ð§%00öþ»âB·ocŒñß•¢gÚGøï
+×3íC~tÇ—¬4,ÿ ¶×‚¼wÏe*óÍ>-÷@¯<,È;Ø#pS obo%25ò~"ŸÁY™ßÜ0yJŽÅ£Ž(äp8
+l6ü\ÈA©ÉÞ1aFä%00ÕXSk˜Ö@dÑýÎ
+û‡''j1%00•ößš½ÛyÖ²¦¡¾¡¿í¥îÿ†ž¶h–r™™?—(àh³–‡¥ùäê!ÆÃ
+4¬@ÃJ!Ô’íß<¾&â!Ã‹#E–e_Å íÐÊ¼ +³ÑJÀHuñýÕ²{Ûs¡Y7r€šuA!G§VË|ÝD°F«›VKÕhQUS)“"×Í*È	 f4Žx#@ãˆ74Žx#@ÃÅ»2žx#XdmðšZo^¡üªïAUñF€ÈÚàÔ®ø›QY÷ÀJ÷/·#ˆ7‚BPS¼rtÚÄÁ‚W(™Pcy©C°ÆohñF€ÆohñF€Æoh¸x÷CÆo‹¬^S«â%00‘åÁƒªâ%00Á+m8(Þ°ë»x#(ä%005ÅA!G§&¨þ#Á"¨Æòâ`Á+”d(XÜ”I#Þˆ#ÞÐ8â%00#ÞÐpñî‡Œ''ÞY¼¦VÅ"ËƒUÅ"kÃAñ†ÍøÛÅA!¨)Þ
+9:5Aõ:‡`‘TcyñF° _‹7¯<D™Ñ8â˜Ñ8â%00#ÞÐpñî‡Œ''ÞY¼¦VÅ"ËƒUÅ"kÃAñ†=òÛÅA!¨)Þ
+9:5Aõâ`‘Tcy©C°Æos°x#@ðÊ3@°‹(aG¼3G¼ áâÝO¼,²6xM­Š7D–ªŠ7DÖ{ÎÖœEO=nIì9ƒòT8m	XLð;ßðÜt2ñþÓ!å	Ä–ôÀNñ½”?ÜÁîYK‚ Qb
+	Gºà”N¥a¶èè$¸þç<øä`ã ¥žž¼1ÝCÕv!hO²CÆOý°3-;»òd¹µf„l_WÑ}h—¦!¨hë±ƒmŸyšªŠÛðÿ¶~6=oqùÎÑÑ«‹Ùôä}Ñà&›ND‰ñ"2½RNGáýé$8_w©å¼<¸õØ¬Q:Wœ›üºrï=9½in™5lñ[Û3â>ÃòÎÕàï¦ƒ¦m\êóÐŸ·‚·õ:uhæ‡ËÌ†Â´ýÁÿ­¹Ç÷Ì™5ÏÏyš~aÐ¶¦å®ýÕ”o´{z|u²fj-µ–Ûöñ9#O0K\uÆ]ÚI´¯}¶ß®ynúÀ:Öÿ«´õúÕž&®;ëÂíwžñò»ê¾•?©·ÿ%00%00ÿÿ%00PK-%00%00%00%00%00%00!%00Ýü•7f%00%00 %00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00[Content_Types].xmlPK-%00%00%00%00%00%00!%00‘·ó%00%00%00N%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00Ÿ%00%00_rels/.relsPK-%00%00%00%00%00%00!%00Öd³Qú%00%00%001%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00Ã%00%00word/_rels/document.xml.relsPK-%00%00%00%00%00%00!%00O!>¦Â%00%00ž%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00ÿ%00%00word/document.xmlPK-%00%00%00%00%00%00!%00–µ­â–%00%00P%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00ð%00%00word/theme/theme1.xmlPK-%00%00%00%00%00%00!%00Ç¶¦8©%00%00ü%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00¹%00%00word/settings.xmlPK-%00%00%00%00%00%00!%00œÙ+z%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00‘%00%00word/fontTable.xmlPK-%00%00%00%00%00%00!%00JØŠ’»%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00;%00%00word/webSettings.xmlPK-%00%00%00%00%00%00!%00Ëy‚KŠ%00%00Ý%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00(%00%00docProps/app.xmlPK-%00%00%00%00%00%00!%00ââ''ÆJ%00%00}%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00è%00%00docProps/core.xmlPK-%00%00%00%00%00%00!%00]OB5%00%00ø9%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00i%00%00word/styles.xmlPK%00%00%00%00%00%00Á%00%00ª&%00%00%00%00')[0m
+Redirected to #<Torrent:0x5e6a488>
+Completed in 336ms (DB: 7) | 302 Found [http://localhost/torrents/uploadTorrentFile]
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:27:38) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"5"}
+  [4;35;1mTorrent Load (1.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 5) [0m
+Rendering template within layouts/torrents
+Rendering torrents/show
+Completed in 65ms (View: 27, DB: 3) | 200 OK [http://localhost/torrents/5]
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-26 15:27:43) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;36;1mTorrent Load (3.0ms)[0m   [0;1mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 86ms (View: 52, DB: 5) | 200 OK [http://localhost/torrents]
+
+
+Processing TorrentsController#destroy (for 127.0.0.1 at 2009-01-26 15:27:51) [DELETE]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"5"}
+  [4;35;1mTorrent Load (1.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 5) [0m
+  [4;36;1mTorrent Destroy (13.0ms)[0m   [0;1mDELETE FROM "torrents" WHERE "id" = 5[0m
+Redirected to http://localhost:3000/torrents
+Completed in 276ms (DB: 16) | 302 Found [http://localhost/torrents/5]
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-26 15:27:52) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;35;1mTorrent Load (218.0ms)[0m   [0mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 307ms (View: 39, DB: 220) | 200 OK [http://localhost/torrents]
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:29:14) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;36;1mTorrent Load (0.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (114.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:30:51) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (1.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (170.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:31:29) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (304.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:35:42) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (0.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (142.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-26 15:44:35) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;36;1mTorrent Load (3.0ms)[0m   [0;1mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 65ms (View: 38, DB: 4) | 200 OK [http://localhost/torrents]
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:44:37) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (1.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (293.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:45:17) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;36;1mTorrent Load (0.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (103.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (2.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#show (for 127.0.0.1 at 2009-01-26 15:46:10) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"downloadTorrentFile"}
+  [4;35;1mTorrent Load (2.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Torrent with ID=downloadTorrentFile):
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1528:in `find_one'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:1511:in `find_from_ids'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/base.rb:590:in `find'
+    /app/controllers/torrents_controller.rb:16:in `show'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:103:in `handle_dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:74:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    c:/ruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    c:/ruby/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/webrick_server.rb:60:in `dispatch'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/servers/webrick.rb:66
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    c:/ruby/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    c:/ruby/lib/ruby/gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    c:/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (103.0ms)
+Rendered c:/ruby/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (3.0ms)
+Rendering C:/Users/krithika/Desktop/UCSB/Winter quarter/CS290F/torrentphobe/torrentphobe/web/vendor/plugins/facebooker/templates/layout.erb (200)
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-26 15:56:20) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;36;1mTorrent Load (2.0ms)[0m   [0;1mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 63ms (View: 35, DB: 4) | 200 OK [http://localhost/torrents]
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-26 15:56:50) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;35;1mTorrent Load (2.0ms)[0m   [0mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 71ms (View: 42, DB: 5) | 200 OK [http://localhost/torrents]
+
+
+Processing TorrentsController#downloadTorrentFile (for 127.0.0.1 at 2009-01-26 15:56:52) [POST]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"1"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 1) [0m
+Sending data 
+Completed in 59ms (View: 0, DB: 3) | 200 OK [http://localhost/torrents/downloadTorrentFile/1]
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-26 15:58:00) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;35;1mTorrent Load (2.0ms)[0m   [0mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 84ms (View: 45, DB: 4) | 200 OK [http://localhost/torrents]
+
+
+Processing TorrentsController#downloadTorrentFile (for 127.0.0.1 at 2009-01-26 15:58:02) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"1"}
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 1) [0m
+Sending data hello.txt
+Completed in 40ms (View: 1, DB: 10) | 200 OK [http://localhost/torrents/downloadTorrentFile/1]
+
+
+Processing TorrentsController#downloadTorrentFile (for 127.0.0.1 at 2009-01-26 15:58:17) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"4"}
+  [4;35;1mTorrent Load (3.0ms)[0m   [0mSELECT * FROM "torrents" WHERE ("torrents"."id" = 4) [0m
+Sending data Shashank_Agarwal.pdf
+Completed in 37ms (View: 0, DB: 5) | 200 OK [http://localhost/torrents/downloadTorrentFile/4]
+
+
+Processing TorrentsController#destroy (for 127.0.0.1 at 2009-01-26 15:58:53) [DELETE]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  Parameters: {"id"=>"4"}
+  [4;36;1mTorrent Load (2.0ms)[0m   [0;1mSELECT * FROM "torrents" WHERE ("torrents"."id" = 4) [0m
+  [4;35;1mTorrent Destroy (8.0ms)[0m   [0mDELETE FROM "torrents" WHERE "id" = 4[0m
+Redirected to http://localhost:3000/torrents
+Completed in 272ms (DB: 14) | 302 Found [http://localhost/torrents/4]
+
+
+Processing TorrentsController#index (for 127.0.0.1 at 2009-01-26 15:58:53) [GET]
+  Session ID: 0d1cef54e8806993d27773cabc3c8257
+  [4;36;1mTorrent Load (1.0ms)[0m   [0;1mSELECT * FROM "torrents" [0m
+Rendering template within layouts/torrents
+Rendering torrents/index
+Completed in 59ms (View: 34, DB: 3) | 200 OK [http://localhost/torrents]
