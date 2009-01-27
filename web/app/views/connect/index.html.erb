@@ -1,9 +1,0 @@
-<%= fb_connect_javascript_tag %>
-<%= init_fb_connect "XFBML" %>
-
-<% if @user %>
-<h2>You are logged in as <%= @user.name %></h2>
-<a href="#" onclick="FB.Connect.logout(function() { reload(); }); return false;" ><img id="fb_logout_image" src="http://static.ak.fbcdn.net/images/fbconnect/logout-buttons/logout_small.gif" alt="Connect"/></a>
-<% else %>
-   <%= fb_login_button %>
-<% end %>
