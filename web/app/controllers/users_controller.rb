@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     facebook_session.user.friends.each {|user| friend_ids << user.uid}
     friends = user_ids & friend_ids
     friends.each do |friend|
-      f_id = User.find_by_fb_id(friend)
+      f_id = User.find_by_fb_id(friend).id
       Relationship.create({:user_id => @user.id, :friend_id => f_id})
       Relationship.create({:user_id => f_id, :friend_id => @user.id})
     end
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def logout
     reset_session
     facebook_session = nil
-    redirect_to(:action => :index)
+    redirect_to(:controller => :landing, :action => :index)
   end
 
   # GET /users/new

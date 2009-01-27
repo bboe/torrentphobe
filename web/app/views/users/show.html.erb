@@ -2,6 +2,7 @@
   <b>Fb:</b>
   <%=h @user.fb_id %>
 </p>
+Relationships
 <ul>
 <% for relationship in @user.relationships -%>
 <li><%=h relationship.friend.fb_id %>
@@ -10,7 +11,7 @@
 
 <%= fb_connect_javascript_tag %>
 <%= init_fb_connect "XFBML" %>
-
+Facebook Friends
 <ul>
 <% for friend in @friends[0..50] -%>
 <li><%=h friend %>

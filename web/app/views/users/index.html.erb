@@ -1,7 +1,4 @@
 <h1>Listing users</h1>
-
-<%=h session[:facebook_session] %>
-
 <table>
   <tr>
     <th>Fb</th>
@@ -19,13 +16,3 @@
 </table>
 
 <br />
-<%= fb_connect_javascript_tag %>
-<%= init_fb_connect "XFBML" %>
-
-<% if user_logged_in? %>
-<%= facebook_session.user.name %>
-<% else %>
-<div id="user">
-<%= fb_login_button "window.location = '/users/login/'" %>
-</div>
-<% end %>
