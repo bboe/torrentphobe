@@ -1,8 +1,8 @@
 <p>
-  <b>Fb:</b>
+  <b>My Facebook ID:</b>
   <%=h @user.fb_id %>
 </p>
-Relationships
+<b>Relationships</b>
 <ul>
 <% for relationship in @user.relationships -%>
 <li><%=h relationship.friend.fb_id %>
@@ -11,10 +11,10 @@ Relationships
 
 <%= fb_connect_javascript_tag %>
 <%= init_fb_connect "XFBML" %>
-Facebook Friends
+<b>Facebook Friends</b>
 <ul>
-<% for friend in @friends[0..50] -%>
-<li><%=h friend %>
+<% for friend in @friends[0..20] -%>
+<li><%=h friend.id %>
 <% end -%>
 </ul>
 
