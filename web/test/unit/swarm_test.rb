@@ -50,6 +50,7 @@ class SwarmTest < ActiveSupport::TestCase
 
   test "invalid ip_address" do
     good = swarms(:good)
+
     good.ip_address = 18958953
     assert !good.valid?, "ip address is integer"
 
@@ -65,5 +66,16 @@ class SwarmTest < ActiveSupport::TestCase
     good.ip_address = "128.111.48.52"
     assert_valid(good)
     
+  end
+
+  test "get swarm list" do
+    good = swarms(:good)
+    assert_equal [good], Swarm.get_swarm_list(good.torrent_id)    
+  end
+
+  test "delete swarm" do
+    good = swarms(:good)
+    Swarm.delete_swarm good.torrent_id, good.peer_id, good.ip_address, good.port
+    assert_equal [], Swarm.get_swarm_list(good.torrent_id)    
   end
 end

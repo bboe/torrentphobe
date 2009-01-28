@@ -6,10 +6,5 @@ good:
   ip_address: 192.168.1.1
   port: 8863
   peer_id: GOOD
+  deleted: false
 
-two:
-  user_id: 1
-  torrent_id: 1
-  ip_address: 192.168.1.7
-  port: 8063
-  peer_id: ASDF

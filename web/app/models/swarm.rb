@@ -5,17 +5,23 @@ class Swarm < ActiveRecord::Base
 
   def self.get_swarm_list torrent_id, num_want = 50
     self.find(:all, 
-              :conditions => ["torrent_id = :torrent_id",
+              :conditions => ["torrent_id = :torrent_id and deleted = 'f'",
                               {:torrent_id => torrent_id}],
               :limit => num_want)
   end
 
   def self.add_to_swarm torrent_id, peer_id, ip, port
-    Swarm.create({:user_id => 1, :torrent_id => torrent_id, :peer_id => peer_id, :ip_address => ip, :port => port})
+    Swarm.create({:user_id => 1, :torrent_id => torrent_id, :peer_id => peer_id, :ip_address => ip, :port => port, :deleted => false})
   end
 
   def self.delete_swarm torrent_id, peer_id, ip, port
-    # TODO: Implement delete swarm
+    s = Swarm.find(:first,
+               :conditions => ["torrent_id = ':torrent_id' and peer_id = :peer_id and ip_address = :ip and port = :port",
+                               {:torrent_id => torrent_id, :peer_id => peer_id, :ip => ip, :port => port}])
+    if s
+      s.deleted = true
+      s.save
+    end
   end
 
   protected 

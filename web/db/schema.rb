@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090128041940) do
+ActiveRecord::Schema.define(:version => 20090128054241) do
 
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20090128041940) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "peer_id"
+    t.boolean  "deleted"
   end
 
   create_table "torrents", :force => true do |t|
