@@ -14,7 +14,7 @@ class TorrentsControllerTest < ActionController::TestCase
 
   test "should create torrent" do
     assert_difference('Torrent.count') do
-      post :create, :torrent => {:name => "test", :size => 4050, :meta_info => "some info" }
+      post :create, :torrent => {:name => "test", :size => 4050, :meta_info => "some info", :data => "test data"  }
     end
 
     assert_redirected_to torrent_path(assigns(:torrent))

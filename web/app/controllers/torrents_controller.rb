@@ -84,16 +84,15 @@ class TorrentsController < ApplicationController
   end
   def uploadTorrentFile
    #post = Torrent.updatetorrentfile(params[:upload])
-   @torrent = Torrent.new(params[:torrent])
-   @torrent.name = params[:upload]['torrentfile'].original_filename
-   @torrent.size = params[:upload]['torrentfile'].size
-   @torrent.meta_info = params[:upload]['torrentfile'].read
+    logger.info(params[:upload]['torrentfile'].path)
+   @torrent = Torrent.create_from_file (params[:upload]['torrentfile'].path)
    respond_to do |format|
      if @torrent.save
       flash[:notice] = 'Torrent was successfully created.'
       format.html { redirect_to(@torrent) }
       format.xml  { render :xml => @torrent, :status => :created, :location => @torrent }
      else
+       flash[:error] = "Torrent was not created successfully."
        format.html { render :action => "new" }
        format.xml  { render :xml => @torrent.errors, :status => :unprocessable_entity }
      end

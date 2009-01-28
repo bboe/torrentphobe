@@ -4,14 +4,16 @@ two:
   name: MyString
   size: 1
   meta_info: More info
+  data: Some bencoded string
 
 one:
   name: MyString
   size: 1
-  meta_info: info
+  meta_info: More info
+  data: Some more info
 
 good:
   name: A Name
   size: 350
   meta_info: Some Info
-
+  data: Some data
