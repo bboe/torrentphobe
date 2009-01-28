@@ -11,4 +11,13 @@ class SwarmsControllerTest < ActionController::TestCase
     assert_response :success      
   end
   
+  test "announce results test" do
+    good = swarms(:good)
+    get :announce, {:peer_id => good.peer_id, :port => good.port}
+    result = BEncode.load(@response.body)
+    assert_equal result["peers"][0]["id"], good.peer_id
+    assert_equal result["peers"][0]["ip"], good.ip_address
+    assert_equal result["peers"][0]["port"], good.port
+  end
+  
 end

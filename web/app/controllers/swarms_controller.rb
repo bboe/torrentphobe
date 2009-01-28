@@ -19,7 +19,7 @@ class SwarmsController < ApplicationController
     Swarm.add_to_swarm(torrent_id, params[:peer_id], ip, params[:port]) if event == "started"
     swarm = Swarm.get_swarm_list torrent_id, (params[:numwant] || 50)
     swarm.collect! do |s|
-      {"id" => "TODO", "ip" => s.ip_address, "port" => s.port}
+      {"id" => s.peer_id, "ip" => s.ip_address, "port" => s.port}
     end
     
     output = {"interval" => 30, "peers" => swarm}
