@@ -13,12 +13,18 @@ class TorrentsController < ApplicationController
   # GET /torrents/1
   # GET /torrents/1.xml
   def show
-    @torrent = Torrent.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @torrent }
-    end
+     begin
+         @torrent = Torrent.find(params[:id])
+     rescue ActiveRecord::RecordNotFound
+         logger.error("Attempt to access invalid torrent #{params[:id]}" )
+         flash[:notice] = "Invalid torrent"
+         redirect_to :action => :index
+     else
+         respond_to do |format|
+             format.html # show.html.erb
+             format.xml  { render :xml => @torrent }
+          end
+     end
   end
 
   # GET /torrents/new
@@ -34,7 +40,13 @@ class TorrentsController < ApplicationController
 
   # GET /torrents/1/edit
   def edit
-    @torrent = Torrent.find(params[:id])
+    begin
+        @torrent = Torrent.find(params[:id])
+     rescue ActiveRecord::RecordNotFound
+        logger.error("Attempt to access invalid torrent #{params[:id]}" )
+        flash[:notice] = "Invalid torrent"
+        redirect_to :action => :index
+     end
   end
 
   # POST /torrents
@@ -109,7 +121,7 @@ class TorrentsController < ApplicationController
   def downloadTorrentFile
      
       @torrent = Torrent.find(params[:id])
-      send_data @torrent.data, :filename => @torrent.name    
+      send_data @torrent.meta_info, :filename => @torrent.name    
   end
 
 end
