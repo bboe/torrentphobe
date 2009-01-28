@@ -1,11 +1,13 @@
 <p>
+  <b>My Facebook Name:</b>
+  <%=h @user.name %><br />
   <b>My Facebook ID:</b>
   <%=h @user.fb_id %>
 </p>
 <b>Relationships</b>
 <ul>
 <% for relationship in @user.relationships -%>
-<li><%=h relationship.friend.fb_id %>
+<li><%= relationship.friend.name %></li>
 <% end -%>
 </ul>
 
@@ -14,11 +16,12 @@
 <b>Facebook Friends</b>
 <ul>
 <% for friend in @friends[0..20] -%>
-<li><%=h friend.id %>
+<li><%=h friend.id %></li>
 <% end -%>
 </ul>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %> |
-<a href="#" onclick="FB.Connect.logoutAndRedirect('/users/logout')">Logout of Facebook</a>
+<%= link_to_function 'Logout of Facebook', "FB.Connect.logoutAndRedirect('/users/logout')" %>
+
 

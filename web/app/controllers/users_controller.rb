@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   layout "main"
 
+  require 'digest/md5'
   before_filter :set_facebook_session
   helper_method :facebook_session
 
@@ -27,19 +28,24 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.find_or_create_by_fb_id(facebook_session.user.uid)
-    user_ids = []
-    friend_ids = []
-    User.find(:all).each {|user| user_ids << user.fb_id}
-    facebook_session.user.friends.each {|user| friend_ids << user.uid}
-    friends = user_ids & friend_ids
-    friends.each do |friend|
-      f_id = User.find_by_fb_id(friend).id
-      Relationship.find_or_create_by_user_id_and_friend_id(@user.id,f_id)
-      Relationship.find_or_create_by_user_id_and_friend_id(f_id,@user.id)
+    @user = User.find_or_initialize_by_fb_id( facebook_session.user.uid  )
+
+    friend_ids = facebook_session.user.friends.map { |user| user.uid }
+    friend_hash = Digest::MD5.hexdigest( friend_ids.to_s )
+
+    name = facebook_session.user.first_name + " " + facebook_session.user.last_name
+
+    if @user.friend_hash != friend_hash or @user.name != name
+      @user.update_info(friend_ids, name)
     end
 
-    redirect_to(@user)
+    if @user.save
+      flash[:notice] = 'User successfully logged in.'
+      redirect_to(@user)
+    else
+      flash[:notice] = 'User failed to log in.'
+      redirect_to( :controller => :landing, :action => :index )
+    end
   end
 
   def logout
