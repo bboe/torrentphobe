@@ -39,7 +39,7 @@ class TorrentTest < ActiveSupport::TestCase
     assert t.valid?
     
     assert_equal "ubuntu-8.04.2-desktop-amd64.iso", t.name
-    assert_equal 730105856, t.size
+    assert_equal 524288, t.size
     
   end
 end

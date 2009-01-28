@@ -97,7 +97,7 @@ class TorrentsController < ApplicationController
   def uploadTorrentFile
    #post = Torrent.updatetorrentfile(params[:upload])
     logger.info(params[:upload]['torrentfile'].path)
-   @torrent = Torrent.create_from_file (params[:upload]['torrentfile'].path)
+   @torrent = Torrent.create_from_file( params[:upload]['torrentfile'].path )
    respond_to do |format|
      if @torrent.save
       flash[:notice] = 'Torrent was successfully created.'
