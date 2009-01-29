@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090128054241) do
+ActiveRecord::Schema.define(:version => 20090128213533) do
 
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(:version => 20090128054241) do
     t.integer  "fb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "friend_hash"
   end
 
   add_index "users", ["fb_id"], :name => "index_users_on_fb_id", :unique => true
