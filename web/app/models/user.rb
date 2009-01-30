@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   has_many :relationships
   has_many :friends, :through => :relationships, :uniq => true
-
+  validates_presence_of :name, :friend_hash, :fb_id
+  validates_numericality_of :fb_id, :greater_than => 0
   def add_friend(friend)
     Relationship.find_or_create_by_user_id_and_friend_id(self.id, friend.id)
     Relationship.find_or_create_by_user_id_and_friend_id(friend.id, self.id)

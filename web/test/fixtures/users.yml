@@ -1,7 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
+Jonathan:
   fb_id: 1
-
-two:
+  name: 'Jonathan'
+  friend_hash: "d41d8cd98f00b204e9800998ecf8427e"
+Shashank:
   fb_id: 2
+  name: 'Shashank'
+  friend_hash: "c4ca4238a0b923820dcc509a6f75849b"
