@@ -4,6 +4,7 @@ class Torrent < ActiveRecord::Base
   validates_numericality_of :size, :greater_than => 0
 
   SECRECT_KEY = 'jeffsucksandrules78978952yuihlkf'
+  HOST = "http://localhost:3000/"
 
   def filename
     self.name + ".torrent"
@@ -13,12 +14,6 @@ class Torrent < ActiveRecord::Base
     btorrent = BEncode.load(self.data)
     btorrent["announce"] = self.tracker_url( user_id )
     btorrent.bencode
-  end
-
-  def tracker_url user_id = nil
-    host = "http://localhost:3000/"
-    hash = Digest::SHA1.hexdigest( self.id.to_s + SECRECT_KEY + user_id.to_s )
-    host + "swarms/announce/" + CGI.escape(hash) + "/" + self.id.to_s + "/" + user_id.to_s
   end
   
   def self.updatetorrentfile(upload)
@@ -32,6 +27,12 @@ class Torrent < ActiveRecord::Base
     info["comment"] = ""
     info["info"]["private"] = 1
     Torrent.create( {:name => info["info"]["name"], :size => info["info"]["piece length"], :data => info.bencode} )
+  end
+
+  private
+  def tracker_url user_id = nil
+    hash = Digest::SHA1.hexdigest( self.id.to_s + SECRECT_KEY + user_id.to_s )
+    HOST + "swarms/announce/" + CGI.escape(hash) + "/" + self.id.to_s + "/" + user_id.to_s
   end
 
 end
