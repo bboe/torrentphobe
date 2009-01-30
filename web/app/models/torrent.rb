@@ -12,7 +12,7 @@ class Torrent < ActiveRecord::Base
 
   def generate_torrent_file user_id
     btorrent = BEncode.load(self.data)
-    btorrent["announce"] = self.tracker_url( user_id )
+    btorrent["announce"] = tracker_url( user_id )
     btorrent.bencode
   end
   
