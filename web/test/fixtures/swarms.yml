@@ -2,7 +2,7 @@
 
 good:
   user_id: 1
-  torrent_id: 1
+  torrent_id: 3
   ip_address: 192.168.1.1
   port: 8863
   peer_id: GOOD

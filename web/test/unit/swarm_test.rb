@@ -70,12 +70,13 @@ class SwarmTest < ActiveSupport::TestCase
 
   test "get swarm list" do
     good = swarms(:good)
-    assert_equal [good], Swarm.get_swarm_list(good.torrent_id)    
+    assert_equal [good], Swarm.get_swarm_list(good.torrent_id, good.user_id)    
   end
 
   test "delete swarm" do
     good = swarms(:good)
-    Swarm.delete_swarm good.torrent_id, good.peer_id, good.ip_address, good.port
-    assert_equal [], Swarm.get_swarm_list(good.torrent_id)    
+    Swarm.delete_swarm good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port
+    assert_equal [], Swarm.get_swarm_list(good.torrent_id, good.user_id)
   end
+
 end

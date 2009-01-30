@@ -1,19 +1,22 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-two:
+one:
+  id: 1
   name: MyString
   size: 1
   meta_info: More info
   data: Some bencoded string
 
-one:
+two:
+  id: 2
   name: MyString
   size: 1
   meta_info: More info
   data: Some more info
 
 good:
+  id: 3
   name: A Name
   size: 350
   meta_info: Some Info
-  data: Some data
+  data: de

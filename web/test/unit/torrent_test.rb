@@ -1,6 +1,7 @@
 require 'test/test_helper'
 
 class TorrentTest < ActiveSupport::TestCase
+  SERVER_ROOT = "http://localhost:3000/"
   test "negative size torrent" do
     t = Torrent.new(:name => "Blah", :data => "some data")
     t.size = -100
@@ -42,4 +43,16 @@ class TorrentTest < ActiveSupport::TestCase
     assert_equal 524288, t.size
     
   end
+  
+  test "test filename method" do
+    good = torrents(:good)
+    assert_equal good.filename, "A Name.torrent"
+  end
+
+  test "generate torrent file" do
+    good = torrents(:good)
+    file = good.generate_torrent_file 1    
+    assert_equal BEncode.load(file)["announce"], SERVER_ROOT + "swarms/announce/7e5e55f19fd4a98378949678842a24aebb799231/3/1"
+  end
+  
 end
