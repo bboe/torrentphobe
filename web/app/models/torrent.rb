@@ -1,5 +1,6 @@
 class Torrent < ActiveRecord::Base
   require 'bencode'
+  acts_as_taggable
 
   belongs_to :category
   validates_presence_of :name, :data, :category

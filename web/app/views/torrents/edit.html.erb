@@ -3,12 +3,18 @@
 <% form_for(@torrent) do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name %>:
     <%= f.text_field :name %>
   </p>
   <p>
+     <%= f.label :category %>:
     <%=  f.collection_select(:category_id, Category.find(:all), :id, :name, {}) %>
  </p>
+ <p>
+     <%= f.label :tags %> (Comma Seperated):
+    <%= f.text_field :tag_list %>
+ </p>
+
   <p>
     <%= f.submit "Update" %>
   </p>

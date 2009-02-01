@@ -1,0 +1,19 @@
+<p>
+  <b>ID:</b>
+  <%=h @tag.id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @tag.name %>
+</p>
+
+
+<p><b>Torrents with this tag:</b></p>
+<ul>
+<% for torrent in @torrents %>
+    <li><%=h torrent.name %></li>
+<% end %>
+</ul>
+
+<%= link_to 'Back', tags_path %>

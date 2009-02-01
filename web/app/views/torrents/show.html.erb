@@ -13,5 +13,12 @@
   <%=h @torrent.category.name %>
 </p>
 
+<p>
+  <b>Tag List:</b>
+  <%=h @torrent.tag_list %>
+</p>
+
 <%= link_to 'Edit', edit_torrent_path(@torrent) %> |
 <%= link_to 'Back', torrents_path %>
+
+

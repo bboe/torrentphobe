@@ -1,8 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :categories
 
-
   map.resources :torrents
+
+  map.resources :tags
 
   map.resources :relationship
   map.connect '/users/login', :controller => 'users', :action => 'login'
