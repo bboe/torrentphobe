@@ -1,5 +1,6 @@
 html {
   min-height: 100%;
+  font-family: sans-serif;
 }
 
 body{
@@ -17,13 +18,13 @@ body{
 #header{
   background: transparent url(/images/logo.jpg) no-repeat center center;
   min-height: 170px;
+  text-align: right;
 }
 
 #header a{
   color: #12bce7;
   font-weight: bold;
   margin: 40px 10px 0 0;
-  float: right;
   text-decoration: none;
 }
 
@@ -47,11 +48,11 @@ body{
   background-image: url(/images/tabs-all.png);
   float: left;
   height: 27px;
-  width: 92px;
+  width: 102px;
   text-decoration: none;
   text-align: center;
   color: #000;
-  font-size: larger;
+  font-size: 17px;
   font-weight: 800;
 }
 

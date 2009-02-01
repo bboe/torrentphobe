@@ -3,11 +3,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Count</th>
   </tr>
 
 <% for category in @categories %>
   <tr>
     <td><%=h category.name %></td>
+    <td><%=h @counts[category.id] ||= 0 %></td>
     <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -16,5 +18,3 @@
 </table>
 
 <br />
-
-<%= link_to 'New category', new_category_path %>

@@ -3,6 +3,11 @@
   <%=h @category.name %>
 </p>
 
+<p><b>Torrents in this category:</b></p>
+<ul>
+<% for torrent in @torrents %>
+    <li><%=h torrent.name %></li>
+<% end %>
+</ul>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
