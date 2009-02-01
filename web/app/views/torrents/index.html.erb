@@ -4,16 +4,18 @@
   <tr>
     <th>Name</th>
     <th>Size</th>
+    <th>Category</th>
   </tr>
 
 <% for torrent in @torrents %>
   <tr>
     <td><%=h torrent.name %></td>
     <td><%=h torrent.size %></td>
+    <td><%=h torrent.category.name %></td>
     <td><%= link_to 'Show', torrent %></td>
     <td><%= link_to 'Edit', edit_torrent_path(torrent) %></td>
     <td><%= link_to 'Destroy', torrent, :confirm => 'Are you sure?', :method => :delete %></td>
-    <td><%= link_to "Download" , :action => :downloadTorrentFile, :id => torrent %></td>
+    <td><%= link_to "Download" , :action => :download_torrent_file, :id => torrent %></td>
   </tr>
 <% end %>
 </table>

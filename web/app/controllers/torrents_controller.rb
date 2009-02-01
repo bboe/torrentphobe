@@ -1,4 +1,6 @@
 class TorrentsController < ApplicationController
+  layout 'main'
+
   # GET /torrents
   # GET /torrents.xml
   def index
@@ -54,12 +56,21 @@ class TorrentsController < ApplicationController
   def create
     @torrent = Torrent.new(params[:torrent])
 
+    if has_valid_content_type(params[:torrent][:torrent_file])
+      begin
+        @torrent.encode_data
+      rescue BEncode::DecodeError
+        @torrent.data = nil
+      end
+    end
+
     respond_to do |format|
       if @torrent.save
         flash[:notice] = 'Torrent was successfully created.'
         format.html { redirect_to(@torrent) }
         format.xml  { render :xml => @torrent, :status => :created, :location => @torrent }
       else
+        flash[:error] = "Torrent was not created successfully."
         format.html { render :action => "new" }
         format.xml  { render :xml => @torrent.errors, :status => :unprocessable_entity }
       end
@@ -94,33 +105,14 @@ class TorrentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  def uploadTorrentFile
-   #post = Torrent.updatetorrentfile(params[:upload])
-    logger.info(params[:upload]['torrentfile'].path)
-   @torrent = Torrent.create_from_file( params[:upload]['torrentfile'].path )
-   respond_to do |format|
-     if @torrent.save
-      flash[:notice] = 'Torrent was successfully created.'
-      format.html { redirect_to(@torrent) }
-      format.xml  { render :xml => @torrent, :status => :created, :location => @torrent }
-     else
-       flash[:error] = "Torrent was not created successfully."
-       format.html { render :action => "new" }
-       format.xml  { render :xml => @torrent.errors, :status => :unprocessable_entity }
-     end
-   end
-   #@torrent = Torrent.find(params[:id])
-   #@torrentfile = @torrent.data
-   #post = Torrent.save(params[:upload])
-   #@uploaded = "uploaded"
-   #redirect_to(:action => "index")
-      
-  end
 
-  def downloadTorrentFile
-     
+  def download_torrent_file
       @torrent = Torrent.find(params[:id])
-      send_data @torrent.data, :filename => @torrent.name    
+      send_data @torrent.data, :filename => @torrent.filename
   end
 
+  protected
+  def has_valid_content_type file
+    file.content_type.chomp == "application/x-bittorrent"
+  end
 end

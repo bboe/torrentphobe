@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+Movie:
+  id: 1
+  name: Movie
+
+Music:
+  id: 2
+  name: Music
+
+Other:
+  id: 3
+  name: Other

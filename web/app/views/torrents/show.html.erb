@@ -8,6 +8,10 @@
   <%=h @torrent.size %>
 </p>
 
+<p>
+  <b>Category:</b>
+  <%=h @torrent.category.name %>
+</p>
 
 <%= link_to 'Edit', edit_torrent_path(@torrent) %> |
 <%= link_to 'Back', torrents_path %>

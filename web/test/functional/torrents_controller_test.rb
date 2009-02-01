@@ -14,7 +14,9 @@ class TorrentsControllerTest < ActionController::TestCase
 
   test "should create torrent" do
     assert_difference('Torrent.count') do
-      post :create, :torrent => {:name => "test", :size => 4050, :meta_info => "some info", :data => "test data"  }
+      file = ActionController::TestUploadedFile.new(File.expand_path(File.dirname(__FILE__) + "/../test.torrent"), "application/x-bittorrent")
+
+      post :create, :torrent => {:name => "test", :size => 4050, :meta_info => "some info", :data => "test data", :category_id => 1, :torrent_file => file  }
     end
 
     assert_redirected_to torrent_path(assigns(:torrent))

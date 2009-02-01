@@ -1,6 +1,8 @@
 class Torrent < ActiveRecord::Base
   require 'bencode'
-  validates_presence_of :name, :size, :data
+
+  belongs_to :category
+  validates_presence_of :name, :data, :category
   validates_numericality_of :size, :greater_than => 0
 
   SECRECT_KEY = 'jeffsucksandrules78978952yuihlkf'
@@ -16,17 +18,17 @@ class Torrent < ActiveRecord::Base
     btorrent.bencode
   end
   
-  def self.updatetorrentfile(upload)
-     @tempname = upload['torrentfile'].original_filename
-     @tempsize = upload['torrentfile'].size
-     @tempmeta_info = upload['torrentfile'].read    
+  def torrent_file=(input)
+    self.data = input.read
   end
 
-  def self.create_from_file(path)
-    info = BEncode.load_file(path)
+  def encode_data
+    info = BEncode.load(self.data)
     info["comment"] = ""
     info["info"]["private"] = 1
-    Torrent.create( {:name => info["info"]["name"], :size => info["info"]["piece length"], :data => info.bencode} )
+    self.name = info["info"]["name"]
+    self.size = info["info"]["piece length"]
+    self.data = info.bencode
   end
 
   private
@@ -34,5 +36,4 @@ class Torrent < ActiveRecord::Base
     hash = Digest::SHA1.hexdigest( self.id.to_s + SECRECT_KEY + user_id.to_s )
     HOST + "swarms/announce/" + CGI.escape(hash) + "/" + self.id.to_s + "/" + user_id.to_s
   end
-
 end
