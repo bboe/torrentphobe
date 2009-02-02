@@ -1,4 +1,4 @@
-<h1>Listing torrents</h1>
+<h1>Search Results</h1>
 
 <table>
   <tr>
@@ -21,12 +21,7 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-
-
-
-<%= link_to 'New torrent', new_torrent_path %>
+</br>
 
 <%= form_tag (:action => 'search')%>
 <%= text_field 'q', nil  %>

@@ -111,8 +111,19 @@ class TorrentsController < ApplicationController
       send_data @torrent.data, :filename => @torrent.filename
   end
 
+  def search
+    query = params[:q]
+    @torrents = Torrent.find(:all, :conditions => ["name = ?", query])
+    respond_to do |format|
+       format.html { render :action => "search" }
+       format.xml  { head :ok }
+    end
+  end
+
   protected
   def has_valid_content_type file
     file.content_type.chomp == "application/x-bittorrent"
   end
+
+
 end
