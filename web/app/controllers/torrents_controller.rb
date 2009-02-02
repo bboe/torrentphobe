@@ -108,7 +108,7 @@ class TorrentsController < ApplicationController
 
   def download_torrent_file        
     @torrent = Torrent.find(params[:id])    
-    user_id = session["user_id"]
+    user_id = session[:user_id]
     send_data @torrent.generate_torrent_file( user_id ), :filename => @torrent.filename
   end
 
