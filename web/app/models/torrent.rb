@@ -2,8 +2,9 @@ class Torrent < ActiveRecord::Base
   require 'bencode'
   acts_as_taggable
 
+  belongs_to :owner, :foreign_key => "owner_id", :class_name => "User"
   belongs_to :category
-  validates_presence_of :name, :data, :category
+  validates_presence_of :name, :data, :category, :owner
   validates_numericality_of :size, :greater_than => 0
 
   SECRECT_KEY = 'jeffsucksandrules78978952yuihlkf'

@@ -55,7 +55,8 @@ class TorrentsController < ApplicationController
   # POST /torrents.xml
   def create
     @torrent = Torrent.new(params[:torrent])
-
+    user = User.find(session[:user_id])
+    @torrent.owner = user
     if has_valid_content_type(params[:torrent][:torrent_file])
       begin
         @torrent.encode_data

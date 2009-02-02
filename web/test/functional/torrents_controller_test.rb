@@ -18,7 +18,7 @@ class TorrentsControllerTest < ActionController::TestCase
     assert_difference('Torrent.count') do
       file = ActionController::TestUploadedFile.new(File.expand_path(File.dirname(__FILE__) + "/../test.torrent"), "application/x-bittorrent")
 
-      post :create, :torrent => {:name => "test", :size => 4050, :meta_info => "some info", :data => "test data", :category_id => 1, :torrent_file => file  }
+      post :create, { :torrent => {:name => "test", :size => 4050, :meta_info => "some info", :data => "test data", :category_id => 1, :torrent_file => file  }},  {:user_id => 1}
     end
 
     assert_redirected_to torrent_path(assigns(:torrent))
@@ -35,7 +35,7 @@ class TorrentsControllerTest < ActionController::TestCase
   end
 
   test "should update torrent" do
-    put :update, :id => torrents(:one).id, :torrent => { }
+    put :update, {:id => torrents(:one).id, :torrent => { } }
     assert_redirected_to torrent_path(assigns(:torrent))
   end
 

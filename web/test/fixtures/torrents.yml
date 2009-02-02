@@ -7,6 +7,7 @@ one:
   meta_info: More info
   data: Some bencoded string
   category_id: 1
+  owner_id: 2
 
 two:
   id: 2
@@ -15,6 +16,7 @@ two:
   meta_info: More info
   data: Some more info
   category_id: 2
+  owner_id: 1
 
 good:
   id: 3
@@ -23,3 +25,4 @@ good:
   meta_info: Some Info
   data: de
   category_id: 1
+  owner_id: 1

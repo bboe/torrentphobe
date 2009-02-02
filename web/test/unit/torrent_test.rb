@@ -32,6 +32,10 @@ class TorrentTest < ActiveSupport::TestCase
     assert !good.valid?
     good.data = "blah"
 
+    good.owner = nil
+    assert !good.valid?
+    good.owner = users(:Jonathan)
+
     assert good.valid?
   end
 
@@ -41,10 +45,17 @@ class TorrentTest < ActiveSupport::TestCase
     t.encode_data
     t.category_id = 1
 
+    jon = users(:Jonathan)
+    
+    t.owner = jon
     assert t.valid?
 
+    assert_equal jon.id, t.owner_id
     assert_equal "ubuntu-8.04.2-desktop-amd64.iso", t.name
     assert_equal 524288, t.size
+    
+
+
   end
 
   test "test filename method" do

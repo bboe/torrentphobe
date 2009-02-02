@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090201041036) do
+ActiveRecord::Schema.define(:version => 20090202231032) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20090201041036) do
     t.string   "meta_info"
     t.binary   "data"
     t.integer  "category_id"
+    t.integer  "owner_id"
   end
 
   create_table "users", :force => true do |t|
