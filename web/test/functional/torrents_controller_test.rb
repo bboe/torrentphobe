@@ -1,6 +1,8 @@
 require 'test/test_helper'
 
 class TorrentsControllerTest < ActionController::TestCase
+
+
   test "should get index" do
     get :index
     assert_response :success
@@ -43,5 +45,13 @@ class TorrentsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to torrents_path
+  end
+
+  test "should download torrent" do
+    good = torrents(:good)
+    jon = users("Jonathan")
+    get :download_torrent_file, {:id => good.id}, {:user_id => jon.id}
+    result = BEncode.load(@response.body)
+    assert_equal "http://localhost:3000/swarms/announce/7e5e55f19fd4a98378949678842a24aebb799231/3/1", result["announce"]
   end
 end

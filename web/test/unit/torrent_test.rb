@@ -57,5 +57,5 @@ class TorrentTest < ActiveSupport::TestCase
     file = good.generate_torrent_file 1    
     assert_equal BEncode.load(file)["announce"], SERVER_ROOT + "swarms/announce/7e5e55f19fd4a98378949678842a24aebb799231/3/1"
   end
-  
+
 end
