@@ -2,6 +2,9 @@ class Torrent < ActiveRecord::Base
   require 'bencode'
   acts_as_taggable
 
+  has_many :swarms
+  has_many :users, :through => :swarms
+
   belongs_to :owner, :foreign_key => "owner_id", :class_name => "User"
   belongs_to :category
   validates_presence_of :name, :data, :category, :owner

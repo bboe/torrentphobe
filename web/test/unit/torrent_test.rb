@@ -53,9 +53,6 @@ class TorrentTest < ActiveSupport::TestCase
     assert_equal jon.id, t.owner_id
     assert_equal "ubuntu-8.04.2-desktop-amd64.iso", t.name
     assert_equal 524288, t.size
-    
-
-
   end
 
   test "test filename method" do
@@ -67,6 +64,12 @@ class TorrentTest < ActiveSupport::TestCase
     good = torrents(:good)
     file = good.generate_torrent_file 1    
     assert_equal BEncode.load(file)["announce"], SERVER_ROOT + "swarms/announce/7e5e55f19fd4a98378949678842a24aebb799231/3/1"
+  end
+
+  test "get users downloading/seeding a torrent" do
+    good_torrent = torrents(:good)
+    jon = users(:Jonathan)
+    assert_equal [jon], good_torrent.users
   end
 
 end

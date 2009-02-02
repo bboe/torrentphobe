@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_many :relationships
   has_many :friends, :through => :relationships, :uniq => true
 
+  has_many :swarms
+  has_many :torrents, :through => :swarms
+
   validates_presence_of :name, :friend_hash, :fb_id
   validates_numericality_of :fb_id, :greater_than => 0
 

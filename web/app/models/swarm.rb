@@ -1,4 +1,8 @@
 class Swarm < ActiveRecord::Base
+
+  belongs_to :torrent
+  belongs_to :user
+
   validates_presence_of :user_id, :torrent_id, :ip_address, :port, :peer_id
   validates_numericality_of :port, :greater_than => 0, :less_than => 65536
   validate :ip_address_is_valid
