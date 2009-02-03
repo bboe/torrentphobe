@@ -22,7 +22,7 @@ class Torrent < ActiveRecord::Base
     btorrent["announce"] = tracker_url( user_id )
     btorrent.bencode
   end
-  
+
   def torrent_file=(input)
     self.data = input.read
   end
@@ -32,7 +32,7 @@ class Torrent < ActiveRecord::Base
     info["comment"] = ""
     info["info"]["private"] = 1
     self.name = info["info"]["name"]
-    self.size = info["info"]["piece length"]
+    self.size = calculate_size( info["info"] )
     self.data = info.bencode
   end
 
@@ -40,5 +40,17 @@ class Torrent < ActiveRecord::Base
   def tracker_url user_id = nil
     hash = Digest::SHA1.hexdigest( self.id.to_s + SECRECT_KEY + user_id.to_s )
     HOST + "swarms/announce/" + CGI.escape(hash) + "/" + self.id.to_s + "/" + user_id.to_s
+  end
+
+  def calculate_size info
+    if info["files"]
+      total = 0
+      for file in info["files"]
+        total += file["length"]
+      end
+      total
+    else
+      info["length"]
+    end
   end
 end

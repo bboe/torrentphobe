@@ -11,7 +11,7 @@
 <% for torrent in @torrents %>
   <tr>
     <td><%=h torrent.name %></td>
-    <td><%=h torrent.size %></td>
+    <td><%=h display_size(torrent.size) %></td>
     <td><%=h torrent.category.name %></td>
     <td><%=h torrent.tag_list.length %></td>
     <td><%= link_to 'Show', torrent %></td>
@@ -21,7 +21,7 @@
 </table>
 
 <br />
-
+<br />
 
 
 <%= form_tag( :action => 'search' )%>
@@ -29,3 +29,5 @@
 <%= submit_tag 'Search' %>
 
 </form>
+<br />
+<%= link_to 'Back', users_path %>

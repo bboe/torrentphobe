@@ -5,7 +5,7 @@
 
 <p>
   <b>Size:</b>
-  <%=h @torrent.size %>
+  <%=h display_size(@torrent.size) %>
 </p>
 
 <p>
@@ -17,6 +17,8 @@
   <b>Tag List:</b>
   <%=h @torrent.tag_list %>
 </p>
+
+<p><%= link_to "Download" , :action => :download_torrent_file, :id => @torrent.id %></p>
 
 <%= link_to 'Edit', edit_torrent_path(@torrent) %> |
 <%= link_to 'Back', torrents_path %>
