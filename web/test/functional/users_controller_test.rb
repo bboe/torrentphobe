@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'test/test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   test "should get index" do
@@ -41,5 +41,10 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to users_path
+  end
+
+  test "should get specific user's files" do
+    get :files, {:id => users(:Jonathan).id}, {:user_id => 2}
+    assert_response :success
   end
 end

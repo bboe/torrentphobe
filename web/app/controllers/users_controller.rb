@@ -116,4 +116,13 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def files
+    @user = User.find(params[:id])
+    @torrents = @user.torrents
+    respond_to do |format|
+      format.html # files.html.erb
+      format.xml
+    end
+  end
 end
