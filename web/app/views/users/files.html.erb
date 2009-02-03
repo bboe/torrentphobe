@@ -1,4 +1,4 @@
-<h1>Listing torrents</h1>
+<h1>Listing torrents for <%= @user.name %></h1>
 
 <table>
   <tr>
@@ -15,7 +15,7 @@
     <td><%=h torrent.category.name %></td>
     <td><%=h torrent.tag_list.length %></td>
     <td><%= link_to 'Show', torrent %></td>
-    <td><%= link_to "Download" , :action => :download_torrent_file, :id => torrent %></td>
+    <td><%= link_to "Download" , :controller=> :torrents, :action => :download_torrent_file, :id => torrent %></td>
   </tr>
 <% end %>
 </table>
