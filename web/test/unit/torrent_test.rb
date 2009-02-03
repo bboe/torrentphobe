@@ -52,7 +52,7 @@ class TorrentTest < ActiveSupport::TestCase
 
     assert_equal jon.id, t.owner_id
     assert_equal "ubuntu-8.04.2-desktop-amd64.iso", t.name
-    assert_equal 524288, t.size
+    assert_equal 730105856, t.size
   end
 
   test "test filename method" do
