@@ -1,4 +1,5 @@
 class Torrent < ActiveRecord::Base
+  require 'digest/sha1'
   require 'bencode'
   acts_as_taggable
 
@@ -11,7 +12,7 @@ class Torrent < ActiveRecord::Base
   validates_numericality_of :size, :greater_than => 0
 
   SECRECT_KEY = 'jeffsucksandrules78978952yuihlkf'
-  HOST = "http://localhost:3000/"
+  HOST = "http://ec2-174-129-147-140.compute-1.amazonaws.com"
 
   def filename
     self.name + ".torrent"
