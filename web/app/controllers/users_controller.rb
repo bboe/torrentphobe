@@ -19,12 +19,20 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
-    @friends = facebook_session.user.friends
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+        logger.error("Attempt to access invalid user #{params[:id]}" )
+        flash[:notice] = "Invalid user"
+        redirect_to :action => :index
+    else
+        @friends = facebook_session.user.friends
+        respond_to do |format|
+            format.html # show.html.erb
+            format.xml  { render :xml => @user }
+        end
     end
+
   end
 
   def login
@@ -66,7 +74,13 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+     begin
+       @user = User.find(params[:id])
+     rescue ActiveRecord::RecordNotFound
+        logger.error("Attempt to access invalid user #{params[:id]}" )
+        flash[:notice] = "Invalid user"
+        redirect_to :action => :index
+     end
   end
 
   # POST /users
