@@ -16,12 +16,18 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.xml
   def show
-    @category = Category.find(params[:id])
-    @torrents = Torrent.find(:all, :conditions => [ "category_id= ?" , params[:id] ])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @category }
-    end
+    begin
+        @category = Category.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+        logger.error("Attempt to access invalid category #{params[:id]}" )
+        flash[:notice] = "Invalid category"
+        redirect_to :action => :index
+    else
+        @torrents = Torrent.find(:all, :conditions => [ "category_id= ?" , params[:id] ])
+        respond_to do |format|
+            format.html # show.html.erb
+            format.xml  { render :xml => @category }
+        end
+    end   
   end
 end

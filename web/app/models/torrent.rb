@@ -1,6 +1,7 @@
 class Torrent < ActiveRecord::Base
   require 'digest/sha1'
   require 'bencode'
+  require 'config/global_config.rb'
   acts_as_taggable
 
   has_many :swarms
@@ -12,7 +13,7 @@ class Torrent < ActiveRecord::Base
   validates_numericality_of :size, :greater_than => 0
 
   SECRECT_KEY = 'jeffsucksandrules78978952yuihlkf'
-  HOST = "http://ec2-174-129-147-140.compute-1.amazonaws.com"
+ 
 
   def filename
     self.name + ".torrent"
@@ -40,7 +41,7 @@ class Torrent < ActiveRecord::Base
   private
   def tracker_url user_id = nil
     hash = Digest::SHA1.hexdigest( self.id.to_s + SECRECT_KEY + user_id.to_s )
-    HOST + "swarms/announce/" + CGI.escape(hash) + "/" + self.id.to_s + "/" + user_id.to_s
+    HOST_URL + "swarms/announce/" + CGI.escape(hash) + "/" + self.id.to_s + "/" + user_id.to_s
   end
 
   def calculate_size info
