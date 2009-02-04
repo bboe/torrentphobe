@@ -28,15 +28,22 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.find_or_initialize_by_fb_id( facebook_session.user.uid  )
-
     friend_ids = facebook_session.user.friends.map { |user| user.uid }
     friend_hash = Digest::MD5.hexdigest( friend_ids.to_s )
 
     name = facebook_session.user.first_name + " " + facebook_session.user.last_name
 
-    if @user.friend_hash != friend_hash or @user.name != name
-      @user.update_info(friend_ids, name)
+    @user = User.find_by_fb_id( facebook_session.user.uid )
+
+    forced_update = false
+    if !@user
+      @user = User.new( { :fb_id => facebook_session.user.uid, :name => name, :friend_hash => friend_hash } )
+      #new users should be forced to update to add their relationships, but only if they properly save
+      forced_update = @user.save
+    end
+
+    if forced_update or @user.friend_hash != friend_hash or @user.name != name
+        @user.update_info(friend_ids, name)
     end
 
     if @user.save
