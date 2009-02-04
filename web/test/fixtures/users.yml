@@ -10,3 +10,13 @@ Shashank:
   fb_id: 2
   name: 'Shashank'
   friend_hash: "c4ca4238a0b923820dcc509a6f75849b"
+Bob:
+  id: 3
+  fb_id: 3
+  name: 'Bob'
+  friend_hash: "hkhglgd"
+Alice:
+  id: 4
+  fb_id: 4
+  name: 'Alice'
+  friend_hash: "hjfklfsd"

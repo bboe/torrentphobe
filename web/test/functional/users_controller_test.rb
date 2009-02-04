@@ -1,4 +1,5 @@
 require 'test/test_helper'
+require 'flexmock/test_unit'
 
 class UsersControllerTest < ActionController::TestCase
   test "should get index" do
@@ -6,6 +7,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:users)
   end
+
+  
 
   test "should get new" do
     get :new
@@ -21,8 +24,9 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should show user" do
-    #get :show, :id => users(:one).id
-    #assert_response :success
+    @controller.facebook_session = flexmock(:user => flexmock(:friends => []))
+    get :show, {:id => users(:Jonathan).id}
+    assert_response :success
   end
 
   test "should get edit" do
@@ -47,4 +51,45 @@ class UsersControllerTest < ActionController::TestCase
     get :files, {:id => users(:Jonathan).id}, {:user_id => 2}
     assert_response :success
   end
+
+  test "new user no friends login" do
+
+    @controller.facebook_session = flexmock(:user => flexmock(:friends => [], :first_name => "testing", :last_name => "Ma Gee", :uid => 12345))
+    
+    assert_difference('User.count', 1) do
+      get :login
+    end
+    assert_redirected_to user_path(assigns(:user))
+    assert_equal 5, session[:user_id]
+  end
+
+  test "new user new friends login" do
+    jon = users(:Jonathan)
+    @controller.facebook_session = flexmock(:user => flexmock(:friends => [flexmock(:uid => jon.fb_id)], :first_name => "testing", :last_name => "Ma Gee", :uid => 12345))    
+    assert_difference('User.count', 1) do
+      assert_difference('Relationship.count', 2) do
+        get :login
+      end
+    end
+    assert_redirected_to user_path(assigns(:user))
+    assert_equal 5, session[:user_id]
+  end
+
+  test "old user no facebook login" do
+    jon = users(:Jonathan)
+    @controller.facebook_session = flexmock(:user => flexmock(:friends => [], :first_name => "testing", :last_name => "Ma Gee", :uid => jon.fb_id))
+    get :login
+    assert_redirected_to user_path(assigns(:user))
+    assert_equal 1, session[:user_id]
+  end
+  
+#  test "old user removed friends login" do
+#    bob = users(:Bob)
+#    @controller.facebook_session = flexmock(:user => flexmock(:friends => [], :first_name => "Bob", :last_name => "", :uid => bob.fb_id))
+#    assert_difference('Relationship.count', -2) do
+#      get :login
+#    end
+#    assert_equal 1, session[:user_id]
+#  end
+
 end

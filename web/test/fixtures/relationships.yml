@@ -1,2 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+bob_to_alice:
+  user_id: 3
+  friend_id: 4
+
+alice_to_bob:
+  user_id: 4
+  friend_id: 3
