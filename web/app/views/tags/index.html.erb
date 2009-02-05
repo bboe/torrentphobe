@@ -18,7 +18,7 @@
 <br />
 <p><b>Tag Cloud</b></p>
 <% tag_cloud @tag_counts, %w(cloud1 cloud2 cloud3 cloud4) do |tag, css_class| %>
-<%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+<%= link_to tag.name, { :action => :show, :id => tag.id }, :class => css_class %>
 <% end %>
 
 

@@ -1,0 +1,26 @@
+<% if torrents.length > 0 %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Size</th>
+    <th>Category</th>
+    <th>Tags</th>
+  </tr>
+
+<% for torrent in torrents %>
+  <tr>
+    <td><%=h torrent.name %></td>
+    <td><%=h display_size(torrent.size) %></td>
+    <td><%=h torrent.category.name %></td>
+    <td><%=h torrent.tag_list.length %></td>
+    <td><%= link_to 'Show', torrent %></td>
+    <td><%= link_to 'Edit', edit_torrent_path(torrent) %></td>
+    <td><%= link_to "Download" , :action => :download_torrent_file, :id => torrent %></td>
+  </tr>
+<% end %>
+</table>
+<% else %>
+No torrents available
+<% end %>
+<br />
+

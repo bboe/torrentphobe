@@ -83,6 +83,10 @@ a.bg:hover { background-position: 0 39px; }
   color: #fff;
 }
 
+table td, table th { padding: 3px; }
+table th { border-bottom: thin dotted #c0c0c0; }
+table td { border-bottom: thin dotted #dfdfdf; }
+
 p {
   text-align: left;
 }

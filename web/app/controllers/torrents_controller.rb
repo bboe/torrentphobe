@@ -114,8 +114,8 @@ class TorrentsController < ApplicationController
   end
 
   def search
-    query = params[:q]
-    @torrents = Torrent.find(:all, :conditions => ["name = ?", query])
+    @query = params[:q]
+    @torrents = Torrent.find(:all, :conditions => ["name = ?", @query])
     respond_to do |format|
        format.html { render :action => "search" }
        format.xml  { head :ok }

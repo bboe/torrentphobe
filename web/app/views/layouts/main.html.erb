@@ -1,35 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<link rel="shortcut icon" href="favicon.ico" />
-<title>torrentpho.be</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%= stylesheet_link_tag 'styles', :media => "all" %>
-<%= javascript_include_tag :defaults %>
-</head>
-<body>
-<div id="container">
-<div id="header">
-<br /><br />
-<%= link_to_function 'Logout', "FB.Connect.logoutAndRedirect('/users/logout')" %>
-</div>
-<div id="tabs">
-	<ul>
-		<li><%= link_to "Users", {:controller => :users}, :class => tab_class(:users) %></li>
-		<li><%= link_to "Torrents", {:controller => :torrents}, :class => tab_class(:torrents) %></li>
-		<li><%= link_to "Tags", {:controller => :tags}, :class => tab_class(:tags) %></li>
-		<li><%= link_to "Categories", {:controller => :categories}, :class => tab_class(:categories) %></li>
-	</ul>
-</div>
-<div id="main">
-	<div id="content">
-	<%= yield :layout %>
-	</div>
-</div>
-<div id="footer">
-	<%= link_to 'Home', :controller => :landing %> |
-	<%= link_to 'About', :controller => :landing, :action => :about %>
-</div>
-</div>
-</body>
+  <head>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>torrentpho.be</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag 'styles', :media => "all" %>
+    <%= javascript_include_tag :defaults %>
+  </head>
+    <body>
+      <div id="container">
+          <%= render :partial => "shared/header"%>
+          <%= render :partial => "shared/body" %>
+          <%= render :partial => "shared/footer" %>
+      </div>
+    </body>
 </html>
