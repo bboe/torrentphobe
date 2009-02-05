@@ -3,6 +3,7 @@ class Torrent < ActiveRecord::Base
   require 'bencode'
   require 'config/global_config.rb'
   acts_as_taggable
+  acts_as_ferret :fields => [:name, :tag_list]
 
   has_many :swarms
   has_many :users, :through => :swarms
@@ -13,7 +14,6 @@ class Torrent < ActiveRecord::Base
   validates_numericality_of :size, :greater_than => 0
 
   SECRECT_KEY = 'jeffsucksandrules78978952yuihlkf'
- 
 
   def filename
     self.name + ".torrent"

@@ -9,4 +9,9 @@
       <li><%= link_to "Tags", {:controller => :tags}, :class => tab_class(:tags) %></li>
       <li><%= link_to "Categories", {:controller => :categories}, :class => tab_class(:categories) %></li>
   </ul>
+  <div id="search">
+<%= form_tag(:action => 'search')%>
+<%= text_field 'q', nil, :size => 20  %>
+<%= submit_tag 'Search' %>
+</div>
 </div>

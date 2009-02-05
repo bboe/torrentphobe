@@ -65,6 +65,7 @@ class TorrentsController < ApplicationController
       end
     end
 
+    @torrent.tag_list.add(create_automatic_tags(@torrent.name))
     respond_to do |format|
       if @torrent.save
         flash[:notice] = 'Torrent was successfully created.'
@@ -114,8 +115,9 @@ class TorrentsController < ApplicationController
   end
 
   def search
-    @query = params[:q]
-    @torrents = Torrent.find(:all, :conditions => ["name = ?", @query])
+    @query = params[:q].to_s
+    @torrents = Torrent.find_by_contents(@query)
+
     respond_to do |format|
        format.html { render :action => "search" }
        format.xml  { head :ok }
@@ -127,5 +129,8 @@ class TorrentsController < ApplicationController
     file.content_type.chomp == "application/x-bittorrent"
   end
 
+  def create_automatic_tags name
+    tags = name.gsub(/[-._()\]\[]/," ").split
+  end
 
 end

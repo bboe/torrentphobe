@@ -3,8 +3,10 @@
 <%= render :partial => "shared/torrents", :locals => {:torrents => @torrents} %>
 <br />
 
-<%= form_tag (:action => 'search')%>
+<%= form_tag(:action => 'search')%>
 <%= text_field 'q', nil  %>
 <%= submit_tag 'Search' %>
 
 </form>
+ <br />
+<%= link_to 'Back', torrents_path %>

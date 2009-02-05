@@ -15,6 +15,7 @@
     <td><%=h torrent.tag_list.length %></td>
     <td><%= link_to 'Show', torrent %></td>
     <td><%= link_to 'Edit', edit_torrent_path(torrent) %></td>
+    <td><%= link_to 'Destroy', torrent, :confirm => 'Are you sure?', :method => :delete %></td>
     <td><%= link_to "Download" , :action => :download_torrent_file, :id => torrent %></td>
   </tr>
 <% end %>

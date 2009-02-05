@@ -29,14 +29,15 @@ body{
 }
 
 #tabs {
-  width: 440px;
+  width: 840px;
   margin: 0 auto;
   height: 35px;
 }
 
 #tabs ul {
+  margin: 0;
+  padding-left: 80px;
   list-style: none;
-  padding: 0 0 0 0;
 }
 
 #tabs li {
@@ -61,6 +62,14 @@ body{
 a.main { background-image: url(/images/tabs-all.png); }
 a.bg { background-position: 0 78px; }
 a.bg:hover { background-position: 0 39px; }
+
+#search {
+  width: 260px;
+  float: right;
+  text-align: right;
+  height: 25px;
+  padding-top: 7px;
+}
 
 #main {
   min-height: 500px;
