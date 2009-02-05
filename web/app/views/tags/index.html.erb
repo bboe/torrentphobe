@@ -1,5 +1,13 @@
 <h1>Listing tags</h1>
 
+<p><b>Tag Cloud</b></p>
+<% tag_cloud @tag_counts, %w(cloud1 cloud2 cloud3 cloud4) do |tag, css_class| %>
+<%= link_to tag.name, { :action => :show, :id => tag.id }, :class => css_class %>
+<% end %>
+<br />
+<br />
+
+<p><b>Tag List</b></p>
 <table>
   <tr>
     <th>ID</th>
@@ -14,12 +22,6 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-<p><b>Tag Cloud</b></p>
-<% tag_cloud @tag_counts, %w(cloud1 cloud2 cloud3 cloud4) do |tag, css_class| %>
-<%= link_to tag.name, { :action => :show, :id => tag.id }, :class => css_class %>
-<% end %>
 
 
 <br />

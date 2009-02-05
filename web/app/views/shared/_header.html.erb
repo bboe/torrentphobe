@@ -10,7 +10,7 @@
       <li><%= link_to "Categories", {:controller => :categories}, :class => tab_class(:categories) %></li>
   </ul>
   <div id="search">
-<%= form_tag(:action => 'search')%>
+<%= form_tag(:controller => 'torrents', :action => 'search')%>
 <%= text_field 'q', nil, :size => 20  %>
 <%= submit_tag 'Search' %>
 </div>
