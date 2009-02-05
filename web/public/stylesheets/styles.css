@@ -57,7 +57,7 @@ body{
   font-weight: 800;
 }
 
-#tabs a { padding: 8px 0 0 3px; }
+#tabs a { padding: 8px 0 0 3px; z-index: 5;}
 
 a.main { background-image: url(/images/tabs-all.png); }
 a.bg { background-position: 0 78px; }
