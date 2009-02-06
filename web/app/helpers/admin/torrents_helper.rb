@@ -1,0 +1,2 @@
+module Admin::TorrentsHelper
+end
