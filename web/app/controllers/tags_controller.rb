@@ -15,7 +15,7 @@ class TagsController < ApplicationController
         @tag = Tag.find(params[:id])
     rescue ActiveRecord::RecordNotFound
         logger.error("Attempt to access invalid tag #{params[:id]}" )
-        flash[:notice] = "Invalid tag"
+        flash[:notice] = "Whoops, thats not a valid tag!"
         redirect_to :action => :index
     else
         @torrents = Torrent.find_tagged_with(@tag)

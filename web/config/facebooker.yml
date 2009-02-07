@@ -9,9 +9,9 @@
 # This should only be necessary until the final version of the new profile is released.
 
 development:
-  api_key: a0e4e5ed5056c84353397099a3c950fa
-  secret_key: 3366269ec85c4a4482f000aad60b1978
-  canvas_page_name: http://apps.facebook.com/jb_torrentphobe/
+  api_key: 0d524bc9652becaabb96b37adc05c5af
+  secret_key: 3179ad2f0f490133dc9d7ea8f257be07
+  canvas_page_name: http://apps.facebook.com/torrentphobe/
   callback_url:
   pretty_errors: true
   set_asset_host_to_callback_url: false

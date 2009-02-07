@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound
         logger.error("Attempt to access invalid user #{params[:id]}" )
-        flash[:notice] = "Invalid user"
+        flash[:notice] = "Whoops, thats not a valid user!"
         redirect_to :action => :index
     else
         @friends = facebook_session.user.friends
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = 'User successfully logged in.'
+      flash[:message] = 'Welcome to torrentphobe '+@user.name
       redirect_to(@user)
     else
       flash[:notice] = 'User failed to log in.'
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
        @user = User.find(params[:id])
      rescue ActiveRecord::RecordNotFound
         logger.error("Attempt to access invalid user #{params[:id]}" )
-        flash[:notice] = "Invalid user"
+        flash[:notice] = "Whoops, thats not a valid user!"
         redirect_to :action => :index
      end
   end

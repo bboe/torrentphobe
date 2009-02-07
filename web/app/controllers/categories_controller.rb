@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
         @category = Category.find(params[:id])
     rescue ActiveRecord::RecordNotFound
         logger.error("Attempt to access invalid category #{params[:id]}" )
-        flash[:notice] = "Invalid category"
+        flash[:notice] = "Whoops, thats not a valid category!"
         redirect_to :action => :index
     else
         @torrents = Torrent.find(:all, :conditions => [ "category_id= ?" , params[:id] ])

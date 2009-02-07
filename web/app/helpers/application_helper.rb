@@ -8,6 +8,10 @@ module ApplicationHelper
   end
 
   def site_url
-    HOST_URL 
+    HOST_URL
+  end
+
+  def display_flash_messages
+    [:notice, :warning, :message].map { |f| content_tag(:div, flash[f], :class => f, :id => "flash-message") if flash[f] }
   end
 end

@@ -19,7 +19,7 @@ class TorrentsController < ApplicationController
          @torrent = Torrent.find(params[:id])
      rescue ActiveRecord::RecordNotFound
          logger.error("Attempt to access invalid torrent #{params[:id]}" )
-         flash[:notice] = "Invalid torrent"
+         flash[:notice] = "Whoops, thats not a valid torrent!"
          redirect_to :action => :index
      else
          respond_to do |format|
@@ -46,7 +46,7 @@ class TorrentsController < ApplicationController
         @torrent = Torrent.find(params[:id])
      rescue ActiveRecord::RecordNotFound
         logger.error("Attempt to access invalid torrent #{params[:id]}" )
-        flash[:notice] = "Invalid torrent"
+        flash[:notice] = "Whoops, thats not a valid torrent!"
         redirect_to :action => :index
      end
   end
@@ -108,8 +108,8 @@ class TorrentsController < ApplicationController
     end
   end
 
-  def download_torrent_file        
-    @torrent = Torrent.find(params[:id])    
+  def download_torrent_file
+    @torrent = Torrent.find(params[:id])
     user_id = session[:user_id]
     send_data @torrent.generate_torrent_file( user_id ), :filename => @torrent.filename
   end
