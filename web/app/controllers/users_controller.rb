@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     friend_ids = facebook_session.user.friends.map { |user| user.uid }
     friend_hash = Digest::MD5.hexdigest( friend_ids.to_s )
 
-    name = facebook_session.user.first_name + " " + facebook_session.user.last_name
+    name = facebook_session.user.name
 
     @user = User.find_by_fb_id( facebook_session.user.uid )
 

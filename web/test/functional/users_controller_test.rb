@@ -8,8 +8,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:users)
   end
 
-  
-
   test "should get new" do
     get :new
     assert_response :success
@@ -54,30 +52,30 @@ class UsersControllerTest < ActionController::TestCase
 
   test "new user no friends login" do
 
-    @controller.facebook_session = flexmock(:user => flexmock(:friends => [], :first_name => "testing", :last_name => "Ma Gee", :uid => 12345))
+    @controller.facebook_session = flexmock(:user => flexmock(:friends => [], :name => "testing", :uid => 12345))
     
     assert_difference('User.count', 1) do
       get :login
     end
     assert_redirected_to user_path(assigns(:user))
-    assert_equal 5, session[:user_id]
+    assert_equal users(:LastUser).id+1, session[:user_id]
   end
 
   test "new user new friends login" do
     jon = users(:Jonathan)
-    @controller.facebook_session = flexmock(:user => flexmock(:friends => [flexmock(:uid => jon.fb_id)], :first_name => "testing", :last_name => "Ma Gee", :uid => 12345))    
+    @controller.facebook_session = flexmock(:user => flexmock(:friends => [flexmock(:uid => jon.fb_id)], :name => "testing", :uid => 12345))
     assert_difference('User.count', 1) do
       assert_difference('Relationship.count', 2) do
         get :login
       end
     end
     assert_redirected_to user_path(assigns(:user))
-    assert_equal 5, session[:user_id]
+    assert_equal users(:LastUser).id+1, session[:user_id]
   end
 
   test "old user no facebook login" do
     jon = users(:Jonathan)
-    @controller.facebook_session = flexmock(:user => flexmock(:friends => [], :first_name => "testing", :last_name => "Ma Gee", :uid => jon.fb_id))
+    @controller.facebook_session = flexmock(:user => flexmock(:friends => [], :name => "testing", :uid => jon.fb_id))
     get :login
     assert_redirected_to user_path(assigns(:user))
     assert_equal 1, session[:user_id]

@@ -20,3 +20,14 @@ Alice:
   fb_id: 4
   name: 'Alice'
   friend_hash: "hjfklfsd"
+Adam:
+  id: 6
+  fb_id: 3602257
+  name: 'Adam'
+  friend_hash: "empty set"
+#This should be the largest id in the users fixtures
+LastUser:
+  id: 100
+  fb_id: 100
+  name: 'Endie'
+  friend_hash: "Frontie"

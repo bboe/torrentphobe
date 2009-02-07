@@ -15,9 +15,27 @@ class ApplicationController < ActionController::Base
 
   OUR_FBIDS = [3602257, 3604035, 1018091751, 28201092, 685099174, 3603163]
 
-  def is_admin? 
-    unless facebook_session && facebook_session.user && facebook_session.user.name && OUR_FBIDS.include?(facebook_session.user.uid)
+  def is_admin?
+    begin
+      unless facebook_session && facebook_session.user && facebook_session.user.name && OUR_FBIDS.include?(facebook_session.user.uid)
+        redirect_to "/"
+      end
+    rescue
       redirect_to "/"
     end
+  end
+
+  # This is a somewhat hacky way to verify that the user's facebook session
+  # is valid.
+  def user_logged_in?
+    if facebook_session
+      begin
+        facebook_session.user.name
+        return true
+      rescue Facebooker::Session::SessionExpired
+        redirect_to "/"
+      end
+    end
+    redirect_to "/"
   end
 end
