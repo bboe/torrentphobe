@@ -13,14 +13,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create user" do
-    #assert_difference('User.count') do
-    #  post :create, :user => {:name => "Jon", :fb_id => 100, :friend_hash => "d41d8cd98f00b204e9800998ecf8427e"}
-    #end
-
-    #assert_redirected_to user_path(assigns(:user))
-  end
-
   test "should show user" do
     @controller.facebook_session = flexmock(:user => flexmock(:friends => []))
     get :show, {:id => users(:Jonathan).id}
@@ -28,21 +20,44 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    @request.session[:user_id] = users(:Jonathan).id
     get :edit, :id => users(:Jonathan).id
     assert_response :success
   end
 
+  test "should not get edit not owner" do
+    @request.session[:user_id] = -1
+    get :edit, :id => users(:Jonathan).id
+    assert_redirected_to :controller => :users, :action => :index
+  end
+
   test "should update user" do
+    @request.session[:user_id] = users(:Jonathan).id
     put :update, :id => users(:Jonathan).id, :user => { }
     assert_redirected_to user_path(assigns(:user))
   end
 
+  test "should not update user not owner" do
+    @request.session[:user_id] = -1
+    put :update, :id => users(:Jonathan).id, :user => { }
+    assert_redirected_to :controller => :users, :action => :index
+  end
+
   test "should destroy user" do
+    @request.session[:user_id] = users(:Jonathan).id
     assert_difference('User.count', -1) do
       delete :destroy, :id => users(:Jonathan).id
     end
 
     assert_redirected_to users_path
+  end
+
+    test "should not destroy user not owner" do
+    @request.session[:user_id] = -1
+    assert_difference('User.count', 0) do
+      delete :destroy, :id => users(:Jonathan).id
+    end
+    assert_redirected_to :controller => :users, :action => :index
   end
 
   test "should get specific user's files" do

@@ -1,22 +1,23 @@
+<% display_categories ||= false %>
 <% if torrents.length > 0 %>
 <table>
   <tr>
-    <th>Name</th>
-    <th>Size</th>
-    <th>Category</th>
-    <th>Tags</th>
+    <th></th>
+    <th style="min-width: 600px; width: 100%">Name</th>
+    <th style="padding-left: 10px; text-align: center;">Size</th>
+    <% if display_categories %>
+    <th style="text-align: center;">Category</th>
+    <% end %>
   </tr>
 
 <% for torrent in torrents %>
   <tr>
-    <td><%=h torrent.name %></td>
-    <td><%=h display_size(torrent.size) %></td>
-    <td><%=h torrent.category.name %></td>
-    <td><%=h torrent.tag_list.length %></td>
-    <td><%= link_to 'Show', torrent %></td>
-    <td><%= link_to 'Edit', edit_torrent_path(torrent) %></td>
-    <td><%= link_to 'Destroy', torrent, :confirm => 'Are you sure?', :method => :delete %></td>
-    <td><%= link_to "Download" , :action => :download_torrent_file, :id => torrent %></td>
+    <td style="padding: 0;"><%= link_to image_tag("download_arrow.png", :border=>0), :action => :download_torrent_file, :id => torrent %></td>
+    <td><%= link_to torrent.name, torrent %></td>
+    <td style="padding-left: 10px; text-align: center;"><%=h display_size(torrent.size) %></td>
+    <% if display_categories %>
+    <td style="text-align: center;"><%=h torrent.category.name %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

@@ -18,9 +18,13 @@
   <%=h @torrent.tag_list %>
 </p>
 
+<p>
+  <b>Uploader:</b>
+  <%=h User.find_by_id(@torrent.owner_id).name %>
+</p>
+
 <p><%= link_to "Download" , :action => :download_torrent_file, :id => @torrent.id %></p>
 
-<%= link_to 'Edit', edit_torrent_path(@torrent) %> |
 <%= link_to 'Back', torrents_path %>
 
 

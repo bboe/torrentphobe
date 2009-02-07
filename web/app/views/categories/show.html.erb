@@ -1,13 +1,8 @@
-<p>
-  <b>Category:</b>
-  <%=h @category.name %>
-</p>
+<h1><%= @category.name %></h1>
+<%= render :partial => "shared/torrents", :locals => {:torrents => @torrents, :display_categories => false} %>
 
-<p><b>Torrents in this category:</b></p>
-<ul>
-<% for torrent in @torrents %>
-    <li><%=h torrent.name %></li>
-<% end %>
-</ul>
+
+<br />
+
 
 <%= link_to 'Back', categories_path %>

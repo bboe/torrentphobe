@@ -1,20 +1,18 @@
-<h1>Listing categories</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Count</th>
-  </tr>
-
-<% for category in @categories %>
-  <tr>
-    <td><%=h category.name %></td>
-    <td><%=h @counts[category.id] ||= 0 %></td>
-    <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<div style="text-align: center;">
+<%  @category.sort.each do |id,name| %>
+  <h2 style="display: inline;"><%= link_to name, :action => :show, :id => id %></h2>
 <% end %>
-</table>
+</div>
+
+
+
+<h1>Listing torrents by category</h1>
+
+<% @torrents_by_category.each do |category,torrents| %>
+  <% if !torrents.nil?  %>
+    <h3><%= @category[category] %></h3>
+    <%= render :partial => "shared/torrents", :locals => {:torrents => torrents, :display_categories => false} %>
+  <% end %>
+<% end %>
 
 <br />

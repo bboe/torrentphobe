@@ -11,7 +11,7 @@
   </ul>
   <div id="search">
     <% form_tag(:controller => 'torrents', :action => 'search') do -%>
-    <%= text_field 'q', nil, :size => 20  %>
+    <%= text_field 'q', nil, :size => 20, :style => "border: 0px;" %>
     <%= submit_tag 'Search' %>
     <% end -%>
   </div>

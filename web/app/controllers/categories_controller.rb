@@ -4,8 +4,9 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.xml
   def index
-    @categories = Category.find(:all)
-    @counts = Torrent.count(:group => 'category_id')
+    @category = {}
+    Category.find(:all).each { |c| @category[c.id]=c.name }
+    @torrents_by_category = Torrent.find(:all).group_by(&:category_id).sort
 
     respond_to do |format|
       format.html # index.html.erb

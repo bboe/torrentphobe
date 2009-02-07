@@ -94,6 +94,7 @@ a.bg:hover { background-position: 0 39px; }
   color: #fff;
 }
 
+
 table td, table th { padding: 3px; }
 table th { border-bottom: thin dotted #c0c0c0; }
 table td { border-bottom: thin dotted #dfdfdf; }
@@ -120,6 +121,27 @@ h2 {
   font-size: large;
   font-weight:bold;
   color: #fff
+}
+
+h3 {
+  font-weight:bold;
+  color: #12bce7
+}
+
+#headline {
+  padding-top: 10px;
+  display: inline-table;
+  min-width: 100%;
+}
+
+#headline a {
+  text-align: right;
+  text-decoration: none;
+  vertical-align: top;
+}
+
+#headline h1, #headline a {
+  display: table-cell;
 }
 
 #flash-message {

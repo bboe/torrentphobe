@@ -1,20 +1,16 @@
 <% if users.length > 0 %>
 <table>
   <tr>
-    <th>ID</th>
     <th>FB ID</th>
     <th>Name</th>
+    <th></th>
   </tr>
 
 <% for user in users %>
   <tr>
-    <td><%=h user.id %></td>
     <td><%=h user.fb_id %></td>
-    <td><%=h user.name %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Show Files', {:action => :files, :id => user.id} %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to user.name, :action => :show, :id => user.id %></td>
+    <td><%= link_to 'Uploaded Files', {:action => :files, :id => user.id} %></td>
   </tr>
 <% end %>
 </table>

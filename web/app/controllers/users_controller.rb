@@ -22,9 +22,7 @@ class UsersController < ApplicationController
     begin
       @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-        logger.error("Attempt to access invalid user #{params[:id]}" )
-        flash[:notice] = "Whoops, thats not a valid user!"
-        redirect_to :action => :index
+       display_notice params[:id], "Whoops, thats not a valid user!"
     else
         @friends = facebook_session.user.friends
         respond_to do |format|
@@ -84,9 +82,11 @@ class UsersController < ApplicationController
      begin
        @user = User.find(params[:id])
      rescue ActiveRecord::RecordNotFound
-        logger.error("Attempt to access invalid user #{params[:id]}" )
-        flash[:notice] = "Whoops, thats not a valid user!"
-        redirect_to :action => :index
+       display_notice params[:id], "Whoops, thats not a valid user!"
+     end
+
+     if session[:user_id] != @user.id
+       return display_warning params[:id], "I dont think so, thats not your profile to edit!"
      end
   end
 
@@ -112,7 +112,15 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      display_notice params[:id], "Whoops, thats not a valid user!"
+    end
+
+    if session[:user_id] != @user.id
+      return display_warning params[:id], "I dont think so, thats not your profile to update!"
+    end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -129,7 +137,16 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      display_notice params[:id], "Whoops, thats not a valid user!"
+    end
+
+    if session[:user_id] != @user.id
+      return display_warning params[:id], "Hey you cant delete other peoples profiles!"
+    end
+
     @user.destroy
 
     respond_to do |format|
@@ -139,11 +156,28 @@ class UsersController < ApplicationController
   end
 
   def files
-    @user = User.find(params[:id])
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      display_notice params[:id], "Whoops, thats not a valid user!"
+    end
+
     @torrents = @user.torrents
     respond_to do |format|
       format.html # files.html.erb
       format.xml
     end
+  end
+
+  def display_warning user_id, message
+      logger.error("Attempt to perform modify another user #{user_id} by user #{session[:user_id]}" )
+      flash[:warning] = message
+      redirect_to :action => :index
+  end
+
+  def display_notice user_id, message
+      logger.error("Attempt to access invalid user id #{user_id} by user #{session[:user_id]}" )
+      flash[:notice] = message
+      redirect_to :action => :index
   end
 end

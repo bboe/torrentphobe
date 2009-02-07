@@ -1,4 +1,5 @@
 require 'test/test_helper'
+require 'flexmock/test_unit'
 require 'config/global_config.rb'
 
 class TorrentsControllerTest < ActionController::TestCase
@@ -29,21 +30,44 @@ class TorrentsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    @request.session[:user_id] = torrents(:one).owner_id
     get :edit, :id => torrents(:one).id
     assert_response :success
   end
 
+  test "should not get edit torrent not owner" do
+    @request.session[:user_id] = -1
+    get :edit, :id => torrents(:one).id
+    assert_redirected_to :controller => :torrents, :action => :index
+  end
+
   test "should update torrent" do
+    @request.session[:user_id] = torrents(:one).owner_id
     put :update, {:id => torrents(:one).id, :torrent => { } }
     assert_redirected_to torrent_path(assigns(:torrent))
   end
 
+  test "should not update torrent not owner" do
+    @request.session[:user_id] = -1
+    put :update, {:id => torrents(:one).id, :torrent => { } }
+    assert_redirected_to :controller => :torrents, :action => :index
+  end
+
   test "should destroy torrent" do
+    @request.session[:user_id] = torrents(:one).owner_id
     assert_difference('Torrent.count', -1) do
       delete :destroy, :id => torrents(:one).id
     end
 
     assert_redirected_to torrents_path
+  end
+
+  test "should not destroy torrent not owner" do
+    @request.session[:user_id] = -1
+    assert_difference('Torrent.count', 0) do
+      delete :destroy, :id => torrents(:one).id
+    end
+    assert_redirected_to :controller => :torrents, :action => :index
   end
 
   test "should download torrent" do

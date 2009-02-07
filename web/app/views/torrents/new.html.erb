@@ -9,7 +9,7 @@
     <%= f.file_field 'torrent_file' %>
     <%= f.collection_select(:category_id, Category.find(:all), :id, :name, {:include_blank =>'Select Category'}) %>
     <br /><br />
-    Tags (Comma Seperated): <%= f.text_field :tag_list %><br />
+    Tags (Comma Separated): <%= f.text_field :tag_list %><br />
     <%= submit_tag "Upload" %>
   </p>
 <% end %>
