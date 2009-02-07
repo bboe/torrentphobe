@@ -1,3 +1,5 @@
+<h1><%=h @torrent.name %></h1>
+
 <p>
   <b>Name:</b>
   <%=h @torrent.name %>
@@ -14,7 +16,7 @@
 </p>
 
 <p>
-  <b>Tag List:</b>
+  <b>Tags:</b>
   <%=h @torrent.tag_list %>
 </p>
 
@@ -23,8 +25,11 @@
   <%=h User.find_by_id(@torrent.owner_id).name %>
 </p>
 
-<p><%= link_to "Download" , :action => :download_torrent_file, :id => @torrent.id %></p>
-
+<p><%= link_to "Download" , :action => :download_torrent_file, :id => @torrent.id %>
+<% if @torrent.owner_id == session[:user_id] %>
+| <%= link_to "Edit" , :action => :edit, :id => @torrent.id %> | <%= link_to 'Delete', @torrent, :confirm => 'Are you sure?', :method => :delete %>
+<% end %>
+</p>
 <%= link_to 'Back', torrents_path %>
 
 

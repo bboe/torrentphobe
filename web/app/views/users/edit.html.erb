@@ -1,16 +1,7 @@
-<h1>Editing user</h1>
+<h1>Editing: <%=h @user.name %></h1>
 
-<% form_for(@user) do |f| %>
-  <%= f.error_messages %>
+<p>
+We're sorry, there are currently no profile settings which can be edited.
+</p>
 
-  <p>
-    <%= f.label :fb_id %><br />
-    <%= f.text_field :fb_id %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', @user %>

@@ -1,27 +1,26 @@
+
+<div id="headline">
+  <h1><%=h @user.name %></h1>
+  <% if @user.id == session[:user_id] %>
+  <%= link_to image_tag("edit_profile.png", :border=>0)+' Edit my profile', {:action => :edit, :id => @user.id}, :class => :head %>
+  <% end %>
+</div>
+<br />
+
 <p>
-  <b>My Facebook Name:</b>
+  <b>Facebook Name:</b>
   <%=h @user.name %><br />
-  <b>My Facebook ID:</b>
+  <b>Facebook ID:</b>
   <%=h @user.fb_id %>
 </p>
-<b>Relationships</b>
+<b>Friends</b>
 <ul>
 <% for relationship in @user.relationships -%>
-<li><%= relationship.friend.name %></li>
+<li><%= link_to relationship.friend.name, {:action => :show, :id => relationship.friend.id } %></li>
 <% end -%>
 </ul>
 
-<%= fb_connect_javascript_tag %>
-<%= init_fb_connect "XFBML" %>
-<b>Facebook Friends</b>
-<ul>
-<% for friend in @friends[0..20] -%>
-<li><%=h friend.id %></li>
-<% end -%>
-</ul>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %> |
-<%= link_to_function 'Logout of Facebook', "FB.Connect.logoutAndRedirect('/users/logout')" %>
+<%= link_to 'Back', users_path %>
 
 
