@@ -15,16 +15,13 @@ class TorrentsController < ApplicationController
   # GET /torrents/1
   # GET /torrents/1.xml
   def show
-     begin
-         @torrent = Torrent.find(params[:id])
-     rescue ActiveRecord::RecordNotFound
-         display_notice params[:id], "Whoops, thats not a valid torrent!"
-     else
-         respond_to do |format|
-             format.html # show.html.erb
-             format.xml  { render :xml => @torrent }
-          end
-     end
+    return if invalid_id params[:id]
+
+    @torrent = Torrent.find(params[:id])
+    respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @torrent }
+    end
   end
 
   # GET /torrents/new
@@ -40,15 +37,10 @@ class TorrentsController < ApplicationController
 
   # GET /torrents/1/edit
   def edit
-    begin
-        @torrent = Torrent.find(params[:id])
-     rescue ActiveRecord::RecordNotFound
-        return display_notice( params[:id], "Whoops, thats not a valid torrent!")
-     end
+    return if invalid_id params[:id]
+    @torrent = Torrent.find(params[:id])
 
-     if session[:user_id] != @torrent.owner_id
-      return display_warning params[:id], "Hey, you cant edit that torrent, its not yours!"
-    end
+    return if not_owner @torrent.owner_id
   end
 
   # POST /torrents
@@ -82,15 +74,10 @@ class TorrentsController < ApplicationController
   # PUT /torrents/1
   # PUT /torrents/1.xml
   def update
-     begin
-        @torrent = Torrent.find(params[:id])
-     rescue ActiveRecord::RecordNotFound
-        return display_notice( params[:id], "Whoops, thats not a valid torrent!")
-     end
+    return if invalid_id params[:id]
+    @torrent = Torrent.find(params[:id])
 
-     if session[:user_id] != @torrent.owner_id
-      return display_warning params[:id], "Hey, you cant edit that torrent, its not yours!"
-     end
+    return if not_owner @torrent.owner_id
 
     respond_to do |format|
       if @torrent.update_attributes(params[:torrent])
@@ -107,15 +94,10 @@ class TorrentsController < ApplicationController
   # DELETE /torrents/1
   # DELETE /torrents/1.xml
   def destroy
-    begin
-      @torrent = Torrent.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      return display_notice( params[:id], "Whoops, thats not a valid torrent!")
-    end
+    return if invalid_id params[:id]
+    @torrent = Torrent.find(params[:id])
 
-    if session[:user_id] != @torrent.owner_id
-      return display_warning params[:id], "I dont think so, thats not your torrent to delete!"
-    end
+    return if not_owner @torrent.owner_id
     @torrent.destroy
 
     respond_to do |format|
@@ -149,15 +131,28 @@ class TorrentsController < ApplicationController
     tags = name.gsub(/[-._()\]\[]/," ").split
   end
 
-  def display_warning torrent_id, message
-      logger.error("Attempt to perform modify a torrent without owner privilege #{torrent_id} by user #{session[:user_id]}" )
-      flash[:warning] = message
-      redirect_to :action => :index
+  def invalid_id id
+    if !Torrent.exists?(id)
+      display_message :notice, id, "Whoops, thats not a valid torrent!"
+    end
   end
 
-  def display_notice torrent_id, message
-      logger.error("Attempt to access invalid torrent #{torrent_id} by user #{session[:user_id]}" )
-      flash[:notice] = message
-      redirect_to :action => :index
+  def not_owner id
+    if session[:user_id] != id
+      display_message :warning, id, "Hey, you cant change that torrent, its not yours!"
+     end
+  end
+
+  def display_message type, torrent_id, message
+    case type
+      when :notice
+        logger.error("Attempt to access invalid torrent #{torrent_id} by user #{session[:user_id]}" )
+      when :warning
+        logger.error("Attempt to modify a torrent without owner privilege #{torrent_id} by user #{session[:user_id]}" )
+      else
+        logger.error("Attempt to do something bad to torrent #{torrent_id} by user #{session[:user_id]}" )
+    end
+    flash[type] = message
+    redirect_to :action => :index
   end
 end

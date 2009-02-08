@@ -19,18 +19,14 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    begin
-      @user = User.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-       display_notice params[:id], "Whoops, thats not a valid user!"
-    else
-        @friends = facebook_session.user.friends
-        respond_to do |format|
-            format.html # show.html.erb
-            format.xml  { render :xml => @user }
-        end
-    end
+    return if invalid_id params[:id]
+    @user = User.find(params[:id])
 
+    @friends = facebook_session.user.friends
+    respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @user }
+    end
   end
 
   def login
@@ -79,15 +75,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-     begin
-       @user = User.find(params[:id])
-     rescue ActiveRecord::RecordNotFound
-       display_notice params[:id], "Whoops, thats not a valid user!"
-     end
+    return if invalid_id params[:id]
+    @user = User.find(params[:id])
 
-     if session[:user_id] != @user.id
-       return display_warning params[:id], "I dont think so, thats not your profile to edit!"
-     end
+    return if not_owner @user.id
   end
 
   # POST /users
@@ -95,7 +86,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new({"fb_id" =>  params[:user]["fb_id"]})
     @user.save()
-    
+
     respond_to do |format|
       if @user.save
         flash[:notice] = 'User was successfully created.'
@@ -106,21 +97,15 @@ class UsersController < ApplicationController
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
-    
   end
 
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    begin
-      @user = User.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      display_notice params[:id], "Whoops, thats not a valid user!"
-    end
+    return if invalid_id params[:id]
+    @user = User.find(params[:id])
 
-    if session[:user_id] != @user.id
-      return display_warning params[:id], "I dont think so, thats not your profile to update!"
-    end
+    return if not_owner @user.id
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -137,16 +122,10 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    begin
-      @user = User.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      display_notice params[:id], "Whoops, thats not a valid user!"
-    end
+    return if invalid_id params[:id]
+    @user = User.find(params[:id])
 
-    if session[:user_id] != @user.id
-      return display_warning params[:id], "Hey you cant delete other peoples profiles!"
-    end
-
+    return if not_owner @user.id
     @user.destroy
 
     respond_to do |format|
@@ -156,11 +135,8 @@ class UsersController < ApplicationController
   end
 
   def files
-    begin
-      @user = User.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      display_notice params[:id], "Whoops, thats not a valid user!"
-    end
+    return if invalid_id params[:id]
+    @user = User.find(params[:id])
 
     @torrents = @user.torrents
     respond_to do |format|
@@ -169,15 +145,28 @@ class UsersController < ApplicationController
     end
   end
 
-  def display_warning user_id, message
-      logger.error("Attempt to perform modify another user #{user_id} by user #{session[:user_id]}" )
-      flash[:warning] = message
-      redirect_to :action => :index
+  def invalid_id id
+    if !User.exists?(id)
+      display_message :notice, id, "Whoops, thats not a valid user!"
+    end
   end
 
-  def display_notice user_id, message
-      logger.error("Attempt to access invalid user id #{user_id} by user #{session[:user_id]}" )
-      flash[:notice] = message
-      redirect_to :action => :index
+  def not_owner id
+    if session[:user_id] != id
+      display_message :warning, id, "Hey, you cant change someone else's account!"
+     end
+  end
+
+  def display_message type, user_id, message
+    case type
+      when :notice
+        logger.error("Attempt to access invalid user #{user_id} by user #{session[:user_id]}" )
+      when :warning
+        logger.error("Attempt to modify another users information on #{user_id} by user #{session[:user_id]}" )
+      else
+        logger.error("Attempt to do something bad to user #{user_id} by user #{session[:user_id]}" )
+    end
+    flash[type] = message
+    redirect_to :action => :index
   end
 end
