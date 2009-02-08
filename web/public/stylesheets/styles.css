@@ -144,6 +144,10 @@ h3 {
   display: table-cell;
 }
 
+img {
+  border-width: 0;
+}
+
 #flash-message {
   width: 100%;
   font-size: medium;

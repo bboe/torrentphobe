@@ -12,7 +12,7 @@
 
 <% for torrent in torrents %>
   <tr>
-    <td style="padding: 0;"><%= link_to image_tag("download_arrow.png", :border=>0), :action => :download_torrent_file, :id => torrent %></td>
+    <td style="padding: 0;"><%= link_to image_tag("download_arrow.png"), :action => :download_torrent_file, :id => torrent %></td>
     <td><%= link_to torrent.name, torrent %></td>
     <td style="padding-left: 10px; text-align: center;"><%=h display_size(torrent.size) %></td>
     <% if display_categories %>

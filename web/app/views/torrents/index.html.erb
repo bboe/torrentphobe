@@ -1,6 +1,6 @@
 <div id="headline">
   <h1>Listing torrents</h1>
-  <%= link_to image_tag("add_cross.png", :border=>0)+' Add new torrent', new_torrent_path, :class => :head %>
+  <%= link_to image_tag("add_cross.png")+' Add new torrent', new_torrent_path, :class => :head %>
 </div>
 <br /><br />
 <%= render :partial => "shared/torrents", :locals => {:torrents => @torrents, :display_categories => true} %>
