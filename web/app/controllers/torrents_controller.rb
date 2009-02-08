@@ -4,7 +4,14 @@ class TorrentsController < ApplicationController
   # GET /torrents
   # GET /torrents.xml
   def index
-    @torrents = Torrent.find(:all)
+    #@torrents = Torrent.find(:all)
+    sort_by = params[:sort_by]
+    sort_by ||= 'name' # for default sort
+    if(sort_by == 'category')
+        @torrents = Torrent.find(:all, :order => 'category_id')
+    else
+        @torrents = Torrent.find(:all, :order => sort_by)
+    end
 
     respond_to do |format|
       format.html # index.html.erb

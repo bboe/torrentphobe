@@ -3,10 +3,10 @@
 <table>
   <tr>
     <th></th>
-    <th style="min-width: 600px; width: 100%">Name</th>
-    <th style="padding-left: 10px; text-align: center;">Size</th>
+    <th style="min-width: 600px; width: 100%"><%= link_to "Name", :sort_by => 'name' %></th>
+    <th style="padding-left: 10px; text-align: center;"><%= link_to "Size", :sort_by => 'size' %></th>
     <% if display_categories %>
-    <th style="text-align: center;">Category</th>
+    <th style="text-align: center;"><%= link_to "Category", :sort_by => 'category' %></th>
     <% end %>
   </tr>
 
