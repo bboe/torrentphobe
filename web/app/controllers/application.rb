@@ -38,4 +38,17 @@ class ApplicationController < ActionController::Base
     end
     redirect_to "/"
   end
+
+  def handle_sort params
+    sort_by = ( params[:c].nil? ? 'name' : params[:c] )
+    sort_direction = ((params[:d] == "up") ? "ASC" : "DESC")
+
+    case sort_by
+      when "category_id","size"
+        ordering = [sort_by,sort_direction].join(" ")
+      else
+        ordering = [:name,sort_direction].join(" ")
+    end
+    return ordering
+  end
 end
