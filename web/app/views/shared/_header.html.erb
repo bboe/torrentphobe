@@ -1,5 +1,7 @@
 <div id="header">
   <br /><br />
+  <%= fb_connect_javascript_tag %>
+  <%= init_fb_connect "XFBML" %>
   <%= link_to_function 'Logout', "FB.Connect.logoutAndRedirect('/users/logout')" %>
 </div>
 <div id="tabs">
