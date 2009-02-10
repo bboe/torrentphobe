@@ -5,7 +5,31 @@ class TorrentsController < ApplicationController
   # GET /torrents.xml
   def index
     ordering = handle_sort params
-    @torrents = Torrent.find(:all, :order => ordering)
+    
+    uid = session[:user_id]
+    user = User.find_by_id(uid)
+    
+    user_torrents = Torrent.find_all_by_owner_id(uid)
+
+    @torrents = []
+    @torrents = user.friends.map {|friend| friend.torrents }
+    @torrents << user.torrents
+    @torrents << user_torrents
+    
+    @torrents = @torrents.flatten.uniq
+    if @torrents
+       case params[:c] 
+       when "category_id"
+	  @torrents = @torrents.sort_by { |torrent| torrent.category_id } 
+       when "size"
+	  @torrents = @torrents.sort_by { |torrent| torrent.size } 
+       else
+	  @torrents = @torrents.sort_by { |torrent| torrent.name } 
+       end
+       if params[:d] == "up"
+	 @torrents = @torrents.reverse
+       end
+    end
 
     respond_to do |format|
       format.html # index.html.erb
