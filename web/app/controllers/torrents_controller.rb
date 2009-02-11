@@ -1,22 +1,15 @@
 class TorrentsController < ApplicationController
   layout 'main'
-
   # GET /torrents
   # GET /torrents.xml
   def index
-    ordering = handle_sort params
+    #ordering = handle_sort params
     
     uid = session[:user_id]
-    user = User.find_by_id(uid)
-    
-    user_torrents = Torrent.find_all_by_owner_id(uid)
 
-    @torrents = []
-    @torrents = user.friends.map {|friend| friend.torrents }
-    @torrents << user.torrents
-    @torrents << user_torrents
-    
-    @torrents = @torrents.flatten.uniq
+    @torrents = Torrent.get_torrents_for_user(uid)
+
+    #Sort this stuff!
     if @torrents
        case params[:c] 
        when "category_id"
@@ -134,7 +127,8 @@ class TorrentsController < ApplicationController
   def download_torrent_file
     @torrent = Torrent.find(params[:id])
     user_id = session[:user_id]
-    send_data @torrent.generate_torrent_file( user_id ), :filename => @torrent.filename
+    host_url = request.env["HTTP_HOST"]
+    send_data @torrent.generate_torrent_file( user_id, host_url ), :filename => @torrent.filename
   end
 
   def search
@@ -146,6 +140,7 @@ class TorrentsController < ApplicationController
        format.xml  { head :ok }
     end
   end
+
 
   protected
   def has_valid_content_type file

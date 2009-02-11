@@ -6,20 +6,9 @@ class CategoriesController < ApplicationController
   def index
     ordering = handle_sort params
 
-
-
-
     uid = session[:user_id]
-    user = User.find_by_id(uid)
     
-    user_torrents = Torrent.find_all_by_owner_id(uid)
-
-    @torrents = []
-    @torrents = user.friends.map {|friend| friend.torrents }
-    @torrents << user.torrents
-    @torrents << user_torrents
-    
-    @torrents = @torrents.flatten.uniq
+    @torrents = Torrent.get_torrents_for_user(uid)
     if @torrents
        case params[:c] 
        when "size"
@@ -59,16 +48,8 @@ class CategoriesController < ApplicationController
         ordering = handle_sort params
 
        uid = session[:user_id]
-       user = User.find_by_id(uid)
        
-       user_torrents = Torrent.find_all_by_owner_id_and_category_id(uid, @category.id)
-
-       @torrents = []
-       @torrents = user.friends.map {|friend| friend.torrents }
-       @torrents << user.torrents
-       @torrents << user_torrents
-       
-       @torrents = @torrents.flatten.uniq
+       @torrents = Torrent.get_torrents_for_user( uid )
        @torrents = @torrents.select{ |torrent| torrent.category_id == @category.id} 
        if @torrents
 	  case params[:c] 

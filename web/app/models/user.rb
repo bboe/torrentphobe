@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :swarms
   has_many :torrents, :through => :swarms
 
+  has_many :owned_torrents, :foreign_key => :owner_id, :class_name => "Torrent" 
+
   validates_presence_of :name, :friend_hash, :fb_id
   validates_numericality_of :fb_id, :greater_than => 0
 

@@ -25,6 +25,19 @@ Adam:
   fb_id: 3602257
   name: 'Adam'
   friend_hash: "empty set"
+#
+#Tom and Jerry are not friends
+Tom:
+  id: 7
+  fb_id: 33414
+  name: "Tom"
+  friend_hash: "TomHash"
+Jerry:
+  id: 8
+  fb_id: 3444
+  name: "Jerry"
+  friend_hash: "JerryHash"
+
 #This should be the largest id in the users fixtures
 LastUser:
   id: 100

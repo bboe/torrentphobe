@@ -77,4 +77,14 @@ class TorrentsControllerTest < ActionController::TestCase
     result = BEncode.load(@response.body)
     assert_equal HOST_URL+"swarms/announce/7e5e55f19fd4a98378949678842a24aebb799231/3/1", result["announce"]
   end
+
+  test "don't display enemies' torrents" do
+    tom = users("Tom")
+    jerry = users("Jerry")
+
+    toms_t = Torrent.get_torrents_for_user(tom.id)
+    jerrys_t = Torrent.get_torrents_for_user( jerry.id)
+    
+    assert_equal ([], jerrys_t & toms_t) 
+  end
 end
