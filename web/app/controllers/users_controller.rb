@@ -138,7 +138,9 @@ class UsersController < ApplicationController
     return if invalid_id params[:id]
     @user = User.find(params[:id])
 
-    @torrents = @user.torrents
+    ordering = handle_sort params
+
+    @torrents = Torrent.find_all_by_owner_id( @user.id, :order => ordering )
     respond_to do |format|
       format.html # files.html.erb
       format.xml
