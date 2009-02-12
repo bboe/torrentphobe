@@ -20,7 +20,7 @@ class Swarm < ActiveRecord::Base
 
   def self.delete_swarm torrent_id, user_id, peer_id, ip, port
     s = Swarm.find(:first,
-               :conditions => ["torrent_id = ':torrent_id' and peer_id = :peer_id and ip_address = :ip and port = :port and user_id = :user_id",
+               :conditions => ["torrent_id = :torrent_id and peer_id = :peer_id and ip_address = :ip and port = :port and user_id = :user_id",
                                {:torrent_id => torrent_id, :peer_id => peer_id, :ip => ip, :port => port, :user_id => user_id}])
     if s
       s.deleted = true

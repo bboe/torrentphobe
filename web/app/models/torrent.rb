@@ -10,6 +10,7 @@ class Torrent < ActiveRecord::Base
 
   belongs_to :owner, :foreign_key => "owner_id", :class_name => "User"
   belongs_to :category
+
   validates_presence_of :name, :data, :category, :owner
   validates_numericality_of :size, :greater_than => 0
 
@@ -19,10 +20,34 @@ class Torrent < ActiveRecord::Base
     self.name + ".torrent"
   end
 
-  def generate_torrent_file user_id
+  def generate_torrent_file user_id, host_url
     btorrent = BEncode.load(self.data)
-    btorrent["announce"] = tracker_url( user_id )
+    btorrent["announce"] = tracker_url( user_id , host_url)
     btorrent.bencode
+  end
+
+  # This gets the list of torrents depending on friend relationships.  Returns owned torrents, user's active torrents, and user's friends' active torrents
+  def self.get_torrents_for_user( uid ) 
+    torrents = []
+    begin 
+       user = User.find_by_id(uid)
+       if user == nil
+	  torrents
+       end
+
+       if user.friends
+	  torrents = user.friends.map {|friend| friend.torrents }
+       end
+       torrents << user.torrents
+       torrents << user.owned_torrents
+       torrents = torrents.flatten.uniq
+
+       torrents
+
+    rescue
+      torrents
+
+    end
   end
 
   def torrent_file=(input)
@@ -39,9 +64,9 @@ class Torrent < ActiveRecord::Base
   end
 
   private
-  def tracker_url user_id = nil
+  def tracker_url( user_id = nil, host_url="" )
     hash = Digest::SHA1.hexdigest( self.id.to_s + SECRECT_KEY + user_id.to_s )
-    HOST_URL + "swarms/announce/" + CGI.escape(hash) + "/" + self.id.to_s + "/" + user_id.to_s
+    host_url + "/swarms/announce/" + CGI.escape(hash) + "/" + self.id.to_s + "/" + user_id.to_s
   end
 
   def calculate_size info

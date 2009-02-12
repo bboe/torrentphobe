@@ -7,4 +7,11 @@ good:
   port: 8863
   peer_id: GOOD
   deleted: false
-  
+
+jerrys:
+  user_id: 8
+  torrent_id: 4
+  ip_address: 1.2.3.4
+  port: 33
+  peer_id: GOOD
+  deleted: false

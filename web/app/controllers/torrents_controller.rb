@@ -1,11 +1,28 @@
 class TorrentsController < ApplicationController
   layout 'main'
-
   # GET /torrents
   # GET /torrents.xml
   def index
-    ordering = handle_sort params
-    @torrents = Torrent.find(:all, :order => ordering)
+    #ordering = handle_sort params
+    
+    uid = session[:user_id]
+
+    @torrents = Torrent.get_torrents_for_user(uid)
+
+    #Sort this stuff!
+    if @torrents
+       case params[:c] 
+       when "category_id"
+	  @torrents = @torrents.sort_by { |torrent| torrent.category_id } 
+       when "size"
+	  @torrents = @torrents.sort_by { |torrent| torrent.size } 
+       else
+	  @torrents = @torrents.sort_by { |torrent| torrent.name } 
+       end
+       if params[:d] == "up"
+	 @torrents = @torrents.reverse
+       end
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -114,7 +131,8 @@ class TorrentsController < ApplicationController
   def download_torrent_file
     @torrent = Torrent.find(params[:id])
     user_id = session[:user_id]
-    send_data @torrent.generate_torrent_file( user_id ), :filename => @torrent.filename
+    host_url = request.env["HTTP_HOST"]
+    send_data @torrent.generate_torrent_file( user_id, host_url ), :filename => @torrent.filename
   end
 
   def search
@@ -126,6 +144,7 @@ class TorrentsController < ApplicationController
        format.xml  { head :ok }
     end
   end
+
 
   protected
   def has_valid_content_type file
