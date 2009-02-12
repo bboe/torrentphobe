@@ -5,14 +5,17 @@
   <p>
     <%= f.error_messages %>
   </p>
-  <p>
-    <%= f.file_field 'torrent_file' %>
-    <%= f.collection_select(:category_id, Category.find(:all), :id, :name, {:include_blank =>'Select Category'}) %>
+  <p style="font-weight: bold">
+    1. Select your torrent file: <%= f.file_field 'torrent_file', :size => 40 %><br /><br />
+    2. Pick a category:
+    <%= f.collection_select(:category_id, Category.find(:all), :id, :name, {:include_blank =>''}) %>
     <br /><br />
-    Tags (Comma Separated): <%= f.text_field :tag_list %><br />
-    <%= submit_tag "Upload" %>
+    3. Tag your torrent (Comma Separated): <%= f.text_field :tag_list %><br /><br />
+    <div style="text-align: center;">
+    <%= submit_tag "Upload It!", :style=>"font-size: 24px; font-weight: bold;" %>
+    </div>
   </p>
 <% end %>
 
-
+<br /><br />
 <%= link_to 'Back', torrents_path %>

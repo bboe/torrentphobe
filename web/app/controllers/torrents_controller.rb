@@ -50,15 +50,19 @@ class TorrentsController < ApplicationController
     @torrent = Torrent.new(params[:torrent])
     user = User.find(session[:user_id])
     @torrent.owner = user
-    if has_valid_content_type(params[:torrent][:torrent_file])
-      begin
-        @torrent.encode_data
-      rescue BEncode::DecodeError
-        @torrent.data = nil
-      end
+
+    if !has_valid_content_type(params[:torrent][:torrent_file])
+      return invalid_create "Umm, that definately was not a torrent file"
     end
 
-    @torrent.tag_list.add(create_automatic_tags(@torrent.name))
+    begin
+      @torrent.encode_data
+    rescue BEncode::DecodeError
+      return invalid_create "Yikes, that torrent was not valid"
+    end
+
+
+    @torrent.tag_list.add(create_automatic_tags(@torrent.name)) if !@torrent.name.nil?
     respond_to do |format|
       if @torrent.save
         flash[:notice] = 'Torrent was successfully created.'
@@ -130,6 +134,12 @@ class TorrentsController < ApplicationController
 
   def create_automatic_tags name
     tags = name.gsub(/[-._()\]\[]/," ").split
+  end
+
+  def invalid_create message
+    flash[:warning] = message
+    logger.error("Attempt to create invalid torrent by user #{session[:user_id]}" )
+    redirect_to :action => :new
   end
 
   def invalid_id id

@@ -134,13 +134,17 @@ h3 {
   min-width: 100%;
 }
 
-#headline a {
+#headline p {
   text-align: right;
   text-decoration: none;
   vertical-align: top;
 }
 
-#headline h1, #headline a {
+#headline a {
+text-decoration: none;
+}
+
+#headline h1, #headline p {
   display: table-cell;
 }
 
