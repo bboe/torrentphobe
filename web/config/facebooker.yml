@@ -34,13 +34,15 @@ test:
     local_port: 3000
 
 production:
-  api_key: 
-  secret_key: 
-  canvas_page_name: 
-  callback_url: 
-  set_asset_host_to_callback_url: true   
+  api_key: 0d524bc9652becaabb96b37adc05c5af
+  secret_key: 3179ad2f0f490133dc9d7ea8f257be07
+  canvas_page_name: http://apps.facebook.com/torrentphobe/
+  callback_url:
+  pretty_errors: true
+  set_asset_host_to_callback_url: false
   tunnel:
-    public_host_username: 
-    public_host: 
+    public_host_username:
+    public_host:
     public_port: 4007
     local_port: 3000
+
