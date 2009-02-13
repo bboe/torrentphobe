@@ -1,5 +1,5 @@
 class Torrent < ActiveRecord::Base
-  require 'digest/sha1'
+  require 'ezcrypto'
   require 'bencode'
   require 'config/global_config.rb'
   acts_as_taggable
@@ -14,7 +14,7 @@ class Torrent < ActiveRecord::Base
   validates_presence_of :name, :data, :category, :owner
   validates_numericality_of :size, :greater_than => 0
 
-  SECRECT_KEY = 'jeffsucksandrules78978952yuihlkf'
+  KEY = EzCrypto::Key.decode('3gP03Z7GQ/sLeH3+MO0CPw==')
 
   def filename
     self.name + ".torrent"
@@ -65,8 +65,8 @@ class Torrent < ActiveRecord::Base
 
   private
   def tracker_url( user_id = nil, host_url="" )
-    hash = Digest::SHA1.hexdigest( self.id.to_s + SECRECT_KEY + user_id.to_s )
-    host_url + "/swarms/announce/" + CGI.escape(hash) + "/" + self.id.to_s + "/" + user_id.to_s
+    encrypted = KEY.encrypt64( self.id.to_s + "/" + user_id.to_s )
+    host_url + "/swarms/announce/" + encrypted[0...-3]
   end
 
   def calculate_size info
