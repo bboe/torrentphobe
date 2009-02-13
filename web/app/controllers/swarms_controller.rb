@@ -2,12 +2,12 @@ class SwarmsController < ApplicationController
   require 'bencode'
 
   def announce
-    unless params[:peer_id] && params[:port] && params[:encrypted64]
+    unless params[:peer_id] && params[:port] && params[:id]
       render :text => {"failure" => "Not enough parameters sent!"}.bencode, :status => 500
       return
     end
 
-    decrypted = get_user_and_torrent_or_false CGI.unescape(params[:encrypted64])
+    decrypted = get_user_and_torrent_or_false CGI.unescape(params[:id])
 
     unless decrypted
       render :text => {"failure" => "Invalid announce URL."}.bencode, :status => 500
