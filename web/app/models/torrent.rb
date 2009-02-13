@@ -26,30 +26,6 @@ class Torrent < ActiveRecord::Base
     btorrent.bencode
   end
 
-  # This gets the list of torrents depending on friend relationships.  Returns owned torrents, user's active torrents, and user's friends' active torrents
-  def self.get_torrents_for_user( uid ) 
-    torrents = []
-    begin 
-       user = User.find_by_id(uid)
-       if user == nil
-	  torrents
-       end
-
-       if user.friends
-	  torrents = user.friends.map {|friend| friend.torrents }
-       end
-       torrents << user.torrents
-       torrents << user.owned_torrents
-       torrents = torrents.flatten.uniq
-
-       torrents
-
-    rescue
-      torrents
-
-    end
-  end
-
   def torrent_file=(input)
     self.data = input.read
   end
