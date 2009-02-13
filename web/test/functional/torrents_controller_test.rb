@@ -4,7 +4,7 @@ require 'config/global_config.rb'
 
 class TorrentsControllerTest < ActionController::TestCase
   test "should get index" do
-    get :index
+    get :index, {}, {:user_id => users(:Tom).id}
     assert_response :success
     assert_not_nil assigns(:torrents)
   end
@@ -79,25 +79,4 @@ class TorrentsControllerTest < ActionController::TestCase
     assert_equal @request.env["HTTP_HOST"] +"/swarms/announce/7e5e55f19fd4a98378949678842a24aebb799231/3/1", result["announce"]
   end
 
-  test "display only friends' torrents" do
-    tom = users("Tom")
-    jerry = users("Jerry")
-
-    toms_t = Torrent.get_torrents_for_user(tom.id)
-    jerrys_t = Torrent.get_torrents_for_user( jerry.id)
-    
-    #don't show enemies'
-    assert_equal([], jerrys_t & toms_t) 
-
-    #display our owned torrents
-    assert_equal([torrents("toms")], toms_t)
-
-    tom.add_friend(jerry)
-    toms_t = Torrent.get_torrents_for_user(tom.id)
-    #display our friends' torrents
-    assert_equal( [torrents("jerrys"),torrents("toms")], toms_t )
-
-
-
-  end
 end

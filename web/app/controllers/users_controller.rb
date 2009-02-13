@@ -136,15 +136,30 @@ class UsersController < ApplicationController
 
   def files
     return if invalid_id params[:id]
-    @user = User.find(params[:id])
+    this_user = User.find_by_id( session[:user_id] )
 
-    ordering = handle_sort params
+    if this_user.id == params[:id].to_i or this_user.valid_friend?( params[:id] )
+    
+       @user = User.find(params[:id])
 
-    @torrents = Torrent.find_all_by_owner_id( @user.id, :order => ordering )
-    respond_to do |format|
-      format.html # files.html.erb
-      format.xml
-    end
+       ordering = handle_sort params
+       if this_user == @user
+         @torrents = @user.my_torrents
+       else
+         @torrents = @user.torrents
+       end
+
+       respond_to do |format|
+	 format.html # files.html.erb
+	 format.xml
+       end
+     else
+       respond_to do |format|
+	 flash[:notice] = 'Whoops, thats not a valid user!'
+         format.html { redirect_to (:controller => :users, :action => :index) }
+	 format.xml
+       end
+     end
   end
 
   def invalid_id id
@@ -158,6 +173,7 @@ class UsersController < ApplicationController
       display_message :warning, id, "Hey, you cant change someone else's account!"
      end
   end
+
 
   def display_message type, user_id, message
     case type
