@@ -2,19 +2,18 @@ class SwarmsController < ApplicationController
   require 'bencode'
 
   def announce
-    unless params[:peer_id] && params[:port] && params[:hash] && params[:torrent_id] && params[:user_id]
+    unless params[:peer_id] && params[:port] && params[:encrypted64]
       render :text => {"failure" => "Not enough parameters sent!"}.bencode, :status => 500
       return
     end
-    
-    unless good_hash? params[:hash], params[:torrent_id], params[:user_id]
+
+    decrypted = get_user_and_torrent_or_false params[:encrypted64]
+    unless decrypted
       render :text => {"failure" => "Invalid announce URL."}.bencode, :status => 500
       return
     end
 
-
-    torrent_id = params[:torrent_id]
-    user_id = params[:user_id]
+    user_id, torrent_id = decrypted
     event = params[:event] || "empty"
     ip = params[:ip] || request.remote_ip
     if event == "stopped"
@@ -37,7 +36,9 @@ class SwarmsController < ApplicationController
 
   private
 
-  def good_hash? hash, torrent_id, user_id
-    Digest::SHA1.hexdigest(torrent_id.to_s + Torrent::SECRECT_KEY + user_id.to_s) == hash
+  def get_user_and_torrent_or_false encrypted_base64
+    decrypted = Torrent::KEY.decrypt64(encrypted_base64 + "==\n")
+    return False unless decrypted.match('[0-9]+/[0-9]+')
+    return decrypted.split('/')
   end
 end
