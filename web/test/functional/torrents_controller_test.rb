@@ -79,24 +79,4 @@ class TorrentsControllerTest < ActionController::TestCase
     assert_equal @request.env["HTTP_HOST"] +"/swarms/announce/7e5e55f19fd4a98378949678842a24aebb799231/3/1", result["announce"]
   end
 
-  test "display only friends' torrents" do
-    tom = users("Tom")
-    jerry = users("Jerry")
-
-    toms_t = tom.available_torrents 
-    jerrys_t = jerry.available_torrents
-    
-    #don't show enemies'
-    assert_equal([], jerrys_t & toms_t) 
-
-    #display our owned torrents
-    assert_equal([torrents("toms")], toms_t)
-
-    tom.add_friend(jerry)
-    assert( tom.friends.include? jerry  )
-
-    toms_t = tom.available_torrents 
-    #display our friends' torrents
-    assert_equal( [torrents("jerrys"),torrents("toms")], toms_t )
-  end
 end

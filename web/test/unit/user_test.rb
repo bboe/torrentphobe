@@ -59,4 +59,28 @@ class UserTest < ActiveSupport::TestCase
     good = torrents(:good)
     assert_equal [good], jon.torrents
   end
+  test "display my torrents, but not display enemies' torrents" do
+    tom = users(:Tom)
+    jerry = users(:Jerry)
+
+    toms_torrents = tom.available_torrents 
+    jerrys_torrents = jerry.available_torrents
+
+    #don't show enemies'
+    assert !(jerrys_torrents.include?( toms_torrents) ), "Jerry can see tom's torrents"
+
+    #display our owned torrents
+    assert (toms_torrents.include?( torrents("toms"))), "tom sees his own torrents" 
+    assert (jerrys_torrents.include?( torrents("jerrys"))), "jerry sees his own torrents"
+  end
+  test "display friends' torrents " do
+     tom = users(:Tom)
+     jerry = users(:Jerry)
+     assert_difference("Relationship.count", 2) do
+       tom.add_friend(jerry)
+     end
+     assert tom.friends.include?( jerry ), "tom and jerry are friends"  
+     assert tom.available_torrents.include? torrents("jerrys")
+  end
+
 end
