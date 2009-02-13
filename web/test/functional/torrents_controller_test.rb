@@ -4,7 +4,7 @@ require 'config/global_config.rb'
 
 class TorrentsControllerTest < ActionController::TestCase
   test "should get index" do
-    get :index
+    get :index, {}, {:user_id => users(:Tom).id}
     assert_response :success
     assert_not_nil assigns(:torrents)
   end
@@ -83,8 +83,8 @@ class TorrentsControllerTest < ActionController::TestCase
     tom = users("Tom")
     jerry = users("Jerry")
 
-    toms_t = Torrent.get_torrents_for_user(tom.id)
-    jerrys_t = Torrent.get_torrents_for_user( jerry.id)
+    toms_t = tom.available_torrents 
+    jerrys_t = jerry.available_torrents
     
     #don't show enemies'
     assert_equal([], jerrys_t & toms_t) 
@@ -93,11 +93,10 @@ class TorrentsControllerTest < ActionController::TestCase
     assert_equal([torrents("toms")], toms_t)
 
     tom.add_friend(jerry)
-    toms_t = Torrent.get_torrents_for_user(tom.id)
+    assert( tom.friends.include? jerry  )
+
+    toms_t = tom.available_torrents 
     #display our friends' torrents
     assert_equal( [torrents("jerrys"),torrents("toms")], toms_t )
-
-
-
   end
 end

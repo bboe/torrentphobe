@@ -59,9 +59,26 @@ class UsersControllerTest < ActionController::TestCase
     end
     assert_redirected_to :controller => :users, :action => :index
   end
+  
+  ### Deprecated ###
+  #test "should get specific user's files" do
+  #  get :files, {:id => users(:Jonathan).id}, {:user_id => 2}
+  #  assert_response :success
+  #end
+  
+  test "give us only friends' file lists" do
+    jerry = users(:Jerry)
+    tom = users(:Tom)
 
-  test "should get specific user's files" do
-    get :files, {:id => users(:Jonathan).id}, {:user_id => 2}
+    #viewing my own files
+    get :files, { :id => tom.id }, {:user_id => tom.id}
+    assert_response :success
+    #viewing my non-friend's files
+    get :files, { :id => tom.id }, {:user_id => jerry.id}
+    assert_redirected_to :controller => users, :action => :index
+    #viewing my friend's files
+    jerry.add_friend(tom)
+    get :files, { :id => tom.id }, {:user_id => jerry.id}
     assert_response :success
   end
 
@@ -95,6 +112,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(assigns(:user))
     assert_equal 1, session[:user_id]
   end
+
+
   
 #  test "old user removed friends login" do
 #    bob = users(:Bob)
