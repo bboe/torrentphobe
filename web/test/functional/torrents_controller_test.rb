@@ -76,7 +76,7 @@ class TorrentsControllerTest < ActionController::TestCase
     jon = users("Jonathan")
     get :download_torrent_file, {:id => good.id}, {:user_id => jon.id}
     result = BEncode.load(@response.body)
-    assert_equal @request.env["HTTP_HOST"] +"/swarms/announce/7e5e55f19fd4a98378949678842a24aebb799231/3/1", result["announce"]
+    assert_equal @request.env["HTTP_HOST"] +"/swarms/announce/yXZlLdfEp1K9KtZKefIONQ", result["announce"]
   end
 
   test "display only friends' torrents" do

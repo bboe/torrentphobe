@@ -7,7 +7,8 @@ class SwarmsController < ApplicationController
       return
     end
 
-    decrypted = get_user_and_torrent_or_false params[:encrypted64]
+    decrypted = get_user_and_torrent_or_false CGI.unescape(params[:encrypted64])
+
     unless decrypted
       render :text => {"failure" => "Invalid announce URL."}.bencode, :status => 500
       return
@@ -37,8 +38,12 @@ class SwarmsController < ApplicationController
   private
 
   def get_user_and_torrent_or_false encrypted_base64
-    decrypted = Torrent::KEY.decrypt64(encrypted_base64 + "==\n")
-    return False unless decrypted.match('[0-9]+/[0-9]+')
+    begin
+      decrypted = Torrent::KEY.decrypt64(encrypted_base64 + "==\n")
+    rescue OpenSSL::CipherError
+      return false
+    end
+    return false unless decrypted.match('[0-9]+/[0-9]+')
     return decrypted.split('/')
   end
 end

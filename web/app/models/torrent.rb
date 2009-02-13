@@ -65,8 +65,8 @@ class Torrent < ActiveRecord::Base
 
   private
   def tracker_url( user_id = nil, host_url="" )
-    encrypted = KEY.encrypt64( self.id.to_s + "/" + user_id.to_s )
-    host_url + "/swarms/announce/" + encrypted[0...-3]
+    encrypted = KEY.encrypt64( user_id.to_s + "/" + self.id.to_s )
+    host_url + "/swarms/announce/" + CGI.escape(encrypted[0...-3])
   end
 
   def calculate_size info
