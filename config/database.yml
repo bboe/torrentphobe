@@ -20,7 +20,7 @@ production:
   encoding: utf8
   database: torrentphobe_production
   username: root
-  password: sharmlock
+  password: 
   #socket: /var/run/mysqld/mysqld.sock
   #database: db/production.mysql
   #pool: 5
