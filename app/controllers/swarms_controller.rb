@@ -1,5 +1,7 @@
 class SwarmsController < ApplicationController
   require 'bencode'
+  require 'openssl'
+  require 'digest/sha1'
 
   def announce
     unless params[:peer_id] && params[:port] && params[:id]
@@ -40,7 +42,7 @@ class SwarmsController < ApplicationController
   def get_user_and_torrent_or_false encrypted_base64
     begin
       decrypted = Torrent::KEY.decrypt64(encrypted_base64 + "==\n")
-    rescue OpenSSL::CipherError
+    rescue OpenSSL::Cipher::CipherError
       return false
     end
     return false unless decrypted.match('[0-9]+/[0-9]+')
