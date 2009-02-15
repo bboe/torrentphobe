@@ -137,6 +137,7 @@ class TorrentsController < ApplicationController
 
   def create_automatic_tags name
     tags = name.gsub(/[-._()\]\[]/," ").split
+    tags.map!{ |tag| tag if tag.length > 1 }
   end
 
   def invalid_create message

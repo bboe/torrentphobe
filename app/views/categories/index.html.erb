@@ -1,12 +1,13 @@
-<div style="text-align: center;">
+<div style="text-align: center;" id="headline">
+Go to: 
 <%  @category.sort.each do |id,name| %>
-  <h2 style="display: inline;"><%= link_to name, :action => :show, :id => id %></h2>
+  <h2 style="display: inline;"><%= link_to name, {:action => :show, :id => id} %> </h2>
 <% end %>
 </div>
 
 
 
-<h1>Listing torrents by category</h1>
+<h1>Torrents By Category</h1>
 
 <% @torrents_by_category.each do |category,torrents| %>
   <% if !torrents.nil?  %>

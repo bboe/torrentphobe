@@ -71,12 +71,12 @@ class TorrentsControllerTest < ActionController::TestCase
   end
 
   test "should download torrent" do
-    @request.env["HTTP_HOST"] = "http://torrentpho.be"
+    @request.env["HTTP_HOST"] = "torrentpho.be"
     good = torrents(:good)
     jon = users("Jonathan")
     get :download_torrent_file, {:id => good.id}, {:user_id => jon.id}
     result = BEncode.load(@response.body)
-    assert_equal @request.env["HTTP_HOST"] +"/swarms/announce/yXZlLdfEp1K9KtZKefIONQ", result["announce"]
+    assert_equal "http://"+@request.env["HTTP_HOST"] +"/swarms/announce/yXZlLdfEp1K9KtZKefIONQ", result["announce"]
   end
 
 end

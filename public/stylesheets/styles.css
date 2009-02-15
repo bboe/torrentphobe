@@ -33,44 +33,50 @@ body{
 #tabs {
   width: 840px;
   margin: 0 auto;
-  height: 35px;
+  height: 40px;
+  background-image: url(/images/stripe.png);
 }
 
 #tabs ul {
+  width: 600px;
   margin: 0;
-  padding-left: 80px;
+  padding-left: 45px;
   list-style: none;
 }
 
 #tabs li {
   float: left;
-  padding-left: 5px;
+  border-left: thin solid #ffffff;
 }
 
 #tabs a {
-  background-image: url(/images/tabs-all.png);
   float: left;
-  height: 27px;
-  width: 102px;
   text-decoration: none;
-  text-align: center;
-  color: #000;
+  text-align: left;
   font-size: 17px;
   font-weight: 800;
+  padding: 15px 40px 0px 5px;
+  z-index: 5;
+}
+a.main { 
+  border-top: medium solid #ffffff;
+  color: #ffffff;
+}
+a.bg {
+  border-top: medium solid transparent;
+  color: #dfdfdf;
+}
+a.bg:hover {
+  border-top: medium solid #12bce7;
 }
 
-#tabs a { padding: 8px 0 0 3px; z-index: 5;}
-
-a.main { background-image: url(/images/tabs-all.png); }
-a.bg { background-position: 0 78px; }
-a.bg:hover { background-position: 0 39px; }
-
 #search {
-  width: 260px;
+  padding: 7px 0 0 0;
+  margin: 0 0 0 0;
+  width: 295px;
   float: right;
   text-align: right;
   height: 25px;
-  padding-top: 7px;
 }
 
 #main {
@@ -96,7 +102,7 @@ a.bg:hover { background-position: 0 39px; }
 
 
 table td, table th { padding: 3px; }
-table th { border-bottom: thin dotted #c0c0c0; }
+table th { border-bottom: thin dotted #a0a0a0; }
 table td { border-bottom: thin dotted #dfdfdf; }
 
 p {

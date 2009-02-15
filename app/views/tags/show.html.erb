@@ -1,18 +1,10 @@
-<p>
-  <b>ID:</b>
-  <%=h @tag.id %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%=h @tag.name %>
-</p>
+  <h1>Tag: <%=h @tag.name %></h1>
 
 
 <p><b>Torrents with this tag:</b></p>
 <ul>
 <% for torrent in @torrents %>
-    <li><%=h torrent.name %></li>
+    <li><%= link_to torrent.name, :controller => :torrent, :action => :show, :id => torrent.id %></li>
 <% end %>
 </ul>
 
