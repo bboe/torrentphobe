@@ -2,7 +2,7 @@
 <div id="headline">
   <h1><%=h @user.name %></h1>
   <% if @user.id == session[:user_id] %>
-  <p><%= link_to image_tag("edit_profile.png", :border=>0)+' Edit my profile', {:action => :edit, :id => @user.id}, :class => :head %></p>
+  <p><%= link_to image_tag("edit_profile.png", :border=>0)+' Edit My Profile', {:action => :edit, :id => @user.id}, :class => :head %></p>
   <% end %>
 </div>
 <br />
@@ -10,8 +10,6 @@
 <p>
   <b>Facebook Name:</b>
   <%=h @user.name %><br />
-  <b>Facebook ID:</b>
-  <%=h @user.fb_id %>
 </p>
 <b>Friends</b>
 <ul>
@@ -20,7 +18,7 @@
 <% end -%>
 </ul>
 
-
+<br />
 <%= link_to 'Back', users_path %>
 
 

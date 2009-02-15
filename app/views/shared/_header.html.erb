@@ -1,5 +1,10 @@
 <div id="header">
-  <br /><br />
+  <br />
+  <% if session[:user_name] %>
+    <%= link_to session[:user_name], {:controller => :users, :action => :show, :id => session[:user_id]} %><br />
+  <% else %>
+  <br />
+  <% end %>
   <%= fb_connect_javascript_tag %>
   <%= init_fb_connect "XFBML" %>
   <%= link_to_function 'Logout', "FB.Connect.logoutAndRedirect('/users/logout')" %>

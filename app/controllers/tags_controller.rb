@@ -1,8 +1,11 @@
 class TagsController < ApplicationController
   layout 'main'
+
   def index
     @tags = Tag.find(:all)
     @tag_counts = Torrent.tag_counts
+    
+    @tags.sort!{ |a,b| a.name.downcase <=> b.name.downcase }
 
     respond_to do |format|
       format.html # index.html.erb

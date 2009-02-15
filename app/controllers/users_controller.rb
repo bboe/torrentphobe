@@ -50,6 +50,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
+      session[:user_name] = @user.name
       flash[:message] = 'Welcome to torrentphobe '+@user.name
       redirect_to(@user)
     else

@@ -103,7 +103,10 @@ a.bg:hover {
 
 table td, table th { padding: 3px; }
 table th { border-bottom: thin dotted #a0a0a0; }
-table td { border-bottom: thin dotted #dfdfdf; }
+table td { border-bottom: thin solid #dfdfdf; }
+
+tr.even td{ background-color: #EFF7FF; }
+tr.odd td{ background-color: #FBFBFB; }
 
 p {
   text-align: left;
@@ -146,7 +149,7 @@ h3 {
   vertical-align: top;
 }
 
-#headline a {
+#headline a, #cloud a {
 text-decoration: none;
 }
 
@@ -166,7 +169,7 @@ img {
   padding: 8px 0;
 }
 
-.notice { background-color: #EEF093; }
+.notice { background-color: #FFFF99; }
 .warning { background-color: #FFBBBB; }
 .message { background-color: #D0E6FF; }
 
@@ -200,9 +203,24 @@ img {
   list-style: square;
 }
 
-.cloud1 { font-size: 0.6em; color: #5CB3FF; }
-.cloud2 { font-size: 0.9em; color: #3BB9FF; }
-.cloud3 { font-size: 1.3em; color: #306EFF; }
-.cloud4 { font-size: 1.6em; color: #2B60DE; }
+#cloud a:hover {
+  text-decoration: underline;
+}
 
+
+.cloud1 { font-size: 0.9em; color: #6F6F6F; }
+.cloud2 { font-size: 1.3em; color: #3BB9FF; }
+.cloud3 { font-size: 1.6em; color: #306EFF; }
+.cloud4 { font-size: 2.4em; color: #2B60DE; }
+
+#tag-table {
+  display: table;
+}
+
+#tag-col {
+  display: table-column;
+}
+
+#inline { float: left; }
+#inline { float: clear; }
 
