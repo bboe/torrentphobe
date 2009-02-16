@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     end
 
     @torrents.sort! { |a,b| a.created_at <=> b.created_at }
-    @torrents = @torrents[0..10]
+    @torrents = @torrents.reverse[0..5]
 
     respond_to do |format|
         format.html # show.html.erb
