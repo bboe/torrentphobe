@@ -224,3 +224,54 @@ img {
 #inline { float: left; }
 #inline { float: clear; }
 
+#about a {
+	text-decoration: none;
+	text-align: center;
+	font-weight: bold;
+	color: transparent;
+	font-weight: bold;
+	font-size: 28px;
+}
+
+#about a:hover {
+	color: #FFFFFF;
+}
+
+#adam, #bryce, #jeff, #shashank, #krithika, #jonathan {
+	background-repeat: none;
+	float: left;
+	margin: 0 10px;
+}
+
+#jeff , #bryce {	clear: both; }
+
+#adam {
+	background-image: url(/images/adam.jpg);
+	height: 240px;
+	width: 110px;
+}
+#bryce {
+	background-image: url(/images/bryce.jpg);
+	height: 275px;
+	width: 160px;
+}
+#jeff{
+	background-image: url(/images/jeff1.jpg);
+	height: 200px;
+	width: 200px;
+}
+#shashank {
+	background-image: url(/images/shashank.jpg);
+	height: 250px;
+	width: 170px;
+}
+#krithika {
+	background-image: url(/images/krithika.jpg);
+	height: 300px;
+	width: 125px;
+}
+#jonathan {
+ 	background-image: url(/images/jon.jpg);
+	height: 290px;
+	width: 166px;
+}
