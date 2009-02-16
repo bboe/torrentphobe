@@ -185,7 +185,7 @@ class UsersController < ApplicationController
 
   def not_friend_or_user user, id
     if !user.valid_friend?(id) and user.id != id.to_i
-      display_message :warning, id, "Sorry, you must be somones friend to see their profile or torrents!"
+      display_message :warning, id, "Sorry, you must be somone's friend to see their profile or torrents!"
     end
   end
 
