@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090202231032) do
+ActiveRecord::Schema.define(:version => 20090213031556) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20090202231032) do
     t.datetime "updated_at"
     t.string   "peer_id"
     t.boolean  "deleted"
+    t.integer  "status"
   end
 
   create_table "taggings", :force => true do |t|

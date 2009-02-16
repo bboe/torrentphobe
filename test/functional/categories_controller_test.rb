@@ -28,7 +28,7 @@ class CategoriesControllerTest < ActionController::TestCase
   test "should get index with friends torrents" do
     @request.session[:user_id] = users(:Alice).id
     #friends torrents need to be in the swam to be visible to friends
-    Swarm.add_to_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000")
+    Swarm.add_to_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000", "started")
     get :index
     assert_response :success
     assert_not_nil assigns(:torrents_by_category ).find(torrents(:bobs))
@@ -43,7 +43,7 @@ class CategoriesControllerTest < ActionController::TestCase
   test "should show category - including friends torrent" do
     @request.session[:user_id] = users(:Alice).id
     #friends torrents need to be in the swam to be visible to friends
-    Swarm.add_to_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000")
+    Swarm.add_to_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000", "started")
 
     get :show, :id => torrents(:bobs).category_id
     assert_response :success

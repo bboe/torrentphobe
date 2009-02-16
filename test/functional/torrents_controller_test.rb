@@ -30,7 +30,7 @@ class TorrentsControllerTest < ActionController::TestCase
   test "should get index with friends torrents" do
     @request.session[:user_id] = users(:Alice).id
     #friends torrents need to be in the swam to be visible to friends
-    Swarm.add_to_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000")
+    Swarm.add_to_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000", "started")
 
     get :index
     assert_response :success
@@ -40,7 +40,7 @@ class TorrentsControllerTest < ActionController::TestCase
   test "should get index without enemies torrents" do
     @request.session[:user_id] = users(:Tom).id
     #Add enemies torrent to swarm to ensure it is visible to friends
-    Swarm.add_to_swarm(torrents(:jerrys).id, users(:Jerry).id, "peerid", "192.168.0.1", "3000")
+    Swarm.add_to_swarm(torrents(:jerrys).id, users(:Jerry).id, "peerid", "192.168.0.1", "3000", "started")
 
     get :index
     assert_response :success
@@ -132,7 +132,7 @@ class TorrentsControllerTest < ActionController::TestCase
     jon = users("Jonathan")
     get :download_torrent_file, {:id => good.id}
     result = BEncode.load(@response.body)
-    assert_equal "http://"+@request.env["HTTP_HOST"] +"/swarms/announce/yXZlLdfEp1K9KtZKefIONQ", result["announce"]
+    assert_equal "http://torrentpho.be/swarms/announce/yXZlLdfEp1K9KtZKefIONQ", result["announce"]
   end
 
 end
