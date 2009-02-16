@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   layout 'main'
+  before_filter :login_required
 
   def index
     @tags = Tag.find(:all)

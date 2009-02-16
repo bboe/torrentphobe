@@ -44,4 +44,13 @@ toms:
   data: de
   category_id: 1
   owner_id: 7
+  
+bobs:
+  id: 6
+  name: bob_torrent
+  size: 350
+  meta_info: Some Info
+  data: de
+  category_id: 1
+  owner_id: 3
 

@@ -3,20 +3,65 @@ require 'flexmock/test_unit'
 
 class UsersControllerTest < ActionController::TestCase
   test "should get index" do
+    @request.session[:user_id] = users(:Alice).id
     get :index
     assert_response :success
     assert_not_nil assigns(:users)
+    #ensure the users list contains the users friends
+    assert assigns(:users).find( users(:Bob) )
+  end
+
+  test "should get index - without enemies" do
+    @request.session[:user_id] = users(:Alice).id
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:users)
+    #ensure the users list contains the users friends
+    assert_nil assigns(:users).find_by_id( users(:Jerry).id )
+  end
+
+  test "should not get index" do
+    @request.session[:user_id] = -1
+    get :index
+    assert_redirected_to "/"
+
+    @request.session[:user_id] = nil
+    get :index
+    assert_redirected_to "/"
   end
 
   test "should get new" do
+    @request.session[:user_id] = users(:Jonathan).id
     get :new
     assert_response :success
   end
 
-  test "should show user" do
+  test "should show user - user is self" do
+    @request.session[:user_id] = users(:Bob).id
     @controller.facebook_session = flexmock(:user => flexmock(:friends => []))
-    get :show, {:id => users(:Jonathan).id}
+    get :show, {:id => users(:Bob).id}
     assert_response :success
+  end
+
+  test "should show user - user is friend" do
+    @request.session[:user_id] = users(:Bob).id
+    @controller.facebook_session = flexmock(:user => flexmock(:friends => []))
+    get :show, {:id => users(:Alice).id}
+    assert_response :success
+  end
+
+  test "should not show user - invalid id" do
+    @request.session[:user_id] = users(:Bob).id
+    @controller.facebook_session = flexmock(:user => flexmock(:friends => []))
+    get :show, {:id => "-1" }
+    assert_redirected_to :controller => :users, :action => :index
+  end
+
+  test "should not show user - not self or friend" do
+    @request.session[:user_id] = users(:Bob).id
+    @controller.facebook_session = flexmock(:user => flexmock(:friends => []))
+    get :show, {:id => users(:Jonathan).id }
+    assert_redirected_to :controller => :users, :action => :index
   end
 
   test "should get edit" do
@@ -26,7 +71,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should not get edit not owner" do
-    @request.session[:user_id] = -1
+    @request.session[:user_id] = users(:Bob).id
     get :edit, :id => users(:Jonathan).id
     assert_redirected_to :controller => :users, :action => :index
   end
@@ -37,8 +82,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(assigns(:user))
   end
 
-  test "should not update user not owner" do
-    @request.session[:user_id] = -1
+  test "should not update user - not owner" do
+    @request.session[:user_id] = users(:Bob).id
     put :update, :id => users(:Jonathan).id, :user => { }
     assert_redirected_to :controller => :users, :action => :index
   end
@@ -52,8 +97,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to users_path
   end
 
-    test "should not destroy user not owner" do
-    @request.session[:user_id] = -1
+    test "should not destroy user - not owner" do
+    @request.session[:user_id] = users(:Bob).id
     assert_difference('User.count', 0) do
       delete :destroy, :id => users(:Jonathan).id
     end
@@ -65,25 +110,29 @@ class UsersControllerTest < ActionController::TestCase
   #  get :files, {:id => users(:Jonathan).id}, {:user_id => 2}
   #  assert_response :success
   #end
-  
-  test "give us only friends' file lists" do
-    jerry = users(:Jerry)
-    tom = users(:Tom)
 
-    #viewing my own files
-    get :files, { :id => tom.id }, {:user_id => tom.id}
-    assert_response :success
-    #viewing my non-friend's files
-    get :files, { :id => tom.id }, {:user_id => jerry.id}
-    assert_redirected_to :controller => users, :action => :index
-    #viewing my friend's files
-    jerry.add_friend(tom)
-    get :files, { :id => tom.id }, {:user_id => jerry.id}
+  test "should view own files" do
+    @request.session[:user_id] = users(:Jerry).id
+
+    get :files, { :id => users(:Jerry).id }
     assert_response :success
   end
 
-  test "new user no friends login" do
+  test "should view friends files" do
+    @request.session[:user_id] = users(:Alice).id
 
+    get :files, { :id => users(:Bob).id }
+    assert_response :success
+  end
+
+  test "should not view non-friends files" do
+    @request.session[:user_id] = users(:Bob).id
+
+    get :files, { :id => users(:Tom).id }
+    assert_redirected_to :controller => users, :action => :index
+  end
+
+  test "new user no friends login" do
     @controller.facebook_session = flexmock(:user => flexmock(:friends => [], :name => "testing", :uid => 12345))
     
     assert_difference('User.count', 1) do

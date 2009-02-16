@@ -2,13 +2,15 @@ class UsersController < ApplicationController
   layout "main"
 
   require 'digest/md5'
+  before_filter :login_required, :except => [:login, :logout]
   before_filter :set_facebook_session
   helper_method :facebook_session
 
   # GET /users
   # GET /users.xml
-  def index      
-    @users = User.find(:all)
+  def index
+    current_user = get_current_user
+    @users = current_user.friends
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,9 +22,11 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     return if invalid_id params[:id]
+    current_user = get_current_user
+    return if not_friend_or_user( current_user, params[:id] )
+
     @user = User.find(params[:id])
 
-    @friends = facebook_session.user.friends
     respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @user }
@@ -62,6 +66,8 @@ class UsersController < ApplicationController
   def logout
     reset_session
     facebook_session = nil
+    session[:user_id] = nil
+    session[:user_name] = nil
     redirect_to(:controller => :landing, :action => :index)
   end
 
@@ -137,30 +143,22 @@ class UsersController < ApplicationController
 
   def files
     return if invalid_id params[:id]
-    this_user = User.find_by_id( session[:user_id] )
+    current_user = get_current_user
+    return if not_friend_or_user current_user, params[:id]
 
-    if this_user.id == params[:id].to_i or this_user.valid_friend?( params[:id] )
-    
-       @user = User.find(params[:id])
+    @user = User.find(params[:id])
 
-       ordering = handle_sort params
-       if this_user == @user
-         @torrents = @user.my_torrents
-       else
-         @torrents = @user.torrents
-       end
+    ordering = handle_sort params
+    if current_user == @user
+      @torrents = @user.my_torrents
+    else
+      @torrents = @user.torrents
+    end
 
-       respond_to do |format|
-	 format.html # files.html.erb
-	 format.xml
-       end
-     else
-       respond_to do |format|
-	 flash[:notice] = 'Whoops, thats not a valid user!'
-         format.html{ redirect_to (:controller => :users, :action => :index) }
-	 format.xml
-       end
-     end
+    respond_to do |format|
+      format.html # files.html.erb
+      format.xml
+    end
   end
 
   def invalid_id id
@@ -175,6 +173,11 @@ class UsersController < ApplicationController
      end
   end
 
+  def not_friend_or_user user, id
+    if !user.valid_friend?(id) and user.id != id.to_i
+      display_message :warning, id, "Sorry, you must be somones friend to see their profile or torrents!"
+    end
+  end
 
   def display_message type, user_id, message
     case type
