@@ -124,4 +124,23 @@ class SwarmTest < ActiveSupport::TestCase
     assert_equal 2, Swarm.find(good.id).status
   end
 
+  test "get seeders" do
+    good = swarms(:good)
+    assert_equal 0, Swarm.get_seeders(good.torrent_id)
+    Swarm.update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
+    assert_equal 1, Swarm.get_seeders(good.torrent_id)    
+  end
+
+  test "get leechers" do
+    good = swarms(:good)
+    assert_equal 1, Swarm.get_leechers(good.torrent_id)    
+    Swarm.update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
+    assert_equal 0, Swarm.get_leechers(good.torrent_id)    
+  end
+
+  test "get_swarm_list" do
+    
+  end
+
+
 end
