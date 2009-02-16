@@ -27,6 +27,16 @@ class UsersController < ApplicationController
 
     @user = User.find(params[:id])
 
+    ordering = handle_sort params
+    if current_user == @user
+      @torrents = @user.my_torrents
+    else
+      @torrents = @user.torrents
+    end
+
+    @torrents.sort! { |a,b| a.created_at <=> b.created_at }
+    @torrents = @torrents[0..10]
+
     respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @user }
