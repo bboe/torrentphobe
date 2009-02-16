@@ -29,6 +29,13 @@ class SwarmsControllerTest < ActionController::TestCase
     assert_equal "Invalid announce URL.", result["failure"]
   end
 
-  
-  
+  test "announce new to swarm" do
+    assert_difference("Swarm.count", 1) do
+      get :announce, {:id => 'VaFS3pGFGfyOBi1Xp%2FwcgA',
+        :peer_id => "NEW_PEER", :port => 8080, :event => "started"}
+    end
+    assert_response :success
+  end
+
+    
 end

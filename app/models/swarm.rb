@@ -9,7 +9,7 @@ class Swarm < ActiveRecord::Base
 
   def self.get_swarm_list torrent_id, user_id, num_want = 50
     swarm = self.find(:all, 
-                      :conditions => ["torrent_id = :torrent_id and deleted = 'f' and status != 2",
+                      :conditions => ["torrent_id = :torrent_id and status != 2",
                                       {:torrent_id => torrent_id}],
                       :limit => num_want)
 
