@@ -27,11 +27,11 @@
 
 <%= button_to "Download" , {:action => :download_torrent_file, :id => @torrent.id}, :id => :inline %>
 <% if @torrent.owner_id == session[:user_id] %>
-<%= button_to "Edit" , {:action => :edit, :id => @torrent.id}, {:id => :inline} %> 
+<%= button_to "Edit" , {:action => "edit", :id => @torrent.id}, { :method => :get, :id => :inline } %>
 <%= button_to 'Delete', {:action => "delete", :id => @torrent.id} , {:confirm => 'Are you sure?', :method => :delete, :id => :inline } %>
 <% end %>
 
 <br /><br /><br />
-<%= link_to 'Back', torrents_path %>
+<%= button_to 'Back', torrents_path, :method => :get %>
 
 

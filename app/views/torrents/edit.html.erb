@@ -2,22 +2,23 @@
 
 <% form_for(@torrent) do |f| %>
   <%= f.error_messages %>
-  <p>
+  <p style="font-weight: bold">
     <%= f.label :name %>:
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :size => 50 %>
   </p>
-  <p>
+  <p style="font-weight: bold">
      <%= f.label :category %>:
     <%=  f.collection_select(:category_id, Category.find(:all), :id, :name, {}) %>
  </p>
- <p>
-     <%= f.label :tags %> (Comma Seperated):
-    <%= f.text_field :tag_list %>
+ <p style="font-weight: bold">
+     <%= f.label :tags %> (Comma Separated):
+    <%= f.text_field :tag_list, :size => 40 %>
  </p>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+
+    <p style="font-weight: bold; text-align: center;">
+      <%= f.submit "Update It!", :style=>"font-size: 24px; font-weight: bold;" %>
+    </p>
 <% end %>
 
-<%= link_to 'Back', @torrent %>
+<%= button_to 'Back', @torrent, :method => :get %>
