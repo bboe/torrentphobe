@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :categories
 
+  map.connect '/torrents/search/:id', :controller => 'torrents', :action => 'search'
   map.resources :torrents
-
   map.resources :tags
 
   map.resources :relationship
