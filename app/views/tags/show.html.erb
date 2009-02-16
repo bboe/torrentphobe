@@ -1,19 +1,6 @@
-<p>
-  <b>ID:</b>
-  <%=h @tag.id %>
-</p>
+<h1>Tag: <%=h @tag.name %></h1>
 
-<p>
-  <b>Name:</b>
-  <%=h @tag.name %>
-</p>
+<%= render :partial => "shared/torrents", :locals => { :torrents => @torrents } %>
 
 
-<p><b>Torrents with this tag:</b></p>
-<ul>
-<% for torrent in @torrents %>
-    <li><%=h torrent.name %></li>
-<% end %>
-</ul>
-
-<%= link_to 'Back', tags_path %>
+<%= button_to 'Back', tags_path, :method => :get %>

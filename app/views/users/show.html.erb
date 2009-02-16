@@ -2,7 +2,7 @@
 <div id="headline">
   <h1><%=h @user.name %></h1>
   <% if @user.id == session[:user_id] %>
-  <%= link_to image_tag("edit_profile.png", :border=>0)+' Edit my profile', {:action => :edit, :id => @user.id}, :class => :head %>
+  <p><%= link_to image_tag("edit_profile.png", :border=>0)+' Edit My Profile', {:action => :edit, :id => @user.id}, :class => :head %></p>
   <% end %>
 </div>
 <br />
@@ -10,17 +10,19 @@
 <p>
   <b>Facebook Name:</b>
   <%=h @user.name %><br />
-  <b>Facebook ID:</b>
-  <%=h @user.fb_id %>
 </p>
-<b>Friends</b>
+<h3>Friends</h3>
 <ul>
 <% for relationship in @user.relationships -%>
 <li><%= link_to relationship.friend.name, {:action => :show, :id => relationship.friend.id } %></li>
 <% end -%>
 </ul>
 
-
-<%= link_to 'Back', users_path %>
+<h3>Recent Torrents</h3>
+<%= render :partial => "shared/torrents", :locals => { :torrents => @torrents, :allow_sorting => false } %>
+<br />
+<%= link_to 'View Uploaded Torrents', :action => :files, :id => @user.id %>
+<br /><br />
+<%= button_to 'Back', users_path, :method => :get %>
 
 

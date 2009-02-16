@@ -1,20 +1,27 @@
 <% display_categories ||= false %>
+<% allow_sorting = true if allow_sorting.nil? %>
 <% if torrents.length > 0 %>
 <table>
   <tr>
     <th></th>
-    <th style="min-width: 500px; width: 100%"><%= sort_link "Name", :name %></th>
-    <th style="padding-left: 10px; text-align: center;"><%= sort_link "Size", :size %></th>
+    <th style="min-width: 590px; width: 100%">
+      <% if allow_sorting %><%= sort_link "Name", :name %><% else %><%= "Name" %><% end %>
+    </th>
+    <th style="padding-left: 10px; text-align: center;">
+      <% if allow_sorting %><%= sort_link "Size", :size %><% else %><%= "Size" %><% end %>
+    </th>
     <% if display_categories %>
-    <th style="text-align: center;"><%= sort_link "Category", :category_id %></th>
+    <th style="text-align: center;">
+      <% if allow_sorting %><%= sort_link "Category", :category_id %><% else %><%= "Category" %><% end %>
+    </th>
     <th style="text-align: center;"><%= sort_link "Seeders", :category_id %></th>
     <th style="text-align: center;"><%= sort_link "Leechers", :category_id %></th>
     <% end %>
   </tr>
 
 <% for torrent in torrents %>
-  <tr>
-    <td style="padding: 0;"><%= link_to image_tag("download_arrow.png"), :controller => :torrents, :action => :download_torrent_file, :id => torrent %></td>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <td style="border: none; padding: 0;"><%= link_to image_tag("download_arrow.png"), :controller => :torrents, :action => :download_torrent_file, :id => torrent %></td>
     <td><%= link_to torrent.name, torrent %></td>
     <td style="padding-left: 10px; text-align: center;"><%=h display_size(torrent.size) %></td>
     <% if display_categories %>
@@ -30,3 +37,4 @@ No torrents available
 <% end %>
 <br />
 
+n

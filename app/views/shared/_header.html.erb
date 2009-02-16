@@ -1,19 +1,24 @@
 <div id="header">
-  <br /><br />
+  <br />
+  <% if session[:user_name] %>
+    <%= link_to session[:user_name], {:controller => :users, :action => :show, :id => session[:user_id]} %><br />
+  <% else %>
+  <br />
+  <% end %>
   <%= fb_connect_javascript_tag %>
   <%= init_fb_connect "XFBML" %>
   <%= link_to_function 'Logout', "FB.Connect.logoutAndRedirect('/users/logout')" %>
 </div>
 <div id="tabs">
   <ul>
-    <li><%= link_to "Users", {:controller => :users}, :class => tab_class(:users) %></li>
+    <li><%= link_to "Friends", {:controller => :users}, :class => tab_class(:users) %></li>
     <li><%= link_to "Torrents", {:controller => :torrents}, :class => tab_class(:torrents) %></li>
-    <li><%= link_to "Tags", {:controller => :tags}, :class => tab_class(:tags) %></li>
     <li><%= link_to "Categories", {:controller => :categories}, :class => tab_class(:categories) %></li>
+    <li><%= link_to "Tags", {:controller => :tags}, :class => tab_class(:tags) %></li>
   </ul>
   <div id="search">
     <% form_tag(:controller => 'torrents', :action => 'search') do -%><div>
-    <%= text_field 'q', nil, :size => 20, :style => "border: 0px;" %>
+    <%= text_field 'q', nil, :size => 23, :style => "border: 0px;" %>
     <%= submit_tag 'Search' %>
     </div>
     <% end -%>

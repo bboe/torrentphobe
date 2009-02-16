@@ -1,20 +1,21 @@
 <% if users.length > 0 %>
 <table>
   <tr>
-    <th>FB ID</th>
     <th>Name</th>
+    <th></th>
     <th></th>
   </tr>
 
 <% for user in users %>
   <tr>
-    <td><%=h user.fb_id %></td>
-    <td><%= link_to user.name, :action => :show, :id => user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= link_to "Profile", :action => :show, :id => user.id %></td>
     <td><%= link_to 'Uploaded Files', {:action => :files, :id => user.id} %></td>
   </tr>
 <% end %>
 </table>
 <% else %>
-No users available
+Sorry, it doesnt look like you have any friends on our site. Why not have them sign up?
+It's a lot more fun to share with friends.
 <% end %>
 <br />

@@ -1,6 +1,6 @@
 class AddDataToCategories < ActiveRecord::Migration
   def self.up
-    Category.create(:name => "Movie")
+    Category.create(:name => "Movies")
     Category.create(:name => "TV")
     Category.create(:name => "Music")
     Category.create(:name => "Photos")
@@ -9,7 +9,7 @@ class AddDataToCategories < ActiveRecord::Migration
   end
 
   def self.down
-    Category.delete(:name => "Movie")
+    Category.delete(:name => "Movies")
     Category.create(:name => "TV")
     Category.delete(:name => "Music")
     Category.delete(:name => "Photos")

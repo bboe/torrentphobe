@@ -1,12 +1,14 @@
 class TorrentsController < ApplicationController
   layout 'main'
+
+  before_filter :login_required
+
   # GET /torrents
   # GET /torrents.xml
   def index
-    this_user = User.find_by_id(session[:user_id])
-    @torrents = this_user.available_torrents
+    current_user = get_current_user
+    @torrents = current_user.available_torrents
     @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
-    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,8 +20,12 @@ class TorrentsController < ApplicationController
   # GET /torrents/1.xml
   def show
     return if invalid_id params[:id]
+    current_user = get_current_user
 
     @torrent = Torrent.find(params[:id])
+
+    return if not_friends_or_owner current_user, @torrent
+
     respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @torrent }
@@ -114,7 +120,10 @@ class TorrentsController < ApplicationController
 
   def download_torrent_file
     @torrent = Torrent.find(params[:id])
-    user_id = session[:user_id]
+    current_user = get_current_user
+    return if not_friends_or_owner current_user, @torrent
+
+    user_id = current_user.id
     unless request.env["HTTP_HOST"][0..7] == "http://"
       request.env["HTTP_HOST"] = "http://" + request.env["HTTP_HOST"]
     end
@@ -125,6 +134,12 @@ class TorrentsController < ApplicationController
   def search
     @query = params[:q].to_s
     @torrents = Torrent.find_by_contents(@query)
+
+    current_user = get_current_user
+    @available_torrents = current_user.available_torrents
+
+    @torrents.map! { |torrent| torrent if @available_torrents.include?(torrent) }.compact!
+    @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
 
     respond_to do |format|
        format.html { render :action => "search" }
@@ -140,6 +155,7 @@ class TorrentsController < ApplicationController
 
   def create_automatic_tags name
     tags = name.gsub(/[-._()\]\[]/," ").split
+    tags.map!{ |tag| tag if tag.length > 1 }
   end
 
   def invalid_create message
@@ -158,6 +174,12 @@ class TorrentsController < ApplicationController
     if session[:user_id] != id
       display_message :warning, id, "Hey, you cant change that torrent, its not yours!"
      end
+  end
+
+  def not_friends_or_owner user, torrent
+    if torrent.owner.id != user.id and !user.friends.find_by_id( torrent.owner.id )
+      display_message :warning, torrent.id, "Sorry, you must be somones friend to see their torrents!"
+    end
   end
 
   def display_message type, torrent_id, message

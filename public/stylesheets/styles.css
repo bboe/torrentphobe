@@ -33,44 +33,50 @@ body{
 #tabs {
   width: 840px;
   margin: 0 auto;
-  height: 35px;
+  height: 40px;
+  background-image: url(/images/stripe.png);
 }
 
 #tabs ul {
+  width: 600px;
   margin: 0;
-  padding-left: 80px;
+  padding-left: 45px;
   list-style: none;
 }
 
 #tabs li {
   float: left;
-  padding-left: 5px;
+  border-left: thin solid #ffffff;
 }
 
 #tabs a {
-  background-image: url(/images/tabs-all.png);
   float: left;
-  height: 27px;
-  width: 102px;
   text-decoration: none;
-  text-align: center;
-  color: #000;
+  text-align: left;
   font-size: 17px;
   font-weight: 800;
+  padding: 15px 40px 0px 5px;
+  z-index: 5;
+}
+a.main { 
+  border-top: medium solid #ffffff;
+  color: #ffffff;
+}
+a.bg {
+  border-top: medium solid transparent;
+  color: #dfdfdf;
+}
+a.bg:hover {
+  border-top: medium solid #12bce7;
 }
 
-#tabs a { padding: 8px 0 0 3px; z-index: 5;}
-
-a.main { background-image: url(/images/tabs-all.png); }
-a.bg { background-position: 0 78px; }
-a.bg:hover { background-position: 0 39px; }
-
 #search {
-  width: 260px;
+  padding: 7px 0 0 0;
+  margin: 0 0 0 0;
+  width: 295px;
   float: right;
   text-align: right;
   height: 25px;
-  padding-top: 7px;
 }
 
 #main {
@@ -96,8 +102,11 @@ a.bg:hover { background-position: 0 39px; }
 
 
 table td, table th { padding: 3px; }
-table th { border-bottom: thin dotted #c0c0c0; }
-table td { border-bottom: thin dotted #dfdfdf; }
+table th { border-bottom: thin dotted #a0a0a0; }
+table td { border-bottom: thin solid #dfdfdf; }
+
+tr.even td{ background-color: #EFF7FF; }
+tr.odd td{ background-color: #FBFBFB; }
 
 p {
   text-align: left;
@@ -140,7 +149,7 @@ h3 {
   vertical-align: top;
 }
 
-#headline a {
+#headline a, #cloud a {
 text-decoration: none;
 }
 
@@ -160,7 +169,7 @@ img {
   padding: 8px 0;
 }
 
-.notice { background-color: #EEF093; }
+.notice { background-color: #FFFF99; }
 .warning { background-color: #FFBBBB; }
 .message { background-color: #D0E6FF; }
 
@@ -194,9 +203,75 @@ img {
   list-style: square;
 }
 
-.cloud1 { font-size: 0.6em; color: #5CB3FF; }
-.cloud2 { font-size: 0.9em; color: #3BB9FF; }
-.cloud3 { font-size: 1.3em; color: #306EFF; }
-.cloud4 { font-size: 1.6em; color: #2B60DE; }
+#cloud a:hover {
+  text-decoration: underline;
+}
 
 
+.cloud1 { font-size: 0.9em; color: #6F6F6F; }
+.cloud2 { font-size: 1.3em; color: #3BB9FF; }
+.cloud3 { font-size: 1.6em; color: #306EFF; }
+.cloud4 { font-size: 2.4em; color: #2B60DE; }
+
+#tag-table {
+  display: table;
+}
+
+#tag-col {
+  display: table-column;
+}
+
+#inline { float: left; }
+#inline { float: clear; }
+
+#about a {
+	text-decoration: none;
+	text-align: center;
+	font-weight: bold;
+	color: transparent;
+	font-weight: bold;
+	font-size: 28px;
+}
+
+#about a:hover {
+	color: #FFFFFF;
+}
+
+#adam, #bryce, #jeff, #shashank, #krithika, #jonathan {
+	background-repeat: none;
+	float: left;
+	margin: 0 10px;
+}
+
+#jeff , #bryce {	clear: both; }
+
+#adam {
+	background-image: url(/images/adam.jpg);
+	height: 240px;
+	width: 110px;
+}
+#bryce {
+	background-image: url(/images/bryce.jpg);
+	height: 275px;
+	width: 160px;
+}
+#jeff{
+	background-image: url(/images/jeff1.jpg);
+	height: 200px;
+	width: 200px;
+}
+#shashank {
+	background-image: url(/images/shashank.jpg);
+	height: 250px;
+	width: 170px;
+}
+#krithika {
+	background-image: url(/images/krithika.jpg);
+	height: 300px;
+	width: 125px;
+}
+#jonathan {
+ 	background-image: url(/images/jon.jpg);
+	height: 290px;
+	width: 166px;
+}

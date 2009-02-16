@@ -9,9 +9,9 @@ class SwarmsControllerTest < ActionController::TestCase
   test "announce right params" do
     get :announce, {:id => 'yXZlLdfEp1K9KtZKefIONQ',
                     :peer_id => "TESTID", :port => "6882"}
-    assert_response :success      
+    assert_response :success
   end
-  
+
   test "announce results test" do
     good = swarms(:good)
     get :announce, {:id => 'yXZlLdfEp1K9KtZKefIONQ',

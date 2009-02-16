@@ -16,4 +16,4 @@ jerrys:
   port: 33
   peer_id: GOOD
   deleted: false
-  status: 2
+  status: 1

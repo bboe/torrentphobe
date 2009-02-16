@@ -25,11 +25,13 @@
   <%=h User.find_by_id(@torrent.owner_id).name %>
 </p>
 
-<p><%= link_to "Download" , :action => :download_torrent_file, :id => @torrent.id %>
+<%= button_to "Download" , {:action => :download_torrent_file, :id => @torrent.id}, :id => :inline %>
 <% if @torrent.owner_id == session[:user_id] %>
-| <%= link_to "Edit" , :action => :edit, :id => @torrent.id %> | <%= link_to 'Delete', @torrent, :confirm => 'Are you sure?', :method => :delete %>
+<%= button_to "Edit" , {:action => "edit", :id => @torrent.id}, { :method => :get, :id => :inline } %>
+<%= button_to 'Delete', {:action => "delete", :id => @torrent.id} , {:confirm => 'Are you sure?', :method => :delete, :id => :inline } %>
 <% end %>
-</p>
-<%= link_to 'Back', torrents_path %>
+
+<br /><br /><br />
+<%= button_to 'Back', torrents_path, :method => :get %>
 
 

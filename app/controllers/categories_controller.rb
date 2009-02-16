@@ -1,14 +1,15 @@
 class CategoriesController < ApplicationController
   layout 'main'
+  before_filter :login_required
 
   # GET /categories
   # GET /categories.xml
   def index
     ordering = handle_sort params
 
-    this_user = User.find_by_id(session[:user_id])
+    current_user = get_current_user
     
-    @torrents = this_user.available_torrents
+    @torrents = current_user.available_torrents
     @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
 
     @category = {}
@@ -31,11 +32,11 @@ class CategoriesController < ApplicationController
         flash[:notice] = "Whoops, thats not a valid category!"
         redirect_to :action => :index
     else
-        ordering = handle_sort params
+       ordering = handle_sort params
 
-       this_user = User.find_by_id(session[:user_id])
+       current_user = get_current_user
        
-       @torrents = this_user.available_torrents
+       @torrents = current_user.available_torrents
        @torrents = @torrents.select{ |torrent| torrent.category_id == @category.id} 
        @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
         respond_to do |format|

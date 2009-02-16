@@ -1,27 +1,31 @@
-<h1>Listing tags</h1>
+<h1>Tag Cloud</h1>
 
-<p><b>Tag Cloud</b></p>
+<div id="cloud">
 <% tag_cloud @tag_counts, %w(cloud1 cloud2 cloud3 cloud4) do |tag, css_class| %>
 <%= link_to tag.name, { :action => :show, :id => tag.id }, :class => css_class %>
 <% end %>
+</div>
 <br />
 <br />
 
-<p><b>Tag List</b></p>
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-  </tr>
-
-<% for tag in @tags %>
-  <tr>
-    <td><%=h tag.id %></td>
-    <td><%=h tag.name %></td>
-    <td><%= link_to 'Show', tag %></td>
-  </tr>
+<div id="tag-table">
+<h1>Tag List</h1>
+<% if @tags.length > 0 %>
+  <% columns(@tags.length).times do |i| %>
+  <table style="float:left;">
+    <% (@tags.length/columns(@tags.length)).to_i.times do |j| %>
+      <% index = offset(i,j,@tags.length) %>
+      <% break if index >= @tags.length %>
+      <tr>
+      <td style="padding-right: 10px;">
+        <%= link_to @tags[index].name, :action => :show, :id => @tags[index].id %></td>
+      </tr>
+    <% end %>
+    </div>
+  </table>
+  <% end %>
 <% end %>
-</table>
-
-
+<br />
+</div>
+<br />
 <br />

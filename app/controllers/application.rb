@@ -39,6 +39,25 @@ class ApplicationController < ActionController::Base
     redirect_to "/"
   end
 
+  def get_current_user
+    current_user ||= nil
+    return current_user if !current_user.nil?
+    current_user = User.find(session[:user_id])
+  end
+
+  def login_required
+    return true if session[:user_id] and User.exists?(session[:user_id])
+    #Dont enforce login when in development mode so we can still develop locally
+    return true if ENV["RAILS_ENV"] == "development"
+    deny_access
+    return false
+  end
+
+  def deny_access
+    flash[:error] = 'Hey, you need to login to view this page'
+    redirect_to :controller => :landing, :action => :index
+  end  
+
   def handle_sort params
     sort_by = ( params[:c].nil? ? 'name' : params[:c] )
     sort_direction = ((params[:d] == "up") ? "ASC" : "DESC")

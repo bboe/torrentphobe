@@ -1,8 +1,8 @@
-<h1><%= @category.name %></h1>
+<h1>Categories: <%= @category.name %></h1>
 <%= render :partial => "shared/torrents", :locals => {:torrents => @torrents, :display_categories => false} %>
 
 
 <br />
 
 
-<%= link_to 'Back', categories_path %>
+<%= button_to 'Back', categories_path, :method => :get %>
