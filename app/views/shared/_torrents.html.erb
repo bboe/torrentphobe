@@ -4,7 +4,7 @@
 <table>
   <tr>
     <th></th>
-    <th style="min-width: 590px; width: 100%">
+    <th style="min-width: 480px; width: 100%">
       <% if allow_sorting %><%= sort_link "Name", :name %><% else %><%= "Name" %><% end %>
     </th>
     <th style="padding-left: 10px; text-align: center;">
@@ -14,8 +14,8 @@
     <th style="text-align: center;">
       <% if allow_sorting %><%= sort_link "Category", :category_id %><% else %><%= "Category" %><% end %>
     </th>
-    <th style="text-align: center;"><%= sort_link "Seeders", :category_id %></th>
-    <th style="text-align: center;"><%= sort_link "Leechers", :category_id %></th>
+    <th style="text-align: center;"><%= sort_link "Seeders/<br 
+/>Leechers", :category %></th>
     <% end %>
   </tr>
 
@@ -26,8 +26,7 @@
     <td style="padding-left: 10px; text-align: center;"><%=h display_size(torrent.size) %></td>
     <% if display_categories %>
     <td style="text-align: center; min-width: 100px;"><%=h torrent.category.name %></td>
-    <td style="text-align: center; min-width: 100px;"><%=h Swarm.get_seeders(torrent.id) %></td>
-    <td style="text-align: center; min-width: 100px;"><%=h Swarm.get_leechers(torrent.id) %></td>
+    <td style="text-align: center; min-width: 100px;"><%= Swarm.get_seeders(torrent.id).to_s %>/<%= Swarm.get_leechers(torrent.id).to_s %></td>
     <% end %>
   </tr>
 <% end %>
