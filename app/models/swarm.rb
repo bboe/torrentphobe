@@ -8,10 +8,19 @@ class Swarm < ActiveRecord::Base
   validate :ip_address_is_valid
 
   def self.get_swarm_list torrent_id, user_id, num_want = 50
-    self.find(:all, 
-              :conditions => ["torrent_id = :torrent_id and deleted = 'f'",
+    swarm = self.find(:all, 
+                      :conditions => ["torrent_id = :torrent_id and deleted = 'f'",
                               {:torrent_id => torrent_id}],
-              :limit => num_want)
+                      :limit => num_want)
+
+    friends = Relationship.find(:all, 
+                                :select => "friend_id", 
+                                :conditions => ["user_id = :user_id", {:user_id => user_id}]
+                                ).map(&:friend_id)
+
+    friends << user_id.to_i
+    #Do not include users who are not friends with the input user into the swarm list
+    swarm = swarm.map { |swarm_user| swarm_user if( friends.include?(swarm_user.user_id) ) }.compact
   end
 
   def self.add_to_swarm torrent_id, user_id, peer_id, ip, port

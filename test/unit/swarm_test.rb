@@ -68,9 +68,54 @@ class SwarmTest < ActiveSupport::TestCase
     
   end
 
-  test "get swarm list" do
-    good = swarms(:good)
-    assert_equal [good], Swarm.get_swarm_list(good.torrent_id, good.user_id)    
+  test "get swarm list with friends" do
+    #Bob is seeding his own torrent
+    Swarm.add_to_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000")
+
+    #Alice (his friend) gets the swarm list
+    swarm_list = Swarm.get_swarm_list(torrents(:bobs).id, users(:Alice).id)
+
+    users_in_swarm = swarm_list.map(&:user_id)
+
+    #Alice should see Bob in the swarm
+    assert users_in_swarm.include?(users(:Bob).id)
+    
+    #Alice (his friend) gets the swarm list
+    swarm_list = Swarm.get_swarm_list(torrents(:bobs).id, users(:Bob).id)
+
+    users_in_swarm = swarm_list.map(&:user_id)
+
+    #Alice should see Bob in the swarm
+    assert users_in_swarm.include?(users(:Bob).id)
+  end
+
+  test "get swarm list without enemies" do
+    #Tom is seeding his own torrent
+    Swarm.add_to_swarm(torrents(:toms).id, users(:Tom).id, "peerid", "192.168.0.1", "3000")
+
+    #Jerry (his enemy) gets the swarm list
+    swarm_list = Swarm.get_swarm_list(torrents(:toms).id, users(:Jerry).id)
+
+    users_in_swarm = swarm_list.map(&:user_id)
+
+    #Jerry should not see Tom in the swarm
+    assert !users_in_swarm.include?(users(:Tom).id)
+  end
+
+  test "get swarm list with friends and without enemies" do
+    #Bob is seeding his own torrent
+    Swarm.add_to_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000")
+    Swarm.add_to_swarm(torrents(:bobs).id, users(:Tom).id, "peerid", "192.168.0.2", "3000")
+
+    #Alice (Bobs friend, Toms enemy) gets the swarm list
+    swarm_list = Swarm.get_swarm_list(torrents(:bobs).id, users(:Alice).id)
+
+    users_in_swarm = swarm_list.map(&:user_id)
+
+    #Alice should see Bob in the swarm
+    assert users_in_swarm.include?(users(:Bob).id)
+    #Alice should not see Tom in the swarm
+    assert !users_in_swarm.include?(users(:Tom).id)
   end
 
   test "delete swarm" do
