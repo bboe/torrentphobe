@@ -7,6 +7,7 @@ good:
   port: 8863
   peer_id: GOOD
   deleted: false
+  status: 0
 
 jerrys:
   user_id: 8
@@ -15,3 +16,4 @@ jerrys:
   port: 33
   peer_id: GOOD
   deleted: false
+  status: 2

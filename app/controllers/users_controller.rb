@@ -156,7 +156,7 @@ class UsersController < ApplicationController
      else
        respond_to do |format|
 	 flash[:notice] = 'Whoops, thats not a valid user!'
-         format.html { redirect_to (:controller => :users, :action => :index) }
+         format.html { redirect_to(:controller => :users, :action => :index)}
 	 format.xml
        end
      end

@@ -115,7 +115,10 @@ class TorrentsController < ApplicationController
   def download_torrent_file
     @torrent = Torrent.find(params[:id])
     user_id = session[:user_id]
-    host_url = "http://"+request.env["HTTP_HOST"]
+    unless request.env["HTTP_HOST"][0..7] == "http://"
+      request.env["HTTP_HOST"] = "http://" + request.env["HTTP_HOST"]
+    end
+    host_url = request.env["HTTP_HOST"]
     send_data @torrent.generate_torrent_file( user_id, host_url ), :filename => @torrent.filename
   end
 
