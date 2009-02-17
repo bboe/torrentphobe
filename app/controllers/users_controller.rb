@@ -159,11 +159,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     ordering = handle_sort params
-    if current_user == @user
-      @torrents = @user.my_torrents
-    else
-      @torrents = @user.torrents
-    end
+    @torrents = @user.owned_torrents
 
     respond_to do |format|
       format.html # files.html.erb
