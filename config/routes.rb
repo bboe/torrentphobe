@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories
 
   map.connect '/torrents/search/:id', :controller => 'torrents', :action => 'search'
+  map.connect '/torrents/delete/:id', :controller => 'torrents', :action => 'destroy'
   map.resources :torrents
   map.resources :tags
 
