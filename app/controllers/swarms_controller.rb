@@ -25,11 +25,11 @@ class SwarmsController < ApplicationController
     end
 
     if event == "started"
-      event = "completed" if params[:left] == 0
+      event = "completed" if params[:left] == 0.to_s
       Swarm.add_to_swarm(torrent_id, user_id, params[:peer_id], ip, params[:port], event)
     end
 
-    swarm = Swarm.get_swarm_list torrent_id, user_id, (params[:numwant] || 50)
+    swarm = Swarm.get_swarm_list torrent_id, user_id, (params[:numwant] || "50")
     swarm.collect! do |s|
       {"id" => s.peer_id, "ip" => s.ip_address, "port" => s.port}
     end
