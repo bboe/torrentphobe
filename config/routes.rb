@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.connect '/swarms/announce/*id', :controller => 'swarms', :action => 'announce'
+  map.connect '/swarms/announce/:id', :controller => 'swarms', :action => 'announce'
   map.resources :swarms
 
   map.resources :categories
