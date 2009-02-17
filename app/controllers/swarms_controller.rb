@@ -9,7 +9,7 @@ class SwarmsController < ApplicationController
       return
     end
 
-    decrypted = get_user_and_torrent_or_false CGI.unescape(params[:id])
+    decrypted = get_user_and_torrent_or_false params[:id]
     unless decrypted
       render :text => {"failure" => "Invalid announce URL."}.bencode, :status => 500
       return

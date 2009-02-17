@@ -1,7 +1,6 @@
 class Torrent < ActiveRecord::Base
   require 'ezcrypto'
   require 'bencode'
-  require 'config/global_config.rb'
   acts_as_taggable
   acts_as_ferret :fields => [:name, :tags_with_spaces], :remote => true
 
@@ -42,7 +41,7 @@ class Torrent < ActiveRecord::Base
   private
   def tracker_url( user_id = nil, host_url="" )
     encrypted = KEY.encrypt64( user_id.to_s + "/" + self.id.to_s )
-    host_url + "/swarms/announce/" + CGI.escape(encrypted[0...-3])
+    host_url + "/swarms/announce/" + encrypted[0...-3]
   end
 
   def calculate_size info

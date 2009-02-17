@@ -31,7 +31,7 @@ class SwarmsControllerTest < ActionController::TestCase
 
   test "announce new to swarm" do
     assert_difference("Swarm.count", 1) do
-      get :announce, {:id => 'VaFS3pGFGfyOBi1Xp%2FwcgA',
+      get :announce, {:id => 'VaFS3pGFGfyOBi1Xp/wcgA',
         :peer_id => "NEW_PEER", :port => 8080, :event => "started"}
     end
     assert_response :success
