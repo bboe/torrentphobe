@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.connect '/swarms/announce/:id', :controller => 'swarms', :action => 'announce'
+  map.resources :swarms
+
   map.resources :categories
 
   map.connect '/torrents/search/:id', :controller => 'torrents', :action => 'search'
@@ -11,8 +14,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/users/logout', :controller => 'users', :action => 'logout'
   map.resources :users
 
-  map.connect '/swarms/announce/*', :controller => 'swarms', :action => 'announce'
-  map.resources :swarms
   map.connect '/about', :controller => 'landing', :action => 'about'
 
   # The priority is based upon order of creation: first created -> highest priority.
