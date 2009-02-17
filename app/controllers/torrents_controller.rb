@@ -127,8 +127,8 @@ class TorrentsController < ApplicationController
     unless request.env["HTTP_HOST"][0..7] == "http://"
       request.env["HTTP_HOST"] = "http://" + request.env["HTTP_HOST"]
     end
-    if ENV["RAILS_ENV"] == "production"
-      request.env["HTTP_HOST"] = "http://torrentpho.be/"
+    unless ENV["RAILS_ENV"] == "development"
+      request.env["HTTP_HOST"] = "http://torrentpho.be"
     end
     host_url = request.env["HTTP_HOST"]
     send_data @torrent.generate_torrent_file( user_id, host_url ), :filename => @torrent.filename
