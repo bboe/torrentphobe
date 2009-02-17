@@ -15,15 +15,16 @@ class User < ActiveRecord::Base
     Relationship.find_or_create_by_user_id_and_friend_id(friend.id, self.id)
   end
 
-  # This gets the list of torrents depending on friend relationships.  Returns owned torrents, user's active torrents, and user's friends' active torrents
+  # This gets the list of torrents depending on friend relationships.  Returns owned torrents, user's active torrents, and user's friends' active torrents and user's friend's owned torrents
   def available_torrents 
     torrents = []
     begin 
-       torrents << self.friends_torrents
-       torrents << self.my_torrents
-       torrents = torrents.flatten.uniq
+      torrents << self.friends_torrents
+      torrents << self.my_torrents
+      torrents << self.friends_owned_torrents
+      torrents = torrents.flatten.uniq
 
-       torrents
+      torrents
     rescue
       torrents
     end
@@ -41,6 +42,19 @@ class User < ActiveRecord::Base
       torrents
     end
   
+  end
+
+  def friends_owned_torrents
+    torrents = []
+    begin 
+      if self.friends
+        torrents = self.friends.map {|friend| friend.owned_torrents }
+      end
+      torrents = torrents.flatten.uniq
+      torrents
+    rescue
+      torrents
+    end
   end
 
   def friends_torrents

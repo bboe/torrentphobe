@@ -83,4 +83,15 @@ class UserTest < ActiveSupport::TestCase
      assert tom.available_torrents.include? torrents("jerrys")
   end
 
+  test "get friends' owned torrents" do
+    tom = users(:Tom)
+    jerry = users(:Jerry)
+    assert_difference("Relationship.count", 2) do
+      tom.add_friend(jerry)
+    end
+    test = Torrent.create(:name => "test", :size => 1, :meta_info => "info", :data => "more data", :category_id => 1, :owner_id => jerry.id)
+    test.save
+    assert tom.friends_owned_torrents.include? test
+  end
+
 end
