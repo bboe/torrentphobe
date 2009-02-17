@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/users/logout', :controller => 'users', :action => 'logout'
   map.resources :users
 
-  map.connect '/swarms/announce/:id', :controller => 'swarms', :action => 'announce'
+  map.connect '/swarms/announce/*', :controller => 'swarms', :action => 'announce'
   map.resources :swarms
   map.connect '/about', :controller => 'landing', :action => 'about'
 
