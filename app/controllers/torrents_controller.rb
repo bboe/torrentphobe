@@ -58,9 +58,9 @@ class TorrentsController < ApplicationController
     user = User.find(session[:user_id])
     @torrent.owner = user
 
-    if !has_valid_content_type(params[:torrent][:torrent_file])
-      return invalid_create "Umm, that definately was not a torrent file"
-    end
+    #if !has_valid_content_type(params[:torrent][:torrent_file])
+    #  return invalid_create "Umm, that definately was not a torrent file"
+    #end
 
     begin
       @torrent.encode_data
