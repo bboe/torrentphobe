@@ -4,6 +4,7 @@ class SwarmsController < ApplicationController
   require 'ezcrypto'
 
   def announce
+    params[:id] = params[:id].join("/") if params[:id]
     unless params[:peer_id] && params[:port] && params[:id]
       render :text => {"failure" => "Not enough parameters sent!"}.bencode, :status => 500
       return
