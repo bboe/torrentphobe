@@ -5,13 +5,26 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories
 
   map.connect '/torrents/search/:id', :controller => 'torrents', :action => 'search'
-  map.connect '/torrents/delete/:id', :controller => 'torrents', :action => 'destroy'
+  map.connect '/torrents/destroy/:id', :controller => 'torrents', :action => 'destroy'
+  map.connect '/torrents/download_torrent_file/:id', :controller => 'torrents', :action => 'download_torrent_file'
+  #map.connect '/torrents/:action/:id', :controller => 'torrents'
+  #map.connect '/torrents/:id', :controller => 'torrents', :action => 'show'
   map.resources :torrents
+
+  map.connect '/admin/torrents/:action/:id', :controller => "admin/torrents"
+  map.connect '/admin/users/:action/:id', :controller => "admin/users"
+  map.connect '/admin/categories/:action/:id', :controller => "admin/categories"
+  map.connect '/admin/tags/:action/:id', :controller => "admin/tags"
+  map.connect '/admin/swarms/:action/:id', :controller => "admin/swarms"
+  map.connect '/admin/relationships/:action/:id', :controller => "admin/relationships"
+  map.connect '/admin/landing/:action/:id', :controller => "admin/landing"
+  map.connect '/admin/taggings/:action/:id', :controller => "admin/taggings"
+
   map.resources :tags
 
-  map.resources :relationship
   map.connect '/users/login', :controller => 'users', :action => 'login'
   map.connect '/users/logout', :controller => 'users', :action => 'logout'
+  map.connect '/users/files/:id', :controller => 'users', :action => 'files'
   map.resources :users
 
   map.connect '/about', :controller => 'landing', :action => 'about'
@@ -56,6 +69,7 @@ ActionController::Routing::Routes.draw do |map|
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
 
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+   map.connect '*path', :controller => 'landing', :action => :error_404
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end

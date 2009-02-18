@@ -73,7 +73,8 @@ class TorrentsController < ApplicationController
     respond_to do |format|
       if @torrent.save
         flash[:notice] = 'Torrent was successfully created.'
-        format.html { redirect_to(@torrent) }
+	flash[:message] = 'Please download a fresh copy of the torrent file to start seeding through torrentphobe.'
+        format.html { redirect_to @torrent }
         format.xml  { render :xml => @torrent, :status => :created, :location => @torrent }
       else
         flash[:error] = "Torrent was not created successfully."

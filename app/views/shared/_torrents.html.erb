@@ -21,7 +21,7 @@
 
 <% for torrent in torrents %>
   <tr class="<%= cycle('even', 'odd') %>">
-    <td style="border: none; padding: 0;"><%= link_to image_tag("download_arrow.png"), :controller => :torrents, :action => :download_torrent_file, :id => torrent %></td>
+    <td style="border: none; padding: 0;"><%= link_to image_tag("download_arrow.png"), :controller => :torrents, :action => :download_torrent_file, :id => torrent.id %></td>
     <td><%= link_to torrent.name, torrent %></td>
     <td style="padding-left: 10px; text-align: center;"><%=h display_size(torrent.size) %></td>
     <% if display_categories %>

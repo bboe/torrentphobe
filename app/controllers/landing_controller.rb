@@ -21,6 +21,14 @@ class LandingController < ApplicationController
     end
   end
 
+  def error_404
+    flash[:notice] = 'Seems that the page you were looking for does not exist, so you\'ve been redirected here.'
+    redirect_to :action => 'index', :status => "404 Not Found"
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def about
     respond_to do |format|
       format.html # about.html.erb

@@ -28,7 +28,7 @@
 <%= button_to "Download" , {:action => :download_torrent_file, :id => @torrent.id}, :id => :inline %>
 <% if @torrent.owner_id == session[:user_id] %>
 <%= button_to "Edit" , {:action => "edit", :id => @torrent.id}, { :method => :get, :id => :inline } %>
-<%= button_to 'Delete', {:action => "delete", :id => @torrent.id} , {:confirm => 'Are you sure?', :method => :delete, :id => :inline } %>
+<%= button_to 'Delete', {:action => "destroy", :id => @torrent.id} , {:confirm => 'Are you sure?', :method => :destroy, :id => :inline } %>
 <% end %>
 
 <br /><br /><br />
