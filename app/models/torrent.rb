@@ -31,6 +31,8 @@ class Torrent < ActiveRecord::Base
 
   def encode_data
     info = BEncode.load(self.data)
+    info["announce"] = ""
+    info["announce-list"] = ""
     info["comment"] = ""
     info["info"]["private"] = 1
     self.name = info["info"]["name"]
