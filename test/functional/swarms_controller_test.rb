@@ -18,7 +18,7 @@ class SwarmsControllerTest < ActionController::TestCase
                     :peer_id => good.peer_id, :port => good.port, :ip => good.ip_address}
 
     result = BEncode.load(@response.body)
-    assert_equal good.peer_id, result["peers"][0]["id"]
+    assert_equal good.peer_id, result["peers"][0]["peer id"]
     assert_equal good.ip_address, result["peers"][0]["ip"]
     assert_equal good.port, result["peers"][0]["port"]
     assert_equal 0, result["complete"]

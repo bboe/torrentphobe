@@ -36,7 +36,7 @@ class SwarmsController < ApplicationController
 
     swarm = Swarm.get_swarm_list torrent_id, user_id, (params[:numwant] || "50")
     swarm.collect! do |s|
-      {"id" => s.peer_id, "ip" => s.ip_address, "port" => s.port}
+      {"peer id" => s.peer_id, "ip" => s.ip_address, "port" => s.port}
     end
     
     output = {"interval" => 30, "peers" => swarm, "complete" => Swarm.get_seeders(torrent_id), "incomplete" => Swarm.get_leechers(torrent_id)}
