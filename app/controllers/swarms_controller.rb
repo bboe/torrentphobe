@@ -29,7 +29,7 @@ class SwarmsController < ApplicationController
       return
     end 
     
-    if event == "stopped" or event == "completed"
+    if event == "stopped"
       render :text => ""
       return
     end
