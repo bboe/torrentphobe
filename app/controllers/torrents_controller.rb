@@ -125,13 +125,17 @@ class TorrentsController < ApplicationController
     return if not_friends_or_owner current_user, @torrent
 
     user_id = current_user.id
-    unless request.env["HTTP_HOST"][0..7] == "http://"
-      request.env["HTTP_HOST"] = "http://" + request.env["HTTP_HOST"]
+    if request.env["HTTP_X_FORWARDED_HOST"]
+      host_url = request.env["HTTP_X_FORWARDED_HOST"]
+    else
+      host_url = request.env["HTTP_HOST"]
     end
-    unless ENV["RAILS_ENV"] == "development"
-      request.env["HTTP_HOST"] = "http://torrentpho.be"
+
+    unless host_url[0..7] == "http://"
+      host_url = "http://" + host_url
     end
-    host_url = request.env["HTTP_HOST"]
+
+
     send_data @torrent.generate_torrent_file( user_id, host_url ), :filename => @torrent.filename
   end
 
