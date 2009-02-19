@@ -58,23 +58,23 @@ module Facebooker
     
     def self.hashinate(response_element)
       response_element.children.reject{|c| c.kind_of? REXML::Text}.inject({}) do |hash, child|
-        # If the node hasn't any child, and is not a list, we want empty strings, not empty hashes.
-        hash[child.name] = if (child.children.size == 1 && child.children.first.kind_of?(REXML::Text)) || (child.children.size == 0 && child.attributes['list'] != 'true')
+        # If the node hasn't any child, and is not a list, we want empty strings, not empty hashes,
+        #   except if attributes['nil'] == true
+        hash[child.name] = 
+        if (child.attributes['nil'] == 'true')
+          nil 
+        elsif (child.children.size == 1 && child.children.first.kind_of?(REXML::Text)) || (child.children.size == 0 && child.attributes['list'] != 'true')
           anonymous_field_from(child, hash) || child.text_value
+        elsif child.attributes['list'] == 'true'
+          child.children.reject{|c| c.kind_of? REXML::Text}.map { |subchild| hash_or_value_for(subchild)}    
         else
-          if child.attributes['list'] == 'true'
-            child.children.reject{|c| c.kind_of? REXML::Text}.map do |subchild| 
-                hash_or_value_for(subchild)
-            end     
-          else
-            child.children.reject{|c| c.kind_of? REXML::Text}.inject({}) do |subhash, subchild|
-              subhash[subchild.name] = hash_or_value_for(subchild)
-              subhash
-            end
+          child.children.reject{|c| c.kind_of? REXML::Text}.inject({}) do |subhash, subchild|
+            subhash[subchild.name] = hash_or_value_for(subchild)
+            subhash
           end
-        end
+        end #if (child.attributes)
         hash
-      end      
+      end #do |hash, child|      
     end
     
     def self.anonymous_field_from(child, hash)
@@ -144,6 +144,12 @@ module Facebooker
       array_of_hashes(element('pages_getInfo_response', data), 'page')
     end
   end
+  
+  class PagesIsFan < Parser#:nodoc:
+    def self.process(data)
+      element('pages_isFan_response', data).text_value == '1'
+    end
+  end  
 
   class PublishStoryToUser < Parser#:nodoc:
     def self.process(data)
@@ -196,6 +202,18 @@ module Facebooker
   class GetAppProperties < Parser#:nodoc:
     def self.process(data)
       element('admin_getAppProperties_response', data).text_value
+    end
+  end
+  
+  class SetRestrictionInfo < Parser#:nodoc:
+    def self.process(data)
+      element('admin_setRestrictionInfo_response', data).text_value
+    end
+  end  
+  
+  class GetRestrictionInfo < Parser#:nodoc:
+    def self.process(data)
+      element('admin_getRestrictionInfo_response', data).text_value
     end
   end
   
@@ -484,7 +502,7 @@ module Facebooker
       if response_element
         hash = hashinate(response_element)
         exception = EXCEPTIONS[Integer(hash['error_code'])] || StandardError
-        raise exception.new(hash['error_msg'])
+        raise exception, hash['error_msg']
       end
     end
   end
@@ -501,6 +519,7 @@ module Facebooker
       'facebook.users.hasAppPermission' => UserHasPermission,
       'facebook.pages.isAdmin' => PagesIsAdmin,
       'facebook.pages.getInfo' => PagesGetInfo,
+      'facebook.pages.isFan' => PagesIsFan,      
       'facebook.friends.get' => GetFriends,
       'facebook.friends.getLists' => FriendListsGet,
       'facebook.friends.areFriends' => AreFriends,
@@ -526,6 +545,8 @@ module Facebooker
       'facebook.data.getCookies' => GetCookies,
       'facebook.admin.setAppProperties' => SetAppProperties,
       'facebook.admin.getAppProperties' => GetAppProperties,
+      'facebook.admin.setRestrictionInfo' => SetRestrictionInfo,
+      'facebook.admin.getRestrictionInfo' => GetRestrictionInfo,
       'facebook.admin.getAllocation' => GetAllocation,
       'facebook.batch.run' => BatchRun,
       'facebook.fql.query' => FqlQuery,
