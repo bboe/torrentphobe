@@ -10,9 +10,9 @@
 
 development:
   api_key: 9003290cdfa93c80c688df059d784f74
-  secret_key: 0d524bc9652becaabb96b37adc05c5af
+  secret_key: 76b797cacdeb40bbc9a24e4f69be992c
   canvas_page_name: 
-  callback_url:
+  callback_url: 
   pretty_errors: true
   set_asset_host_to_callback_url: false
   tunnel:
