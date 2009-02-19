@@ -3,7 +3,7 @@ class SwarmsController < ApplicationController
   require 'openssl'
   require 'ezcrypto'
 
-  def announce
+  def a #announce needed to be renamed since we don't have scrape
     params[:id] = params[:id].join("/") if params[:id]
     unless params[:peer_id] && params[:port] && params[:id]
       render :text => {"failure" => "Not enough parameters sent!"}.bencode, :status => 500

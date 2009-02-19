@@ -63,7 +63,7 @@ class TorrentTest < ActiveSupport::TestCase
   test "generate torrent file" do
     good = torrents(:good)
     file = good.generate_torrent_file 1, "http://torrentpho.be"    
-    assert_equal("http://torrentpho.be/swarms/announce/yXZlLdfEp1K9KtZKefIONQ",
+    assert_equal("http://torrentpho.be/swarms/a/yXZlLdfEp1K9KtZKefIONQ",
                  BEncode.load(file)["announce"])
   end
 

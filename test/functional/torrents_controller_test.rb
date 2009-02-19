@@ -132,7 +132,7 @@ class TorrentsControllerTest < ActionController::TestCase
     jon = users("Jonathan")
     get :download_torrent_file, {:id => good.id}
     result = BEncode.load(@response.body)
-    assert_equal "http://torrentpho.be/swarms/announce/yXZlLdfEp1K9KtZKefIONQ", result["announce"]
+    assert_equal "http://torrentpho.be/swarms/a/yXZlLdfEp1K9KtZKefIONQ", result["announce"]
   end
 
 
