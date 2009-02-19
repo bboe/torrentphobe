@@ -21,8 +21,13 @@ class SwarmsController < ApplicationController
     ip = params[:ip] || request.remote_ip
     
     event = "completed" if( event == "started" and params[:left] == 0.to_s )
-    
-    Swarm.add_or_update_swarm(torrent_id, user_id, params[:peer_id], ip, params[:port], event)
+
+    updated = Swarm.add_or_update_swarm(torrent_id, user_id, params[:peer_id], ip, params[:port], event)
+
+    if !updated
+      render :text => {"failure" => "Bad Request."}.bencode, :status => 400
+      return
+    end 
     
     if event == "stopped" or event == "completed"
       render :text => ""

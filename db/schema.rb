@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090213031556) do
+ActiveRecord::Schema.define(:version => 20090219003118) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(:version => 20090213031556) do
     t.boolean  "deleted"
     t.integer  "status"
   end
+
+  add_index "swarms", ["user_id", "torrent_id", "ip_address", "port"], :name => "index_swarms_on_user_id_and_torrent_id_and_ip_address_and_port", :unique => true
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

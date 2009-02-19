@@ -24,14 +24,16 @@ class Swarm < ActiveRecord::Base
   end
 
   def self.add_or_update_swarm torrent_id, user_id, peer_id, ip, port, status
-    t = Swarm.find_or_create_by_user_id_and_torrent_id_and_ip_address_and_port({
+    t = Swarm.find_or_initialize_by_user_id_and_torrent_id_and_ip_address_and_port({
           :user_id => user_id, :torrent_id => torrent_id,
           :ip_address => ip, :port => port
            })
-    t.status = Swarm.get_status_id(status)
+
+    t.status = Swarm.get_status_id("started") if(t.status.nil? or t.status == Swarm.get_status_id("stopped"))
+    t.status = Swarm.get_status_id(status) if !Swarm.get_status_id(status).nil?
     t.peer_id = peer_id
-    t.deleted = status=="stopped"
-    t.save
+    t.deleted = t.status=="stopped"
+    return t.save
   end
 
   def self.get_seeders torrent_id
@@ -54,7 +56,7 @@ class Swarm < ActiveRecord::Base
     when "stopped"
       return 2
     else
-      return 1
+      return nil
     end
   end
 

@@ -135,11 +135,77 @@ class SwarmTest < ActiveSupport::TestCase
     #Alice should not see Tom in the swarm
     assert !users_in_swarm.include?(users(:Tom).id)
   end
+  
+  test "started torrent" do
+    #Bob is seeding his own torrent
+    Swarm.add_or_update_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000", "started")
+    Swarm.add_or_update_swarm(torrents(:bobs).id, users(:Tom).id, "peerid", "192.168.0.2", "3000", "started")
 
-  test "update swarm" do
+    #Alice (Bobs friend, Toms enemy) gets the swarm list
+    swarm_list = Swarm.get_swarm_list(torrents(:bobs).id, users(:Alice).id)
+
+    users_in_swarm = swarm_list.map(&:user_id)
+
+    #Alice should see Bob in the swarm
+    assert users_in_swarm.include?(users(:Bob).id)
+    #Alice should not see Tom in the swarm
+    assert !users_in_swarm.include?(users(:Tom).id)
+  end
+
+  test "new entry to swarm - no event passed in" do
+    Swarm.add_or_update_swarm "3", "1", "peer", "192.168.1.1", "3000", "empty"
+    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("1").status
+  end
+  
+  test "new entry to swarm" do
+    Swarm.add_or_update_swarm "3", "2", "peer", "192.168.1.1", "3000", "started"
+    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("2").status
+
+    Swarm.add_or_update_swarm "3", "3", "peer", "192.168.1.1", "3000", "completed"
+    assert_equal Swarm.get_status_id("completed"), Swarm.find_by_user_id("3").status
+
+    Swarm.add_or_update_swarm "3", "4", "peer", "192.168.1.1", "3000", "stopped"
+    assert_equal Swarm.get_status_id("stopped"), Swarm.find_by_user_id("4").status
+  end
+
+
+  test "update swarm - started" do
+    good = swarms(:good)
+    Swarm.add_or_update_swarm good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "started"
+    assert_equal Swarm.get_status_id("started"), Swarm.find(good.id).status
+  end
+
+  test "update swarm - empty" do
+    #A previously completed entry with an empty event should remain completed
+    Swarm.add_or_update_swarm "1", "2", "peer", "192.168.0.0", "123", "completed"
+
+    Swarm.add_or_update_swarm "1", "2", "peer", "192.168.0.0", "123", "empty"
+    assert_equal Swarm.get_status_id("completed"), Swarm.find_by_user_id("2").status, "Previously completed, now empty"
+
+    #A previously started entry with an empty event should remain started
+    Swarm.add_or_update_swarm "1", "3", "peer", "192.168.0.0", "123", "started"
+
+    Swarm.add_or_update_swarm "1", "3", "peer", "192.168.0.0", "123", "empty"
+    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("3").status, "Previously started now empty"
+
+
+    #Previously stopped torrents, an empty event should start it
+    Swarm.add_or_update_swarm "1", "4", "peer", "192.168.0.0", "123", "stopped"
+
+    Swarm.add_or_update_swarm "1", "4", "peer", "192.168.0.0", "123", "empty"
+    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("4").status, "Previously stopped now empty"
+  end
+  
+  test "update swarm - completed" do
+    good = swarms(:good)
+    Swarm.add_or_update_swarm good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed"
+    assert_equal Swarm.get_status_id("completed"), Swarm.find(good.id).status
+  end
+
+  test "update swarm - stopped" do
     good = swarms(:good)
     Swarm.add_or_update_swarm good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "stopped"
-    assert_equal 2, Swarm.find(good.id).status
+    assert_equal Swarm.get_status_id("stopped"), Swarm.find(good.id).status
   end
 
   test "get seeders" do
@@ -155,10 +221,4 @@ class SwarmTest < ActiveSupport::TestCase
     Swarm.add_or_update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
     assert_equal 0, Swarm.get_leechers(good.torrent_id)    
   end
-
-  test "get_swarm_list" do
-    
-  end
-
-
 end
