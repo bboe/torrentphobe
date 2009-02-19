@@ -19,15 +19,14 @@ class SwarmsController < ApplicationController
     user_id, torrent_id = decrypted
     event = params[:event] || "empty"
     ip = params[:ip] || request.remote_ip
+    
+    event = "completed" if( event == "started" and params[:left] == 0.to_s )
+    
+    Swarm.add_or_update_swarm(torrent_id, user_id, params[:peer_id], ip, params[:port], event)
+    
     if event == "stopped" or event == "completed"
-      Swarm.update_swarm(torrent_id, user_id, params[:peer_id], ip, params[:port], event)
       render :text => ""
       return
-    end
-
-    if event == "started"
-      event = "completed" if params[:left] == 0.to_s
-      Swarm.add_to_swarm(torrent_id, user_id, params[:peer_id], ip, params[:port], event)
     end
 
     swarm = Swarm.get_swarm_list torrent_id, user_id, (params[:numwant] || "50")

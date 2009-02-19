@@ -70,7 +70,7 @@ class SwarmTest < ActiveSupport::TestCase
 
   test "get swarm list with friends" do
     #Bob is seeding his own torrent
-    Swarm.add_to_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000", "started")
+    Swarm.add_or_update_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000", "started")
 
     #Alice (his friend) gets the swarm list
     swarm_list = Swarm.get_swarm_list(torrents(:bobs).id, users(:Alice).id)
@@ -78,20 +78,38 @@ class SwarmTest < ActiveSupport::TestCase
     users_in_swarm = swarm_list.map(&:user_id)
 
     #Alice should see Bob in the swarm
-    assert users_in_swarm.include?(users(:Bob).id)
+    assert users_in_swarm.include?(users(:Bob).id), "Alice does not see Bob in the swarm"
     
     #Alice (his friend) gets the swarm list
     swarm_list = Swarm.get_swarm_list(torrents(:bobs).id, users(:Bob).id)
 
     users_in_swarm = swarm_list.map(&:user_id)
 
-    #Alice should see Bob in the swarm
-    assert users_in_swarm.include?(users(:Bob).id)
+    #Bob should see himself in the swarm
+    assert users_in_swarm.include?(users(:Bob).id), "Bob's swarm does not include himself"
+    #The list should only be Bob
+    assert users_in_swarm.length == 1, "Swarm size is not 1"
+  end
+
+  test "get swarm list with same user" do
+    #Bob is seeding his own torrent
+    Swarm.add_or_update_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000", "started")
+    Swarm.add_or_update_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.2", "3000", "started")
+    
+    #Alice (his friend) gets the swarm list
+    swarm_list = Swarm.get_swarm_list(torrents(:bobs).id, users(:Bob).id)
+
+    users_in_swarm = swarm_list.map(&:user_id)
+
+    #Bob should see himself in the swarm
+    assert users_in_swarm.include?(users(:Bob).id), "Bob's swarm does not include himself"
+    #The list should only be Bob
+    assert users_in_swarm.length == 2, "Swarm size is not 2"
   end
 
   test "get swarm list without enemies" do
     #Tom is seeding his own torrent
-    Swarm.add_to_swarm(torrents(:toms).id, users(:Tom).id, "peerid", "192.168.0.1", "3000", "started")
+    Swarm.add_or_update_swarm(torrents(:toms).id, users(:Tom).id, "peerid", "192.168.0.1", "3000", "started")
 
     #Jerry (his enemy) gets the swarm list
     swarm_list = Swarm.get_swarm_list(torrents(:toms).id, users(:Jerry).id)
@@ -104,8 +122,8 @@ class SwarmTest < ActiveSupport::TestCase
 
   test "get swarm list with friends and without enemies" do
     #Bob is seeding his own torrent
-    Swarm.add_to_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000", "started")
-    Swarm.add_to_swarm(torrents(:bobs).id, users(:Tom).id, "peerid", "192.168.0.2", "3000", "started")
+    Swarm.add_or_update_swarm(torrents(:bobs).id, users(:Bob).id, "peerid", "192.168.0.1", "3000", "started")
+    Swarm.add_or_update_swarm(torrents(:bobs).id, users(:Tom).id, "peerid", "192.168.0.2", "3000", "started")
 
     #Alice (Bobs friend, Toms enemy) gets the swarm list
     swarm_list = Swarm.get_swarm_list(torrents(:bobs).id, users(:Alice).id)
@@ -120,21 +138,21 @@ class SwarmTest < ActiveSupport::TestCase
 
   test "update swarm" do
     good = swarms(:good)
-    Swarm.update_swarm good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "stopped"
+    Swarm.add_or_update_swarm good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "stopped"
     assert_equal 2, Swarm.find(good.id).status
   end
 
   test "get seeders" do
     good = swarms(:good)
     assert_equal 0, Swarm.get_seeders(good.torrent_id)
-    Swarm.update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
+    Swarm.add_or_update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
     assert_equal 1, Swarm.get_seeders(good.torrent_id)    
   end
 
   test "get leechers" do
     good = swarms(:good)
     assert_equal 1, Swarm.get_leechers(good.torrent_id)    
-    Swarm.update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
+    Swarm.add_or_update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
     assert_equal 0, Swarm.get_leechers(good.torrent_id)    
   end
 

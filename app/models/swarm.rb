@@ -23,21 +23,15 @@ class Swarm < ActiveRecord::Base
     swarm = swarm.map { |swarm_user| swarm_user if( friends.include?(swarm_user.user_id) ) }.compact
   end
 
-  def self.add_to_swarm torrent_id, user_id, peer_id, ip, port, status
-    t = Swarm.find_or_create_by_user_id_and_torrent_id_and_peer_id_and_ip_address_and_port({:user_id => user_id, :torrent_id => torrent_id, :peer_id => peer_id, :ip_address => ip, :port => port})
+  def self.add_or_update_swarm torrent_id, user_id, peer_id, ip, port, status
+    t = Swarm.find_or_create_by_user_id_and_torrent_id_and_ip_address_and_port({
+          :user_id => user_id, :torrent_id => torrent_id,
+          :ip_address => ip, :port => port
+           })
     t.status = Swarm.get_status_id(status)
-    t.deleted = false
+    t.peer_id = peer_id
+    t.deleted = status=="stopped"
     t.save
-  end
-
-  def self.update_swarm torrent_id, user_id, peer_id, ip, port, status
-    s = Swarm.find(:first,
-               :conditions => ["torrent_id = :torrent_id and peer_id = :peer_id and ip_address = :ip and port = :port and user_id = :user_id",
-                               {:torrent_id => torrent_id, :peer_id => peer_id, :ip => ip, :port => port, :user_id => user_id}])
-    if s
-      s.status = Swarm.get_status_id(status)
-      s.save
-    end
   end
 
   def self.get_seeders torrent_id
@@ -60,7 +54,7 @@ class Swarm < ActiveRecord::Base
     when "stopped"
       return 2
     else
-      return -1
+      return 1
     end
   end
 
