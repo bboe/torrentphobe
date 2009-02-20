@@ -73,4 +73,15 @@ class TorrentTest < ActiveSupport::TestCase
     assert_equal [jon], good_torrent.users
   end
 
+  test "delete torrents" do
+    good = torrents(:good)
+    assert_difference("Torrent.count", -1) do
+      good.delete
+      good.save
+    end
+    assert !Torrent.exists?(good.id)
+    u = Torrent.find_by_sql("select * from torrents where id = " + good.id.to_s)[0]
+    assert_equal good, u        
+  end 
+
 end
