@@ -55,16 +55,14 @@ class TorrentTest < ActiveSupport::TestCase
     assert_equal 730105856, t.size
   end
 
-  test "test filename method" do
-    good = torrents(:good)
-    assert_equal good.filename, "A Name.torrent"
-  end
-
   test "generate torrent file" do
     good = torrents(:good)
-    file = good.generate_torrent_file 1, "http://torrentpho.be"    
+    user = users(:Jonathan)
+    file = good.generate_torrent_file user, "http://torrentpho.be"
+    torrent = BEncode.load(file)
     assert_equal("http://torrentpho.be/swarms/a/yXZlLdfEp1K9KtZKefIONQ",
-                 BEncode.load(file)["announce"])
+                 torrent["announce"])
+    assert_equal "torrentphobe torrent for " + user.name, torrent["comment"]
   end
 
   test "get users downloading/seeding a torrent" do

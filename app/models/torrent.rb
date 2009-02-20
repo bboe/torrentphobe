@@ -19,9 +19,10 @@ class Torrent < ActiveRecord::Base
     self.name + ".torrent"
   end
 
-  def generate_torrent_file user_id, host_url
+  def generate_torrent_file user, host_url
     btorrent = BEncode.load(self.data)
-    btorrent["announce"] = tracker_url( user_id , host_url)
+    btorrent["announce"] = tracker_url( user.id , host_url)
+    btorrent["comment"] = "torrentphobe torrent for " + user.name
     btorrent.bencode
   end
 
@@ -30,14 +31,11 @@ class Torrent < ActiveRecord::Base
   end
 
   def encode_data
-    info = BEncode.load(self.data)
-    info["announce"] = ""
-    info["announce-list"] = ""
-    info["comment"] = ""
-    info["info"]["private"] = 1
-    self.name = info["info"]["name"]
-    self.size = calculate_size( info["info"] )
-    self.data = info.bencode
+    info = BEncode.load(self.data)["info"]
+    info["private"] = 1
+    self.name = info["name"]
+    self.size = calculate_size(info)
+    self.data = {"info" => info}.bencode
   end
 
   private

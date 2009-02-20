@@ -121,10 +121,9 @@ class TorrentsController < ApplicationController
 
   def download_torrent_file
     @torrent = Torrent.find(params[:id])
-    current_user = get_current_user
-    return if not_friends_or_owner current_user, @torrent
+    user = get_current_user
+    return if not_friends_or_owner user, @torrent
 
-    user_id = current_user.id
     if request.env["HTTP_X_FORWARDED_HOST"]
       host_url = request.env["HTTP_X_FORWARDED_HOST"]
     else
@@ -135,8 +134,9 @@ class TorrentsController < ApplicationController
       host_url = "http://" + host_url
     end
 
-
-    send_data @torrent.generate_torrent_file( user_id, host_url ), :filename => @torrent.filename
+    filename = "[tp] " + user.name + " " + @torrent.filename
+    send_data(@torrent.generate_torrent_file( user, host_url ),
+              :filename => filename)
   end
 
   def search
