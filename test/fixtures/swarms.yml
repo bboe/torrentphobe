@@ -6,7 +6,6 @@ good:
   ip_address: 192.168.1.1
   port: 8863
   peer_id: GOOD
-  deleted: false
   status: 0
 
 jerrys:
@@ -15,5 +14,4 @@ jerrys:
   ip_address: 1.2.3.4
   port: 33
   peer_id: GOOD
-  deleted: false
   status: 1

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090219003118) do
+ActiveRecord::Schema.define(:version => 20090220055936) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20090219003118) do
     t.integer  "friend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "relationships", ["user_id", "friend_id"], :name => "index_relationships_on_user_id_and_friend_id", :unique => true
@@ -44,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20090219003118) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "peer_id"
-    t.boolean  "deleted"
     t.integer  "status"
   end
 
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(:version => 20090219003118) do
     t.binary   "data"
     t.integer  "category_id"
     t.integer  "owner_id"
+    t.binary   "info_hash",   :limit => 20
+    t.datetime "deleted_at"
   end
 
   create_table "users", :force => true do |t|
@@ -81,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20090219003118) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "friend_hash"
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["fb_id"], :name => "index_users_on_fb_id", :unique => true
