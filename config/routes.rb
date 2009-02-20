@@ -27,6 +27,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/users/files/:id', :controller => 'users', :action => 'files'
   map.resources :users
 
+  map.connect '/home', :controller => 'home', :action => 'index'
   map.connect '/about', :controller => 'landing', :action => 'about'
 
   # The priority is based upon order of creation: first created -> highest priority.
