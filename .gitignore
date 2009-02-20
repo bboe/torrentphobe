@@ -1,6 +1,7 @@
+.DS_Store
+db/schema.rb
 web/log/*.log
 web/tmp/**/*
-.DS_Store
 web/doc/api
 web/doc/app
 web/db/test.sqlite3

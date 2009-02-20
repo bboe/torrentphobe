@@ -1,6 +1,7 @@
 class Torrent < ActiveRecord::Base
   require 'ezcrypto'
   require 'bencode'
+  require 'digest/sha1'
   acts_as_taggable
   acts_as_ferret :fields => [:name, :tags_with_spaces], :remote => true
 
@@ -36,6 +37,7 @@ class Torrent < ActiveRecord::Base
     self.name = info["name"]
     self.size = calculate_size(info)
     self.data = {"info" => info}.bencode
+    self.info_hash = Digest::SHA1.digest(info.bencode)
   end
 
   private

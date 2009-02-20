@@ -68,6 +68,17 @@ class TorrentsController < ApplicationController
       return invalid_create "Yikes, that torrent was not valid"
     end
 
+    t = Torrent.find_by_info_hash(@torrent.info_hash)
+    if t
+      # Torrent already exists. Add user to swarm.
+      Swarm.add_or_update_swarm(t.id, user.id, "", "", "", "stopped")
+      respond_to do |format|
+        # TODO: Add to swarm list
+        flash[:message] = "Torrent already exists in our system. Please download the copy below to seed."
+        format.html { redirect_to @torrent }
+      end
+      return
+    end
 
     @torrent.tag_list.add(create_automatic_tags(@torrent.name)) if !@torrent.name.nil?
     respond_to do |format|
@@ -134,7 +145,7 @@ class TorrentsController < ApplicationController
       host_url = "http://" + host_url
     end
 
-    filename = "[tp] " + user.name + " " + @torrent.filename
+    filename = "[tp-" + user.name + "] " + @torrent.filename
     send_data(@torrent.generate_torrent_file( user, host_url ),
               :filename => filename)
   end
