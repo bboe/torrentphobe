@@ -4,7 +4,7 @@
   <td style="min-width: 30%;">
   <p>
   <%= link_to image_tag("add_cross.png")+' Add New Torrent', new_torrent_path %><br />
-  <%= link_to image_tag("user.png")+' Invite Your Friends', new_torrent_path %>
+  <%= link_to image_tag("user.png")+' Invite Your Friends', :controller => :users, :action => 'inviteFriends' %>
   </p>
   </td>
   </div>

@@ -1,9 +1,18 @@
+<h1>Friend Invitations</h1>
+
+<p>Please select which of your friends you would like to invite:</p>
+
+
 <% form_tag :action => 'send_invites' do -%>
-<ul>
+<ul style="list-style-type:none;">
 <% @users.each do |tempuser|%>
      <li><input type="checkbox" name="friends[]" value="<%=tempuser.uid%>"/><%= tempuser.name%></li>
 <%end%>
 </ul>
-
-<input type="submit" value="Invite"/>
+    <div style="text-align: center;">
+    <%= submit_tag "Send Invites", :style=>"font-size: 24px; font-weight: bold;" %>
+    </div>
 <% end -%>
+
+<br />
+<%= button_to 'Back', users_path, :method => :get %>

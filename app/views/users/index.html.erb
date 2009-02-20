@@ -1,4 +1,14 @@
-<h1>Users</h1>
+<div id="headline">
+  <table style="width: 100%;">
+  <tr><td style="min-width: 70%;"><h1>Users</h1></td>
+  <td style="min-width: 30%;">
+  <p>
+  <%= link_to image_tag("user.png")+' Invite Your Friends', :controller => :users, :action => 'inviteFriends' %>
+  </p>
+  </td>
+  </div>
+  </table>
+</div>
+
 <%= render :partial => "shared/users", :locals => { :users => @users } %>
 <br />
-<%= link_to 'Invite Friends', :action => 'inviteFriends' %>

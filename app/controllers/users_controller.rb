@@ -65,8 +65,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       session[:user_name] = @user.name
-      flash[:message] = 'Welcome to torrentphobe '+@user.name
-      redirect_to(@user)
+      redirect_to(:controller => 'home', :action => :index)
     else
       flash[:notice] = 'User failed to log in.'
       redirect_to( :controller => :landing, :action => :index )
@@ -85,7 +84,7 @@ class UsersController < ApplicationController
     friends = params[:friends]
     notification_fbml = "Invitation to join <a href='http://torrentpho.be' target='_blank' alt='torrentpho.be'>torrentpho.be</a>"
     facebook_session.send_notification(friends, notification_fbml)
-    flash[:notice] = 'Invites sent.'
+    flash[:notice] = 'Your invitations have been sent.'
     redirect_to :controller => 'users', :action => 'index'
   end
 
@@ -94,9 +93,6 @@ class UsersController < ApplicationController
       friend_ids = facebook_session.user.friends.map { |user| user.uid }
       friends = @user.getFriendsNotOnTorrentphobe(friend_ids)
       @users = facebook_session.users(friends, [:name, :uid]).sort_by {|user| user.name}
-      #@users.each do |tempuser|
-      #    render :text => tempuser.name
-      #end
   end
 
   # GET /users/new

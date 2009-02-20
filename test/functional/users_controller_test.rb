@@ -138,7 +138,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_difference('User.count', 1) do
       get :login
     end
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to :controller => :home, :action => :index
     assert_equal users(:LastUser).id+1, session[:user_id]
   end
 
@@ -150,7 +150,7 @@ class UsersControllerTest < ActionController::TestCase
         get :login
       end
     end
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to :controller => :home, :action => :index
     assert_equal users(:LastUser).id+1, session[:user_id]
   end
 
@@ -158,7 +158,7 @@ class UsersControllerTest < ActionController::TestCase
     jon = users(:Jonathan)
     @controller.facebook_session = flexmock(:user => flexmock(:friends => [], :name => "testing", :uid => jon.fb_id))
     get :login
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to :controller => :home, :action => :index
     assert_equal 1, session[:user_id]
   end
 
