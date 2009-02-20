@@ -1,0 +1,26 @@
+<div id="headline">
+  <table style="width: 100%;">
+  <tr><td style="min-width: 70%;"><h1>Welcome <%=h @current_user.name %>!</h1></td>
+  <td style="min-width: 30%;">
+  <p>
+  <%= link_to image_tag("add_cross.png")+' Add New Torrent', new_torrent_path %><br />
+  <%= link_to image_tag("user.png")+' Invite Your Friends', new_torrent_path %>
+  </p>
+  </td>
+  </div>
+  </table>
+</div>
+
+<% if @new_users.length > 0 %>
+<h3>New Users</h3>
+<ul>
+<% for user in @new_users -%>
+<li><%= link_to user.name, { :controller => :users, :action => :show, :id => user.id } %></li>
+<% end -%>
+</ul>
+<% end %>
+
+<h3>Recent Torrents</h3>
+<%= render :partial => "shared/torrents", :locals => { :torrents => @torrents, :allow_sorting => false, :display_categories => true } %>
+<br />
+

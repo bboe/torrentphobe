@@ -1,8 +1,13 @@
 <div id="headline">
-  <h1>Available Torrents</h1>
+  <table style="width: 100%;">
+  <tr><td style="min-width: 70%;"><h1>Available Torrents</h1></td>
+  <td style="min-width: 30%;">
   <p><%= link_to image_tag("add_cross.png")+' Add New Torrent', new_torrent_path, :class => :head %></p>
+  </td>
+  </div>
+  </table>
 </div>
-<br /><br />
+<br />
 <%= render :partial => "shared/torrents", :locals => {:torrents => @torrents, :display_categories => true} %>
 
 <br /><br />

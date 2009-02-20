@@ -2,6 +2,7 @@
   <br />
   <% if session[:user_name] %>
     <%= link_to session[:user_name], {:controller => :users, :action => :show, :id => session[:user_id]} %><br />
+    <%= link_to "Profile", {:controller => :users, :action => :show, :id => session[:user_id]} %><div style="color: white; display: inline;"> :</div>
   <% else %>
   <br />
   <% end %>
@@ -11,7 +12,8 @@
 </div>
 <div id="tabs">
   <ul>
-    <li><%= link_to "Friends", {:controller => :users}, :class => tab_class(:users) %></li>
+    <li><%= link_to "Home", {:controller => :home}, :class => tab_class(:home) %></li>
+    <li><%= link_to "Users", {:controller => :users}, :class => tab_class(:users) %></li>
     <li><%= link_to "Torrents", {:controller => :torrents}, :class => tab_class(:torrents) %></li>
     <li><%= link_to "Categories", {:controller => :categories}, :class => tab_class(:categories) %></li>
     <li><%= link_to "Tags", {:controller => :tags}, :class => tab_class(:tags) %></li>

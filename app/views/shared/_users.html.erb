@@ -1,5 +1,5 @@
 <% if users.length > 0 %>
-<table>
+<table id="pretty-table">
   <tr>
     <th>Name</th>
     <th></th>
@@ -7,15 +7,19 @@
   </tr>
 
 <% for user in users %>
-  <tr>
-    <td><%= user.name %></td>
-    <td><%= link_to "Profile", :action => :show, :id => user.id %></td>
-    <td><%= link_to 'Uploaded Files', {:action => :files, :id => user.id} %></td>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <% if user.created_at < 5.days.ago %>
+      <td><%= user.name+image_tag("new.png") %></td>
+    <% else %>
+      <td><%= user.name %></td>
+    <% end %>
+    <td><%= link_to 'View Profile', :action => :show, :id => user.id %></td>
+    <td><%= link_to 'View Files', {:action => :files, :id => user.id} %></td>
   </tr>
 <% end %>
 </table>
 <% else %>
-Sorry, it doesnt look like you have any friends on our site. Why not have them sign up?
-It's a lot more fun to share with friends.
+Sorry, it doesnt look like you have any friends on our site.
+<br /> Why not have them sign up? It's a lot more fun to share with friends.
 <% end %>
 <br />

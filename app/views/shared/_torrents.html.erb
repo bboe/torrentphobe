@@ -1,7 +1,7 @@
 <% display_categories ||= false %>
 <% allow_sorting = true if allow_sorting.nil? %>
 <% if torrents.length > 0 %>
-<table>
+<table id="pretty-table">
   <tr>
     <th></th>
     <th style="min-width: 480px; width: 100%">
@@ -12,10 +12,11 @@
     </th>
     <% if display_categories %>
     <th style="text-align: center;">
-      <% if allow_sorting %><%= sort_link "Category", :category_id %><% else %><%= "Category" %><% end %>
+      <% if allow_sorting %><%= sort_link "Category", :category %><% else %><%= "Category" %><% end %>
     </th>
-    <th style="text-align: center;"><%= sort_link "Seeders/<br 
-/>Leechers", :category %></th>
+    <th style="text-align: center;">
+      <% if allow_sorting %><%= sort_link "Seeders/<br />Leechers", :category %><% else %><%= "Seeders/<br />Leechers" %><% end %>
+    </th>
     <% end %>
   </tr>
 

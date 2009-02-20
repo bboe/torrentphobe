@@ -11,8 +11,9 @@ body{
 
 #container {
   height: 100%;
-  margin: 0 0 0 0;
-  padding: 0 15% 0 15%;
+  margin: 0 0 0 0
+  min-width: 10%;
+  padding: 0 60px;
 }
 
 #header{
@@ -26,8 +27,7 @@ body{
 #header a{
   color: #12bce7;
   font-weight: bold;
-  margin: 40px 10px 0 0;
-  text-decoration: none;
+  margin: 40px 0 0 0;
 }
 
 #tabs {
@@ -40,7 +40,7 @@ body{
 #tabs ul {
   width: 600px;
   margin: 0;
-  padding-left: 45px;
+  padding-left: 35px;
   list-style: none;
 }
 
@@ -55,9 +55,12 @@ body{
   text-align: left;
   font-size: 17px;
   font-weight: 800;
-  padding: 15px 40px 0px 5px;
+  padding: 15px 25px 0px 5px;
   z-index: 5;
 }
+
+#tabs a:visited { color: #ffffff; }
+
 a.main { 
   border-top: medium solid #ffffff;
   color: #ffffff;
@@ -100,13 +103,13 @@ a.bg:hover {
   color: #fff;
 }
 
+#pretty-table td, #pretty-table th { padding: 3px; }
+#pretty-table th { border-bottom: thin dotted #a0a0a0; }
+#pretty-table td { border-bottom: thin solid #dfdfdf; }
 
-table td, table th { padding: 3px; }
-table th { border-bottom: thin dotted #a0a0a0; }
-table td { border-bottom: thin solid #dfdfdf; }
-
-tr.even td{ background-color: #EFF7FF; }
-tr.odd td{ background-color: #FBFBFB; }
+#pretty-table tr.even td{ background-color: #EFF7FF; }
+#pretty-table tr.odd td{ background-color: #FBFBFB; }
+#pretty-table tr:hover td { background-color: #B9ECF2; }
 
 p {
   text-align: left;
@@ -134,28 +137,25 @@ h2 {
 
 h3 {
   font-weight:bold;
-  color: #12bce7
-}
-
-#headline {
-  padding-top: 10px;
-  display: inline-table;
-  min-width: 100%;
+  color: #12bce7;
+  margin: 10px 0;
 }
 
 #headline p {
   text-align: right;
-  text-decoration: none;
   vertical-align: top;
+  padding: 10px 10px 0 0;
 }
 
-#headline a, #cloud a {
-text-decoration: none;
+#headline a {
+  margin-top: 20px;
 }
 
-#headline h1, #headline p {
-  display: table-cell;
-}
+a, #cloud a { text-decoration: none;}
+
+a:hover { text-decoration: underline; }
+
+a:visited { color: #3366FF; }
 
 img {
   border-width: 0;
@@ -275,3 +275,14 @@ img {
 	height: 290px;
 	width: 166px;
 }
+
+table    { display: table }
+tr       { display: table-row }
+thead    { display: table-header-group }
+tbody    { display: table-row-group }
+tfoot    { display: table-footer-group }
+col      { display: table-column }
+colgroup { display: table-column-group }
+td, th   { display: table-cell }
+caption  { display: table-caption }
+
