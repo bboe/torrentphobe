@@ -8,6 +8,7 @@ one:
   data: Some bencoded string
   category_id: 1
   owner_id: 2
+  info_hash: JEFF_IS_THE_SHIZNIT1
 
 two:
   id: 2
@@ -17,6 +18,7 @@ two:
   data: Some more info
   category_id: 2
   owner_id: 1
+  info_hash: JEFF_IS_THE_SHIZNIT2
 
 good:
   id: 3
@@ -26,6 +28,7 @@ good:
   data: de
   category_id: 1
   owner_id: 1
+  info_hash: JEFF_IS_THE_SHIZNIT3
 
 jerrys:
   id: 4
@@ -35,6 +38,7 @@ jerrys:
   data: de
   category_id: 1
   owner_id: 8
+  info_hash: JEFF_IS_THE_SHIZNIT4
 
 toms:
   id: 5
@@ -44,6 +48,7 @@ toms:
   data: de
   category_id: 1
   owner_id: 7
+  info_hash: JEFF_IS_THE_SHIZNIT5
   
 bobs:
   id: 6
@@ -53,4 +58,15 @@ bobs:
   data: de
   category_id: 1
   owner_id: 3
+  info_hash: JEFF_IS_THE_SHIZNIT_
+
+bobs25:
+  id: 25
+  name: bob_torrent
+  size: 350
+  meta_info: Some Info
+  data: de
+  category_id: 1
+  owner_id: 3
+  info_hash: JEFF_IS_THE_SHIZNIT6
 

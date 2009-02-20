@@ -5,7 +5,8 @@ class SwarmsController < ApplicationController
 
   def a #announce needed to be renamed since we don't have scrape
     params[:id] = params[:id].join("/") if params[:id]
-    unless params[:peer_id] && params[:port] && params[:id]
+    unless(params[:peer_id] && params[:ip] && params[:port] && params[:id] &&
+           params[:info_hash])
       render :text => {"failure" => "Not enough parameters sent!"}.bencode, :status => 500
       return
     end
@@ -17,6 +18,13 @@ class SwarmsController < ApplicationController
     end
 
     user_id, torrent_id = decrypted
+    # FIXME
+    info_hash = Torrent.find_by_id(torrent_id).info_hash
+    if info_hash != params[:info_hash]
+      render :text => {"failure" => "Announce URL is not valid for this torrent."}.bencode, :status => 500
+      return      
+    end
+
     event = params[:event] || "empty"
     ip = params[:ip] || request.remote_ip
     
