@@ -1,0 +1,9 @@
+<% form_tag :action => 'send_invites' do -%>
+<ul>
+<% @users.each do |tempuser|%>
+     <li><input type="checkbox" name="friends[]" value="<%=tempuser.uid%>"/><%= tempuser.name%></li>
+<%end%>
+</ul>
+
+<input type="submit" value="Invite"/>
+<% end -%>
