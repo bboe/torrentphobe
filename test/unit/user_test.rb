@@ -94,4 +94,15 @@ class UserTest < ActiveSupport::TestCase
     assert tom.friends_owned_torrents.include? test
   end
 
+  test "delete users" do
+    tom = users(:Tom)
+    assert_difference("User.count", -1) do
+      tom.delete
+      tom.save
+    end
+    assert !User.exists?(tom.id)
+    u = User.find_by_sql("select * from users where id = " + tom.id.to_s)[0]
+    assert_equal tom, u        
+  end
+
 end

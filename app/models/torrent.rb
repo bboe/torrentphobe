@@ -4,6 +4,7 @@ class Torrent < ActiveRecord::Base
   require 'digest/sha1'
   acts_as_taggable
   acts_as_ferret :fields => [:name, :tags_with_spaces], :remote => true
+  acts_as_paranoid
 
   has_many :swarms
   has_many :users, :through => :swarms
