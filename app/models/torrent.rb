@@ -3,7 +3,7 @@ class Torrent < ActiveRecord::Base
   require 'bencode'
   require 'digest/sha1'
   acts_as_taggable
-  acts_as_ferret :fields => [:name, :tags_with_spaces], :remote => true
+  acts_as_ferret :fields => [:name], :remote => true
   acts_as_paranoid
 
   has_many :swarms
@@ -57,9 +57,5 @@ class Torrent < ActiveRecord::Base
     else
       info["length"]
     end
-  end
-
-  def tags_with_spaces
-    return self.tag_names.join(" ")
   end
 end

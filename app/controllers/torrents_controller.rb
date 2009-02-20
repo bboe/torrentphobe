@@ -58,10 +58,6 @@ class TorrentsController < ApplicationController
     user = User.find(session[:user_id])
     @torrent.owner = user
 
-    #if !has_valid_content_type(params[:torrent][:torrent_file])
-    #  return invalid_create "Umm, that definately was not a torrent file"
-    #end
-
     begin
       @torrent.encode_data
     rescue BEncode::DecodeError
@@ -71,27 +67,22 @@ class TorrentsController < ApplicationController
     t = Torrent.find_by_info_hash(@torrent.info_hash)
     if t
       # Torrent already exists. Add user to swarm.
-      Swarm.add_or_update_swarm(t.id, user.id, "", "", "", "stopped")
-      respond_to do |format|
-        # TODO: Add to swarm list
-        flash[:message] = "Torrent already exists in our system. Please download the copy below to seed."
-        format.html { redirect_to @torrent }
-      end
+      Swarm.add_user_to_swarm_for_list t.id, user.id
+      # TODO: Add to swarm list
+      flash[:message] = "Torrent already exists in our system. Please download the copy below to seed."
+      redirect_to t
       return
     end
 
     @torrent.tag_list.add(create_automatic_tags(@torrent.name)) if !@torrent.name.nil?
-    respond_to do |format|
-      if @torrent.save
-        flash[:notice] = 'Torrent was successfully created.'
-	flash[:message] = 'Please download a fresh copy of the torrent file to start seeding through torrentphobe.'
-        format.html { redirect_to @torrent }
-        format.xml  { render :xml => @torrent, :status => :created, :location => @torrent }
-      else
-        flash[:error] = "Torrent was not created successfully."
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @torrent.errors, :status => :unprocessable_entity }
-      end
+    if @torrent.save
+      Swarm.add_user_to_swarm_for_list @torrent.id, user.id
+      flash[:notice] = 'Torrent was successfully created.'
+      flash[:message] = 'Please download a fresh copy of the torrent file to start seeding through torrentphobe.'
+      redirect_to @torrent
+    else
+      flash[:error] = "Torrent was not created successfully."
+      render :action => "new"
     end
   end
 
