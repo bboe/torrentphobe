@@ -37,7 +37,9 @@ class Swarm < ActiveRecord::Base
 
   # FIXME - this is really a hack
   def self.add_user_to_swarm_for_list torrent_id, user_id
-    Swarm.find_or_create_by_user_id_and_torrent_id_and_ip_address_and_port :torrent_id => torrent_id, :user_id => user_id, :peer_id => "_", :port => 1, :ip_address => "127.0.0.1", :status => 2
+    s = Swarm.find_or_initialize_by_user_id_and_torrent_id_and_ip_address_and_port :torrent_id => torrent_id, :user_id => user_id, :peer_id => "_", :port => 1, :ip_address => "127.0.0.1"
+    s.status = Swarm.get_status_id("stopped")
+    s.save()
   end
 
   def self.get_seeders torrent_id
