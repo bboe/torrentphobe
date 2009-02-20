@@ -81,6 +81,24 @@ class UsersController < ApplicationController
     redirect_to(:controller => :landing, :action => :index)
   end
 
+  def send_invites
+    friends = params[:friends]
+    notification_fbml = "Invitation to join <a href='http://torrentpho.be' target='_blank' alt='torrentpho.be'>torrentpho.be</a>"
+    facebook_session.send_notification(friends, notification_fbml)
+    flash[:notice] = 'Invites sent.'
+    redirect_to :controller => 'users', :action => 'index'
+  end
+
+  def inviteFriends
+      @user = User.find_by_fb_id(facebook_session.user.uid )
+      friend_ids = facebook_session.user.friends.map { |user| user.uid }
+      friends = @user.getFriendsNotOnTorrentphobe(friend_ids)
+      @users = facebook_session.users(friends, [:name, :uid]).sort_by {|user| user.name}
+      #@users.each do |tempuser|
+      #    render :text => tempuser.name
+      #end
+  end
+
   # GET /users/new
   # GET /users/new.xml
   def new

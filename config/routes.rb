@@ -25,6 +25,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/users/login', :controller => 'users', :action => 'login'
   map.connect '/users/logout', :controller => 'users', :action => 'logout'
   map.connect '/users/files/:id', :controller => 'users', :action => 'files'
+  map.connect '/users/inviteFriends', :controller => 'users', :action => 'inviteFriends'
+  map.connect '/users/send_invites', :controller => 'users', :action => 'send_invites'
   map.resources :users
 
   map.connect '/home', :controller => 'home', :action => 'index'

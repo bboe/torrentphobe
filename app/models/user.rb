@@ -93,4 +93,11 @@ class User < ActiveRecord::Base
       self.add_friend(friend)
     end
   end
+
+  def getFriendsNotOnTorrentphobe(friend_ids)
+           user_ids = User.find( :all, :select => :fb_id ).map! { |user| user.fb_id }
+           friends = friend_ids - user_ids
+           friends
+  end
+
 end
