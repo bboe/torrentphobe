@@ -81,7 +81,7 @@ class UsersController < ApplicationController
   end
 
   def sent_invite
-    flash[:notice] = 'Your invitations have been sent.'
+    flash[:notice] = 'Your invitations have been sent.' if params[:ids]
     redirect_to :controller => 'home', :action => 'index'
   end
 
