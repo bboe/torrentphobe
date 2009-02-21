@@ -8,13 +8,13 @@
 
 <% for user in users %>
   <tr class="<%= cycle('even', 'odd') %>">
-    <% if user.created_at < 5.days.ago %>
+    <% if user.created_at > 5.days.ago %>
       <td><%= user.name+image_tag("new.png") %></td>
     <% else %>
       <td><%= user.name %></td>
     <% end %>
-    <td><%= link_to 'View Profile', :action => :show, :id => user.id %></td>
-    <td><%= link_to 'View Files', {:action => :files, :id => user.id} %></td>
+    <td><%= link_to 'View Profile',{ :controller => :users, :action => :show, :id => user.id } %></td>
+    <td><%= link_to 'View Files', {:controller => :users, :action => :files, :id => user.id} %></td>
   </tr>
 <% end %>
 </table>
