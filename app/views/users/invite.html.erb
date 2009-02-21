@@ -1,0 +1,18 @@
+<fb:serverfbml><script type="text/fbml">  
+<fb:request-form
+action="<%= @host_url+'/users/sent_invite' %>" 
+method="post" invite="true" type="torrentphobe"
+content="&quot;Come share files with me on <a href='http://torrentpho.be' target='_blank' alt='torrentpho.be'>torrentpho.be</a>.&quot;<fb:req-choice url='<%= @host_url+'/' %>' label='Confirm' />" 
+>
+
+<fb:multi-friend-selector
+showborder="false" 
+max="20"
+actiontext="Invite your friends to use torrentphobe." 
+exclude_ids = "<%= @tp_friends.join(',').to_s %>"
+/>
+</fb:request-form></script>
+</fb:serverfbml>
+
+<br /><br />
+

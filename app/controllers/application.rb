@@ -70,4 +70,16 @@ class ApplicationController < ActionController::Base
     end
     return ordering
   end
+
+  def get_host_url
+      if request.env["HTTP_X_FORWARDED_HOST"]
+      host_url = request.env["HTTP_X_FORWARDED_HOST"]
+    else
+      host_url = request.env["HTTP_HOST"]
+    end
+
+    unless host_url[0..7] == "http://"
+      host_url = "http://" + host_url
+    end
+  end
 end

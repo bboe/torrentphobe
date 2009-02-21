@@ -20,4 +20,19 @@ module ApplicationHelper
     link_to( title, request.parameters.merge( {:c => column, :d => sort_dir} ) ) + " " +
     link_to( image_tag("sort_arrow_"+sort_dir+".png"), request.parameters.merge( {:c => column, :d => sort_dir} ) )
   end
+
+  def production_server?
+    return false if request.env["HTTP_X_FORWARDED_HOST"].nil? and request.env["HTTP_HOST"].nil?
+    if request.env["HTTP_X_FORWARDED_HOST"]
+      host_url = request.env["HTTP_X_FORWARDED_HOST"]
+    else
+      host_url = request.env["HTTP_HOST"]
+    end
+
+    unless host_url[0..7] == "http://"
+      host_url = "http://" + host_url
+    end
+    
+    host_url == "http://torrentpho.be"
+  end
 end
