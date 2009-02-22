@@ -10,8 +10,8 @@ class HomeController < ApplicationController
     @torrents.sort! { |a,b| a.created_at <=> b.created_at }
     @torrents = @torrents.reverse[0..5]
 
-    @new_users = @current_user.friends.map { |user| user if user.created_at < 5.days.ago }.compact
-  
+    @new_users = @current_user.friends.map { |user| user if user.created_at > 5.days.ago }.compact
+
     respond_to do |format|
         format.html # index.html.erb
     end
