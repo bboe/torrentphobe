@@ -76,3 +76,5 @@ Rails::Initializer.run do |config|
   require 'acts_as_ferret'
 
 end
+
+Tag.destroy_unused = true
