@@ -10,7 +10,7 @@ module TagsHelper
   end
 
   def columns(size)
-    7
+    4
   end
 
   def entries_per_column(size)

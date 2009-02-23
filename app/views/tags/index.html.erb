@@ -12,7 +12,7 @@
 <h1>Tag List</h1>
 <% if @tags.length > 0 %>
   <% columns(@tags.length).times do |i| %>
-  <table style="float:left;">
+  <table style="float:left; width: 200px;">
     <% (@tags.length/columns(@tags.length)).to_i.times do |j| %>
       <% index = offset(i,j,@tags.length) %>
       <% break if index >= @tags.length %>
