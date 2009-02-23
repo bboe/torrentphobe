@@ -1,4 +1,5 @@
 <% display_categories ||= false %>
+<% display_seeders_and_leechers ||= false %>
 <% allow_sorting = true if allow_sorting.nil? %>
 <% if torrents.length > 0 %>
 <table id="pretty-table">
@@ -14,6 +15,8 @@
     <th style="text-align: center;">
       <% if allow_sorting %><%= sort_link "Category", :category %><% else %><%= "Category" %><% end %>
     </th>
+    <% end %>
+    <% if display_seeders_and_leechers %>
     <th style="text-align: center;">
       <% if allow_sorting %><%= sort_link "Seeders/<br />Leechers", :category %><% else %><%= "Seeders/<br />Leechers" %><% end %>
     </th>
@@ -28,6 +31,8 @@
     <td style="padding-left: 10px; text-align: center;"><%=h display_size(torrent.size) %></td>
     <% if display_categories %>
     <td style="text-align: center; min-width: 100px;"><%=h torrent.category.name %></td>
+    <% end %>
+    <% if display_seeders_and_leechers %>
     <td style="text-align: center; min-width: 100px;"><%= seeders[torrent.id] || "0" %>/<%= leechers[torrent.id] || "0" %></td>
     <% end %>
   </tr>
@@ -36,4 +41,3 @@
 <% else %>
 No torrents available
 <% end %>
-<br />
