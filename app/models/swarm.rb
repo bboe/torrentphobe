@@ -41,14 +41,27 @@ class Swarm < ActiveRecord::Base
     Swarm.find_or_create_by_user_id_and_torrent_id_and_ip_address_and_port :torrent_id => torrent_id, :user_id => user_id, :peer_id => "_", :port => 1, :ip_address => "127.0.0.1", :status => 2
   end
 
-  def self.get_seeders torrent_id
+  def self.get_seeders(torrent_id)
     Swarm.count( :conditions => [ "torrent_id = ? and status = ?", torrent_id, Swarm.get_status_id("completed")] )
   end
 
-  def self.get_leechers torrent_id
+  def self.get_leechers(torrent_id)
     Swarm.count( :conditions => [ "torrent_id = ? and status = ?", torrent_id, Swarm.get_status_id("started")] )
   end
 
+  def self.get_all_seeders
+    seeders = Swarm.count(:all, :conditions => [ "status = ? ", Swarm.get_status_id("completed")], :group => 'torrent_id' )
+    seeder_hash = {}
+    seeders.each{|x| seeder_hash[x[0]] = x[1]}
+    return seeder_hash
+  end
+
+  def self.get_all_leechers
+    leechers = Swarm.count(:all, :conditions => [ "status = ? ", Swarm.get_status_id("started")], :group => 'torrent_id' )
+    leecher_hash = {}
+    leechers.each{|x| leecher_hash[x[0]] = x[1]}
+    return leecher_hash
+  end
 
   protected
 
