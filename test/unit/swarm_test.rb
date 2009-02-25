@@ -210,15 +210,42 @@ class SwarmTest < ActiveSupport::TestCase
 
   test "get seeders" do
     good = swarms(:good)
-    assert_equal 0, Swarm.get_seeders(good.torrent_id)
+    assert_equal 0, Swarm.get_seeders(good.torrent_id, good.user_id)
     Swarm.add_or_update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
-    assert_equal 1, Swarm.get_seeders(good.torrent_id)    
+    assert_equal 1, Swarm.get_seeders(good.torrent_id, good.user_id)    
   end
 
   test "get leechers" do
     good = swarms(:good)
-    assert_equal 1, Swarm.get_leechers(good.torrent_id)    
+    assert_equal 1, Swarm.get_leechers(good.torrent_id, good.user_id)    
     Swarm.add_or_update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
-    assert_equal 0, Swarm.get_leechers(good.torrent_id)    
+    assert_equal 0, Swarm.get_leechers(good.torrent_id, good.user_id)    
+  end
+  
+  test "get_all_seeders" do
+    good = swarms(:good)
+    seeders = Swarm.get_all_seeders good.user_id
+    assert_equal 0, seeders[good.torrent_id]
+    Swarm.add_or_update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
+    seeders = Swarm.get_all_seeders good.user_id
+    assert_equal 1, seeders[good.torrent_id]
+  end
+
+  test "get_all_leechers" do
+    good = swarms(:good)
+    leechers = Swarm.get_all_leechers good.user_id
+    assert_equal 1, leechers[good.torrent_id]
+    Swarm.add_or_update_swarm(good.torrent_id, good.user_id, good.peer_id, good.ip_address, good.port, "completed")
+    leechers = Swarm.get_all_leechers good.user_id
+    assert_equal 0, leechers[good.torrent_id]
+  end
+
+  test "get_all_leechers with some to hide" do
+    toms = swarms(:toms)
+    leechers = Swarm.get_all_leechers toms.user_id
+    assert_equal 1, leechers[toms.torrent_id]
+    
+    seeders = Swarm.get_all_seeders toms.user_id
+    assert_equal 0, seeders[toms.torrent_id]
   end
 end

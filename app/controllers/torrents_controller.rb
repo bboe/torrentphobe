@@ -6,8 +6,8 @@ class TorrentsController < ApplicationController
   # GET /torrents
   # GET /torrents.xml
   def index
-    current_user = get_current_user
-    @torrents = current_user.available_torrents
+    @current_user = get_current_user
+    @torrents = @current_user.available_torrents
     @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
 
     respond_to do |format|
@@ -20,11 +20,11 @@ class TorrentsController < ApplicationController
   # GET /torrents/1.xml
   def show
     return if invalid_id params[:id]
-    current_user = get_current_user
+    @current_user = get_current_user
 
     @torrent = Torrent.find(params[:id])
 
-    return if not_friends_or_owner current_user, @torrent
+    return if not_friends_or_owner @current_user, @torrent
 
     respond_to do |format|
         format.html # show.html.erb

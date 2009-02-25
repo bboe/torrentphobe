@@ -4,7 +4,7 @@ require 'config/global_config.rb'
 
 class TorrentsControllerTest < ActionController::TestCase
   test "should get index" do
-    @request.session[:user_id] = users(:Tom).id
+    @request.session[:user_id] = users(:Jonathan).id
     get :index
     assert_response :success
     assert_not_nil assigns(:torrents)

@@ -12,7 +12,7 @@ Go to:
 <% @torrents_by_category.each do |category,torrents| %>
   <% if !torrents.nil?  %>
     <h3><%= @category[category] %></h3>
-    <%= render :partial => "shared/torrents", :locals => {:torrents => torrents, :display_categories => false, :display_seeders_and_leechers => true, :allow_sorting => false } %>
+    <%= render :partial => "shared/torrents", :locals => {:current_user => @current_user, :torrents => torrents, :display_categories => false, :display_seeders_and_leechers => true, :allow_sorting => false } %>
      <div style="text-align: center;">
     <%= link_to 'More ' + @category[category]+"...", :controller => :categories, :action => :show, :id => category %>
     </div>

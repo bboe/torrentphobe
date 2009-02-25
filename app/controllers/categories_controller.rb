@@ -7,9 +7,9 @@ class CategoriesController < ApplicationController
   def index
     ordering = handle_sort params
 
-    current_user = get_current_user
+    @current_user = get_current_user
     
-    @torrents = current_user.available_torrents
+    @torrents = @current_user.available_torrents
     @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
 
     @category = {}
@@ -34,9 +34,9 @@ class CategoriesController < ApplicationController
     else
        ordering = handle_sort params
 
-       current_user = get_current_user
+       @current_user = get_current_user
        
-       @torrents = current_user.available_torrents
+       @torrents = @current_user.available_torrents
        @torrents = @torrents.select{ |torrent| torrent.category_id == @category.id} 
        @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
         respond_to do |format|

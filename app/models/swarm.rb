@@ -41,29 +41,39 @@ class Swarm < ActiveRecord::Base
     Swarm.find_or_create_by_user_id_and_torrent_id_and_ip_address_and_port :torrent_id => torrent_id, :user_id => user_id, :peer_id => "_", :port => 1, :ip_address => "127.0.0.1", :status => 2
   end
 
-  def self.get_seeders(torrent_id)
-    Swarm.count( :conditions => [ "torrent_id = ? and status = ?", torrent_id, Swarm.get_status_id("completed")] )
+  def self.get_seeders(torrent_id, user_id)
+    Swarm.get_seeders_or_leechers_count torrent_id, user_id, Swarm.get_status_id("completed")
   end
 
-  def self.get_leechers(torrent_id)
-    Swarm.count( :conditions => [ "torrent_id = ? and status = ?", torrent_id, Swarm.get_status_id("started")] )
+  def self.get_leechers(torrent_id, user_id)
+    Swarm.get_seeders_or_leechers_count torrent_id, user_id, Swarm.get_status_id("started")
   end
 
-  def self.get_all_seeders
-    seeders = Swarm.count(:all, :conditions => [ "status = ? ", Swarm.get_status_id("completed")], :group => 'torrent_id' )
-    seeder_hash = {}
-    seeders.each{|x| seeder_hash[x[0]] = x[1]}
-    return seeder_hash
+  def self.get_all_seeders user_id
+    Swarm.get_all_seeders_or_leechers user_id, Swarm.get_status_id("completed")
   end
 
-  def self.get_all_leechers
-    leechers = Swarm.count(:all, :conditions => [ "status = ? ", Swarm.get_status_id("started")], :group => 'torrent_id' )
-    leecher_hash = {}
-    leechers.each{|x| leecher_hash[x[0]] = x[1]}
-    return leecher_hash
+  def self.get_all_leechers user_id
+    Swarm.get_all_seeders_or_leechers user_id, Swarm.get_status_id("started")
   end
 
   protected
+
+  def self.get_all_seeders_or_leechers user_id, status
+    s_or_l = Swarm.count('swarms.id', :conditions => [ "swarms.status = :status and ((swarms.user_id = relationships.friend_id and relationships.user_id = :user_id) or swarms.user_id = :user_id) ", {:status => status, :user_id => user_id}],
+                          :group => 'swarms.torrent_id',
+                          :joins => ', `relationships`',
+                          :distinct => true)
+    hash = Hash.new(0)
+    s_or_l.each{|x| hash[x[0]] = x[1]}
+    return hash
+  end
+  
+  def self.get_seeders_or_leechers_count torrent_id, user_id, status
+    Swarm.count( 'swarms.id', :conditions => [ "swarms.torrent_id = :torrent_id and swarms.status = :status and ((swarms.user_id = relationships.friend_id and relationships.user_id = :user_id) or swarms.user_id = :user_id)", {:torrent_id => torrent_id, :status => status, :user_id => user_id}],
+                 :joins => ', `relationships`',
+                 :distinct => true)    
+  end
 
   def self.get_status_id input
     case input

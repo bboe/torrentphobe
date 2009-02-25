@@ -27,7 +27,7 @@
 
 <p>
   <b>Seeders/Leechers:</b>
-  <%=h Swarm.get_seeders(@torrent.id).to_s+"/"+Swarm.get_leechers(@torrent.id).to_s %>
+  <%=h Swarm.get_seeders(@torrent.id, @current_user.id).to_s+"/"+Swarm.get_leechers(@torrent.id, @current_user.id).to_s %>
 </p>
 
 <%= button_to "Download" , {:action => :download_torrent_file, :id => @torrent.id}, :id => :inline %>

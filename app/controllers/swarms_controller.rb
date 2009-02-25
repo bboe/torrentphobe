@@ -47,7 +47,7 @@ class SwarmsController < ApplicationController
       {"peer id" => s.peer_id, "ip" => s.ip_address, "port" => s.port}
     end
     
-    output = {"interval" => 30, "peers" => swarm, "complete" => Swarm.get_seeders(torrent_id), "incomplete" => Swarm.get_leechers(torrent_id)}
+    output = {"interval" => 30, "peers" => swarm, "complete" => Swarm.get_seeders(torrent_id, user_id), "incomplete" => Swarm.get_leechers(torrent_id, user_id)}
     render :text => output.bencode    
   end
 
