@@ -1,6 +1,6 @@
 <h1>Tag: <%=h @tag.name %></h1>
 
-<%= render :partial => "shared/torrents", :locals => { :torrents => @torrents } %>
+<%= render :partial => "shared/torrents", :locals => { :current_user => @current_user, :torrents => @torrents } %>
 
 
 <%= button_to 'Back', tags_path, :method => :get %>
