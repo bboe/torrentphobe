@@ -137,8 +137,8 @@ class TorrentsController < ApplicationController
     @query = params[:q].to_s
     @torrents = Torrent.find_by_contents(@query)
 
-    current_user = get_current_user
-    @available_torrents = current_user.available_torrents
+    @current_user = get_current_user
+    @available_torrents = @current_user.available_torrents
 
     @torrents.map! { |torrent| torrent if @available_torrents.include?(torrent) }.compact!
     @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
