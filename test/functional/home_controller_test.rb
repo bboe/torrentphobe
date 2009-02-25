@@ -1,8 +1,8 @@
-require 'test_helper'
+require 'test/test_helper'
 
 class HomeControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "home" do
+    get :index, {}, {:user_id => users(:Tom)}
+    assert_response :success
   end
 end

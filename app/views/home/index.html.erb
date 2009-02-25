@@ -19,6 +19,6 @@
 <% end %>
 
 <h3>Recent Torrents</h3>
-<%= render :partial => "shared/torrents", :locals => { :torrents => @torrents, :allow_sorting => false, :display_categories => true, :display_seeders_and_leechers => true } %>
+<%= render :partial => "shared/torrents", :locals => { :current_user => @current_user, :torrents => @torrents, :allow_sorting => false, :display_categories => true, :display_seeders_and_leechers => true } %>
 <br />
 
