@@ -17,17 +17,28 @@ body{
 }
 
 #header{
-  background: transparent url(/images/logo.jpg) no-repeat center center;
-  min-height: 170px;
-  text-align: right;
   width: 840px;
   margin: 0 auto;
+}
+
+#header a.image {
+  display:block;
+  margin: 0 auto;
+  background: transparent url(/images/logo.jpg) no-repeat center center;
+  min-height: 170px;
+  width: 600px;
 }
 
 #header a{
   color: #12bce7;
   font-weight: bold;
-  margin: 40px 0 0 0;
+}
+
+#side {
+  float: right;
+  display: compact;
+  width: 200px;
+  text-align: right;
 }
 
 #tabs {

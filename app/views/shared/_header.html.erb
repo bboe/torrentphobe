@@ -1,5 +1,5 @@
 <div id="header">
-  <br />
+<div id="side">
   <% if session[:user_name] %>
     <%= link_to session[:user_name], {:controller => :users, :action => :show, :id => session[:user_id]} %><br />
     <%= link_to "Profile", {:controller => :users, :action => :show, :id => session[:user_id]} %><div style="color: white; display: inline;"> :</div>
@@ -9,6 +9,10 @@
   <%= fb_connect_javascript_tag %>
   <%= init_fb_connect "XFBML" %>
   <%= link_to_function 'Logout', "FB.Connect.logoutAndRedirect('/users/logout')" %>
+  </div>
+  <a class="image" href="#">
+  <br />
+  </a>
 </div>
 <div id="tabs">
   <ul>
