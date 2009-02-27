@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_numericality_of :fb_id, :greater_than => 0
 
   def torrents page_id = 0
-    Torrent.find(:all, :conditions => ["((relationships.friend_id = swarms.user_id and relationships.user_id = :user_id) or (swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id", {:user_id => self.id}], :joins => 'inner join users, relationships,  swarms', :select => "distinct torrents.*")    
+    Torrent.find(:all, :conditions => ["((relationships.friend_id = swarms.user_id and relationships.user_id = :user_id) or (swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id", {:user_id => self.id}], :joins => 'inner join relationships,  swarms', :select => "distinct torrents.*")    
   end
 
   def add_friend(friend)
@@ -20,61 +20,15 @@ class User < ActiveRecord::Base
     Relationship.find_or_create_by_user_id_and_friend_id(friend.id, self.id)
   end
 
-  # This gets the list of torrents depending on friend relationships.  Returns owned torrents, user's active torrents, and user's friends' active torrents and user's friend's owned torrents
-  def available_torrents 
-    torrents = []
-    begin 
-      torrents << self.friends_torrents
-      torrents << self.my_torrents
-      torrents << self.friends_owned_torrents
-      torrents = torrents.flatten.uniq
-
-      torrents
-    rescue
-      torrents
-    end
-  end
-
   def my_torrents
     torrents = []
     begin 
-       torrents << self.torrents
        torrents << self.owned_torrents
        torrents = torrents.flatten.uniq
-
        torrents
     rescue
       torrents
     end
-  
-  end
-
-  def friends_owned_torrents
-    torrents = []
-    begin 
-      if self.friends
-        torrents = self.friends.map {|friend| friend.owned_torrents }
-      end
-      torrents = torrents.flatten.uniq
-      torrents
-    rescue
-      torrents
-    end
-  end
-
-  def friends_torrents
-    torrents = []
-    begin 
-       if self.friends
-	  torrents = self.friends.map {|friend| friend.torrents }
-       end
-       torrents = torrents.flatten.uniq
-
-       torrents
-    rescue
-      torrents
-    end
-
   end
 
   def valid_friend?(uid)
