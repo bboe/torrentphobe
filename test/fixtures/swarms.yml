@@ -23,3 +23,11 @@ toms:
   port: 33
   peer_id: TOM
   status: 0
+
+jerrys_owned:
+  user_id: 8
+  torrent_id: 4
+  ip_address: 127.0.0.1
+  port: 33
+  peer_id: 241421
+  status: 0

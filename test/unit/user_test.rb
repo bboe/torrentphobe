@@ -59,12 +59,13 @@ class UserTest < ActiveSupport::TestCase
     good = torrents(:good)
     assert_equal [good], jon.torrents
   end
+
   test "display my torrents, but not display enemies' torrents" do
     tom = users(:Tom)
     jerry = users(:Jerry)
 
-    toms_torrents = tom.available_torrents 
-    jerrys_torrents = jerry.available_torrents
+    toms_torrents = tom.torrents 
+    jerrys_torrents = jerry.torrents
 
     #don't show enemies'
     assert !(jerrys_torrents.include?( toms_torrents) ), "Jerry can see tom's torrents"
@@ -73,6 +74,7 @@ class UserTest < ActiveSupport::TestCase
     assert (toms_torrents.include?( torrents("toms"))), "tom sees his own torrents" 
     assert (jerrys_torrents.include?( torrents("jerrys"))), "jerry sees his own torrents"
   end
+
   test "display friends' torrents " do
      tom = users(:Tom)
      jerry = users(:Jerry)
@@ -80,7 +82,7 @@ class UserTest < ActiveSupport::TestCase
        tom.add_friend(jerry)
      end
      assert tom.friends.include?( jerry ), "tom and jerry are friends"  
-     assert tom.available_torrents.include? torrents("jerrys")
+     assert tom.torrents.include? torrents("jerrys")
   end
 
   test "get friends' owned torrents" do
@@ -90,8 +92,29 @@ class UserTest < ActiveSupport::TestCase
       tom.add_friend(jerry)
     end
     test = Torrent.create(:name => "test", :size => 1, :meta_info => "info", :data => "more data", :category_id => 1, :owner_id => jerry.id)
+    Swarm.add_user_to_swarm_for_list test.id, test.owner_id
     test.save
-    assert tom.friends_owned_torrents.include? test
+    assert tom.torrents.include? test
+  end
+
+  test "view torrents through friends" do
+    tom = users(:Tom)
+    jerry = users(:Jerry)
+    bob = users(:Bob)
+    assert_difference("Relationship.count", 2) do
+      bob.add_friend(jerry)
+    end
+    assert_difference("Relationship.count", 2) do
+      bob.add_friend(tom)
+    end
+
+    #Cant see enemies torrents
+    assert !tom.torrents.include?(torrents(:jerrys))
+
+    Swarm.add_or_update_swarm torrents(:jerrys).id, bob.id, "I'mAPeer", "127.0.0.1", "5050", "started"
+
+    #Should be able to see enemies torrent becuase common friend is downloading it
+    assert tom.torrents.include? torrents(:jerrys)
   end
 
   test "delete users" do
