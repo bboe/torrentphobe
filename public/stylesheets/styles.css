@@ -1,6 +1,6 @@
 html {
   min-height: 100%;
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, "Bitstream Vera Sans", sans-serif;
 }
 
 body{
@@ -135,7 +135,7 @@ p.landing {
 }
 
 #footer a, a.landing {
-color: #fff
+color: #ffffff;
 }
 
 h1, h4 {
