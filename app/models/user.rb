@@ -23,9 +23,7 @@ class User < ActiveRecord::Base
   def my_torrents
     torrents = []
     begin 
-       torrents << self.owned_torrents
-       torrents = torrents.flatten.uniq
-       torrents
+       torrents = self.owned_torrents.flatten.uniq
     rescue
       torrents
     end
@@ -50,11 +48,4 @@ class User < ActiveRecord::Base
       self.add_friend(friend)
     end
   end
-
-  def getFriendsNotOnTorrentphobe(friend_ids)
-           user_ids = User.find( :all, :select => :fb_id ).map! { |user| user.fb_id }
-           friends = friend_ids - user_ids
-           friends
-  end
-
 end

@@ -7,8 +7,7 @@ class HomeController < ApplicationController
     ordering = handle_sort params
     @torrents = @current_user.my_torrents
 
-    @torrents.sort! { |a,b| a.created_at <=> b.created_at }
-    @torrents = @torrents.reverse[0..5]
+    @torrents = @torrents.sort_by(&:created_at).reverse[0..5]
 
     @new_users = @current_user.friends.map { |user| user if user.created_at > 5.days.ago }.compact
 
