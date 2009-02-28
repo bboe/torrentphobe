@@ -3,15 +3,15 @@
 <% form_for(@torrent) do |f| %>
   <%= f.error_messages %>
   <p style="font-weight: bold">
-    <%= f.label :name %>:
+    Name:
     <%= f.text_field :name, :size => 50 %>
   </p>
   <p style="font-weight: bold">
-     <%= f.label :category %>:
+     Category:
     <%=  f.collection_select(:category_id, Category.find(:all), :id, :name, {}) %>
  </p>
  <p style="font-weight: bold">
-     <%= f.label :tags %> (Comma Separated):
+     Tags (Comma Separated):
     <%= f.text_field :tag_list, :size => 40 %>
  </p>
 

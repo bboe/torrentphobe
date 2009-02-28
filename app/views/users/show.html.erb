@@ -5,8 +5,7 @@
   <% if @user.id == session[:user_id] %>
   <p><%= link_to image_tag("edit_profile.png", :border=>0)+' Edit My Profile', {:action => :edit, :id => @user.id}, :class => :head %></p>
   <% end %>
-  </td>
-  </div>
+  </td></tr>
   </table>
 </div>
 

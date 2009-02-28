@@ -11,10 +11,10 @@
     <%= f.collection_select(:category_id, Category.find(:all), :id, :name, {:include_blank =>''}) %>
     <br /><br />
     3. Tag your torrent (Comma Separated): <%= f.text_field :tag_list %><br /><br />
-    <div style="text-align: center;">
-    <%= submit_tag "Upload It!", :style=>"font-size: 24px; font-weight: bold;" %>
-    </div>
   </p>
+  <div style="text-align: center;">
+  <%= submit_tag "Upload It!", :style=>"font-size: 24px; font-weight: bold;" %>
+  </div>
 <% end %>
 
 <br /><br />
