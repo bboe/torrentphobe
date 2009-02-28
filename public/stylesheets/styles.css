@@ -1,270 +1,327 @@
 html {
-  min-height: 100%;
-  font-family: Arial, Helvetica, "Bitstream Vera Sans", sans-serif;
+	min-height:100%;
+	font-family:Arial,Helvetica,"Bitstream Vera Sans",sans-serif
 }
 
-body{
-  background: #000 url(/images/fade.jpg) repeat-x bottom left;
-  height: 100%;
-  margin: 0 0 0 0;
+body {
+	background:#000 url(/images/fade.jpg) repeat-x bottom left
+}
+
+body,#container {
+	height:100%
+}
+
+body,#container,#search {
+	margin:0 0 0 0
 }
 
 #container {
-  height: 100%;
-  margin: 0 0 0 0
-  min-width: 10%;
-  padding: 0 60px;
+	min-width:10%;
+	padding:0 60px
 }
 
-#header{
-  width: 840px;
-  margin: 0 auto;
+#header,#tabs {
+	width:840px
+}
+
+#header,#header a.image,#tabs,#content,#team {
+	margin:0 auto
+}
+
+#header a.image,#team a {
+	display:block
 }
 
 #header a.image {
-  display:block;
-  margin: 0 auto;
-  background: transparent url(/images/logo.jpg) no-repeat center center;
-  min-height: 170px;
-  width: 600px;
+	background:transparent url(/images/logo.jpg) no-repeat center center;
+	min-height:170px
 }
 
-#header a{
-  color: #12bce7;
-  font-weight: bold;
+#header a.image,#tabs ul {
+	width:600px
+}
+
+#header a,h4,h1,h3 {
+	color:#12bce7
+}
+
+#header a,h4,h1,h2,h3,#errorExplanation h2,#team a {
+	font-weight:bold
+}
+
+#side,#search {
+	float:right
 }
 
 #side {
-  float: right;
-  display: compact;
-  width: 200px;
-  text-align: right;
+	width:200px
+}
+
+#side,#search,#headline p {
+	text-align:right
 }
 
 #tabs {
-  width: 840px;
-  margin: 0 auto;
-  height: 40px;
-  background-image: url(/images/stripe.png);
+	background:url(/images/stripe.png);
+	height:40px
 }
 
 #tabs ul {
-  width: 600px;
-  margin: 0;
-  padding-left: 35px;
-  list-style: none;
+	margin:0;
+	padding-left:35px;
+	list-style:none
+}
+
+#tabs li,#tabs a,#inline {
+	float:left
 }
 
 #tabs li {
-  float: left;
-  border-left: thin solid #ffffff;
+	border-left:thin solid #fff
 }
 
 #tabs li.last {
-  border-right: thin solid #ffffff;
+	border-right:thin solid #fff
+}
+
+#tabs a,#cloud a,a,#team a {
+	text-decoration:none
+}
+
+#tabs a,#main,p,#errorExplanation h2 {
+	text-align:left
 }
 
 #tabs a {
-  float: left;
-  text-decoration: none;
-  text-align: left;
-  font-size: 17px;
-  font-weight: 800;
-  padding: 15px 25px 2px 5px;
-  z-index: 5;
+	font-size:17px;
+	font-weight:800;
+	padding:15px 25px 2px 5px;
+	z-index:5
 }
 
-#tabs a:visited { color: #ffffff; }
-
-a.main { 
-  border-top: medium solid #ffffff;
-  color: #ffffff;
+#tabs a:visited,a.main,#footer,a.landing,#footer a,h2,#errorExplanation h2,#team a:hover {
+	color:#fff
 }
+
+a.main {
+	border-top:medium solid #fff
+}
+
 a.bg {
-  border-top: medium solid transparent;
-  color: #dfdfdf;
+	border-top:medium solid transparent;
+	color:#dfdfdf
 }
+
 a.bg:hover {
-  border-top: medium solid #12bce7;
+	border-top:medium solid #12bce7
 }
 
 #search {
-  padding: 7px 0 0 0;
-  margin: 0 0 0 0;
-  width: 295px;
-  float: right;
-  text-align: right;
-  height: 25px;
+	padding:7px 0 0 0;
+	width:295px;
+	height:25px
 }
 
 #main {
-  min-height: 500px;
-  vertical-align: top;
-  text-align: left;
+	min-height:500px
+}
+
+#main,#headline p {
+	vertical-align:top
 }
 
 #content {
-  padding: 10px 20px 10px 20px;
-  width: 800px;
-  min-height: 520px;
-  margin: 0 auto;
-  background-color: #fff
+  background-color: #fff;
+	padding:10px 20px 10px 20px;
+	width:800px;
+	min-height:520px
 }
 
 #footer {
-  padding-top: 5px;
-  text-align: center;
-  height: 100px;
-  color: #fff;
+	padding-top:5px;
+	height:100px
 }
 
-#pretty-table td, #pretty-table th { padding: 3px; }
-#pretty-table th { border-bottom: thin dotted #a0a0a0; }
-#pretty-table td { border-bottom: thin solid #dfdfdf; }
+#footer,#flash-message,#team a {
+	text-align:center
+}
 
-#pretty-table tr.even td{ background-color: #EFF7FF; }
-#pretty-table tr.odd td{ background-color: #FBFBFB; }
-#pretty-table tr:hover td { background-color: #B9ECF2; }
+#pretty-table th,#pretty-table td {
+	padding:3px
+}
 
-p {
-  text-align: left;
+#pretty-table th {
+	border-bottom:thin dotted #a0a0a0
+}
+
+#pretty-table td {
+	border-bottom:thin solid #dfdfdf
+}
+
+#pretty-table tr.even td {
+	background:#eff7ff
+}
+
+#pretty-table tr.odd td {
+	background:#fbfbfb
+}
+
+#pretty-table tr:hover td {
+	background:#b9ecf2
 }
 
 p.landing {
-  color: #b8b8b8
+	color:#b8b8b8
 }
 
-#footer a, a.landing {
-color: #ffffff;
-}
-
-h1, h4 {
-  color: #12bce7;
-  font-size: x-large;
-  font-weight:bold;
+h4,h1 {
+	font-size:x-large
 }
 
 h2 {
-  font-size: large;
-  font-weight:bold;
-  color: #fff
+	font-size:large
 }
 
 h3 {
-  font-weight:bold;
-  color: #12bce7;
-  margin: 10px 0;
+	margin:10px 0
 }
 
 #headline p {
-  text-align: right;
-  vertical-align: top;
-  padding: 10px 10px 0 0;
+	padding:10px 10px 0 0
 }
 
 #headline a {
-  margin-top: 20px;
+	margin-top:20px
 }
 
-a, #cloud a { text-decoration: none;}
+a:hover,#cloud a:hover {
+	text-decoration:underline
+}
 
-a:hover { text-decoration: underline; }
-
-a:visited { color: #3366FF; }
+a:visited {
+	color:#36f
+}
 
 img {
-  border-width: 0;
+	border-width:0
+}
+
+#flash-message,#team a {
+	width:100%
 }
 
 #flash-message {
-  width: 100%;
-  font-size: medium;
-  font-weight: 500;
-  text-align: center;
-  padding: 8px 0;
+	font-size:medium;
+	font-weight:500;
+	padding:8px 0
 }
 
-.notice { background-color: #FFFF99; }
-.warning { background-color: #FFBBBB; }
-.message { background-color: #D0E6FF; }
+.notice {
+	background:#ff9
+}
+
+.warning {
+	background:#fbb
+}
+
+.message {
+	background:#d0e6ff
+}
 
 #errorExplanation {
-  width: 400px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
+	background:#f0f0f0;
+	width:400px;
+	border:2px solid red;
+	padding:7px;
+	padding-bottom:12px;
+	margin-bottom:20px
 }
 
 #errorExplanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  background-color: #c00;
-  color: #fff;
+	background:#c00;
+	padding:5px 5px 5px 15px;
+	margin:-7px
+}
+
+#errorExplanation h2,#errorExplanation ul li {
+	font-size:12px
 }
 
 #errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 5px;
+	color:#333;
+	margin-bottom:0;
+	padding:5px
 }
 
 #errorExplanation ul li {
-  font-size: 12px;
-  list-style: square;
+	list-style:square
 }
 
-#cloud a:hover {
-  text-decoration: underline;
+.cloud1 {
+	font-size:0.9em;
+	color:#6f6f6f
 }
 
-
-.cloud1 { font-size: 0.9em; color: #6F6F6F; }
-.cloud2 { font-size: 1.3em; color: #3BB9FF; }
-.cloud3 { font-size: 1.6em; color: #306EFF; }
-.cloud4 { font-size: 2.4em; color: #2B60DE; }
-
-#tag-table {
-  display: table;
+.cloud2 {
+	font-size:1.3em;
+	color:#3bb9ff
 }
 
-#tag-col {
-  display: table-column;
+.cloud3 {
+	font-size:1.6em;
+	color:#306eff
 }
 
-#inline { float: left; }
-#inline { float: clear; }
+.cloud4 {
+	font-size:2.4em;
+	color:#2b60de
+}
+
+#tag-table,table {
+	display:table
+}
+
+#tag-col,col {
+	display:table-column
+}
 
 #team a {
-  text-decoration: none;
-  text-align: center;
-  font-weight: bold;
-  color: transparent;
-  font-weight: bold;
-  font-size: 28px;
-  width: 100%;
-  height: 99%;
-  display: block;
+	color:transparent;
+	font-size:28px;
+	height:99%
 }
 
-#team a:hover {
-  color: #FFFFFF;
+#team td {
+	height:270px;
+	width:160px
 }
 
-#team { margin: 0 auto; }
-#team td{ height: 270px; width: 160px; }
+tr {
+	display:table-row
+}
 
-table    { display: table }
-tr       { display: table-row }
-thead    { display: table-header-group }
-tbody    { display: table-row-group }
-tfoot    { display: table-footer-group }
-col      { display: table-column }
-colgroup { display: table-column-group }
-td, th   { display: table-cell }
-caption  { display: table-caption }
+thead {
+	display:table-header-group
+}
+
+tbody {
+	display:table-row-group
+}
+
+tfoot {
+	display:table-footer-group
+}
+
+colgroup {
+	display:table-column-group
+}
+
+th,td {
+	display:table-cell
+}
+
+caption {
+	display:table-caption
+}
+
 
