@@ -117,6 +117,45 @@ class UserTest < ActiveSupport::TestCase
     assert tom.torrents.include? torrents(:jerrys)
   end
 
+  test "view torrents paginated" do
+    alice = users(:Alice)
+    bob = users(:Bob)
+    50.times do |i|
+      #prepend zeros before the name so that it sorts correctly by digit
+      name = "000" + (i < 10 ? "0"+i.to_s : i.to_s )
+      test = Torrent.create(:name => name, :size => 1, :meta_info => "info", :info_hash => i.to_s, :data => "more data", :category_id => 1, :owner_id => alice.id)
+      Swarm.add_or_update_swarm test.id, alice.id, "I'mAPeer", "127.0.0.1", "5050", "stopped"
+    end
+
+    #By default 20 torrents should be returned from the first page
+    assert_equal 20, bob.torrents.length
+
+    #By default 20 torrents should be returned from the second page
+    assert_equal 20, bob.torrents(1).length
+
+    #Return the second page of 5 torrents (torrents 5-9)
+    second_five = bob.torrents(1,5, "name ASC")
+    assert_equal 5, second_five.length
+
+    id = 5
+    #Ensure that torrents 5-9 are returned (as identified by their name)
+    second_five.each do |torrent|
+      assert_equal torrent.name.to_i, id, "Look up torrents by page, second five"
+      id+=1
+    end
+    
+    #Return the last page of 10 torrents (torrents 40-49)
+    last_five = bob.torrents(4,10, "name ASC")
+    assert_equal 10, last_five.length
+
+    id = 40
+    #Ensure that torrents 5-9 are returned (as identified by their name)
+    last_five.each do |torrent|
+      assert_equal torrent.name.to_i, id, "Look up torrents by page, last ten"
+      id+=1
+    end
+  end
+
   test "delete users" do
     tom = users(:Tom)
     assert_difference("User.count", -1) do
@@ -128,4 +167,5 @@ class UserTest < ActiveSupport::TestCase
     assert_equal tom, u        
   end
 
+  
 end
