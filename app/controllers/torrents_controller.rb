@@ -180,8 +180,8 @@ class TorrentsController < ApplicationController
   end
 
   def not_friends_or_owner user, torrent
-    if torrent.owner.id != user.id and !user.friends.find_by_id( torrent.owner.id )
-      display_message :warning, torrent.id, "Sorry, you must be somones friend to see their torrents!"
+    if !user.torrents.include?(torrent)
+      display_message :warning, torrent.id, "Sorry, you must be someone's friend to see their torrents!"
     end
   end
 

@@ -30,4 +30,36 @@ jerrys_owned:
   ip_address: 127.0.0.1
   port: 33
   peer_id: 241421
-  status: 0
+  status: 2
+
+one_owned:
+  user_id: 2
+  torrent_id: 1
+  ip_address: 127.0.0.1
+  port: 33
+  peer_id: 241421
+  status: 2
+
+two_owned:
+  user_id: 3
+  torrent_id: 2
+  ip_address: 127.0.0.1
+  port: 33
+  peer_id: 241421
+  status: 2
+
+bobs_owned:
+  user_id: 3
+  torrent_id: 6
+  ip_address: 127.0.0.1
+  port: 33
+  peer_id: 241421
+  status: 2
+
+bobs25_owned:
+  user_id: 3
+  torrent_id: 25
+  ip_address: 127.0.0.1
+  port: 33
+  peer_id: 241421
+  status: 2

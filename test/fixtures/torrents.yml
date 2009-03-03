@@ -17,7 +17,7 @@ two:
   meta_info: More info
   data: Some more info
   category_id: 2
-  owner_id: 1
+  owner_id: 3
   info_hash: JEFF_IS_THE_SHIZNIT2
 
 good:

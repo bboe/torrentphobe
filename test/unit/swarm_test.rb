@@ -153,19 +153,19 @@ class SwarmTest < ActiveSupport::TestCase
   end
 
   test "new entry to swarm - no event passed in" do
-    Swarm.add_or_update_swarm "3", "1", "peer", "192.168.1.1", "3000", "empty"
-    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("1").status
+    Swarm.add_or_update_swarm "12345", "999", "peer", "192.168.1.1", "3000", "empty"
+    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("999").status
   end
   
   test "new entry to swarm" do
-    Swarm.add_or_update_swarm "3", "2", "peer", "192.168.1.1", "3000", "started"
-    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("2").status
+    Swarm.add_or_update_swarm "12345", "777", "peer", "192.168.1.1", "3000", "started"
+    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("777").status
 
-    Swarm.add_or_update_swarm "3", "3", "peer", "192.168.1.1", "3000", "completed"
-    assert_equal Swarm.get_status_id("completed"), Swarm.find_by_user_id("3").status
+    Swarm.add_or_update_swarm "12345", "888", "peer", "192.168.1.1", "3000", "completed"
+    assert_equal Swarm.get_status_id("completed"), Swarm.find_by_user_id("888").status
 
-    Swarm.add_or_update_swarm "3", "4", "peer", "192.168.1.1", "3000", "stopped"
-    assert_equal Swarm.get_status_id("stopped"), Swarm.find_by_user_id("4").status
+    Swarm.add_or_update_swarm "12345", "999", "peer", "192.168.1.1", "3000", "stopped"
+    assert_equal Swarm.get_status_id("stopped"), Swarm.find_by_user_id("999").status
   end
 
 
@@ -177,23 +177,23 @@ class SwarmTest < ActiveSupport::TestCase
 
   test "update swarm - empty" do
     #A previously completed entry with an empty event should remain completed
-    Swarm.add_or_update_swarm "1", "2", "peer", "192.168.0.0", "123", "completed"
+    Swarm.add_or_update_swarm "12345", "999", "peer", "192.168.0.0", "123", "completed"
 
-    Swarm.add_or_update_swarm "1", "2", "peer", "192.168.0.0", "123", "empty"
-    assert_equal Swarm.get_status_id("completed"), Swarm.find_by_user_id("2").status, "Previously completed, now empty"
+    Swarm.add_or_update_swarm "12345", "999", "peer", "192.168.0.0", "123", "empty"
+    assert_equal Swarm.get_status_id("completed"), Swarm.find_by_user_id("999").status, "Previously completed, now empty"
 
     #A previously started entry with an empty event should remain started
-    Swarm.add_or_update_swarm "1", "3", "peer", "192.168.0.0", "123", "started"
+    Swarm.add_or_update_swarm "12345", "999", "peer", "192.168.0.0", "123", "started"
 
-    Swarm.add_or_update_swarm "1", "3", "peer", "192.168.0.0", "123", "empty"
-    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("3").status, "Previously started now empty"
+    Swarm.add_or_update_swarm "12345", "999", "peer", "192.168.0.0", "123", "empty"
+    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("999").status, "Previously started now empty"
 
 
     #Previously stopped torrents, an empty event should start it
-    Swarm.add_or_update_swarm "1", "4", "peer", "192.168.0.0", "123", "stopped"
+    Swarm.add_or_update_swarm "12345", "888", "peer", "192.168.0.0", "123", "stopped"
 
-    Swarm.add_or_update_swarm "1", "4", "peer", "192.168.0.0", "123", "empty"
-    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("4").status, "Previously stopped now empty"
+    Swarm.add_or_update_swarm "12345", "888", "peer", "192.168.0.0", "123", "empty"
+    assert_equal Swarm.get_status_id("started"), Swarm.find_by_user_id("888").status, "Previously stopped now empty"
   end
   
   test "update swarm - completed" do
