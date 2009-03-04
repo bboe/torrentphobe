@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if current_user == @user
       @torrents = @user.my_torrents
     else
-      @torrents = @user.torrents
+      @torrents = paginated_torrents @user
     end
 
     @torrents.sort! { |a,b| a.created_at <=> b.created_at }

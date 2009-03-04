@@ -11,10 +11,9 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :friend_hash, :fb_id
   validates_numericality_of :fb_id, :greater_than => 0
 
-  def torrents page_id = 0,  num_per_page = 20, order = "torrent_id DESC"
-    offset = page_id*num_per_page
-    limit = num_per_page
-    Torrent.find(:all, :conditions => ["((relationships.friend_id = swarms.user_id and relationships.user_id = :user_id) or (swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id", {:user_id => self.id}], :joins => 'inner join relationships,  swarms', :select => "distinct torrents.*", :limit => limit, :offset => offset, :order => order)
+  # Can pass in any of the find options (such as order), as well as :page_id and :num_per_page for pagination
+  def torrents args = {}
+    Torrent.find(:all, {:conditions => ["((relationships.friend_id = swarms.user_id and relationships.user_id = :user_id) or (swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id", {:user_id => self.id}], :joins => 'inner join relationships,  swarms', :select => "distinct torrents.*"}.merge(args))
   end
 
   def add_friend(friend)

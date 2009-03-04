@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
 
     @current_user = get_current_user
     
-    @torrents = @current_user.torrents
+    @torrents = paginated_torrents @current_user
     @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
 
     @category = {}
@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
 
        @current_user = get_current_user
        
-       @torrents = @current_user.torrents
+       @torrents = paginated_torrents @current_user
        @torrents = @torrents.select{ |torrent| torrent.category_id == @category.id} 
        @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
         respond_to do |format|

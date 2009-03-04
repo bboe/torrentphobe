@@ -8,7 +8,7 @@ class TorrentsController < ApplicationController
   def index
     @current_user = get_current_user
     page_id = params[:page] || 0
-    @torrents = @current_user.torrents page_id
+    @torrents = paginated_torrents @current_user
     @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
 
     respond_to do |format|
@@ -139,7 +139,7 @@ class TorrentsController < ApplicationController
     @torrents = Torrent.find_by_contents(@query)
 
     @current_user = get_current_user
-    @torrents = @current_user.torrents
+    @torrents = paginated_torrents @current_user
 
     @torrents.map! { |torrent| torrent if @torrents.include?(torrent) }.compact!
     @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])

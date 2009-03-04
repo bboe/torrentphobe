@@ -128,13 +128,13 @@ class UserTest < ActiveSupport::TestCase
     end
 
     #By default 20 torrents should be returned from the first page
-    assert_equal 20, bob.torrents.length
+    assert_equal 20, bob.torrents(:limit => 20).length
 
     #By default 20 torrents should be returned from the second page
-    assert_equal 20, bob.torrents(1).length
+    assert_equal 20, bob.torrents(:limit => 20, :offset => 20).length
 
     #Return the second page of 5 torrents (torrents 5-9)
-    second_five = bob.torrents(1,5, "name ASC")
+    second_five = bob.torrents(:offset => 5, :limit => 5, :order => "name ASC")
     assert_equal 5, second_five.length
 
     id = 5
@@ -145,7 +145,8 @@ class UserTest < ActiveSupport::TestCase
     end
     
     #Return the last page of 10 torrents (torrents 40-49)
-    last_five = bob.torrents(4,10, "name ASC")
+    last_five = bob.torrents(:offset => 40, :limit => 10, :order => "name ASC")
+
     assert_equal 10, last_five.length
 
     id = 40

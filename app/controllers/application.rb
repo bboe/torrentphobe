@@ -82,4 +82,9 @@ class ApplicationController < ActionController::Base
       host_url = "http://" + host_url
     end
   end
+
+  def paginated_torrents user, num_per_page = 20, args = {}
+    page_id = params[:pageid] || 0
+    user.torrents( args.merge({:offset => (page_id.to_i * num_per_page.to_i), :limit => num_per_page.to_i}))
+  end
 end
