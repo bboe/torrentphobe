@@ -5,12 +5,11 @@
 # 3 tags per torrent
 
 desc "Purges the old entries in the swarm table"
-task( :purge_swarm => :environment) do
+task( :purge_swarms => :environment) do
   Swarm.delete_all(["updated_at < ?", 1.weeks.ago])
   stale = Swarm.find(:all, :conditions => ["updated_at < ? and status != 2",
                                            5.minutes.ago])
   stale.each do | item |
-    puts item.id
     item.status = 2
     item.save()
   end
