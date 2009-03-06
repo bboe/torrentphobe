@@ -1,12 +1,13 @@
 <% if users.length > 0 %>
-<table id="pretty-table">
+
+<% entries = (users.length > 15 ? users.length/2 : users.length ) %>
+<table id="pretty-table" style="float: left;">
   <tr>
     <th>Name</th>
     <th></th>
     <th></th>
   </tr>
-
-<% for user in users %>
+<% for user in users[0..entries] %>
   <tr class="<%= cycle('even', 'odd') %>">
     <% if user.created_at > 5.days.ago %>
       <td><%= user.name+image_tag("new.png") %></td>
@@ -18,6 +19,29 @@
   </tr>
 <% end %>
 </table>
+
+<% if entries != users.length %>
+<table id="pretty-table" style="float: left; padding-left: 30px;">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+<% for user in users[(entries+1)..users.length] %>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <% if user.created_at > 5.days.ago %>
+      <td><%= user.name+image_tag("new.png") %></td>
+    <% else %>
+      <td><%= user.name %></td>
+    <% end %>
+    <td><%= link_to 'View Profile',{ :controller => :users, :action => :show, :id => user.id } %></td>
+    <td><%= link_to 'View Files', {:controller => :users, :action => :files, :id => user.id} %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+
 <% else %>
 Sorry, it doesnt look like you have any friends on our site.
 <br /> Why not have them sign up? It's a lot more fun to share with friends.

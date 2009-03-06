@@ -85,12 +85,18 @@ class ApplicationController < ActionController::Base
 
   def paginated_torrents user, num_per_page = 20, args = {}
     page_id = Integer(params[:pageid]) rescue 0
-    page_id = 0 if page_id < 0
+
+    pages = (user.torrent_count/num_per_page.to_f).ceil
+    params[:pages] = pages
+
+    #Handle invalid page numbers
+    page_id = 0 if page_id < 0 || page_id >= pages
+    params[:pageid] = page_id
 
     args[:order] = handle_sort_params if !args.has_key?(:order)
-    user.torrents( args.merge({:offset => (page_id.to_i * num_per_page.to_i), :limit => num_per_page.to_i}))
+    torrents = user.torrents( args.merge({:offset => (page_id.to_i * num_per_page.to_i), :limit => num_per_page.to_i}))
   end
-  
+
   def handle_sort_params
     return nil if !params[:c]
 

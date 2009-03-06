@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     Torrent.find(:all, {:conditions => ["((relationships.friend_id = swarms.user_id and relationships.user_id = :user_id) or (swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id" + extra_conditions, {:user_id => self.id}], :joins => 'inner join relationships,  swarms', :select => "distinct torrents.*"}.merge(args))
   end
 
+  def torrent_count
+    Torrent.count(:all, {:conditions => ["((relationships.friend_id = swarms.user_id and relationships.user_id = :user_id) or (swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id", {:user_id => self.id}], :joins => 'inner join relationships,  swarms', :select => "torrents.id", :distinct => true})
+  end
+
   def add_friend(friend)
     Relationship.find_or_create_by_user_id_and_friend_id(self.id, friend.id)
     Relationship.find_or_create_by_user_id_and_friend_id(friend.id, self.id)

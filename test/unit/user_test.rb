@@ -173,5 +173,10 @@ class UserTest < ActiveSupport::TestCase
     assert_equal [torrents(:toms)], (tom.torrents :conditions => ["category_id = :category_id", {:category_id => 1}])
   end
 
+  test "count torrents" do
+    bob = users(:Bob)
+    #The count of torrents should be the same as the length of the torrent list
+    assert_equal bob.torrents.length, bob.torrent_count
+  end
   
 end
