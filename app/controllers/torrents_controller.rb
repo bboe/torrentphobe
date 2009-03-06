@@ -7,9 +7,8 @@ class TorrentsController < ApplicationController
   # GET /torrents.xml
   def index
     @current_user = get_current_user
-    page_id = params[:page] || 0
-    @torrents = paginated_torrents @current_user
-    @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
+
+    @torrents = paginated_torrents @current_user, 10
 
     respond_to do |format|
       format.html # index.html.erb
@@ -142,7 +141,6 @@ class TorrentsController < ApplicationController
     @torrents = paginated_torrents @current_user
 
     @torrents.map! { |torrent| torrent if @torrents.include?(torrent) }.compact!
-    @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
 
     respond_to do |format|
        format.html { render :action => "search" }

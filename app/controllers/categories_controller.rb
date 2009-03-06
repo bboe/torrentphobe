@@ -8,9 +8,8 @@ class CategoriesController < ApplicationController
     ordering = handle_sort params
 
     @current_user = get_current_user
-    
+
     @torrents = paginated_torrents @current_user
-    @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
 
     @category = {}
     Category.find(:all).each { |c| @category[c.id]=c.name }
@@ -38,7 +37,7 @@ class CategoriesController < ApplicationController
        
        @torrents = paginated_torrents @current_user
        @torrents = @torrents.select{ |torrent| torrent.category_id == @category.id} 
-       @torrents = Category.sort_torrents(@torrents, params[:c], params[:d])
+
         respond_to do |format|
             format.html # show.html.erb
             format.xml  { render :xml => @category }
