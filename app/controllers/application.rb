@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
     sort_direction = ((params[:d] == "up") ? "ASC" : "DESC")
 
     case sort_by
-      when "category_id","size"
+      when "category_id","size", "seeders"
         ordering = [sort_by,sort_direction].join(" ")
       else
         ordering = [:name,sort_direction].join(" ")
@@ -84,7 +84,29 @@ class ApplicationController < ActionController::Base
   end
 
   def paginated_torrents user, num_per_page = 20, args = {}
-    page_id = params[:pageid] || 0
+    page_id = Integer(params[:pageid]) rescue 0
+    page_id = 0 if page_id < 0
+
+    args[:order] = handle_sort_params if !args.has_key?(:order)
     user.torrents( args.merge({:offset => (page_id.to_i * num_per_page.to_i), :limit => num_per_page.to_i}))
+  end
+  
+  def handle_sort_params
+    return nil if !params[:c]
+
+    case params[:c]
+      when "category"
+        order = "torrents.category_id"
+      when "size"
+        order = "torrents.size"
+      else
+        order = "torrents.name"
+      end
+     
+     if params[:d] == "up"
+        order += " ASC"
+     else
+        order += " DESC"
+     end
   end
 end

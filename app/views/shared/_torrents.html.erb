@@ -1,5 +1,6 @@
 <% display_categories ||= false %>
 <% display_seeders_and_leechers ||= false %>
+<% display_next_prev_links ||= false %>
 <% allow_sorting = true if allow_sorting.nil? %>
 <% if torrents.length > 0 %>
 <table id="pretty-table">
@@ -38,6 +39,19 @@
   </tr>
 <% end %>
 </table>
+<% if display_next_prev_links %>
+<table style="width: 100%;"><tr>
+<td style="text-align: left;">
+<% if params[:pageid] && params[:pageid].to_i > 0 %>
+<%= link_to "Previous page", { :pageid => (params[:pageid].to_i - 1), :c => params[:c], :d => params[:d] } if (params[:pageid]) && 
+(params[:pageid].to_i) %> 
+<% end %>
+</td>
+<td style="text-align: right;">
+<%= link_to "Next page", { :pageid => (params[:pageid].to_i+1) || 1, :c => params[:c], :d => params[:d] } %> 
+</td>
+</tr></table>
+<%end %>
 <% else %>
 No torrents available
 <% end %>
