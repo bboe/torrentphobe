@@ -31,17 +31,15 @@ class CategoriesController < ApplicationController
         flash[:notice] = "Whoops, thats not a valid category!"
         redirect_to :action => :index
     else
-       ordering = handle_sort params
+      ordering = handle_sort params
 
-       @current_user = get_current_user
+      @current_user = get_current_user
        
-       @torrents = paginated_torrents @current_user
-       @torrents = @torrents.select{ |torrent| torrent.category_id == @category.id} 
-
-        respond_to do |format|
-            format.html # show.html.erb
-            format.xml  { render :xml => @category }
-        end
+      @torrents = paginated_torrents @current_user, 20, :conditions => ["category_id = ?", @category.id]
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @category }
+      end
     end   
   end
 end

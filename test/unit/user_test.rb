@@ -168,5 +168,10 @@ class UserTest < ActiveSupport::TestCase
     assert_equal tom, u        
   end
 
+  test "torrents with conditions" do
+    tom = users(:Tom)
+    assert_equal [torrents(:toms)], (tom.torrents :conditions => ["category_id = :category_id", {:category_id => 1}])
+  end
+
   
 end

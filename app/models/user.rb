@@ -11,9 +11,15 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :friend_hash, :fb_id
   validates_numericality_of :fb_id, :greater_than => 0
 
+  def self.sanitize_fucking_sql *args
+    sanitize_sql *args
+  end
+
   # Can pass in any of the find options (such as order), as well as :page_id and :num_per_page for pagination
   def torrents args = {}
-    Torrent.find(:all, {:conditions => ["((relationships.friend_id = swarms.user_id and relationships.user_id = :user_id) or (swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id", {:user_id => self.id}], :joins => 'inner join relationships,  swarms', :select => "distinct torrents.*"}.merge(args))
+    extra_conditions =  User.sanitize_fucking_sql(args.delete(:conditions)) || ""
+    extra_conditions = " AND " + extra_conditions if extra_conditions.length > 0
+    Torrent.find(:all, {:conditions => ["((relationships.friend_id = swarms.user_id and relationships.user_id = :user_id) or (swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id" + extra_conditions, {:user_id => self.id}], :joins => 'inner join relationships,  swarms', :select => "distinct torrents.*"}.merge(args))
   end
 
   def add_friend(friend)
