@@ -5,7 +5,7 @@
 # log_file: log file (default: RAILS_ROOT/log/ferret_server.log
 # log_level: log level for the server's logger
 production:
-  host: localhost
+  host: master1.torrentphobe.cs290demo.com
   port: 9010
   pid_file: log/ferret.pid
   log_file: log/ferret_server.log
