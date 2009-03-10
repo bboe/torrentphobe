@@ -41,7 +41,7 @@ task( :generate_data => :environment) do
   end
   file.close
 
-  USERS = 100
+  USERS = 10000
   # Add bunch of users
   last_id = nil
   USERS.times do |u_num|
