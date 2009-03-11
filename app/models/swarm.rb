@@ -60,7 +60,7 @@ class Swarm < ActiveRecord::Base
   protected
 
   def self.get_all_seeders_or_leechers user_id, status
-    s_or_l = Swarm.count('swarms.id', :conditions => [ "swarms.status = :status and ((swarms.user_id = relationships.friend_id and relationships.user_id = :user_id) or swarms.user_id = :user_id) ", {:status => status, :user_id => user_id}],
+    s_or_l = Swarm.count('swarms.id', :conditions => [ "swarms.status = :status and (swarms.user_id = relationships.friend_id and (relationships.user_id = :user_id or swarms.user_id = :user_id)) ", {:status => status, :user_id => user_id}],
                           :group => 'swarms.torrent_id',
                           :joins => ', `relationships`',
                           :distinct => true)

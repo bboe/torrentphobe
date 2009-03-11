@@ -19,11 +19,11 @@ class User < ActiveRecord::Base
   def torrents args = {}
     extra_conditions =  User.sanitize_fucking_sql(args.delete(:conditions)) || ""
     extra_conditions = " AND " + extra_conditions if extra_conditions.length > 0
-    Torrent.find(:all, {:conditions => ["((relationships.friend_id = swarms.user_id and relationships.user_id = :user_id) or (swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id" + extra_conditions, {:user_id => self.id}], :joins => 'inner join relationships,  swarms', :select => "distinct torrents.*"}.merge(args))
+    Torrent.find(:all, {:conditions => ["(relationships.friend_id = swarms.user_id and (relationships.user_id = :user_id or swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id" + extra_conditions, {:user_id => self.id}], :joins => ',relationships,  swarms'}.merge(args))
   end
 
   def torrent_count
-    Torrent.count(:all, {:conditions => ["((relationships.friend_id = swarms.user_id and relationships.user_id = :user_id) or (swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id", {:user_id => self.id}], :joins => 'inner join relationships,  swarms', :select => "torrents.id", :distinct => true})
+    Torrent.count(:all, {:conditions => ["(relationships.friend_id = swarms.user_id and (relationships.user_id = :user_id or swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id", {:user_id => self.id}], :joins => ', relationships,  swarms', :select => "torrents.id"})
   end
 
   def add_friend(friend)
