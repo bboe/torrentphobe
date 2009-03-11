@@ -17,9 +17,12 @@ class User < ActiveRecord::Base
 
   # Can pass in any of the find options (such as order), as well as :page_id and :num_per_page for pagination
   def torrents args = {}
-    extra_conditions =  User.sanitize_fucking_sql(args.delete(:conditions)) || ""
+    limit = (args[:limit] ? "limit #{args[:limit]}" : "")
+    offset = (args[:offset] ? "offset #{args[:offset]}" : "")
+    order = (args[:order] ? "order by #{args[:order]}" : "")
+    extra_conditions =  (User.sanitize_fucking_sql(args.delete(:conditions)) || "")
     extra_conditions = " AND " + extra_conditions if extra_conditions.length > 0
-    Torrent.find(:all, {:conditions => ["(relationships.friend_id = swarms.user_id and (relationships.user_id = :user_id or swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id" + extra_conditions, {:user_id => self.id}], :joins => ',relationships,  swarms'}.merge(args))
+    Torrent.find_by_sql(["select * from (SELECT torrents.* FROM torrents, relationships, swarms WHERE (relationships.friend_id = swarms.user_id AND relationships.user_id = :user_id AND swarms.torrent_id = torrents.id)" + extra_conditions + " UNION SELECT torrents.* FROM torrents, swarms WHERE (swarms.torrent_id = torrents.id AND swarms.user_id = :user_id)" + extra_conditions + ") as torrents #{order} #{limit} #{offset}", {:user_id => self.id}])
   end
 
   def torrent_count

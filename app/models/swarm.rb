@@ -60,19 +60,14 @@ class Swarm < ActiveRecord::Base
   protected
 
   def self.get_all_seeders_or_leechers user_id, status
-    s_or_l = Swarm.count('swarms.id', :conditions => [ "swarms.status = :status and (swarms.user_id = relationships.friend_id and (relationships.user_id = :user_id or swarms.user_id = :user_id)) ", {:status => status, :user_id => user_id}],
-                          :group => 'swarms.torrent_id',
-                          :joins => ', `relationships`',
-                          :distinct => true)
+    s_or_l = Swarm.find_by_sql(["select distinct count(*) as id, x.torrent_id from (select swarms.torrent_id from swarms, relationships where swarms.user_id = relationships.user_id and relationships.friend_id = :user_id and swarms.status = :status UNION select swarms.torrent_id from swarms where swarms.status = :status and swarms.user_id = :user_id) as x group by x.torrent_id", {:status => status, :user_id => user_id}]);
     hash = Hash.new(0)
-    s_or_l.each{|x| hash[x[0]] = x[1]}
+    s_or_l.each{|x| hash[x.torrent_id] = x.id}
     return hash
   end
   
   def self.get_seeders_or_leechers_count torrent_id, user_id, status
-    Swarm.count( 'swarms.id', :conditions => [ "swarms.torrent_id = :torrent_id and swarms.status = :status and ((swarms.user_id = relationships.friend_id and relationships.user_id = :user_id) or swarms.user_id = :user_id)", {:torrent_id => torrent_id, :status => status, :user_id => user_id}],
-                 :joins => ', `relationships`',
-                 :distinct => true)    
+    Swarm.count_by_sql( ["select distinct count(*) from (select swarms.torrent_id from swarms, relationships where swarms.user_id = relationships.user_id and relationships.friend_id = :user_id and swarms.status = :status  and swarms.torrent_id = :torrent_id UNION select swarms.torrent_id from swarms where swarms.status = :status and swarms.user_id = :user_id and swarms.torrent_id = :torrent_id) as x", {:status => status, :user_id => user_id, :torrent_id => torrent_id}])
   end
 
   def self.get_status_id input
