@@ -2,6 +2,16 @@
 # 20 friends per user
 # 5000 unique tags
 # 3 tags per torrent
+class Array
+  def shuffle
+    sort_by { rand }
+  end
+
+  def shuffle!
+    replace shuffle
+  end
+end
+
 
 desc "Purges the old entries in the swarm table"
 task( :purge_swarms => :environment) do
@@ -19,6 +29,7 @@ task( :generate_data => :environment) do
   User.delete_all!
   Relationship.delete_all!
   Torrent.delete_all!
+  Swarm.delete_all
 
   #Grab the cateogries
   category_ids = Category.find(:all).map{ |c| c.id }
@@ -41,7 +52,7 @@ task( :generate_data => :environment) do
   end
   file.close
 
-  USERS = 10000
+  USERS = 1000
   # Add bunch of users
   last_id = nil
   USERS.times do |u_num|
@@ -67,6 +78,8 @@ task( :generate_data => :environment) do
     if !t.save
       print "Error saving torrent"
     end
+    Swarm.add_or_update_swarm(t.id, u.id,rand(1000), "192.168.0.1", 
+"9090","started")
 
     last_id = u.id
   end
