@@ -25,8 +25,10 @@ class User < ActiveRecord::Base
     Torrent.find_by_sql(["select * from (SELECT torrents.* FROM torrents, relationships, swarms WHERE (relationships.friend_id = swarms.user_id AND relationships.user_id = :user_id AND swarms.torrent_id = torrents.id)" + extra_conditions + " UNION SELECT torrents.* FROM torrents, swarms WHERE (swarms.torrent_id = torrents.id AND swarms.user_id = :user_id)" + extra_conditions + ") as torrents #{order} #{limit} #{offset}", {:user_id => self.id}])
   end
 
-  def torrent_count
-    Torrent.count_by_sql(["select count(*) from (SELECT torrents.* FROM torrents, relationships, swarms WHERE (relationships.friend_id = swarms.user_id AND relationships.user_id = :user_id AND swarms.torrent_id = torrents.id) UNION SELECT torrents.* FROM torrents, swarms WHERE (swarms.torrent_id = torrents.id AND swarms.user_id = :user_id)) as torrents", {:user_id => self.id}])
+  def torrent_count args = {}
+    extra_conditions =  (User.sanitize_fucking_sql(args.delete(:conditions)) || "")
+    extra_conditions = " AND " + extra_conditions if extra_conditions.length > 0
+    Torrent.count_by_sql(["select count(*) from (SELECT torrents.* FROM torrents, relationships, swarms WHERE (relationships.friend_id = swarms.user_id AND relationships.user_id = :user_id AND swarms.torrent_id = torrents.id) #{extra_conditions} UNION SELECT torrents.* FROM torrents, swarms WHERE (swarms.torrent_id = torrents.id AND swarms.user_id = :user_id) #{extra_conditions}) as torrents", {:user_id => self.id}])
   end
 
   def add_friend(friend)

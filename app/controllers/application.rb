@@ -86,7 +86,7 @@ class ApplicationController < ActionController::Base
   def paginated_torrents user, num_per_page = 20, args = {}
     page_id = Integer(params[:pageid]) rescue 0
 
-    pages = (user.torrent_count/num_per_page.to_f).ceil
+    pages = (user.torrent_count(args)/num_per_page.to_f).ceil
     params[:pages] = pages
 
     #Handle invalid page numbers
