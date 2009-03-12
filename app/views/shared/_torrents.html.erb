@@ -23,8 +23,10 @@
     </th>
     <% end %>
   </tr>
+<% if display_seeders_and_leechers %>
 <% seeders = Swarm.get_all_seeders current_user.id %>
 <% leechers = Swarm.get_all_leechers current_user.id %>
+<% end %>
 <% for torrent in torrents %>
   <tr class="<%= cycle('even', 'odd') %>">
     <td style="border: none; padding: 0;"><%= link_to image_tag("download_arrow.png"), :controller => :torrents, :action => :download_torrent_file, :id => torrent.id %></td>
