@@ -82,7 +82,6 @@ class SwarmTest < ActiveSupport::TestCase
     
     #Alice (his friend) gets the swarm list
     swarm_list = Swarm.get_swarm_list(torrents(:bobs).id, users(:Bob).id)
-
     users_in_swarm = swarm_list.map(&:user_id)
 
     #Bob should see himself in the swarm
