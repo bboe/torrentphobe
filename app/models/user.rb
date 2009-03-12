@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def torrent_count
-    Torrent.count(:all, {:conditions => ["(relationships.friend_id = swarms.user_id and (relationships.user_id = :user_id or swarms.user_id = :user_id)) and torrents.id = swarms.torrent_id", {:user_id => self.id}], :joins => ', relationships,  swarms', :select => "torrents.id"})
+    Torrent.count_by_sql(["select count(*) from (SELECT torrents.* FROM torrents, relationships, swarms WHERE (relationships.friend_id = swarms.user_id AND relationships.user_id = :user_id AND swarms.torrent_id = torrents.id) UNION SELECT torrents.* FROM torrents, swarms WHERE (swarms.torrent_id = torrents.id AND swarms.user_id = :user_id)) as torrents", {:user_id => self.id}])
   end
 
   def add_friend(friend)
