@@ -1,27 +1,18 @@
-# SQLite version 3.x
-#   gem install sqlite3-ruby (not necessary on OS X Leopard)
-development:
+--- 
+development: 
   adapter: sqlite3
+  timeout: 5000
   database: db/development.sqlite3
   pool: 5
-  timeout: 5000
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
+production: 
+  encoding: utf8
+  username: root
+  adapter: mysql
+  host: localhost
+  password: 
+  database: torrentphobe_production
+test: 
   adapter: sqlite3
+  timeout: 5000
   database: db/test.sqlite3
   pool: 5
-  timeout: 5000
-
-production:
-  adapter: mysql
-  encoding: utf8
-  database: torrentphobe_production
-  username: root
-  password: 
-  #socket: /var/run/mysqld/mysqld.sock
-  #database: db/production.mysql
-  #pool: 5
-  #timeout: 5000

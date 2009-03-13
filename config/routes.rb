@@ -4,7 +4,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :categories
 
-  map.connect '/torrents/search/:id', :controller => 'torrents', :action => 'search'
   map.connect '/torrents/destroy/:id', :controller => 'torrents', :action => 'destroy'
   map.connect '/torrents/download_torrent_file/:id', :controller => 'torrents', :action => 'download_torrent_file'
   #map.connect '/torrents/:action/:id', :controller => 'torrents'

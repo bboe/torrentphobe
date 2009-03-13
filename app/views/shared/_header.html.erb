@@ -23,10 +23,5 @@
     <li class="last"><%= link_to "Tags", {:controller => :tags}, :class => tab_class(:tags) %></li>
   </ul>
   <div id="search">
-    <% form_tag(:controller => 'torrents', :action => 'search') do -%><div>
-    <%= text_field 'q', nil, :size => 23, :style => "border: 0px;" %>
-    <%= submit_tag 'Search' %>
-    </div>
-    <% end -%>
   </div>
 </div>

@@ -9,10 +9,10 @@
 # This should only be necessary until the final version of the new profile is released.
 
 development:
-  api_key: 9003290cdfa93c80c688df059d784f74
-  secret_key: 76b797cacdeb40bbc9a24e4f69be992c
+  api_key: ecd456f0e21d921d2190b7e3937e05e4
+  secret_key: 3179ad2f0f490133dc9d7ea8f257be07
   canvas_page_name: 
-  callback_url: 
+  callback_url:
   pretty_errors: true
   set_asset_host_to_callback_url: false
   tunnel:
@@ -34,8 +34,8 @@ test:
     local_port: 3000
 
 production:
-  api_key: 0d524bc9652becaabb96b37adc05c5af
-  secret_key: 3179ad2f0f490133dc9d7ea8f257be07
+  api_key: ecd456f0e21d921d2190b7e3937e05e4
+  secret_key: 36a591fb28a70b21c2d2b012c10d3ddc
   canvas_page_name: 
   callback_url:
   pretty_errors: true

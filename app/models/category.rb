@@ -1,6 +1,5 @@
 class Category < ActiveRecord::Base
   has_many :torrents
-  acts_as_ferret :fields => [:name]
 
   def self.sort_torrents(torrents, category, direction)
     if torrents

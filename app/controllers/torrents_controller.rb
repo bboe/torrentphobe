@@ -133,22 +133,6 @@ class TorrentsController < ApplicationController
               :filename => filename)
   end
 
-  def search
-    @query = params[:q].to_s
-    @torrents = Torrent.find_by_contents(@query)
-
-    @current_user = get_current_user
-    @torrents = paginated_torrents @current_user
-
-    @torrents.map! { |torrent| torrent if @torrents.include?(torrent) }.compact!
-
-    respond_to do |format|
-       format.html { render :action => "search" }
-       format.xml  { head :ok }
-    end
-  end
-
-
   protected
   def has_valid_content_type file
     file.content_type.chomp == "application/x-bittorrent"

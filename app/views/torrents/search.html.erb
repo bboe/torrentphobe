@@ -1,6 +1,0 @@
-<h1>Results for: <%= @query %></h1>
-
-<%= render :partial => "shared/torrents", :locals => {:current_user => @current_user, :torrents => @torrents} %>
-<br />
-
-<%= button_to 'Back', torrents_path, :method => :get %>

@@ -3,7 +3,6 @@ class Torrent < ActiveRecord::Base
   require 'bencode'
   require 'digest/sha1'
   acts_as_taggable
-  acts_as_ferret :fields => [:name], :remote => true
   acts_as_paranoid
 
   has_many :swarms
