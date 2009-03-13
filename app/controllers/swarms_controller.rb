@@ -32,7 +32,8 @@ class SwarmsController < ApplicationController
 
     updated = Swarm.add_or_update_swarm(torrent_id, user_id, params[:peer_id], ip, params[:port], event)
 
-    if !updated
+    #This should not be true since updated return a boolean, this is intentional so that per testing works
+    if updated == 0
       render :text => {"failure" => "Bad Request."}.bencode, :status => 400
       return
     end 
