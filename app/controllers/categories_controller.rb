@@ -35,7 +35,8 @@ class CategoriesController < ApplicationController
 
       @current_user = get_current_user
        
-      @torrents = paginated_torrents @current_user, 20, :conditions => ["category_id = ?", @category.id]
+      @torrents = paginated_torrents @current_user, 10, :conditions => 
+["category_id = ?", @category.id]
       respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @category }

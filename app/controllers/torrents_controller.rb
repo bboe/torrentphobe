@@ -8,7 +8,7 @@ class TorrentsController < ApplicationController
   def index
     @current_user = get_current_user
 
-    @torrents = paginated_torrents @current_user
+    @torrents = paginated_torrents @current_user,10
 
     respond_to do |format|
       format.html # index.html.erb
