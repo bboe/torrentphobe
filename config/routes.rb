@@ -6,18 +6,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect '/torrents/destroy/:id', :controller => 'torrents', :action => 'destroy'
   map.connect '/torrents/download_torrent_file/:id', :controller => 'torrents', :action => 'download_torrent_file'
-  #map.connect '/torrents/:action/:id', :controller => 'torrents'
-  #map.connect '/torrents/:id', :controller => 'torrents', :action => 'show'
   map.resources :torrents
-
-  map.connect '/admin/torrents/:action/:id', :controller => "admin/torrents"
-  map.connect '/admin/users/:action/:id', :controller => "admin/users"
-  map.connect '/admin/categories/:action/:id', :controller => "admin/categories"
-  map.connect '/admin/tags/:action/:id', :controller => "admin/tags"
-  map.connect '/admin/swarms/:action/:id', :controller => "admin/swarms"
-  map.connect '/admin/relationships/:action/:id', :controller => "admin/relationships"
-  map.connect '/admin/landing/:action/:id', :controller => "admin/landing"
-  map.connect '/admin/taggings/:action/:id', :controller => "admin/taggings"
 
   map.resources :tags
 
@@ -30,6 +19,15 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect '/home', :controller => 'home', :action => 'index'
   map.connect '/about', :controller => 'landing', :action => 'about'
+
+  map.connect '/admin/torrents/:action/:id', :controller => "admin/torrents"
+  map.connect '/admin/users/:action/:id', :controller => "admin/users"
+  map.connect '/admin/categories/:action/:id', :controller => "admin/categories"
+  map.connect '/admin/tags/:action/:id', :controller => "admin/tags"
+  map.connect '/admin/swarms/:action/:id', :controller => "admin/swarms"
+  map.connect '/admin/relationships/:action/:id', :controller => "admin/relationships"
+  map.connect '/admin/landing/:action/:id', :controller => "admin/landing"
+  map.connect '/admin/taggings/:action/:id', :controller => "admin/taggings"
 
   # The priority is based upon order of creation: first created -> highest priority.
 
