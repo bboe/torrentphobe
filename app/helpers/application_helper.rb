@@ -17,8 +17,12 @@ module ApplicationHelper
 
   def sort_link(title, column, options = {})
     sort_dir = params[:d] == 'up' ? 'down' : 'up'
-    link_to( title, request.parameters.merge( {:c => column, :d => sort_dir} ) ) + " " +
-    link_to( image_tag("sort_arrow_"+sort_dir+".png"), request.parameters.merge( {:c => column, :d => sort_dir} ) )
+    args = request.parameters.merge( {:c => column, :d => sort_dir} )
+    if params[:c] == title.downcase
+      link_to( title, args ) + " " + link_to( image_tag("sort_arrow_"+sort_dir+".png"), args )
+    else
+      link_to( title, args )
+    end
   end
 
   def production_server?

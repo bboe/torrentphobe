@@ -8,6 +8,9 @@ class HomeController < ApplicationController
 
     @new_users = @current_user.friends.map { |user| user if user.created_at > 5.days.ago }.compact[0..10]
 
+    @seeders = Swarm.get_all_seeders @current_user.id
+    @leechers = Swarm.get_all_leechers @current_user.id 
+
     respond_to do |format|
         format.html # index.html.erb
     end

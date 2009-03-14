@@ -10,6 +10,9 @@ class TorrentsController < ApplicationController
 
     @torrents = paginated_torrents @current_user,10
 
+    @seeders = Swarm.get_all_seeders @current_user.id
+    @leechers = Swarm.get_all_leechers @current_user.id 
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @torrents }

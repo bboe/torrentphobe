@@ -22,13 +22,13 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     return if invalid_id params[:id]
-    current_user = get_current_user
-    return if not_friend_or_user( current_user, params[:id] )
+    @current_user = get_current_user
+    return if not_friend_or_user( @current_user, params[:id] )
 
     @user = User.find(params[:id])
 
     ordering = handle_sort params
-    if current_user == @user
+    if @current_user == @user
       @torrents = @user.my_torrents
     else
       @torrents = paginated_torrents @user
@@ -36,6 +36,9 @@ class UsersController < ApplicationController
 
     @torrents.sort! { |a,b| a.created_at <=> b.created_at }
     @torrents = @torrents.reverse[0..5]
+
+    @seeders = Swarm.get_all_seeders @current_user.id
+    @leechers = Swarm.get_all_leechers @current_user.id 
 
     respond_to do |format|
         format.html # show.html.erb
@@ -164,13 +167,16 @@ class UsersController < ApplicationController
 
   def files
     return if invalid_id params[:id]
-    current_user = get_current_user
-    return if not_friend_or_user current_user, params[:id]
+    @current_user = get_current_user
+    return if not_friend_or_user @current_user, params[:id]
 
     @user = User.find(params[:id])
 
     ordering = handle_sort params
     @torrents = @user.owned_torrents
+
+    @seeders = Swarm.get_all_seeders @current_user.id
+    @leechers = Swarm.get_all_leechers @current_user.id 
 
     respond_to do |format|
       format.html # files.html.erb

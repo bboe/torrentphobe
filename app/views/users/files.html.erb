@@ -1,7 +1,6 @@
 <h1>Torrents: <%=h @user.name %></h1>
 
-<%= render :partial => "shared/torrents", :locals => { :current_user => @user, :torrents => @torrents, :display_seeders_and_leechers => true, :display_categories => true} %>
-
+<%= render :partial => "shared/torrents", :locals => { :current_user => @user, :torrents => @torrents, :display_seeders_and_leechers => true, :display_categories => true, :seeders => @seeders, :leechers => @leechers} %>
 <br />
 <br />
 

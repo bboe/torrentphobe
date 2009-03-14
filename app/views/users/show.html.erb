@@ -17,7 +17,7 @@
 </ul>
 
 <h3>Recent Torrents</h3>
-<%= render :partial => "shared/torrents", :locals => { :current_user => @user, :torrents => @torrents, :allow_sorting => false, :display_seeders_and_leechers => true, :display_categories => true } %>
+<%= render :partial => "shared/torrents", :locals => { :current_user => @user, :torrents => @torrents, :allow_sorting => false, :display_seeders_and_leechers => true, :display_categories => true, :seeders => @seeders, :leechers => @leechers} %>
 <br />
 <%= link_to 'View Uploaded Torrents', :action => :files, :id => @user.id %>
 <br /><br />

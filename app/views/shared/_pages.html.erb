@@ -1,0 +1,23 @@
+
+<div style="padding-top: 20px; text-align: center;">
+<% if params[:pageid] > 0 %>
+  <%= link_to image_tag("prev_page.png")+" Previous", { :pageid => (params[:pageid] - 1), :c => params[:c], :d => params[:d] } %> 
+<% else %>
+  <p class="disabled" style="display: inline;"><%= image_tag("prev_page.png") %> Previous</p>
+<% end %>
+&nbsp;Pages: [
+<% params[:pages].times do |i|  %>
+  <% if i == params[:pageid] %>
+    <%= link_to i, { :pageid => i, :c => params[:c], :d => params[:d] }, :class => "underline" %>
+  <% else %>
+    <%= link_to i, { :pageid => i, :c => params[:c], :d => params[:d] } %>
+  <% end %>
+  <%= "," if(i < params[:pages]-1) %>
+  <% end  %>
+  ]&nbsp;
+  <% if params[:pageid] < params[:pages]-1 %>
+    <%= link_to " Next "+image_tag("next_page.png"), { :pageid => (params[:pageid]+1), :c => params[:c], :d => params[:d] } %> 
+  <% else %>
+    <p class="disabled" style="display: inline;">Next <%= image_tag("next_page.png") %></p>
+  <% end %>
+</div>

@@ -15,6 +15,9 @@ class CategoriesController < ApplicationController
     Category.find(:all).each { |c| @category[c.id]=c.name }
     @torrents_by_category = @torrents.group_by(&:category_id).sort
 
+    @seeders = Swarm.get_all_seeders @current_user.id
+    @leechers = Swarm.get_all_leechers @current_user.id 
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categories }
@@ -37,6 +40,10 @@ class CategoriesController < ApplicationController
        
       @torrents = paginated_torrents @current_user, 10, :conditions => 
 ["category_id = ?", @category.id]
+
+     @seeders = Swarm.get_all_seeders @current_user.id
+     @leechers = Swarm.get_all_leechers @current_user.id 
+
       respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @category }
