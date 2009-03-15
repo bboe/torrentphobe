@@ -73,7 +73,7 @@ class Swarm < ActiveRecord::Base
 
  
   def ip_address_is_valid
-    m = /^(\d{1,3})\.(\d{1,3})\.(\d{1,2})\.(\d{1,3})$/.match(ip_address.to_s)
+    m = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/.match(ip_address.to_s)
     unless m
       errors.add(:ip_address, "IP address must be in the form XXX.XXX.XXX.XXX")
       return
