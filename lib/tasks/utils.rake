@@ -52,7 +52,7 @@ task( :generate_data => :environment) do
   end
   file.close
 
-  USERS = 1000
+  USERS = 10000
   # Add bunch of users
   last_id = nil
   USERS.times do |u_num|
@@ -78,22 +78,49 @@ task( :generate_data => :environment) do
     if !t.save
       print "Error saving torrent"
     end
-    Swarm.add_or_update_swarm(t.id, u.id,rand(1000), "192.168.0.1", 
-"9090","started")
-
+    if rand(5) == 2 
+      #Dont insert a swarm entry for each user, just some fraction of them
+      Swarm.add_or_update_swarm(t.id, u.id,rand(1000), "192.168.0.1", "9090","started")
+    end
+    puts u_num.to_s + "\n"
     last_id = u.id
   end
   start_id = last_id - USERS + 1
 
-  User.find(:all).each do |u|
-    # ADD 20 FRIENDS
-    20.times do |n|
-      friend_id = start_id + rand(USERS)
-      redo if friend_id == u.id
-      Relationship.create(:user_id => u.id, :friend_id => friend_id)
-      Relationship.create(:user_id => friend_id, :friend_id => u.id)
+  #Add relationships for users
+  USERS.times do |i|
+    user_id = first + i
+    friends = []
+
+    #Group all of a users friend inserts into a single transaction for faster inserts
+    ActiveRecord::Base.transaction do  
+       8.times do |j|
+         friend_id = first+rand(num_users)
+
+         #dont add the relationship if they are the same user, or al already friends
+	 redo if(friend_id == user_id || friends.include?(friend_id))
+	
+         #Catch any failed inserts when duplicates exist, much faster than looking for each pair before inserting
+	 begin
+	   insert_1 = "INSERT INTO relationships (user_id,friend_id) VALUES (#{user_id},#{friend_id})"
+	   ActiveRecord::Base.connection.execute(insert_1)
+	 rescue
+	   redo
+ 	 end
+	 insert_2 = "INSERT INTO relationships (user_id,friend_id) VALUES (#{friend_id},#{user_id})"
+         ActiveRecord::Base.connection.execute(insert_2)
+	 friends << friend_id
+       end
     end
-  end
+    puts i
+end
+
+
+
+
+
+
+
 end
 
 desc "Gets a set of valid announce urls"
@@ -105,7 +132,7 @@ task( :generate_announce_urls => :environment) do
   torrents = Torrent.find(:all)
   users = User.find(:all)
   #Generate 50 valid announce urls
-  50.times do |i|
+  10000.times do |i|
     #pick random a random torrent and random user
     u = users[rand(users.length)]
     t = torrents[rand(torrents.length)]
