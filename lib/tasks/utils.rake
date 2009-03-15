@@ -1,5 +1,5 @@
 # 1 torrent per user
-# 20 friends per user
+# 16 friends per user
 # 5000 unique tags
 # 3 tags per torrent
 class Array
@@ -30,6 +30,8 @@ task( :generate_data => :environment) do
   Relationship.delete_all!
   Torrent.delete_all!
   Swarm.delete_all
+  Tag.delete_all
+  Tagging.delete_all
 
   #Grab the cateogries
   category_ids = Category.find(:all).map{ |c| c.id }
@@ -78,7 +80,7 @@ task( :generate_data => :environment) do
     if !t.save
       print "Error saving torrent"
     end
-    if rand(5) == 2 
+    if rand(5) >= 3 
       #Dont insert a swarm entry for each user, just some fraction of them
       Swarm.add_or_update_swarm(t.id, u.id,rand(1000), "192.168.0.1", "9090","started")
     end
