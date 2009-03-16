@@ -1,5 +1,5 @@
 # 1 torrent per user
-# 20 friends per user
+# 16 friends per user
 # 5000 unique tags
 # 3 tags per torrent
 class Array
@@ -30,6 +30,8 @@ task( :generate_data => :environment) do
   Relationship.delete_all!
   Torrent.delete_all!
   Swarm.delete_all
+  Tag.delete_all
+  Tagging.delete_all
 
   #Grab the cateogries
   category_ids = Category.find(:all).map{ |c| c.id }
@@ -78,7 +80,7 @@ task( :generate_data => :environment) do
     if !t.save
       print "Error saving torrent"
     end
-    if rand(5) == 2 
+    if rand(5) >= 3 
       #Dont insert a swarm entry for each user, just some fraction of them
       Swarm.add_or_update_swarm(t.id, u.id,rand(1000), "192.168.0.1", "9090","started")
     end
@@ -89,38 +91,32 @@ task( :generate_data => :environment) do
 
   #Add relationships for users
   USERS.times do |i|
-    user_id = first + i
+    user_id = start_id + i
     friends = []
 
     #Group all of a users friend inserts into a single transaction for faster inserts
     ActiveRecord::Base.transaction do  
-       8.times do |j|
-         friend_id = first+rand(num_users)
+      8.times do |j|
+        friend_id = start_id+rand(USERS)
 
-         #dont add the relationship if they are the same user, or al already friends
-	 redo if(friend_id == user_id || friends.include?(friend_id))
-	
-         #Catch any failed inserts when duplicates exist, much faster than looking for each pair before inserting
-	 begin
-	   insert_1 = "INSERT INTO relationships (user_id,friend_id) VALUES (#{user_id},#{friend_id})"
-	   ActiveRecord::Base.connection.execute(insert_1)
-	 rescue
-	   redo
- 	 end
-	 insert_2 = "INSERT INTO relationships (user_id,friend_id) VALUES (#{friend_id},#{user_id})"
-         ActiveRecord::Base.connection.execute(insert_2)
-	 friends << friend_id
-       end
+        #dont add the relationship if they are the same user, or al already friends
+        redo if(friend_id == user_id || friends.include?(friend_id))
+
+        #Catch any failed inserts when duplicates exist, much faster than looking for each pair before inserting
+        begin
+          insert_1 = "INSERT INTO relationships (user_id,friend_id) VALUES (#{user_id},#{friend_id})"
+          ActiveRecord::Base.connection.execute(insert_1)
+        rescue
+          redo
+        end
+
+        insert_2 = "INSERT INTO relationships (user_id,friend_id) VALUES (#{friend_id},#{user_id})"
+        ActiveRecord::Base.connection.execute(insert_2)
+        friends << friend_id
+      end
     end
     puts i
-end
-
-
-
-
-
-
-
+  end
 end
 
 desc "Gets a set of valid announce urls"
