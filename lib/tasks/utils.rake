@@ -26,6 +26,7 @@ end
 
 desc "Adds shit ton of test data for performance evaluation!"
 task( :generate_data => :environment) do
+  puts "Deleting old data from the database..."
   User.delete_all!
   Relationship.delete_all!
   Torrent.delete_all!
@@ -54,20 +55,34 @@ task( :generate_data => :environment) do
   end
   file.close
 
-  USERS = 10000
-  # Add bunch of users
-  last_id = nil
-  USERS.times do |u_num|
-    u = User.create(:name => "User_#{(u_num+1).to_s}", :fb_id => u_num+1, :friend_hash => 'bob')
+  USERS = 100000
 
-    #Create a torrent which this user owns
-    t = Torrent.create(:name => u.id.to_s, :size => "1", :meta_info => "1", 
-                       :category_id => category_ids.shuffle[0], :owner_id=> u.id, 
+  puts "Inserting users into database..."
+  # Add bunch of users
+  (USERS/100).times do |u_num|
+    #Break up user inserts into 100 row insert transactions to speed them up
+    100.times do |i|
+      uid = u_num*100+i
+      ActiveRecord::Base.transaction do  
+        insert_1 = "INSERT INTO users (name,fb_id,friend_hash,created_at,updated_at) VALUES ('User_#{(uid+1).to_s}',#{uid}, 'bob', NOW(), NOW())"
+        ActiveRecord::Base.connection.execute(insert_1)
+      end
+      puts "Inserted #{uid} users" if uid % 100 == 0
+    end
+  end
+
+  first_user = User.find(:first).id
+  last_user = User.find(:last).id
+
+  puts "Inserting torrents into database..."
+  USERS.times do |t_num|
+    uid = first_user+t_num
+    t = Torrent.create(:name => uid.to_s, :size => "1", :meta_info => "1", 
+                       :category_id => category_ids.shuffle[0], :owner_id=> uid, 
                        :data => "7",
                        :info_hash => rand(10000) )
-    #Save the info hash again to avoid having to deal with hashes when generating urls
-    t.info_hash = u.id.to_s
-    t.save
+    #Set the info hash again to avoid having to deal with hashes when generating urls
+    t.info_hash = uid.to_s
 
     tags = []
     #Pick three tags at random
@@ -80,42 +95,41 @@ task( :generate_data => :environment) do
     if !t.save
       print "Error saving torrent"
     end
-    if rand(5) >= 3 
+
+    if rand(5) < 3
       #Dont insert a swarm entry for each user, just some fraction of them
-      Swarm.add_or_update_swarm(t.id, u.id,rand(1000), "192.168.0.1", "9090","started")
+      Swarm.add_or_update_swarm(t.id, uid,rand(1000), "192.168.0.1", "9090","started")
     end
-    puts u_num.to_s + "\n"
-    last_id = u.id
+    puts "Inserted #{t_num} torrents" if t_num % 100 == 0
   end
-  start_id = last_id - USERS + 1
 
   #Add relationships for users
   USERS.times do |i|
-    user_id = start_id + i
+    user_id = first_user + i
     friends = []
 
     #Group all of a users friend inserts into a single transaction for faster inserts
     ActiveRecord::Base.transaction do  
       8.times do |j|
-        friend_id = start_id+rand(USERS)
+        friend_id = first_user+rand(USERS)
 
         #dont add the relationship if they are the same user, or al already friends
         redo if(friend_id == user_id || friends.include?(friend_id))
 
         #Catch any failed inserts when duplicates exist, much faster than looking for each pair before inserting
         begin
-          insert_1 = "INSERT INTO relationships (user_id,friend_id) VALUES (#{user_id},#{friend_id})"
+          insert_1 = "INSERT INTO relationships (user_id,friend_id, created_at, updated_at) VALUES (#{user_id},#{friend_id}, NOW(), NOW())"
           ActiveRecord::Base.connection.execute(insert_1)
         rescue
           redo
         end
 
-        insert_2 = "INSERT INTO relationships (user_id,friend_id) VALUES (#{friend_id},#{user_id})"
+        insert_2 = "INSERT INTO relationships (user_id,friend_id, created_at, updated_at) VALUES (#{friend_id},#{user_id}, NOW(),NOW())"
         ActiveRecord::Base.connection.execute(insert_2)
         friends << friend_id
       end
     end
-    puts i
+    puts "Inserted #{i} relationships" if i % 1000 == 0
   end
 end
 
