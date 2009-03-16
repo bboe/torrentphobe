@@ -46,10 +46,13 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required
-    if params[:user_id] and User.exists?(params[:user_id])
-        session[:user_id] = params[:user_id]
-        return true
-    elsif session[:user_id] and User.exists?(session[:user_id])
+    #This can be uncommented when user IDs can be passed as a param
+    #if params[:user_id] and User.exists?(params[:user_id])
+    #    session[:user_id] = params[:user_id]
+    #    return true
+    #end
+
+    if session[:user_id] and User.exists?(session[:user_id])
         return true
     end
 
