@@ -15,6 +15,14 @@ class User < ActiveRecord::Base
     sanitize_sql *args
   end
 
+  def friends_list
+    friendlist = Rails.cache.read('Friends'+ self.id.to_s)
+    if friendlist.nil?
+       friendlist = self.friends
+       Rails.cache.write('Friends' + self.id.to_s, friendlist, :expires_in => 20.minutes)
+    end
+    friendlist
+  end
   # Can pass in any of the find options (such as order), as well as :page_id and :num_per_page for pagination
   def torrents args = {}
     limit = (args[:limit] ? "limit #{args[:limit]}" : "")

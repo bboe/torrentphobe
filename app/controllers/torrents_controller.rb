@@ -25,7 +25,10 @@ class TorrentsController < ApplicationController
     return if invalid_id params[:id]
     @current_user = get_current_user
 
-    @torrent = Torrent.find(params[:id])
+    @torrent = cache(['Torrent',params[:id]], 
+                     :expires_in => 30.seconds ) do
+         Torrent.find params[:id]
+    end
 
     return if not_friends_or_owner @current_user, @torrent
 

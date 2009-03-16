@@ -25,7 +25,7 @@ class TagsController < ApplicationController
         @torrents = Torrent.find_tagged_with(@tag)
         
         @current_user = get_current_user
-        @torrents.map! { |torrent| torrent if( @current_user.id == torrent.owner_id or @current_user.friends.include?( torrent.owner_id ) ) }
+        @torrents.map! { |torrent| torrent if( @current_user.id == torrent.owner_id or @current_user.friends_list.include?( torrent.owner_id ) ) }
         @torrents.compact!
         respond_to do |format|
             format.html # show.html.erb
