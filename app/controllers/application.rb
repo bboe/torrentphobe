@@ -108,9 +108,10 @@ class ApplicationController < ActionController::Base
 
     args[:order] = handle_sort_params if !args.has_key?(:order)
     merged_args = args.merge({:offset => (page_id.to_i * num_per_page.to_i), :limit => num_per_page.to_i})
-    torrens = cache(['Torrents', user.id, merged_args.to_param], :expires_in => 5.minutes ) do
-       torrents = user.torrents(merged_args)
+    torrents = cache(['Torrents', user.id, merged_args.to_param], :expires_in => 5.minutes ) do
+       user.torrents(merged_args)
     end
+    torrents
   end
 
   def handle_sort_params

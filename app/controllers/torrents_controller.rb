@@ -26,7 +26,7 @@ class TorrentsController < ApplicationController
     @current_user = get_current_user
 
     @torrent = cache(['Torrent',params[:id]], 
-                     :expires_in => 30.seconds ) do
+                     :expires_in => 30.minutes ) do
          Torrent.find params[:id]
     end
 

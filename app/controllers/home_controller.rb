@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     @current_user = get_current_user
 
-    @torrents = paginated_torrents @current_user, 5, {:conditions => ["torrents.created_at > :date" , {:date => 14.days.ago}], :limit => 10, :order => "torrents.created_at DESC" }
+    @torrents = paginated_torrents @current_user, 5, {:conditions => ["torrents.created_at > :date" , {:date => 14.days.ago.to_date}], :limit => 10, :order => "torrents.created_at DESC" }
 
     @new_users = @current_user.friends_list.map { |user| user if user.created_at > 5.days.ago }.compact[0..10]
 
