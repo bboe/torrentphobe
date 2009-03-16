@@ -40,18 +40,16 @@ class ApplicationController < ActionController::Base
   end
 
   def get_current_user
-    current_user = cache (['User', session[:user_id]], :expires_in => 20.minutes) do
+    current_user = cache(['User', session[:user_id]], :expires_in => 20.minutes) do
        User.find(session[:user_id])
     end
   end
 
   def login_required
-    #if params[:user_id] and User.exists?(params[:user_id])#
-    #    session[:user_id] = params[:user_id]
-    #    return true
-    #elsif
-    if
-    session[:user_id] and User.exists?(session[:user_id])
+    if params[:user_id] and User.exists?(params[:user_id])
+        session[:user_id] = params[:user_id]
+        return true
+    elsif session[:user_id] and User.exists?(session[:user_id])
         return true
     end
 
@@ -95,7 +93,7 @@ class ApplicationController < ActionController::Base
   def paginated_torrents user, num_per_page = 20, args = {}
     page_id = Integer(params[:pageid]) rescue 0
 
-    torrent_count = cache (['Torrent_count', user.id, args.to_param], :expires_in => 5.minutes ) do
+    torrent_count = cache(['Torrent_count', user.id, args.to_param], :expires_in => 5.minutes ) do
       user.torrent_count(args)
     end
     pages = (torrent_count/num_per_page.to_f).ceil
@@ -107,7 +105,7 @@ class ApplicationController < ActionController::Base
 
     args[:order] = handle_sort_params if !args.has_key?(:order)
     merged_args = args.merge({:offset => (page_id.to_i * num_per_page.to_i), :limit => num_per_page.to_i})
-    torrens = cache (['Torrents', user.id, merged_args.to_param], :expires_in => 5.minutes ) do
+    torrens = cache(['Torrents', user.id, merged_args.to_param], :expires_in => 5.minutes ) do
        torrents = user.torrents(merged_args)
     end
   end
