@@ -1,6 +1,6 @@
 class CreateSwarms < ActiveRecord::Migration
   def self.up
-    create_table :swarms do |t|
+    create_table :swarms, :options => "ENGINE=MEMORY" do |t|
       t.integer :user_id
       t.integer :torrent_id
       t.string :ip_address

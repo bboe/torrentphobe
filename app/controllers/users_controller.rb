@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     current_user = get_current_user
-    @users = current_user.friends
+    @users = current_user.friends_list
 
     respond_to do |format|
       format.html # index.html.erb
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    friend_ids = facebook_session.user.friends.map { |user| user.uid }
+    friend_ids = facebook_session.user.friends_list.map { |user| user.uid }
     friend_hash = Digest::MD5.hexdigest( friend_ids.to_s )
 
     name = facebook_session.user.name
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
   def invite
       @user = User.find_by_fb_id(facebook_session.user.uid )
 
-      @tp_friends = @user.friends.map(&:fb_id)
+      @tp_friends = @user.friends_list.map(&:fb_id)
       @host_url = get_host_url
   end
 
