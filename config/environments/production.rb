@@ -15,8 +15,7 @@ config.action_controller.perform_caching             = true
 #config.cache_store = :mem_cache_store, '10.252.86.36:11211','10.252.85.238:11211'
 #config.cache_store = :mem_cache_store, 'localhost'
 
-#                                         FE1                         FE2
-config.cache_store = :mem_cache_store, 'localhost', '10.252.86.36:11211', '10.252.85.238:11211'
+config.cache_store = :mem_cache_store, '10.253.195.241:11211' 
 
 
 # Use a different cache store in production
