@@ -19,10 +19,14 @@ class SwarmsController < ApplicationController
 
     user_id, torrent_id = decrypted
     # FIXME
-    info_hash = Torrent.find_by_id(torrent_id).info_hash
-    if info_hash != params[:info_hash]
-      render :text => {"failure" => "Announce URL is not valid for this torrent."}.bencode, :status => 500
-      return      
+    if Torrent.exists?(torrent_id) && User.exists?(user_id)
+       info_hash = Torrent.find_by_id(torrent_id).info_hash
+      if info_hash != params[:info_hash]
+        render :text => {"failure" => "Announce URL is not valid for this torrent."}.bencode, :status => 500
+        return      
+      end
+    else
+        render :text => {"failure" => "Announce URL is not valid for this torrent."}.bencode, :status => 500
     end
 
     event = params[:event] || "empty"
