@@ -45,62 +45,93 @@ task( :generate_data => :environment) do
     puts "Unable to open dictionary file! Exiting script."
     return
   end
-  
 
   5000.times do |i|
     word = file.gets.strip
     #The database barfs when sees weird characters, so avoid them like the plauge
     redo if (word.include?("'") || (word.toutf8 != word))
     tag_list << word
+    insert_1 = "INSERT INTO tags (name) VALUES ('#{word}')"
+    ActiveRecord::Base.connection.execute(insert_1)
   end
   file.close
 
-  USERS = 100000
+  tag_first = Tag.find(:first).id
+  tag_last = Tag.find(:last).id
+
+  USERS = 1000000
 
   puts "Inserting users into database..."
   # Add bunch of users
-  (USERS/100).times do |u_num|
-    #Break up user inserts into 100 row insert transactions to speed them up
-    100.times do |i|
-      uid = u_num*100+i
-      ActiveRecord::Base.transaction do  
+  (USERS/1000).times do |u_num|
+    #Break up user inserts into 1000 row insert transactions to speed them up
+    ActiveRecord::Base.transaction do
+      1000.times do |i|
+        uid = u_num*1000+i
         insert_1 = "INSERT INTO users (name,fb_id,friend_hash,created_at,updated_at) VALUES ('User_#{(uid+1).to_s}',#{uid}, 'bob', NOW(), NOW())"
         ActiveRecord::Base.connection.execute(insert_1)
       end
-      puts "Inserted #{uid} users" if uid % 100 == 0
     end
+    puts "Inserted #{u_num*1000} users"
   end
 
   first_user = User.find(:first).id
   last_user = User.find(:last).id
 
   puts "Inserting torrents into database..."
-  USERS.times do |t_num|
-    uid = first_user+t_num
-    t = Torrent.create(:name => uid.to_s, :size => "1", :meta_info => "1", 
-                       :category_id => category_ids.shuffle[0], :owner_id=> uid, 
-                       :data => "7",
-                       :info_hash => rand(10000) )
-    #Set the info hash again to avoid having to deal with hashes when generating urls
-    t.info_hash = uid.to_s
+  (USERS/1000).times do |t_num|
+    #Break up torrent inserts into 1000 row insert transactions to speed them up
+    ActiveRecord::Base.transaction do
+      1000.times do |i|
+        tid = t_num*1000+i
+        uid = first_user+tid
+        insert_1 = "INSERT INTO torrents (name,size,meta_info, category_id,owner_id, data, info_hash,created_at,updated_at) VALUES ('#{uid.to_s}',1,'1',#{category_ids.shuffle[0]}, #{uid},'7',#{uid}, NOW(), NOW())"
+        ActiveRecord::Base.connection.execute(insert_1)
+       end
+     puts "Inserted #{t_num*1000} torrents" 
+     end
+   end
 
-    tags = []
-    #Pick three tags at random
-    3.times do |i|
-      tags << tag_list[rand(tag_list.length)]
-    end
+  first_torrent = Torrent.find(:first).id
+  last_torrent = Torrent.find(:last).id
 
-    #Add those tags to the torrent
-    t.tag_list.add(tags)
-    if !t.save
-      print "Error saving torrent"
+  puts "Inserting tags for torrents into database..."
+  (USERS/1000).times do |tag_num|
+    #Break up tag inserts into 1000 row insert transactions to speed them up
+    ActiveRecord::Base.transaction do
+      1000.times do |i|
+        tid = tag_num*1000+i
+        torrentid = first_torrent+tid
+        tags = []
+        until tags.length == 3 do
+          tags << tag_first+rand(5000) 
+          tags = tags.uniq
+        end
+        insert_1 = "INSERT INTO taggings (tag_id, taggable_id, taggable_type, created_at) VALUES ('#{tags[0]}', #{torrentid}, 'Torrent',NOW())"
+        ActiveRecord::Base.connection.execute(insert_1)
+        insert_2 = "INSERT INTO taggings (tag_id, taggable_id, taggable_type, created_at) VALUES ('#{tags[1]}',#{torrentid}, 'Torrent',NOW())"
+        ActiveRecord::Base.connection.execute(insert_2)
+        insert_3 = "INSERT INTO taggings (tag_id, taggable_id, taggable_type, created_at) VALUES ('#{tags[2]}',#{torrentid}, 'Torrent',NOW())"
+        ActiveRecord::Base.connection.execute(insert_3)
+      end
+      puts "Inserted #{tag_num*1000} tags"
     end
+   end
 
-    if rand(5) < 3
-      #Dont insert a swarm entry for each user, just some fraction of them
-      Swarm.add_or_update_swarm(t.id, uid,rand(1000), "192.168.0.1", "9090","started")
+  puts "Inserting swarm entries into database..."
+  (USERS/1000).times do |s_num|   
+    #Break up swarm inserts into 1000 row insert transactions to speed them up
+    ActiveRecord::Base.transaction do
+      1000.times do |i|
+        next if rand(5) < 3
+        id = s_num*1000+i
+        userid = first_user+id
+        torrentid = first_torrent+id
+        insert_1 = "INSERT INTO swarms (user_id,torrent_id, ip_address, port, peer_id, status, created_at, updated_at) VALUES ('#{userid}', #{torrentid}, '192.168.0.1', '6060', #{rand(100000)}, 0, NOW(), NOW())"
+        ActiveRecord::Base.connection.execute(insert_1)
+      end
     end
-    puts "Inserted #{t_num} torrents" if t_num % 100 == 0
+    puts "Inserted #{s_num*1000} swarms"      
   end
 
   #Add relationships for users
@@ -139,13 +170,19 @@ task( :generate_announce_urls => :environment) do
   #This is only temporarily here to allow urls to be created. Remove when not needed.
   KEY = EzCrypto::Key.decode('3gP03Z7GQ/sLeH3+MO0CPw==')
   
-  torrents = Torrent.find(:all)
-  users = User.find(:all)
-  #Generate 50 valid announce urls
-  10000.times do |i|
+  first_torrent = Torrent.find(:first).id
+  last_torrent = Torrent.find(:last).id
+  first_user = User.find(:first).id
+  last_user = User.find(:last).id
+
+  num_users = last_user-first_user
+  num_torrents = last_torrent-first_torrent
+
+  #Generate 1000 valid announce urls
+  50000.times do |i|
     #pick random a random torrent and random user
-    u = users[rand(users.length)]
-    t = torrents[rand(torrents.length)]
+    u = User.find(first_user+rand(num_users))
+    t = Torrent.find(first_torrent+rand(num_torrents))
     encrypted = KEY.encrypt64( u.id.to_s + "/" + t.id.to_s )
     peer_id = rand(100000)
     port = 6060
