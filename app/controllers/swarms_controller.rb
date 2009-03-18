@@ -1,4 +1,5 @@
 class SwarmsController < ApplicationController
+  session :off
   require 'bencode'
   require 'openssl'
   require 'ezcrypto'
