@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    friend_ids = facebook_session.user.friends_list.map { |user| user.uid }
+    friend_ids = facebook_session.user.friends.map { |user| user.uid }
     friend_hash = Digest::MD5.hexdigest( friend_ids.to_s )
 
     name = facebook_session.user.name
