@@ -1,2 +1,2 @@
-*/5 * * * * cd /home/rails/torrentphobe/current && /usr/bin/rake RAILS_ENV=production purge_swarms
+*/8 * * * * cd /home/rails/torrentphobe/current && /usr/bin/rake RAILS_ENV=production purge_swarms
 
