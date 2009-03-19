@@ -87,9 +87,21 @@ class ApplicationController < ActionController::Base
   def paginated_torrents user, num_per_page = 20, args = {}
     page_id = Integer(params[:pageid]) rescue 0
 
-    #torrent_count = cache(['Torrent_count', user.id, args.to_param], :expires_in => 10.minutes ) do
-    torrent_count = user.torrent_count(args)
-    #end
+    update_time = Rails.cache.read('torrent_update'+user.id.to_s)
+    if update_time.nil? 
+       update_time = Time.now
+       Rails.cache.write('torrent_update'+user.id.to_s, update_time, :expires_in=> 5.minutes)
+    end
+    
+
+    tcount_cache_key = 'torrent_count'+user.id.to_s+args.to_param
+    tcount_time, torrent_count = Rails.cache.read(tcount_cache_key)
+    if tcount_time.nil? || tcount_time < update_time
+       torrent_count = user.torrent_count(args)
+       tcount_time = Time.now
+       Rails.cache.write(tcount_cache_key, [tcount_time, torrent_count])
+    end
+
     pages = (torrent_count/num_per_page.to_f).ceil
     params[:pages] = pages
 
@@ -99,10 +111,14 @@ class ApplicationController < ActionController::Base
 
     args[:order] = handle_sort_params if !args.has_key?(:order)
     merged_args = args.merge({:offset => (page_id.to_i * num_per_page.to_i), :limit => num_per_page.to_i})
-    #torrents = cache(['Torrents', user.id, merged_args.to_param], :expires_in => 10.minutes ) do
-    torrents = user.torrents(merged_args)
-    #end
-    torrents
+    torrents_cache_key = 'torrents'+user.id.to_s+merged_args.to_param
+    torrents_time, torrents = Rails.cache.read(torrents_cache_key)
+    if torrents_time.nil? || torrents_time < update_time
+       torrents = user.torrents(merged_args)
+       torrents_time = Time.now
+       Rails.cache.write(torrents_cache_key, [torrents_time, torrents])
+    end
+    return torrents
   end
 
   def handle_sort_params
