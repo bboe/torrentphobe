@@ -20,8 +20,11 @@ class Swarm < ActiveRecord::Base
     t.status = Swarm.get_status_id("started") if(t.status.nil? or t.status == Swarm.get_status_id("stopped"))
     t.status = Swarm.get_status_id(status) if !Swarm.get_status_id(status).nil?
     t.peer_id = peer_id
-    t.updated_at = Time.now
-    return t.save
+    if !t.updated_at.nil?
+      then
+      t.update_attribute(:updated_at, Time.now)
+      end
+    t.save
   end
 
   # FIXME - this is really a hack
