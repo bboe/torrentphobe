@@ -48,14 +48,14 @@ class Swarm < ActiveRecord::Base
   protected
 
   def self.get_all_seeders_or_leechers user_id, status
-    s_or_l = Swarm.find_by_sql(["select distinct count(*) as id, x.torrent_id from (select swarms.torrent_id from swarms, relationships where swarms.user_id = relationships.user_id and relationships.friend_id = :user_id and swarms.status = :status UNION select swarms.torrent_id from swarms where swarms.status = :status and swarms.user_id = :user_id) as x group by x.torrent_id", {:status => status, :user_id => user_id}]);
+    s_or_l = Swarm.find_by_sql(["select count(x.torrent_id) as id, x.torrent_id from (select swarms.torrent_id, swarms.id from swarms, relationships where swarms.user_id = relationships.user_id and relationships.friend_id = :user_id and swarms.status = :status UNION select swarms.torrent_id, swarms.id from swarms where swarms.status = :status and swarms.user_id = :user_id) as x group by x.torrent_id", {:status => status, :user_id => user_id}]);
     hash = Hash.new(0)
     s_or_l.each{|x| hash[x.torrent_id] = x.id}
     return hash
   end
   
   def self.get_seeders_or_leechers_count torrent_id, user_id, status
-    Swarm.count_by_sql( ["select distinct count(*) from (select swarms.torrent_id from swarms, relationships where swarms.user_id = relationships.user_id and relationships.friend_id = :user_id and swarms.status = :status  and swarms.torrent_id = :torrent_id UNION select swarms.torrent_id from swarms where swarms.status = :status and swarms.user_id = :user_id and swarms.torrent_id = :torrent_id) as x", {:status => status, :user_id => user_id, :torrent_id => torrent_id}])
+    Swarm.count_by_sql( ["select count(x.torrent_id) from (select swarms.torrent_id, swarms.id from swarms, relationships where swarms.user_id = relationships.user_id and relationships.friend_id = :user_id and swarms.status = :status  and swarms.torrent_id = :torrent_id UNION select swarms.torrent_id, swarms.id from swarms where swarms.status = :status and swarms.user_id = :user_id and swarms.torrent_id = :torrent_id) as x", {:status => status, :user_id => user_id, :torrent_id => torrent_id}])
   end
 
   def self.get_status_id input
