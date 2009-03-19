@@ -13,7 +13,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 require 'memcache'
 
 CACHE = MemCache.new(:namespace => "tphobie")
-CACHE.servers = '10.253.195.241:11211' 
+CACHE.servers = 'localhost:11211' 
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
