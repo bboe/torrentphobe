@@ -1,7 +1,11 @@
 <% if users.length > 0 %>
 
 <% entries = (users.length > 15 ? users.length/2 : users.length ) %>
-<table id="pretty-table" style="float: left;">
+<% if entries != users.length %>
+<table id="pretty-table" style="float: left; width: 45%">
+<% else %>
+<table id="pretty-table">
+<% end %>
   <tr>
     <th>Name</th>
     <th></th>
@@ -21,7 +25,7 @@
 </table>
 
 <% if entries != users.length %>
-<table id="pretty-table" style="float: left; padding-left: 30px;">
+<table id="pretty-table" style="float: left; padding-left: 30px; width: 45%">
   <tr>
     <th>Name</th>
     <th></th>
@@ -40,6 +44,7 @@
 <% end %>
 </table>
 <% end %>
+
 
 
 <% else %>
