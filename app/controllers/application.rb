@@ -46,19 +46,10 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required
-    #This can be uncommented when user IDs can be passed as a param
-    if params[:user_id] and User.exists?(params[:user_id])
-        session[:user_id] = params[:user_id]
-        return true
-    end
-
     if session[:user_id] and User.exists?(session[:user_id])
         return true
     end
 
-    #return true if session[:user_id] and User.exists?(session[:user_id])
-    #Dont enforce login when in development mode so we can still develop locally
-    #return true if ENV["RAILS_ENV"] == "development"
     deny_access
     return false
   end
@@ -96,9 +87,9 @@ class ApplicationController < ActionController::Base
   def paginated_torrents user, num_per_page = 20, args = {}
     page_id = Integer(params[:pageid]) rescue 0
 
-    torrent_count = cache(['Torrent_count', user.id, args.to_param], :expires_in => 10.minutes ) do
-      user.torrent_count(args)
-    end
+    #torrent_count = cache(['Torrent_count', user.id, args.to_param], :expires_in => 10.minutes ) do
+    torrent_count = user.torrent_count(args)
+    #end
     pages = (torrent_count/num_per_page.to_f).ceil
     params[:pages] = pages
 
@@ -108,9 +99,9 @@ class ApplicationController < ActionController::Base
 
     args[:order] = handle_sort_params if !args.has_key?(:order)
     merged_args = args.merge({:offset => (page_id.to_i * num_per_page.to_i), :limit => num_per_page.to_i})
-    torrents = cache(['Torrents', user.id, merged_args.to_param], :expires_in => 10.minutes ) do
-       user.torrents(merged_args)
-    end
+    #torrents = cache(['Torrents', user.id, merged_args.to_param], :expires_in => 10.minutes ) do
+    torrents = user.torrents(merged_args)
+    #end
     torrents
   end
 
